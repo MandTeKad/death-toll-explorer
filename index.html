@@ -949,9 +949,21 @@ body::before {
   </div>
 
   <div class="chart-card">
+    <h3>Gender Per-Capita Mass Shooter Rate</h3>
+    <div class="chart-subtitle">Violence Project (1966&ndash;2024, 201 shooters): annualized rate per 100K of each group&rsquo;s population</div>
+    <div class="chart-wrap"><canvas id="chart-shooter-gender-percap" style="height:220px"></canvas></div>
+  </div>
+
+  <div class="chart-card">
     <h3>Trans/Nonbinary Shooters in Context</h3>
-    <div class="chart-subtitle">GVA broad definition (2013&ndash;2025): 5 of 5,748 incidents (&lt;0.1%); ~1% of U.S. adults identify as trans</div>
+    <div class="chart-subtitle">GVA broad definition (2013&ndash;2025): 5 of 5,748 incidents (&lt;0.1%); ~0.8% of U.S. adults identify as trans</div>
     <div class="chart-wrap"><canvas id="chart-shooter-trans" style="height:220px"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>U.S. Mass Shootings per Year</h3>
+    <div class="chart-subtitle">Gun Violence Archive (4+ shot excl. shooter), 2014&ndash;2025. Trans/NB shooter incidents marked.</div>
+    <div class="chart-wrap"><canvas id="chart-ms-annual" style="height:280px"></canvas></div>
   </div>
 
   <div class="chart-card">
@@ -972,9 +984,10 @@ body::before {
       <thead><tr><th>Category</th><th class="num">% of Shooters</th><th class="num">% of U.S. Pop.</th><th class="num">Per 100K (MJ)</th></tr></thead>
       <tbody>
         <tr><td colspan="4" style="font-weight:700;background:var(--chart-surface)">Gender (Violence Project, 1966&ndash;2024)</td></tr>
-        <tr><td>Cisgender Male</td><td class="num">97.5%</td><td class="num">~49%</td><td class="num">&mdash;</td></tr>
-        <tr><td>Cisgender Female</td><td class="num">2.0%</td><td class="num">~51%</td><td class="num">&mdash;</td></tr>
-        <tr><td>Transgender/Nonbinary</td><td class="num">0.5%</td><td class="num">~1%</td><td class="num">&mdash;</td></tr>
+        <tr><td>Cisgender Male</td><td class="num">97.5%</td><td class="num">~49%</td><td class="num">0.0020/yr</td></tr>
+        <tr><td>Cisgender Female</td><td class="num">2.0%</td><td class="num">~51%</td><td class="num">0.0001/yr</td></tr>
+        <tr><td>Trans/Nonbinary (VP strict)</td><td class="num">0.5%</td><td class="num">~0.8%</td><td class="num">0.0008/yr</td></tr>
+        <tr><td>Trans/Nonbinary (GVA broad)</td><td class="num">&lt;0.1%</td><td class="num">~0.8%</td><td class="num">0.020/yr</td></tr>
         <tr><td colspan="4" style="font-weight:700;background:var(--chart-surface)">Race (Mother Jones, 1982&ndash;2025)</td></tr>
         <tr><td>White (Non-Hispanic)</td><td class="num">54.5%</td><td class="num">57.8%</td><td class="num">0.05</td></tr>
         <tr><td>Black</td><td class="num">17.4%</td><td class="num">13.6%</td><td class="num">0.12</td></tr>
@@ -988,7 +1001,7 @@ body::before {
   </div>
 
   <div class="caveat">
-    <strong>Notes:</strong> Mass shooter demographics from the Mother Jones database (1982&ndash;2025, ~150 incidents, strict definition: indiscriminate public attack, 3&ndash;4+ killed). Race percentages corroborated by the Violence Project, CPRC, and Eugene Volokh&rsquo;s analysis. Per-capita rates from Mother Jones data (1982&ndash;2022). <strong>Gender:</strong> Violence Project (1966&ndash;2024, 201 shooters): 196 cis male (97.5%), 4 cis female (2.0%), 1 trans (0.5% &mdash; Audrey Hale, Nashville 2023). Under the Gun Violence Archive&rsquo;s broader definition (4+ shot, 2013&ndash;2025, 5,748 incidents), 5 confirmed trans/nonbinary shooters (&lt;0.1%). Co-founder James Densley of the Violence Project notes trans people (~1% of U.S. adults) are statistically <em>under</em>represented among mass shooters, not over. <strong>Ideology:</strong> ~75% of mass shooters show no clear political affiliation. Of the ~25% with identifiable ideology, the U.S. Extremist Crime Database (1990&ndash;2020) finds ~84% far-right and ~16% far-left among <em>ideologically motivated</em> killings specifically. This does NOT mean 84% of mass shooters are right-wing &mdash; it means that among the small subset with identifiable political motives, right-wing extremism predominates. Notable ideological cases include El Paso (2019, white supremacist), Buffalo (2022, white supremacist), Orlando (2016, Islamist), and San Bernardino (2015, Islamist). The vast majority of mass shooters are motivated by personal grievances, mental health crises, or workplace/domestic disputes, not politics.
+    <strong>Notes:</strong> Mass shooter demographics from the Mother Jones database (1982&ndash;2025, ~150 incidents, strict definition: indiscriminate public attack, 3&ndash;4+ killed). Race percentages corroborated by the Violence Project, CPRC, and Eugene Volokh&rsquo;s analysis. Per-capita rates from Mother Jones data (1982&ndash;2022). <strong>Gender:</strong> Violence Project (1966&ndash;2024, 201 shooters): 196 cis male (97.5%), 4 cis female (2.0%), 1 trans (0.5% &mdash; Audrey Hale, Nashville 2023). Under the Gun Violence Archive&rsquo;s broader definition (4+ shot, 2013&ndash;2025, 5,748 incidents), 5 confirmed trans/nonbinary shooters (&lt;0.1%). Per-capita gender rates are annualized (shooters &divide; years &divide; group population &times; 100K). Trans population: ~2.1M adults (0.8%), per Williams Institute/UCLA (2025). Cis male and cis female populations from Census (~165M and ~170M respectively). The GVA broad trans per-capita rate covers a different definition and shorter timeframe (12 yrs vs 58 yrs) and is shown separately for transparency. Co-founder James Densley of the Violence Project notes trans people are statistically <em>under</em>represented among mass shooters. <strong>Annual trend:</strong> GVA mass shootings per year (2014&ndash;2025); 2025 figure is partial year. Trans/NB incidents within GVA: Aberdeen MD (2018), Highlands Ranch CO (2019), Colorado Springs (2022), Nashville (2023), Minneapolis (2025). <strong>Ideology:</strong> ~75% of mass shooters show no clear political affiliation. Of the ~25% with identifiable ideology, the U.S. Extremist Crime Database (1990&ndash;2020) finds ~84% far-right and ~16% far-left among <em>ideologically motivated</em> killings specifically. This does NOT mean 84% of mass shooters are right-wing &mdash; it means that among the small subset with identifiable political motives, right-wing extremism predominates. Notable ideological cases include El Paso (2019, white supremacist), Buffalo (2022, white supremacist), Orlando (2016, Islamist), and San Bernardino (2015, Islamist). The vast majority of mass shooters are motivated by personal grievances, mental health crises, or workplace/domestic disputes, not politics.
   </div>
 </section>
 
@@ -1685,11 +1698,31 @@ function buildCharts() {
     }
   });
 
+  /* Gender per-capita: annualized rate per 100K of each group's pop.
+     VP strict: 58 yrs (1966-2024). Cis M: 196/58/165M*100K=0.00205; Cis F: 4/58/170M*100K=0.0000406; Trans: 1/58/2.1M*100K=0.000823
+     GVA broad trans: 5/12yrs/2.1M*100K=0.0198 (different def & timeframe, shown separately) */
+  charts.shooterGenderPercap = new Chart(document.getElementById('chart-shooter-gender-percap'), {
+    type: 'bar',
+    data: {
+      labels: ['Cis Male\n(VP 1966–2024)','Trans/NB\n(VP strict)','Trans/NB\n(GVA broad 2013–25)','Cis Female\n(VP 1966–2024)'],
+      datasets: [{ label: 'Per 100K per year', data: [0.00205,0.00082,0.0198,0.00004], backgroundColor: [C.cat[0],C.cat[5],C.cat[3],C.cat[2]], borderRadius: 4, barThickness: 36 }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { weight: 500, size: 10 } } },
+        x: { type: 'logarithmic', grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: logTickCb(true) }, title: { display: true, text: 'per 100K per year (log scale)', color: C.muted, font: { size: 10 } } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.parsed.x.toFixed(5) + ' per 100K/yr' } } }
+    }
+  });
+
   charts.shooterTrans = new Chart(document.getElementById('chart-shooter-trans'), {
     type: 'bar',
     data: {
       labels: ['% of Mass Shooters\n(VP strict def.)','% of Mass Shootings\n(GVA broad def.)','% of U.S. Adults\nIdentifying as Trans'],
-      datasets: [{ data: [0.5,0.09,1.0], backgroundColor: [C.cat[5],C.cat[3],C.cat[0]], borderRadius: 4, barThickness: 40 }]
+      datasets: [{ data: [0.5,0.09,0.8], backgroundColor: [C.cat[5],C.cat[3],C.cat[0]], borderRadius: 4, barThickness: 40 }]
     },
     options: {
       indexAxis: 'y',
@@ -1699,6 +1732,29 @@ function buildCharts() {
         x: { grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: v => v + '%' }, beginAtZero: true }
       },
       plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.parsed.x + '%' } } }
+    }
+  });
+
+  /* GVA mass shootings per year, 2014-2025 */
+  charts.msAnnual = new Chart(document.getElementById('chart-ms-annual'), {
+    type: 'bar',
+    data: {
+      labels: ['2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025*'],
+      datasets: [
+        { label: 'Mass Shootings', data: [325,371,479,434,323,434,615,690,695,600,586,425], backgroundColor: C.cat[0], borderRadius: 4, order: 2 },
+        { label: 'Deaths', data: [364,469,606,600,387,517,521,431,762,739,711,420], type: 'line', borderColor: C.cat[3], backgroundColor: 'transparent', pointBackgroundColor: C.cat[3], pointRadius: 4, borderWidth: 2, tension: 0.3, order: 1 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { weight: 500 } } },
+        y: { grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted }, beginAtZero: true }
+      },
+      plugins: {
+        legend: { labels: { color: C.fg, usePointStyle: true, pointStyle: 'circle' } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + fmt(ctx.parsed.y) } }
+      }
     }
   });
 
