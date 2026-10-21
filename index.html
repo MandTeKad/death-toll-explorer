@@ -400,7 +400,7 @@ body::before {
 <!-- ===== TAB 1: U.S. OVERVIEW ===== -->
 <section class="panel active" id="panel-overview" role="tabpanel">
   <h2 class="panel-title">Total American Deaths by Cause</h2>
-  <p class="panel-desc">Estimated total abortion deaths compared to all U.S. war casualties, homicides, pandemics, and the transatlantic slave trade (Middle Passage to the U.S.).</p>
+  <p class="panel-desc">Estimated cumulative American deaths by cause — abortion compared to disease, violence, accidents, and other major causes. Figures are approximate totals since ~1900 unless noted.</p>
 
   <div class="hero-stat">
     <div class="value">~93.1M</div>
@@ -408,8 +408,16 @@ body::before {
   </div>
 
   <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">Heart Disease</p><p class="st-value">~65M</p></div>
+    <div class="stat-tile"><p class="st-label">Cancer</p><p class="st-value">~35M</p></div>
+    <div class="stat-tile"><p class="st-label">Tobacco-Related</p><p class="st-value">~20M</p></div>
+    <div class="stat-tile"><p class="st-label">Stroke</p><p class="st-value">~10M</p></div>
+    <div class="stat-tile"><p class="st-label">Diabetes</p><p class="st-value">~5M</p></div>
+    <div class="stat-tile"><p class="st-label">Traffic Deaths</p><p class="st-value">~3.8M</p></div>
+    <div class="stat-tile"><p class="st-label">Drug Overdoses</p><p class="st-value">~2M</p></div>
+    <div class="stat-tile"><p class="st-label">Homicides</p><p class="st-value">~1.6M</p></div>
+    <div class="stat-tile"><p class="st-label">Suicide</p><p class="st-value">~1.5M</p></div>
     <div class="stat-tile"><p class="st-label">All Wars Combined</p><p class="st-value">~1.43M</p></div>
-    <div class="stat-tile"><p class="st-label">Homicides (since 1900)</p><p class="st-value">~1.6M</p></div>
     <div class="stat-tile"><p class="st-label">COVID-19</p><p class="st-value">~1.2M</p></div>
     <div class="stat-tile"><p class="st-label">1918 Influenza</p><p class="st-value">~675K</p></div>
     <div class="stat-tile"><p class="st-label">Slave Trade (Middle Passage)</p><p class="st-value">~50K</p></div>
@@ -424,7 +432,7 @@ body::before {
   <div class="chart-card">
     <h3>Scale Comparison (Horizontal Bar)</h3>
     <div class="chart-subtitle">Same data as the pie, shown to scale</div>
-    <div class="chart-wrap"><canvas id="chart-overview-bar" style="height:260px"></canvas></div>
+    <div class="chart-wrap"><canvas id="chart-overview-bar" style="height:460px"></canvas></div>
   </div>
 
   <button class="table-toggle" onclick="toggleTable('table-overview')">&#9662; View data table</button>
@@ -432,18 +440,26 @@ body::before {
     <table class="data-table">
       <thead><tr><th>Category</th><th class="num">Estimated Deaths</th><th class="num">% of Total</th></tr></thead>
       <tbody>
-        <tr><td>Abortion (all time est.)</td><td class="num">93,100,000</td><td class="num">95.86%</td></tr>
-        <tr><td>Homicides (since 1900)</td><td class="num">1,600,000</td><td class="num">1.65%</td></tr>
-        <tr><td>All U.S. Wars</td><td class="num">1,434,830</td><td class="num">1.48%</td></tr>
-        <tr><td>COVID-19</td><td class="num">1,200,000</td><td class="num">1.24%</td></tr>
-        <tr><td>1918 Influenza</td><td class="num">675,000</td><td class="num">0.69%</td></tr>
-        <tr><td>Slave Trade (Middle Passage)</td><td class="num">50,000</td><td class="num">0.05%</td></tr>
+        <tr><td>Abortion (all time est.)</td><td class="num">93,100,000</td><td class="num">39.6%</td></tr>
+        <tr><td>Heart Disease (since ~1900)</td><td class="num">65,000,000</td><td class="num">27.7%</td></tr>
+        <tr><td>Cancer (since ~1900)</td><td class="num">35,000,000</td><td class="num">14.9%</td></tr>
+        <tr><td>Tobacco-Related</td><td class="num">20,000,000</td><td class="num">8.5%</td></tr>
+        <tr><td>Stroke (since ~1900)</td><td class="num">10,000,000</td><td class="num">4.3%</td></tr>
+        <tr><td>Diabetes (since ~1900)</td><td class="num">5,000,000</td><td class="num">2.1%</td></tr>
+        <tr><td>Traffic Deaths (since 1899)</td><td class="num">3,800,000</td><td class="num">1.6%</td></tr>
+        <tr><td>Drug Overdoses (cumulative)</td><td class="num">2,000,000</td><td class="num">0.9%</td></tr>
+        <tr><td>Homicides (since 1900)</td><td class="num">1,600,000</td><td class="num">0.7%</td></tr>
+        <tr><td>Suicide (since 1900)</td><td class="num">1,500,000</td><td class="num">0.6%</td></tr>
+        <tr><td>All U.S. Wars</td><td class="num">1,434,830</td><td class="num">0.6%</td></tr>
+        <tr><td>COVID-19</td><td class="num">1,200,000</td><td class="num">0.5%</td></tr>
+        <tr><td>1918 Influenza</td><td class="num">675,000</td><td class="num">0.3%</td></tr>
+        <tr><td>Slave Trade (Middle Passage)</td><td class="num">50,000</td><td class="num">&lt;0.1%</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="caveat">
-    <strong>Notes:</strong> Abortion figures include pre-Roe scholarly estimates (~26M before 1973) and documented post-Roe totals (~67.1M, 1973-2026). Pre-Roe numbers draw from Guttmacher Institute 1955/1967 estimates, Taussig 1936, and Mohr 1978 historical research. War deaths are U.S. military casualties only. Homicide total is estimated from FBI/DOJ annual reports since 1900. COVID figure from CDC cumulative through 2026. 1918 Flu from CDC historical estimates. Slave trade Middle Passage deaths to the U.S. specifically (not total Atlantic trade) per Trans-Atlantic Slave Trade Database.
+    <strong>Notes:</strong> Abortion figures include pre-Roe scholarly estimates (~26M before 1973) and documented post-Roe totals (~67.1M, 1973-2026). Pre-Roe numbers draw from Guttmacher Institute 1955/1967 estimates, Taussig 1936, and Mohr 1978 historical research. Heart disease & cancer are CDC cumulative estimates from annual mortality data since early 1900s. Tobacco figure from CDC (~480K/year currently; cumulative 20th+21st century). Stroke and diabetes from CDC historical mortality. Traffic deaths from NHTSA cumulative since first recorded auto fatality (1899). Drug overdoses include all drug-related deaths cumulative (CDC WONDER); sharp acceleration post-2000 opioid crisis. Suicide from CDC/NIMH historical data. War deaths are U.S. military casualties only. Homicide total estimated from FBI/DOJ annual reports since 1900. COVID from CDC cumulative through 2026. 1918 Flu from CDC historical estimates. Slave trade Middle Passage deaths to the U.S. specifically (not total Atlantic trade) per Trans-Atlantic Slave Trade Database. All disease/cause-of-death cumulative totals are rough estimates — annual reporting methods changed significantly over the past century.
   </div>
 </section>
 
@@ -1364,9 +1380,9 @@ function buildCharts() {
   const C = chartColors();
 
   // ---- OVERVIEW PIE ----
-  const overviewData = [93100000, 1600000, 1434830, 1200000, 675000, 50000];
-  const overviewLabels = ['Abortion (~93.1M)', 'Homicides (~1.6M)', 'All Wars (~1.43M)', 'COVID-19 (~1.2M)', '1918 Flu (~675K)', 'Slave Trade (~50K)'];
-  const overviewColors = [C.accent, C.cat[0], C.cat[1], C.cat[2], C.cat[3], C.cat[4]];
+  const overviewData = [93100000, 65000000, 35000000, 20000000, 10000000, 5000000, 3800000, 2000000, 1600000, 1500000, 1434830, 1200000, 675000, 50000];
+  const overviewLabels = ['Abortion (~93.1M)', 'Heart Disease (~65M)', 'Cancer (~35M)', 'Tobacco (~20M)', 'Stroke (~10M)', 'Diabetes (~5M)', 'Traffic (~3.8M)', 'Overdoses (~2M)', 'Homicides (~1.6M)', 'Suicide (~1.5M)', 'All Wars (~1.43M)', 'COVID-19 (~1.2M)', '1918 Flu (~675K)', 'Slave Trade (~50K)'];
+  const overviewColors = [C.accent, C.cat[0], C.cat[1], C.cat[3], C.cat[2], C.cat[4], C.cat[5], C.cat[6], C.cat[7], C.muted, C.fgSec, C.cat[0], C.cat[1], C.cat[3]];
 
   charts.overviewPie = new Chart(document.getElementById('chart-overview-pie'), {
     type: 'doughnut',
@@ -1387,8 +1403,8 @@ function buildCharts() {
   charts.overviewBar = new Chart(document.getElementById('chart-overview-bar'), {
     type: 'bar',
     data: {
-      labels: ['Abortion', 'Homicides', 'All Wars', 'COVID-19', '1918 Flu', 'Slave Trade'],
-      datasets: [{ data: overviewData, backgroundColor: overviewColors, borderRadius: { topRight: 4, bottomRight: 4 }, borderSkipped: 'start', barThickness: 22 }]
+      labels: ['Abortion', 'Heart Disease', 'Cancer', 'Tobacco', 'Stroke', 'Diabetes', 'Traffic', 'Overdoses', 'Homicides', 'Suicide', 'All Wars', 'COVID-19', '1918 Flu', 'Slave Trade'],
+      datasets: [{ data: overviewData, backgroundColor: overviewColors, borderRadius: { topRight: 4, bottomRight: 4 }, borderSkipped: 'start', barThickness: 18 }]
     },
     options: {
       indexAxis: 'y', responsive: true, maintainAspectRatio: false,
