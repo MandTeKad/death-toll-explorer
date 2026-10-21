@@ -390,6 +390,7 @@ body::before {
       <option value="homicide-demographics">Homicide Demographics</option>
       <option value="shooter-profiles">Shooter Profiles</option>
       <option value="intl-violence">International Violence</option>
+      <option value="criminal-justice">Criminal Justice</option>
     </optgroup>
     <optgroup label="The Big Picture">
       <option value="century-death">Century of Death</option>
@@ -1168,6 +1169,76 @@ body::before {
   </div>
 </section>
 
+<!-- ===== TAB: CRIMINAL JUSTICE ===== -->
+<section class="panel" id="panel-criminal-justice" role="tabpanel">
+  <h2 class="panel-title">Criminal Justice Deep Dive</h2>
+  <p class="panel-desc">U.S. crime statistics, sex offender registries, child sexual abuse prevalence, and recidivism rates. Data from the FBI Uniform Crime Report (2023), Bureau of Justice Statistics, SafeHome.org sex offender registry analysis, and the Department of Health &amp; Human Services.</p>
+
+  <div class="stat-grid">
+    <div class="stat-tile"><div class="stat-value">1.22M</div><div class="stat-label">Violent Crimes (2023)</div></div>
+    <div class="stat-tile"><div class="stat-value">~802K</div><div class="stat-label">Registered Sex Offenders</div></div>
+    <div class="stat-tile"><div class="stat-value">~42M</div><div class="stat-label">Child Sexual Abuse Survivors</div></div>
+    <div class="stat-tile"><div class="stat-value">70%</div><div class="stat-label">Rearrested Within 5 Years</div></div>
+    <div class="stat-tile"><div class="stat-value">1 in 3</div><div class="stat-label">Girls Abused Before 18</div></div>
+    <div class="stat-tile"><div class="stat-value">1 in 5</div><div class="stat-label">Boys Abused Before 18</div></div>
+    <div class="stat-tile"><div class="stat-value">90%</div><div class="stat-label">Perpetrators Known to Victim</div></div>
+    <div class="stat-tile"><div class="stat-value">363.8</div><div class="stat-label">Violent Crime Rate per 100K</div></div>
+  </div>
+
+  <!-- FBI Violent Crime Breakdown -->
+  <div class="chart-card">
+    <h3>FBI Violent Crime Breakdown (2023)</h3>
+    <p class="chart-desc">Of ~1.22 million violent crimes reported in 2023, aggravated assault accounts for the vast majority. Murder, rape, and robbery make up the rest. Overall violent crime fell 3% from 2022.</p>
+    <div class="chart-wrap" style="height:320px"><canvas id="chart-cj-violent"></canvas></div>
+  </div>
+
+  <!-- Crime Trends YoY -->
+  <div class="chart-card">
+    <h3>Crime Rate Changes, 2022 &rarr; 2023</h3>
+    <p class="chart-desc">Year-over-year percent change in major crime categories. Most violent and property crimes declined, but motor vehicle theft surged 12.6%.</p>
+    <div class="chart-wrap" style="height:320px"><canvas id="chart-cj-trends"></canvas></div>
+  </div>
+
+  <!-- Registered Sex Offenders by State -->
+  <div class="chart-card">
+    <h3>Registered Sex Offenders &mdash; Top 10 States</h3>
+    <p class="chart-desc">Total registered sex offenders by state (Jan. 2025). Texas leads with ~75,700, followed by California (~60,600) and New York (~43,000). Nationally, there are ~802,066 registrants, up ~6% since 2019.</p>
+    <div class="chart-wrap" style="height:380px"><canvas id="chart-cj-rso-states"></canvas></div>
+  </div>
+
+  <!-- RSO Per Capita -->
+  <div class="chart-card">
+    <h3>Sex Offenders Per 100K Residents &mdash; Top 10 States</h3>
+    <p class="chart-desc">Oregon has the highest per-capita rate at ~790 per 100,000 residents, more than 3&times; the national average of ~242. Arkansas and Montana also rank far above average.</p>
+    <div class="chart-wrap" style="height:380px"><canvas id="chart-cj-rso-percapita"></canvas></div>
+  </div>
+
+  <!-- Recidivism by Crime Type -->
+  <div class="chart-card">
+    <h3>Recidivism: Rearrest Within 5 Years by Crime Type</h3>
+    <p class="chart-desc">Property offenders have the highest rearrest rate (78%), while homicide offenders have the lowest (60%). Sex offenders fall in the middle at ~67% (for any offense, not just sex crimes). First arrested before age 18 = 80%+ rearrest rate.</p>
+    <div class="chart-wrap" style="height:340px"><canvas id="chart-cj-recidivism"></canvas></div>
+  </div>
+
+  <!-- Sex Offender Recidivism Detail -->
+  <div class="chart-card">
+    <h3>Sex Offender Recidivism: Rearrest vs. Reconviction vs. Return to Prison</h3>
+    <p class="chart-desc">Within 9 years, ~67% of sex offenders are rearrested (for any offense), ~50% reconvicted, and ~40% return to prison. However, for same-type sex offenses specifically, only 7.7% are rearrested&mdash;3&times; higher than other released prisoners, but far below popular perception.</p>
+    <div class="chart-wrap" style="height:300px"><canvas id="chart-cj-sexrecid"></canvas></div>
+  </div>
+
+  <!-- Child Sexual Abuse -->
+  <div class="chart-card">
+    <h3>Child Sexual Abuse: Risk Factors</h3>
+    <p class="chart-desc">Children in foster care are 4&times; more likely to experience sexual abuse than the general population. Children in group homes face 28&times; the risk. CPS receives a report of child sexual abuse every 9 minutes.</p>
+    <div class="chart-wrap" style="height:300px"><canvas id="chart-cj-csa-risk"></canvas></div>
+  </div>
+
+  <div class="caveat">
+    <strong>Notes:</strong> FBI crime data for 2023 uses the updated National Incident-Based Reporting System (NIBRS). Not all agencies report in all years, so exact totals carry some uncertainty. Sex offender registry totals from SafeHome.org (Jan 2025) based on state-level registry data. Recidivism figures from the Bureau of Justice Statistics, tracking prisoners released in 30 states in 2012. &ldquo;Rearrest&rdquo; means any new arrest, not necessarily conviction. Child sexual abuse prevalence estimates from the Dept. of Health &amp; Human Services and the CDC&rsquo;s National Intimate Partner and Sexual Violence Survey. The &ldquo;1 in 3 girls / 1 in 5 boys&rdquo; figures are widely cited estimates that include all forms of child sexual abuse (contact and non-contact). Foster/group home risk multipliers from HHS Child Maltreatment reports. All data carries uncertainty.
+  </div>
+</section>
+
 <!-- ===== TAB 7: CENTURY OF DEATH ===== -->
 <section class="panel" id="panel-century-death" role="tabpanel">
   <h2 class="panel-title">Century of Death (1924&ndash;2024)</h2>
@@ -1272,6 +1343,14 @@ body::before {
   Lankford / Rockefeller Institute &ldquo;Public Mass Shootings Around the World&rdquo; (2000&ndash;2022) &bull;
   UNODC Global Study on Homicide &bull;
   Everytown for Gun Safety &ldquo;Mass Shootings in America&rdquo; (2009&ndash;2022)<br><br>
+  <strong>Criminal Justice:</strong> FBI Uniform Crime Report / NIBRS (2023) &bull;
+  Bureau of Justice Statistics &ldquo;Recidivism of Prisoners Released in 2012&rdquo; &bull;
+  SafeHome.org &ldquo;Sex Offender Statistics&rdquo; (Jan. 2025) &bull;
+  U.S. Dept. of Health &amp; Human Services Child Maltreatment Reports &bull;
+  CDC National Intimate Partner and Sexual Violence Survey &bull;
+  NCMEC CyberTipline Reports &bull;
+  USAFacts.org &ldquo;Recidivism and Reentry&rdquo; &bull;
+  Brennan Center for Justice FBI Crime Data Analysis (2024)<br><br>
   <strong>Century of Death:</strong> WHO &ldquo;Tobacco: 100 million deaths in the 20th century&rdquo; &bull;
   WHO/Guttmacher Institute (73M abortions/year worldwide) &bull;
   Live Action / NRLC (63.5M US abortions since Roe v. Wade) &bull;
@@ -2248,6 +2327,126 @@ function buildCharts() {
         legend: { labels: { color: C.fg, usePointStyle: true, pointStyle: 'circle' } },
         tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + ctx.parsed.y + ' per 100K' } }
       }
+    }
+  });
+
+  /* ===== CRIMINAL JUSTICE TAB CHARTS ===== */
+
+  // FBI Violent Crime Breakdown (doughnut)
+  charts.cjViolent = new Chart(document.getElementById('chart-cj-violent'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Aggravated Assault (~810K)', 'Robbery (~209K)', 'Rape (~113K)', 'Murder (~17.5K)'],
+      datasets: [{ data: [810000, 209000, 113000, 17500], backgroundColor: [C.cat[0], C.cat[1], C.cat[2], C.accent], borderColor: C.surface, borderWidth: 2 }]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: C.fg, font: { size: 12 }, padding: 14 } }, tooltip: ttOpts(C) } }
+  });
+
+  // Crime Rate Changes YoY (horizontal bar, pos/neg)
+  const cjTrendLabels = ['Motor Vehicle Theft', 'Burglary', 'Larceny-Theft', 'Property Crime', 'Robbery', 'Aggr. Assault', 'Violent Crime', 'Rape', 'Murder'];
+  const cjTrendData = [12.6, -7.6, -4.4, -2.4, -0.3, -2.8, -3.0, -9.4, -11.6];
+  const cjTrendColors = cjTrendData.map(v => v > 0 ? C.accent : C.cat[2]);
+  charts.cjTrends = new Chart(document.getElementById('chart-cj-trends'), {
+    type: 'bar',
+    data: {
+      labels: cjTrendLabels,
+      datasets: [{ data: cjTrendData, backgroundColor: cjTrendColors, borderRadius: 4, barThickness: 22 }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { grid: { color: C.grid }, ticks: { color: C.fgSec, callback: v => v + '%' }, title: { display: true, text: '% Change from 2022', color: C.muted } },
+        y: { grid: { display: false }, ticks: { color: C.fg, font: { size: 11 } } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => (ctx.raw > 0 ? '+' : '') + ctx.raw + '%' } } }
+    }
+  });
+
+  // RSO by State (horizontal bar)
+  charts.cjRsoStates = new Chart(document.getElementById('chart-cj-rso-states'), {
+    type: 'bar',
+    data: {
+      labels: ['Texas', 'California', 'New York', 'Florida', 'Michigan', 'Ohio', 'Illinois', 'Pennsylvania', 'Wisconsin', 'Georgia'],
+      datasets: [{ data: [75710, 60615, 42985, 42104, 38937, 25498, 24517, 22118, 21858, 21549], backgroundColor: C.cat[4], borderRadius: 4, barThickness: 24 }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { grid: { color: C.grid }, ticks: { color: C.fgSec, callback: v => fmt(v) } },
+        y: { grid: { display: false }, ticks: { color: C.fg, font: { size: 11 } } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.raw.toLocaleString() + ' registrants' } } }
+    }
+  });
+
+  // RSO Per Capita (horizontal bar)
+  charts.cjRsoPercapita = new Chart(document.getElementById('chart-cj-rso-percapita'), {
+    type: 'bar',
+    data: {
+      labels: ['Oregon', 'Arkansas', 'Montana', 'Delaware', 'Wisconsin', 'Michigan', 'South Dakota', 'Wyoming', 'Alaska', 'Idaho'],
+      datasets: [{ data: [790, 640, 520, 490, 473, 450, 430, 420, 410, 395], backgroundColor: C.cat[6], borderRadius: 4, barThickness: 24 }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { grid: { color: C.grid }, ticks: { color: C.fgSec }, title: { display: true, text: 'per 100,000 residents', color: C.muted } },
+        y: { grid: { display: false }, ticks: { color: C.fg, font: { size: 11 } } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.raw + ' per 100K' } } }
+    }
+  });
+
+  // Recidivism by Crime Type (horizontal bar)
+  charts.cjRecidivism = new Chart(document.getElementById('chart-cj-recidivism'), {
+    type: 'bar',
+    data: {
+      labels: ['Arrested Before 18', 'Property', 'Drug', 'All Released', 'Sex Offense', 'Violent', 'Homicide'],
+      datasets: [{ label: 'Rearrested within 5 yrs (%)', data: [82, 78, 76, 70, 67, 64, 60], backgroundColor: [C.accent, C.cat[1], C.cat[3], C.cat[0], C.cat[4], C.cat[2], C.cat[5]], borderRadius: 4, barThickness: 28 }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { max: 100, grid: { color: C.grid }, ticks: { color: C.fgSec, callback: v => v + '%' } },
+        y: { grid: { display: false }, ticks: { color: C.fg, font: { size: 12, weight: '500' } } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.raw + '% rearrested' } } }
+    }
+  });
+
+  // Sex Offender Recidivism Detail (grouped bar)
+  charts.cjSexRecid = new Chart(document.getElementById('chart-cj-sexrecid'), {
+    type: 'bar',
+    data: {
+      labels: ['Rearrested (any)', 'Reconvicted', 'Return to Prison', 'Rearrested (sex offense)'],
+      datasets: [
+        { label: 'Sex Offenders', data: [67, 50, 40, 7.7], backgroundColor: C.cat[4], borderRadius: 4 },
+        { label: 'All Released Prisoners', data: [70, 69, 55, 2.5], backgroundColor: C.cat[0], borderRadius: 4 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { grid: { display: false }, ticks: { color: C.fg, font: { size: 11 }, maxRotation: 0 } },
+        y: { max: 100, grid: { color: C.grid }, ticks: { color: C.fgSec, callback: v => v + '%' } }
+      },
+      plugins: { legend: { position: 'top', labels: { color: C.fg, font: { size: 12 }, padding: 14 } }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw + '%' } } }
+    }
+  });
+
+  // Child Sexual Abuse Risk Factors (bar)
+  charts.cjCsaRisk = new Chart(document.getElementById('chart-cj-csa-risk'), {
+    type: 'bar',
+    data: {
+      labels: ['General Population', 'Foster Care (4×)', 'Group Homes (28×)'],
+      datasets: [{ label: 'Relative Risk', data: [1, 4, 28], backgroundColor: [C.cat[0], C.cat[1], C.accent], borderRadius: 4 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { grid: { display: false }, ticks: { color: C.fg, font: { size: 12 } } },
+        y: { grid: { color: C.grid }, ticks: { color: C.fgSec, callback: v => v + '×' }, title: { display: true, text: 'Risk multiplier vs. general population', color: C.muted } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.raw + '× risk' } } }
     }
   });
 
