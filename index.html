@@ -319,7 +319,49 @@ body::before {
   .tab-select { max-width: 100%; font-size: 0.8rem; }
   .tab-label { display: none; }
 }
+
+/* Skull splash */
+.skull-splash {
+  position: fixed; inset: 0; z-index: 9999;
+  background: #0a0a0a;
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
+  animation: splashFade 0.6s ease 2.4s forwards;
+}
+.skull-splash .skull {
+  font-size: min(28vw, 160px);
+  filter: drop-shadow(0 0 40px rgba(207,102,121,0.6));
+  animation: skullEnter 0.5s ease-out, skullLaugh 0.3s ease-in-out 0.8s 4;
+}
+.skull-splash .ha {
+  font: 700 clamp(1rem, 4vw, 1.8rem)/1 'Inter', system-ui, sans-serif;
+  color: #cf6679;
+  opacity: 0;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  animation: haAppear 0.3s ease-out 1.0s forwards;
+}
+@keyframes skullEnter {
+  from { transform: scale(0) rotate(-30deg); opacity: 0; }
+  to   { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+@keyframes skullLaugh {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25%  { transform: rotate(-6deg) scale(1.05); }
+  75%  { transform: rotate(6deg) scale(1.05); }
+}
+@keyframes haAppear {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes splashFade {
+  to { opacity: 0; pointer-events: none; }
+}
 </style>
+
+<div class="skull-splash" id="skull-splash">
+  <div class="skull">💀</div>
+  <div class="ha">Ha ha ha ha</div>
+</div>
 
 <div class="page-header">
   <h1>Death Toll Explorer</h1>
@@ -1232,6 +1274,10 @@ function fmt(n) {
   if (n >= 1e3) return (n/1e3).toFixed(n >= 1e5 ? 0 : 1).replace(/\.0$/,'') + 'K';
   return n.toLocaleString();
 }
+
+// Remove skull splash after animation
+const splash = document.getElementById('skull-splash');
+if (splash) splash.addEventListener('animationend', e => { if (e.animationName === 'splashFade') splash.remove(); });
 
 function isDark() {
   const dt = document.documentElement.getAttribute('data-theme');
