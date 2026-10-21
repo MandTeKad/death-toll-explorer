@@ -391,6 +391,7 @@ body::before {
       <option value="shooter-profiles">Shooter Profiles</option>
       <option value="intl-violence">International Violence</option>
       <option value="criminal-justice">Criminal Justice</option>
+      <option value="rape-stats">Rape Statistics</option>
     </optgroup>
     <optgroup label="The Big Picture">
       <option value="century-death">Century of Death</option>
@@ -1267,6 +1268,62 @@ body::before {
   </div>
 </section>
 
+<!-- ===== TAB: RAPE STATISTICS ===== -->
+<section class="panel" id="panel-rape-stats" role="tabpanel">
+  <h2 class="panel-title">Rape Statistics &amp; False Accusations</h2>
+  <p class="panel-desc">Forcible rape data using strict definitions, the justice system funnel from report to incarceration, and false accusation rates across major studies. FBI legacy definition (pre-2013): &ldquo;carnal knowledge of a female forcibly and against her will.&rdquo; Revised (2013+): &ldquo;penetration without the consent of the victim.&rdquo; This page focuses on forcible, strict-definition rape&mdash;not regret, miscommunication, or retroactive withdrawal of consent.</p>
+
+  <div class="stat-grid">
+    <div class="stat-tile"><div class="stat-value">~465K</div><div class="stat-label">Estimated Rapes / Year (NCVS)</div></div>
+    <div class="stat-tile"><div class="stat-value">144K</div><div class="stat-label">Reported to Police</div></div>
+    <div class="stat-tile"><div class="stat-value">31%</div><div class="stat-label">Reporting Rate</div></div>
+    <div class="stat-tile"><div class="stat-value">~2,795</div><div class="stat-label">Incarcerated Per Year</div></div>
+    <div class="stat-tile"><div class="stat-value">0.7%</div><div class="stat-label">Conviction Rate (of estimated)</div></div>
+    <div class="stat-tile"><div class="stat-value">2&ndash;10%</div><div class="stat-label">False Report Rate (consensus)</div></div>
+    <div class="stat-tile"><div class="stat-value">-9.4%</div><div class="stat-label">Rape Rate Change (2022&rarr;23)</div></div>
+    <div class="stat-tile"><div class="stat-value">53%</div><div class="stat-label">Wrongful Sex Assault Convictions w/ False Allegation</div></div>
+  </div>
+
+  <!-- FBI Definition Comparison -->
+  <div class="chart-card">
+    <h3>FBI Rape Definition: Legacy vs. Revised</h3>
+    <p class="chart-desc">The FBI&rsquo;s legacy definition (used until 2013) counted only forcible penile-vaginal rape of a female. The 2013 revision broadened the definition to include all penetration without consent, any gender. This caused a statistical spike that does not reflect an actual increase in crime.</p>
+    <div class="chart-wrap" style="height:320px"><canvas id="chart-rape-definitions"></canvas></div>
+  </div>
+
+  <!-- Justice System Funnel -->
+  <div class="chart-card">
+    <h3>The Justice Funnel: From Rape to Incarceration</h3>
+    <p class="chart-desc">Of an estimated 465,483 rapes per year, only ~31% are reported to police. Of those, ~26,500 lead to arrest (5.7% of estimated). Only ~3,258 result in felony conviction (0.7%), and ~2,795 are incarcerated (0.6%). The vast majority of rapists face no criminal consequences.</p>
+    <div class="chart-wrap" style="height:360px"><canvas id="chart-rape-funnel"></canvas></div>
+  </div>
+
+  <!-- False Accusation Rates Across Studies -->
+  <div class="chart-card">
+    <h3>False Rape Accusation Rates by Study</h3>
+    <p class="chart-desc">Published false accusation rates vary wildly depending on methodology. Rigorous academic studies (Lisak 2010, meta-analyses) converge around 2&ndash;10%. Kanin (1994) is an outlier at 41%, criticized for relying on police polygraph threats that may have coerced recantations. The FBI &ldquo;unfounded&rdquo; rate (~5&ndash;8%) includes cases dropped for insufficient evidence, not just proven false reports.</p>
+    <div class="chart-wrap" style="height:420px"><canvas id="chart-rape-false"></canvas></div>
+  </div>
+
+  <!-- False Accusation Range Chart -->
+  <div class="chart-card">
+    <h3>The False Accusation Spectrum</h3>
+    <p class="chart-desc">The wide range (2&ndash;45%) reflects different definitions, sample sizes, and methodologies. The lowest figures (2&ndash;3%) count only cases definitively proven false. Mid-range estimates (5&ndash;8%) include &ldquo;unfounded&rdquo; cases. The highest figures (Kanin&rsquo;s 41&ndash;50%) used polygraph threats and small, non-representative samples from a single jurisdiction.</p>
+    <div class="chart-wrap" style="height:340px"><canvas id="chart-rape-spectrum"></canvas></div>
+  </div>
+
+  <!-- Wrongful Convictions -->
+  <div class="chart-card">
+    <h3>Wrongful Sexual Assault Convictions</h3>
+    <p class="chart-desc">According to the National Registry of Exonerations, 53% of wrongful sexual assault convictions involved a false accusation&mdash;the highest of any crime category. DNA exonerations have freed hundreds of men wrongly convicted of rape, with Black men disproportionately affected.</p>
+    <div class="chart-wrap" style="height:300px"><canvas id="chart-rape-exoneration"></canvas></div>
+  </div>
+
+  <div class="caveat">
+    <strong>Notes:</strong> &ldquo;Strict definition&rdquo; rape here means forcible, non-consensual penetration&mdash;the FBI&rsquo;s legacy and revised definitions both require lack of consent. This section intentionally excludes cases of regret, intoxicated-but-conscious encounters that were later reframed, or situations where initial consent was given but retroactively withdrawn. False accusation rates are notoriously difficult to measure because (a) many genuine rapes go unreported, (b) &ldquo;unfounded&rdquo; is a police classification that doesn&rsquo;t always mean &ldquo;proven false,&rdquo; and (c) small sample sizes produce volatile estimates. The scholarly consensus (meta-analyses by Ferguson &amp; Malouff 2016, Rumney 2006) places the rate at approximately 2&ndash;10%, with the most methodologically rigorous studies clustering around 5&ndash;6%. Kanin&rsquo;s 41% figure is from a single Midwestern city where police used polygraph threats, which multiple researchers have argued coerced vulnerable accusers into recanting truthful reports. The justice funnel numbers are estimates based on NCVS, FBI UCR, and BJS data; exact figures vary by year and source.
+  </div>
+</section>
+
 <!-- ===== TAB 7: CENTURY OF DEATH ===== -->
 <section class="panel" id="panel-century-death" role="tabpanel">
   <h2 class="panel-title">Century of Death (1924&ndash;2024)</h2>
@@ -1379,6 +1436,17 @@ body::before {
   NCMEC CyberTipline Reports &bull;
   USAFacts.org &ldquo;Recidivism and Reentry&rdquo; &bull;
   Brennan Center for Justice FBI Crime Data Analysis (2024)<br><br>
+  <strong>Rape Statistics:</strong> FBI Uniform Crime Report (legacy &amp; revised definitions) &bull;
+  Bureau of Justice Statistics / National Crime Victimization Survey (NCVS) &bull;
+  Lisak et al. (2010) &ldquo;False Allegations of Sexual Assault&rdquo; <em>Violence Against Women</em> &bull;
+  Kanin (1994) &ldquo;False Rape Allegations&rdquo; <em>Archives of Sexual Behavior</em> &bull;
+  Ferguson &amp; Malouff (2016) meta-analysis, <em>Archives of Sexual Behavior</em> &bull;
+  Rumney (2006) &ldquo;False Allegations of Rape&rdquo; <em>Cambridge Law Journal</em> &bull;
+  Kelly, Lovett &amp; Regan (2005) Home Office Research Study &bull;
+  National Registry of Exonerations (wrongful conviction data) &bull;
+  Center for Prosecutor Integrity &bull;
+  UK Crown Prosecution Service (CPS) &bull;
+  DOD Sexual Assault Prevention and Response Office (SAPRO)<br><br>
   <strong>Century of Death:</strong> WHO &ldquo;Tobacco: 100 million deaths in the 20th century&rdquo; &bull;
   WHO/Guttmacher Institute (73M abortions/year worldwide) &bull;
   Live Action / NRLC (63.5M US abortions since Roe v. Wade) &bull;
@@ -2551,6 +2619,115 @@ function buildCharts() {
         y: { grid: { display: false }, ticks: { color: C.fg, font: { size: 14, weight: '600' } } }
       },
       plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.raw + ' per 100K' } } }
+    }
+  });
+
+  /* ===== RAPE STATISTICS TAB CHARTS ===== */
+
+  // FBI Definition Comparison (grouped bar)
+  charts.rapeDefinitions = new Chart(document.getElementById('chart-rape-definitions'), {
+    type: 'bar',
+    data: {
+      labels: ['2010', '2011', '2012', '2013\n(revised)', '2014', '2015', '2016', '2017', '2018', '2019'],
+      datasets: [
+        { label: 'Legacy Definition', data: [84767, 83425, 84376, null, null, null, null, null, null, null], backgroundColor: C.cat[0], borderRadius: 4, barThickness: 24 },
+        { label: 'Revised Definition', data: [null, null, null, 113695, 116645, 124047, 130755, 135755, 142847, 139815], backgroundColor: C.accent, borderRadius: 4, barThickness: 24 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { grid: { display: false }, ticks: { color: C.fg, font: { size: 11 } } },
+        y: { grid: { color: C.grid }, ticks: { color: C.fgSec, callback: v => fmt(v) }, title: { display: true, text: 'reported rapes', color: C.muted } }
+      },
+      plugins: { legend: { labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + (ctx.raw ? ctx.raw.toLocaleString() : 'N/A') } } }
+    }
+  });
+
+  // Justice System Funnel (horizontal bar)
+  charts.rapeFunnel = new Chart(document.getElementById('chart-rape-funnel'), {
+    type: 'bar',
+    data: {
+      labels: ['Estimated Rapes', 'Reported to Police', 'Arrests', 'Reach Prosecutor', 'Felony Conviction', 'Incarcerated'],
+      datasets: [{
+        data: [465483, 144300, 26533, 6046, 3258, 2795],
+        backgroundColor: [C.cat[7], C.cat[0], C.cat[1], C.cat[3], C.cat[2], C.cat[4]],
+        borderRadius: 4, barThickness: 32
+      }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { type: 'logarithmic', grid: { color: C.grid }, ticks: { color: C.fgSec, callback: function(v) { if ([1000,5000,10000,50000,100000,500000].includes(v)) return fmt(v); return ''; } }, title: { display: true, text: 'count (log scale)', color: C.muted } },
+        y: { grid: { display: false }, ticks: { color: C.fg, font: { size: 12, weight: '500' } } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => { const pct = (ctx.raw / 465483 * 100); return ctx.raw.toLocaleString() + ' (' + (pct < 1 ? pct.toFixed(1) : Math.round(pct)) + '% of estimated)'; } } } }
+    }
+  });
+
+  // False Accusation Rates by Study (horizontal bar)
+  charts.rapeFalse = new Chart(document.getElementById('chart-rape-false'), {
+    type: 'bar',
+    data: {
+      labels: [
+        'Kelly et al. (UK, n=2,643)',
+        'DOD SAPRO (Military)',
+        'Rumney meta (UK, 12 studies)',
+        'Ferguson & Malouff meta (11 studies)',
+        'Lisak (2010, n=136)',
+        'UK CPS (multi-year)',
+        'FBI UCR "Unfounded"',
+        'Center for Prosecutor Integrity',
+        'U.S. Military (range)',
+        'Kanin (1994, n=109)',
+        'Kanin (Purdue, university)'
+      ],
+      datasets: [{
+        data: [3, 3.5, 4.6, 5.2, 5.9, 6, 6.8, 33, 23.5, 41, 50],
+        backgroundColor: [C.cat[2], C.cat[2], C.cat[2], C.cat[2], C.cat[2], C.cat[2], C.cat[2], C.accent, C.cat[3], C.accent, C.accent],
+        borderRadius: 4, barThickness: 26
+      }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { grid: { color: C.grid }, ticks: { color: C.fgSec, callback: v => v + '%' }, max: 55, title: { display: true, text: '% of reports classified as false', color: C.muted } },
+        y: { grid: { display: false }, ticks: { color: C.fg, font: { size: 11 } } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.raw + '% false report rate' } } }
+    }
+  });
+
+  // False Accusation Spectrum (grouped bar: low/mid/high)
+  charts.rapeSpectrum = new Chart(document.getElementById('chart-rape-spectrum'), {
+    type: 'bar',
+    data: {
+      labels: ['Proven False\n(strictest)', 'Unfounded\n(police classification)', 'Academic Consensus\n(meta-analyses)', 'Controversial\n(Kanin methodology)'],
+      datasets: [
+        { label: 'Low Estimate', data: [2, 5, 5, 41], backgroundColor: C.cat[2], borderRadius: 4, barThickness: 28 },
+        { label: 'High Estimate', data: [3, 8, 10, 50], backgroundColor: C.cat[3], borderRadius: 4, barThickness: 28 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { grid: { display: false }, ticks: { color: C.fg, font: { size: 11 } } },
+        y: { grid: { color: C.grid }, ticks: { color: C.fgSec, callback: v => v + '%' }, title: { display: true, text: '% of reports', color: C.muted } }
+      },
+      plugins: { legend: { labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw + '%' } } }
+    }
+  });
+
+  // Wrongful Convictions (doughnut)
+  charts.rapeExoneration = new Chart(document.getElementById('chart-rape-exoneration'), {
+    type: 'doughnut',
+    data: {
+      labels: ['False Accusation', 'Mistaken ID', 'Official Misconduct', 'Other/Multiple'],
+      datasets: [{ data: [53, 24, 13, 10], backgroundColor: [C.accent, C.cat[0], C.cat[3], C.cat[5]], borderColor: C.base, borderWidth: 2 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '55%',
+      plugins: { legend: { labels: { color: C.fg, usePointStyle: true, pointStyle: 'circle', padding: 14 } }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.label + ': ' + ctx.raw + '% of wrongful convictions' } } }
     }
   });
 
