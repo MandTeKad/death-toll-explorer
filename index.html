@@ -1446,7 +1446,7 @@ function buildCharts() {
   /* ===== TAB 10: ALL CAUSES OF DEATH ===== */
   const acLabels = ['Abortion (annual)','Heart Disease','Cancer','Accidents','Stroke','Chronic Resp.','Alzheimer\'s','Diabetes','Kidney Disease','Liver Disease','COVID-19','Suicide','Homicide'];
   const acData   = [1030000,680981,613352,222698,162639,145357,114034,95190,55253,52222,49932,48824,19800];
-  const acColors = [ramp[0],ramp[1],ramp[2],ramp[3],ramp[4],ramp[5],ramp[6],ramp[7],ramp[8],ramp[0],ramp[1],ramp[2],ramp[3]];
+  const acColors = [C.cat[0],C.cat[1],C.cat[2],C.cat[3],C.cat[4],C.cat[5],C.cat[6],C.cat[7],C.accent,C.cat[0],C.cat[1],C.cat[2],C.cat[3]];
 
   charts.allCausesBar = new Chart(document.getElementById('chart-all-causes-bar'), {
     type: 'bar',
@@ -1466,7 +1466,7 @@ function buildCharts() {
 
   const acMedLabels = ['Heart Disease','Cancer','Accidents','Stroke','Chronic Resp.','Alzheimer\'s','Diabetes','Kidney Disease','Liver Disease','COVID-19'];
   const acMedData   = [680981,613352,222698,162639,145357,114034,95190,55253,52222,49932];
-  const acMedColors = [ramp[1],ramp[2],ramp[3],ramp[4],ramp[5],ramp[6],ramp[7],ramp[8],ramp[0],ramp[1]];
+  const acMedColors = [C.cat[1],C.cat[2],C.cat[3],C.cat[4],C.cat[5],C.cat[6],C.cat[7],C.accent,C.cat[0],C.cat[1]];
 
   charts.allCausesPie = new Chart(document.getElementById('chart-all-causes-pie'), {
     type: 'doughnut',
@@ -1493,8 +1493,8 @@ function buildCharts() {
     data: {
       labels: msYears,
       datasets: [
-        { label: 'Events', data: msEvents, borderColor: ramp[0], backgroundColor: ramp[0]+'33', fill: true, tension: 0.3, pointRadius: 4, pointHoverRadius: 6 },
-        { label: 'Killed', data: msKilled, borderColor: ramp[3], backgroundColor: ramp[3]+'33', fill: false, tension: 0.3, pointRadius: 4, pointHoverRadius: 6, borderDash: [5,3] }
+        { label: 'Events', data: msEvents, borderColor: C.cat[0], backgroundColor: C.cat[0]+'33', fill: true, tension: 0.3, pointRadius: 4, pointHoverRadius: 6 },
+        { label: 'Killed', data: msKilled, borderColor: C.cat[3], backgroundColor: C.cat[3]+'33', fill: false, tension: 0.3, pointRadius: 4, pointHoverRadius: 6, borderDash: [5,3] }
       ]
     },
     options: {
@@ -1512,7 +1512,7 @@ function buildCharts() {
 
   const msTypeLabels = ['Other/Unclassified','Social (bars, parties)','Crime/Gang-Related','Domestic Violence','School/Workplace'];
   const msTypeData   = [52, 27.3, 15.8, 11.1, 1.4];
-  const msTypeColors = [ramp[5],ramp[0],ramp[3],ramp[2],ramp[7]];
+  const msTypeColors = [C.cat[5],C.cat[0],C.cat[3],C.cat[2],C.cat[7]];
 
   charts.msTypology = new Chart(document.getElementById('chart-ms-typology'), {
     type: 'doughnut',
@@ -1533,7 +1533,7 @@ function buildCharts() {
     type: 'bar',
     data: {
       labels: ['GVA (4+ shot)','FBI Active Shooter','Mother Jones (strict)'],
-      datasets: [{ data: [600,48,9], backgroundColor: [ramp[0],ramp[2],ramp[4]], borderRadius: { topRight: 4, bottomRight: 4 }, borderSkipped: 'start', barThickness: 28 }]
+      datasets: [{ data: [600,48,9], backgroundColor: [C.cat[0],C.cat[2],C.cat[4]], borderRadius: { topRight: 4, bottomRight: 4 }, borderSkipped: 'start', barThickness: 28 }]
     },
     options: {
       indexAxis: 'y', responsive: true, maintainAspectRatio: false,
@@ -1548,7 +1548,7 @@ function buildCharts() {
   /* ===== TAB 12: HOMICIDE DEMOGRAPHICS ===== */
   const homRaceLabels = ['Black','NHPI','AIAN','White','Asian'];
   const homRates = [21.3,6.5,4.2,3.2,1.4];
-  const homRateColors = [ramp[0],ramp[2],ramp[4],ramp[6],ramp[8]];
+  const homRateColors = [C.cat[0],C.cat[2],C.cat[4],C.cat[6],C.accent];
 
   charts.homRate = new Chart(document.getElementById('chart-hom-rate'), {
     type: 'bar',
@@ -1572,8 +1572,8 @@ function buildCharts() {
     data: {
       labels: homVShareLabels,
       datasets: [
-        { label: 'Victim Share', data: [55.8,40.8,1.9,1.3], backgroundColor: ramp[0], borderRadius: 4, barThickness: 28 },
-        { label: 'U.S. Population %', data: [14,75,6,1.3], backgroundColor: ramp[5], borderRadius: 4, barThickness: 28 }
+        { label: 'Victim Share', data: [55.8,40.8,1.9,1.3], backgroundColor: C.cat[0], borderRadius: 4, barThickness: 28 },
+        { label: 'U.S. Population %', data: [14,75,6,1.3], backgroundColor: C.cat[5], borderRadius: 4, barThickness: 28 }
       ]
     },
     options: {
@@ -1594,8 +1594,8 @@ function buildCharts() {
     data: {
       labels: ['Black','White','Other'],
       datasets: [
-        { label: 'Known Offenders', data: [55.9,41.1,3.0], backgroundColor: ramp[0], borderRadius: 4, barThickness: 28 },
-        { label: 'U.S. Population %', data: [14,75,11], backgroundColor: ramp[5], borderRadius: 4, barThickness: 28 }
+        { label: 'Known Offenders', data: [55.9,41.1,3.0], backgroundColor: C.cat[0], borderRadius: 4, barThickness: 28 },
+        { label: 'U.S. Population %', data: [14,75,11], backgroundColor: C.cat[5], borderRadius: 4, barThickness: 28 }
       ]
     },
     options: {
@@ -1615,7 +1615,7 @@ function buildCharts() {
     type: 'bar',
     data: {
       labels: ['White Victims → White Offender','Black Victims → Black Offender'],
-      datasets: [{ data: [79,89], backgroundColor: [ramp[6],ramp[0]], borderRadius: 4, barThickness: 32 }]
+      datasets: [{ data: [79,89], backgroundColor: [C.cat[6],C.cat[0]], borderRadius: 4, barThickness: 32 }]
     },
     options: {
       indexAxis: 'y', responsive: true, maintainAspectRatio: false,
@@ -1634,8 +1634,8 @@ function buildCharts() {
     data: {
       labels: spRaceLabels,
       datasets: [
-        { label: '% of Mass Shooters', data: [54.5,17.4,8.3,6.7,6.6,2.5,4.0], backgroundColor: ramp[0], borderRadius: 4, barThickness: 22 },
-        { label: '% of U.S. Population', data: [57.8,13.6,18.7,1.1,6.1,1.3,1.4], backgroundColor: ramp[5], borderRadius: 4, barThickness: 22 }
+        { label: '% of Mass Shooters', data: [54.5,17.4,8.3,6.7,6.6,2.5,4.0], backgroundColor: C.cat[0], borderRadius: 4, barThickness: 22 },
+        { label: '% of U.S. Population', data: [57.8,13.6,18.7,1.1,6.1,1.3,1.4], backgroundColor: C.cat[5], borderRadius: 4, barThickness: 22 }
       ]
     },
     options: {
@@ -1655,7 +1655,7 @@ function buildCharts() {
     type: 'bar',
     data: {
       labels: ['Black','White','Asian','Hispanic'],
-      datasets: [{ label: 'Per 100K (MJ 1982–2022)', data: [0.12,0.05,0.04,0.02], backgroundColor: [ramp[0],ramp[2],ramp[4],ramp[6]], borderRadius: 4, barThickness: 36 }]
+      datasets: [{ label: 'Per 100K (MJ 1982–2022)', data: [0.12,0.05,0.04,0.02], backgroundColor: [C.cat[0],C.cat[2],C.cat[4],C.cat[6]], borderRadius: 4, barThickness: 36 }]
     },
     options: {
       responsive: true, maintainAspectRatio: false,
@@ -1671,7 +1671,7 @@ function buildCharts() {
     type: 'doughnut',
     data: {
       labels: ['No Clear Ideology','Far-Right Extremist','Islamist Extremist','Far-Left Extremist','Other Extremist'],
-      datasets: [{ data: [75,12.5,5,3.9,3.6], backgroundColor: [ramp[5],ramp[3],ramp[0],ramp[7],ramp[8]], borderColor: C.surface, borderWidth: 2, hoverOffset: 6 }]
+      datasets: [{ data: [75,12.5,5,3.9,3.6], backgroundColor: [C.cat[5],C.cat[3],C.cat[0],C.cat[7],C.accent], borderColor: C.surface, borderWidth: 2, hoverOffset: 6 }]
     },
     options: {
       responsive: true, maintainAspectRatio: true, layout: { padding: 8 },
