@@ -1234,8 +1234,36 @@ body::before {
     <div class="chart-wrap" style="height:300px"><canvas id="chart-cj-csa-risk"></canvas></div>
   </div>
 
+  <!-- Racial Breakdown: Violent Crime Arrests -->
+  <div class="chart-card">
+    <h3>Violent Crime Arrests by Race</h3>
+    <p class="chart-desc">FBI arrest data shows White individuals account for ~51.5% of violent crime arrests and Black individuals ~44.2%, despite Black Americans being ~13.7% of the U.S. population. These are arrest figures, not convictions, and do not include Hispanic/Latino as a separate racial category (FBI tracks ethnicity separately from race).</p>
+    <div class="chart-wrap" style="height:340px"><canvas id="chart-cj-race-violent"></canvas></div>
+  </div>
+
+  <!-- Racial Breakdown: Homicide Offenders & Victims -->
+  <div class="chart-card">
+    <h3>Homicide: Offenders &amp; Victims by Race</h3>
+    <p class="chart-desc">Black Americans are disproportionately represented as both homicide offenders (~54.8%) and victims (~55.8%). About 89% of Black homicide victims are killed by Black offenders; ~79% of White victims by White offenders. The Black homicide victimization rate is 21.3 per 100K vs. 3.2 per 100K for White Americans (BJS, 2023).</p>
+    <div class="chart-wrap" style="height:320px"><canvas id="chart-cj-race-homicide"></canvas></div>
+  </div>
+
+  <!-- Imprisonment Rate by Race -->
+  <div class="chart-card">
+    <h3>Imprisonment Rate per 100K by Race (2022)</h3>
+    <p class="chart-desc">Black Americans are imprisoned at ~5.2&times; the rate of White Americans. American Indian/Alaska Native rates are also dramatically elevated at ~4.5&times; the White rate. Data from the Bureau of Justice Statistics, <em>Prisoners in 2022</em>.</p>
+    <div class="chart-wrap" style="height:320px"><canvas id="chart-cj-race-prison"></canvas></div>
+  </div>
+
+  <!-- Homicide Victimization Rate -->
+  <div class="chart-card">
+    <h3>Homicide Victimization Rate per 100K by Race (2023)</h3>
+    <p class="chart-desc">The Black homicide victimization rate is ~6.7&times; the White rate. This disparity has persisted for decades and is one of the starkest racial disparities in all of American public health. Data from the Bureau of Justice Statistics.</p>
+    <div class="chart-wrap" style="height:280px"><canvas id="chart-cj-race-victimrate"></canvas></div>
+  </div>
+
   <div class="caveat">
-    <strong>Notes:</strong> FBI crime data for 2023 uses the updated National Incident-Based Reporting System (NIBRS). Not all agencies report in all years, so exact totals carry some uncertainty. Sex offender registry totals from SafeHome.org (Jan 2025) based on state-level registry data. Recidivism figures from the Bureau of Justice Statistics, tracking prisoners released in 30 states in 2012. &ldquo;Rearrest&rdquo; means any new arrest, not necessarily conviction. Child sexual abuse prevalence estimates from the Dept. of Health &amp; Human Services and the CDC&rsquo;s National Intimate Partner and Sexual Violence Survey. The &ldquo;1 in 3 girls / 1 in 5 boys&rdquo; figures are widely cited estimates that include all forms of child sexual abuse (contact and non-contact). Foster/group home risk multipliers from HHS Child Maltreatment reports. All data carries uncertainty.
+    <strong>Notes:</strong> FBI crime data for 2023 uses the updated National Incident-Based Reporting System (NIBRS). Not all agencies report in all years, so exact totals carry some uncertainty. The FBI tracks race and ethnicity (Hispanic/Latino) as separate categories; most racial breakdowns therefore do not separate Hispanic from White or Black. Arrest data reflects law enforcement activity, not necessarily the true distribution of criminal behavior&mdash;policing patterns, socioeconomic factors, and systemic inequalities all influence who gets arrested. Sex offender registry totals from SafeHome.org (Jan 2025) based on state-level registry data. Recidivism figures from the Bureau of Justice Statistics, tracking prisoners released in 30 states in 2012. &ldquo;Rearrest&rdquo; means any new arrest, not necessarily conviction. Imprisonment rates from BJS <em>Prisoners in 2022</em>, Table 5. Homicide victimization rates from BJS (2023). Child sexual abuse prevalence estimates from the Dept. of Health &amp; Human Services and the CDC&rsquo;s National Intimate Partner and Sexual Violence Survey. The &ldquo;1 in 3 girls / 1 in 5 boys&rdquo; figures are widely cited estimates that include all forms of child sexual abuse (contact and non-contact). Foster/group home risk multipliers from HHS Child Maltreatment reports. All data carries uncertainty.
   </div>
 </section>
 
@@ -2447,6 +2475,82 @@ function buildCharts() {
         y: { grid: { color: C.grid }, ticks: { color: C.fgSec, callback: v => v + '×' }, title: { display: true, text: 'Risk multiplier vs. general population', color: C.muted } }
       },
       plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.raw + '× risk' } } }
+    }
+  });
+
+  // Violent Crime Arrests by Race (grouped bar)
+  charts.cjRaceViolent = new Chart(document.getElementById('chart-cj-race-violent'), {
+    type: 'bar',
+    data: {
+      labels: ['Total Violent Crime', 'Murder/Manslaughter', 'Robbery', 'Aggravated Assault', 'Property Crime'],
+      datasets: [
+        { label: 'White', data: [51.5, 41.2, 40.8, 54.3, 63.8], backgroundColor: C.cat[0], borderRadius: 4 },
+        { label: 'Black', data: [44.2, 54.8, 56.1, 41.1, 31.8], backgroundColor: C.cat[1], borderRadius: 4 },
+        { label: 'Asian/Pacific Islander', data: [1.8, 1.5, 1.2, 2.0, 2.2], backgroundColor: C.cat[2], borderRadius: 4 },
+        { label: 'Native American', data: [2.5, 2.5, 1.9, 2.6, 2.2], backgroundColor: C.cat[3], borderRadius: 4 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { grid: { display: false }, ticks: { color: C.fg, font: { size: 11 }, maxRotation: 25 } },
+        y: { max: 70, grid: { color: C.grid }, ticks: { color: C.fgSec, callback: v => v + '%' } }
+      },
+      plugins: { legend: { position: 'top', labels: { color: C.fg, font: { size: 12 }, padding: 14 } }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw + '%' } } }
+    }
+  });
+
+  // Homicide Offenders & Victims by Race (grouped bar)
+  charts.cjRaceHomicide = new Chart(document.getElementById('chart-cj-race-homicide'), {
+    type: 'bar',
+    data: {
+      labels: ['White', 'Black', 'Asian/PI', 'Native American'],
+      datasets: [
+        { label: 'Offenders (%)', data: [41.1, 55.9, 1.5, 1.5], backgroundColor: C.cat[1], borderRadius: 4 },
+        { label: 'Victims (%)', data: [40.8, 55.8, 1.9, 1.3], backgroundColor: C.cat[4], borderRadius: 4 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { grid: { display: false }, ticks: { color: C.fg, font: { size: 12 } } },
+        y: { max: 70, grid: { color: C.grid }, ticks: { color: C.fgSec, callback: v => v + '%' } }
+      },
+      plugins: { legend: { position: 'top', labels: { color: C.fg, font: { size: 12 }, padding: 14 } }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw + '%' } } }
+    }
+  });
+
+  // Imprisonment Rate by Race (horizontal bar)
+  charts.cjRacePrison = new Chart(document.getElementById('chart-cj-race-prison'), {
+    type: 'bar',
+    data: {
+      labels: ['Black', 'Native American', 'Hispanic', 'White', 'Asian/PI'],
+      datasets: [{ data: [1196, 1042, 603, 229, 88], backgroundColor: [C.cat[1], C.cat[3], C.cat[2], C.cat[0], C.cat[5]], borderRadius: 4, barThickness: 32 }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { grid: { color: C.grid }, ticks: { color: C.fgSec }, title: { display: true, text: 'per 100,000 U.S. residents', color: C.muted } },
+        y: { grid: { display: false }, ticks: { color: C.fg, font: { size: 13, weight: '500' } } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.raw.toLocaleString() + ' per 100K' } } }
+    }
+  });
+
+  // Homicide Victimization Rate by Race (horizontal bar)
+  charts.cjRaceVictimRate = new Chart(document.getElementById('chart-cj-race-victimrate'), {
+    type: 'bar',
+    data: {
+      labels: ['Black', 'White'],
+      datasets: [{ data: [21.3, 3.2], backgroundColor: [C.cat[1], C.cat[0]], borderRadius: 4, barThickness: 40 }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { grid: { color: C.grid }, ticks: { color: C.fgSec }, title: { display: true, text: 'homicide victims per 100,000', color: C.muted } },
+        y: { grid: { display: false }, ticks: { color: C.fg, font: { size: 14, weight: '600' } } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.raw + ' per 100K' } } }
     }
   });
 
