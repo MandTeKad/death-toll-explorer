@@ -342,6 +342,7 @@ body::before {
   <button class="tab-btn" data-tab="homicide-demographics" role="tab">Homicide Demographics</button>
   <button class="tab-btn" data-tab="shooter-profiles" role="tab">Shooter Profiles</button>
   <button class="tab-btn" data-tab="intl-violence" role="tab">International Violence</button>
+  <button class="tab-btn" data-tab="century-death" role="tab">Century of Death</button>
 </nav>
 
 <!-- ===== TAB 1: U.S. OVERVIEW ===== -->
@@ -1099,6 +1100,77 @@ body::before {
   </div>
 </section>
 
+<!-- ===== TAB 7: CENTURY OF DEATH ===== -->
+<section class="panel" id="panel-century-death" role="tabpanel">
+  <h2 class="panel-title">Century of Death (1924&ndash;2024)</h2>
+  <p class="panel-desc">Total deaths from major causes over the past 100 years, both globally and in the United States. Abortion is the single largest cause of death worldwide&mdash;dwarfing wars, pandemics, and famine combined. All figures are estimates from the best available scholarly sources and carry significant uncertainty.</p>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">Global Deaths (est.)</p><p class="st-value">~2.2B</p></div>
+    <div class="stat-tile"><p class="st-label">Global Abortions (est.)</p><p class="st-value">~1.5B</p></div>
+    <div class="stat-tile"><p class="st-label">US Deaths (all causes)</p><p class="st-value">~220M</p></div>
+    <div class="stat-tile"><p class="st-label">US Abortions (est.)</p><p class="st-value">~93M</p></div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">Global War Deaths</p><p class="st-value">~150M</p></div>
+    <div class="stat-tile"><p class="st-label">Global Pandemic Deaths</p><p class="st-value">~115M</p></div>
+    <div class="stat-tile"><p class="st-label">Global Famine Deaths</p><p class="st-value">~70M</p></div>
+    <div class="stat-tile"><p class="st-label">Global Tobacco Deaths</p><p class="st-value">~100M</p></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Global Century of Death&mdash;Stacked Overview</h3>
+    <div class="chart-subtitle">Estimated cumulative deaths by category (1924&ndash;2024). Abortion counted separately from natural deaths. All figures carry significant uncertainty.</div>
+    <div class="chart-wrap"><canvas id="chart-century-global-stack" style="height:360px"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Global Deaths by Category (Treemap)</h3>
+    <div class="chart-subtitle">Proportional comparison of major causes of death worldwide over the past 100 years. Each block sized by estimated death toll.</div>
+    <div id="treemap-global" style="width:100%;min-height:400px;position:relative"></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Global Deaths by Category (Pie)</h3>
+    <div class="chart-subtitle">Share of total estimated deaths by cause (1924&ndash;2024), including abortion.</div>
+    <div class="chart-wrap" style="max-width:500px;margin:0 auto"><canvas id="chart-century-global-pie"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>U.S. Deaths by Category&mdash;Stacked Overview</h3>
+    <div class="chart-subtitle">Estimated cumulative U.S. deaths by category (1924&ndash;2024). Abortion (~93M est.) dwarfs all other causes. ~63.5M counted since Roe v. Wade (1973); pre-Roe estimates vary widely.</div>
+    <div class="chart-wrap"><canvas id="chart-century-us-stack" style="height:360px"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>U.S. Deaths by Category (Treemap)</h3>
+    <div class="chart-subtitle">Proportional comparison of major U.S. causes of death over the past 100 years.</div>
+    <div id="treemap-us" style="width:100%;min-height:400px;position:relative"></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>U.S. Deaths by Category (Pie)</h3>
+    <div class="chart-subtitle">Share of total estimated U.S. deaths by cause (1924&ndash;2024), including abortion.</div>
+    <div class="chart-wrap" style="max-width:500px;margin:0 auto"><canvas id="chart-century-us-pie"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>U.S. War Deaths (1924&ndash;2024)</h3>
+    <div class="chart-subtitle">U.S. military deaths by conflict. WW2 dwarfs all subsequent wars combined.</div>
+    <div class="chart-wrap"><canvas id="chart-century-us-wars" style="height:280px"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Global Deadliest Conflicts (1924&ndash;2024)</h3>
+    <div class="chart-subtitle">Estimated total deaths (military + civilian) in the deadliest wars and conflicts of the past century. Log scale.</div>
+    <div class="chart-wrap"><canvas id="chart-century-global-wars" style="height:400px"></canvas></div>
+  </div>
+
+  <div class="caveat">
+    <strong>Notes:</strong> Global and US abortion estimates vary enormously by source. The ~1.5 billion global figure is derived from WHO/Guttmacher&rsquo;s current estimate of ~73 million abortions/year, extrapolated back with lower historical rates. The US figure of ~93 million includes ~63.5 million since Roe v. Wade (1973, Guttmacher/NRLC estimates) plus rough pre-Roe estimates of ~25&ndash;30 million (Taussig, Guttmacher Institute historical). War deaths include both military and civilian casualties. &ldquo;Tobacco&rdquo; figure from WHO estimate of 100 million tobacco-related deaths in the 20th century. Pandemic deaths include Spanish Flu tail (~50M+ total, most pre-1924), HIV/AIDS (~33M), COVID-19 (~27M excess), and others. Famine deaths dominated by Chinese Great Famine (~30&ndash;55M), Soviet/Holodomor (~3.5M), Bengal 1943 (~3M), and North Korean famine (~2.5M). Natural disaster total from KIT Karlsruhe (~8M since 1900). Genocide figure includes Holocaust (~6M), Cambodian (~1.7M), Rwandan (~900K), Armenian tail, Bangladeshi, and others. All estimates carry substantial uncertainty and scholarly debate continues on most figures.
+  </div>
+</section>
+
 <!-- Sources -->
 <footer class="sources-footer">
   <h3>Sources</h3>
@@ -1131,7 +1203,17 @@ body::before {
   Wikipedia &ldquo;List of mass stabbings in the United Kingdom&rdquo; &bull;
   Lankford / Rockefeller Institute &ldquo;Public Mass Shootings Around the World&rdquo; (2000&ndash;2022) &bull;
   UNODC Global Study on Homicide &bull;
-  Everytown for Gun Safety &ldquo;Mass Shootings in America&rdquo; (2009&ndash;2022)
+  Everytown for Gun Safety &ldquo;Mass Shootings in America&rdquo; (2009&ndash;2022)<br><br>
+  <strong>Century of Death:</strong> WHO &ldquo;Tobacco: 100 million deaths in the 20th century&rdquo; &bull;
+  WHO/Guttmacher Institute (73M abortions/year worldwide) &bull;
+  Live Action / NRLC (63.5M US abortions since Roe v. Wade) &bull;
+  Taussig (1936) pre-Roe estimates &bull;
+  Scaruffi &ldquo;Wars and Casualties of the 20th and 21st Centuries&rdquo; &bull;
+  Wikipedia &ldquo;United States military casualties of war&rdquo; &bull;
+  Our World in Data (pandemics, famines) &bull;
+  KIT Karlsruhe &ldquo;Natural Disasters since 1900&rdquo; &bull;
+  World Peace Foundation (historical famine mortality) &bull;
+  The Economist (COVID-19 excess deaths model)
 </footer>
 
 <script>
@@ -2098,6 +2180,165 @@ function buildCharts() {
       }
     }
   });
+
+  /* ===== CENTURY OF DEATH TAB CHARTS ===== */
+
+  /* Global Stacked Bar */
+  charts.centuryGlobalStack = new Chart(document.getElementById('chart-century-global-stack'), {
+    type: 'bar',
+    data: {
+      labels: ['Abortion','Wars &\nConflicts','Pandemics','Tobacco','Famine','Genocide &\nDemocide','Natural\nDisasters'],
+      datasets: [{ label: 'Estimated Deaths (millions)', data: [1500,150,115,100,70,25,8], backgroundColor: [C.cat[7],C.cat[0],C.cat[1],C.cat[3],C.cat[2],C.cat[4],C.cat[5]], borderRadius: 4, barThickness: 36 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { weight: 500, size: 10 } } },
+        y: { type: 'logarithmic', grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: logTickCb([50,500]) }, title: { display: true, text: 'Deaths (millions, log scale)', color: C.muted, font: { size: 11 } } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ~' + fmt(ctx.parsed.y * 1e6) + ' deaths' } } }
+    }
+  });
+
+  /* Global Pie */
+  charts.centuryGlobalPie = new Chart(document.getElementById('chart-century-global-pie'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Abortion (~1.5B)','Wars (~150M)','Pandemics (~115M)','Tobacco (~100M)','Famine (~70M)','Genocide (~25M)','Natural Disasters (~8M)'],
+      datasets: [{ data: [1500,150,115,100,70,25,8], backgroundColor: [C.cat[7],C.cat[0],C.cat[1],C.cat[3],C.cat[2],C.cat[4],C.cat[5]], borderColor: C.surface, borderWidth: 2, hoverOffset: 8 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true, layout: { padding: 8 },
+      plugins: {
+        legend: { display: true, position: 'bottom', labels: { color: C.fgSec, padding: 10, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => { const t = ctx.dataset.data.reduce((a,b)=>a+b,0); return ' ~' + fmt(ctx.parsed * 1e6) + ' (' + (ctx.parsed/t*100).toFixed(1) + '%)'; } } }
+      }
+    }
+  });
+
+  /* US Stacked Bar */
+  charts.centuryUsStack = new Chart(document.getElementById('chart-century-us-stack'), {
+    type: 'bar',
+    data: {
+      labels: ['Abortion','Heart\nDisease','Cancer','Traffic\nDeaths','Homicide','COVID-19','War\nDeaths'],
+      datasets: [{ label: 'Estimated Deaths (millions)', data: [93,65,35,3.6,1.6,1.2,0.507], backgroundColor: [C.cat[7],C.cat[0],C.cat[1],C.cat[2],C.cat[3],C.cat[4],C.cat[5]], borderRadius: 4, barThickness: 36 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { weight: 500, size: 10 } } },
+        y: { type: 'logarithmic', grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: logTickCb([5,50]) }, title: { display: true, text: 'Deaths (millions, log scale)', color: C.muted, font: { size: 11 } } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ~' + fmt(ctx.parsed.y * 1e6) + ' deaths' } } }
+    }
+  });
+
+  /* US Pie */
+  charts.centuryUsPie = new Chart(document.getElementById('chart-century-us-pie'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Abortion (~93M)','Heart Disease (~65M)','Cancer (~35M)','Traffic (~3.6M)','Homicide (~1.6M)','COVID-19 (~1.2M)','War Deaths (~507K)'],
+      datasets: [{ data: [93,65,35,3.6,1.6,1.2,0.507], backgroundColor: [C.cat[7],C.cat[0],C.cat[1],C.cat[2],C.cat[3],C.cat[4],C.cat[5]], borderColor: C.surface, borderWidth: 2, hoverOffset: 8 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true, layout: { padding: 8 },
+      plugins: {
+        legend: { display: true, position: 'bottom', labels: { color: C.fgSec, padding: 10, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => { const t = ctx.dataset.data.reduce((a,b)=>a+b,0); return ' ~' + fmt(ctx.parsed * 1e6) + ' (' + (ctx.parsed/t*100).toFixed(1) + '%)'; } } }
+      }
+    }
+  });
+
+  /* US War Deaths bar */
+  charts.centuryUsWars = new Chart(document.getElementById('chart-century-us-wars'), {
+    type: 'bar',
+    data: {
+      labels: ['World War II','Vietnam War','Korean War','Iraq War','Afghanistan','Gulf War'],
+      datasets: [{ data: [405399,58220,36574,4492,2325,294], backgroundColor: [C.cat[0],C.cat[1],C.cat[2],C.cat[3],C.cat[4],C.cat[5]], borderRadius: { topRight: 4, bottomRight: 4 }, borderSkipped: 'start', barThickness: 26 }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { weight: 500 } } },
+        x: { type: 'logarithmic', grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: logTickCb([500,5000,50000]) }, title: { display: true, text: 'U.S. military deaths (log scale)', color: C.muted, font: { size: 11 } } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.parsed.x.toLocaleString() + ' U.S. military deaths' } } }
+    }
+  });
+
+  /* Global Deadliest Conflicts bar */
+  charts.centuryGlobalWars = new Chart(document.getElementById('chart-century-global-wars'), {
+    type: 'bar',
+    data: {
+      labels: ['World War II','Chinese Civil War\n(total)','Mao Cultural\nRevolution','Vietnam War\n(total)','Korean War','Congo Wars','Soviet-Afghan\nWar','Iran-Iraq War','Ethiopian Civil\nWar','Syrian Civil\nWar','Tigray War','Khmer Rouge'],
+      datasets: [{ data: [55000000,3200000,11000000,3000000,3000000,6000000,1300000,435000,1000000,500000,600000,1700000], backgroundColor: C.cat[0], borderRadius: 4, barThickness: 22 }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { weight: 500, size: 9 } } },
+        x: { type: 'logarithmic', grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: logTickCb([]) }, title: { display: true, text: 'Total deaths (log scale)', color: C.muted, font: { size: 11 } } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ~' + fmt(ctx.parsed.x) + ' total deaths' } } }
+    }
+  });
+
+  /* ===== TREEMAPS (pure HTML/CSS, not Chart.js) ===== */
+  function buildTreemap(containerId, items, totalLabel) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+    el.innerHTML = '';
+    const total = items.reduce((s,i) => s + i.value, 0);
+    el.style.display = 'flex';
+    el.style.flexWrap = 'wrap';
+    el.style.gap = '3px';
+    el.style.borderRadius = '8px';
+    el.style.overflow = 'hidden';
+    items.forEach(item => {
+      const pct = (item.value / total) * 100;
+      const div = document.createElement('div');
+      div.style.cssText = 'position:relative;overflow:hidden;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:8px;box-sizing:border-box;min-height:60px;cursor:default;';
+      div.style.backgroundColor = item.color;
+      div.style.flexBasis = Math.max(pct, 4) + '%';
+      div.style.flexGrow = pct > 10 ? '2' : '1';
+      div.style.minWidth = pct > 15 ? '120px' : '60px';
+      const label = document.createElement('span');
+      label.textContent = item.label;
+      label.style.cssText = 'font-weight:700;font-size:' + (pct > 10 ? '13px' : '10px') + ';color:#fff;text-align:center;text-shadow:0 1px 3px rgba(0,0,0,.5);line-height:1.2;';
+      const val = document.createElement('span');
+      val.textContent = item.display;
+      val.style.cssText = 'font-size:' + (pct > 10 ? '18px' : '12px') + ';font-weight:800;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);margin-top:2px;';
+      const pctLabel = document.createElement('span');
+      pctLabel.textContent = pct.toFixed(1) + '%';
+      pctLabel.style.cssText = 'font-size:10px;color:rgba(255,255,255,.8);text-shadow:0 1px 2px rgba(0,0,0,.4);';
+      div.appendChild(label);
+      div.appendChild(val);
+      div.appendChild(pctLabel);
+      div.title = item.label + ': ~' + item.display + ' (' + pct.toFixed(1) + '% of ' + totalLabel + ')';
+      el.appendChild(div);
+    });
+  }
+
+  const tC = C.cat;
+  buildTreemap('treemap-global', [
+    { label: 'Abortion', value: 1500, display: '~1.5B', color: tC[7] },
+    { label: 'Wars & Conflicts', value: 150, display: '~150M', color: tC[0] },
+    { label: 'Pandemics', value: 115, display: '~115M', color: tC[1] },
+    { label: 'Tobacco', value: 100, display: '~100M', color: tC[3] },
+    { label: 'Famine', value: 70, display: '~70M', color: tC[2] },
+    { label: 'Genocide', value: 25, display: '~25M', color: tC[4] },
+    { label: 'Natural Disasters', value: 8, display: '~8M', color: tC[5] }
+  ], 'total');
+
+  buildTreemap('treemap-us', [
+    { label: 'Abortion', value: 93, display: '~93M', color: tC[7] },
+    { label: 'Heart Disease', value: 65, display: '~65M', color: tC[0] },
+    { label: 'Cancer', value: 35, display: '~35M', color: tC[1] },
+    { label: 'Traffic Deaths', value: 3.6, display: '~3.6M', color: tC[2] },
+    { label: 'Homicide', value: 1.6, display: '~1.6M', color: tC[3] },
+    { label: 'COVID-19', value: 1.2, display: '~1.2M', color: tC[4] },
+    { label: 'War Deaths', value: 0.507, display: '~507K', color: tC[5] }
+  ], 'total');
 }
 
 buildCharts();
