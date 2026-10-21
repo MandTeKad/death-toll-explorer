@@ -961,9 +961,15 @@ body::before {
   </div>
 
   <div class="chart-card">
-    <h3>U.S. Mass Shootings per Year</h3>
-    <div class="chart-subtitle">Mother Jones strict definition (indiscriminate public attacks, 3&ndash;4+ killed), 2006&ndash;2024</div>
+    <h3>U.S. Mass Shootings per Year (Strict Definition)</h3>
+    <div class="chart-subtitle">Mother Jones: indiscriminate public attacks, 3&ndash;4+ killed, 2006&ndash;2024. Excludes gang, crime, domestic.</div>
     <div class="chart-wrap"><canvas id="chart-ms-annual" style="height:280px"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Strict vs. Broad Definition: &ldquo;Mass Shootings&rdquo;</h3>
+    <div class="chart-subtitle">Mother Jones strict (public attacks, 3&ndash;4+ killed) vs. Gun Violence Archive broad (4+ shot &mdash; includes gang, crime, domestic), 2014&ndash;2024. Log scale.</div>
+    <div class="chart-wrap"><canvas id="chart-ms-compare" style="height:300px"></canvas></div>
   </div>
 
   <div class="chart-card">
@@ -1748,6 +1754,32 @@ function buildCharts() {
       scales: {
         x: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { weight: 500, size: 10 } } },
         y: { grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted }, beginAtZero: true, title: { display: true, text: 'Incidents', color: C.muted, font: { size: 11 } } }
+      },
+      plugins: {
+        legend: { labels: { color: C.fg, usePointStyle: true, pointStyle: 'circle' } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + ctx.parsed.y } }
+      }
+    }
+  });
+
+  /* Strict vs Broad definition comparison — log scale to show the ~50x–100x difference */
+  charts.msCompare = new Chart(document.getElementById('chart-ms-compare'), {
+    type: 'bar',
+    data: {
+      labels: ['2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024'],
+      datasets: [
+        { label: 'Broad (GVA: incl. gang, crime, domestic)', data: [325,371,479,434,323,434,615,690,695,600,586], backgroundColor: C.cat[5], borderRadius: 4 },
+        { label: 'Strict (MJ: public attacks only)', data: [4,7,6,11,12,10,2,6,12,12,2], backgroundColor: C.cat[0], borderRadius: 4 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { weight: 500 } } },
+        y: { type: 'logarithmic', grid: { color: C.grid }, border: { color: C.base },
+          ticks: { color: C.muted, callback: logTickCb([50,500]) },
+          title: { display: true, text: 'Incidents (log scale)', color: C.muted, font: { size: 11 } }
+        }
       },
       plugins: {
         legend: { labels: { color: C.fg, usePointStyle: true, pointStyle: 'circle' } },
