@@ -1,0 +1,1105 @@
+<title>American Death Toll Explorer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+
+<style>
+/* === Layout: tabbed dashboard, single column, chart + data table per view === */
+:root {
+  --bg: #fafaf8;
+  --surface: #ffffff;
+  --fg: #1a1a18;
+  --fg-secondary: #52514e;
+  --fg-muted: #898781;
+  --border: #e1e0d9;
+  --border-light: #f0efec;
+  --accent: #c22b2b;
+  --accent-light: rgba(194,43,43,0.08);
+  --tab-active: #1a1a18;
+  --tab-inactive: #898781;
+  --chart-surface: #fcfcfb;
+  --gridline: #e1e0d9;
+  --baseline: #c3c2b7;
+  --cat-1: #2a78d6;
+  --cat-2: #eb6834;
+  --cat-3: #1baf7a;
+  --cat-4: #eda100;
+  --cat-5: #e87ba4;
+  --cat-6: #008300;
+  --cat-7: #6250d6;
+  --cat-8: #e34948;
+  --tooltip-bg: #1a1a18;
+  --tooltip-fg: #f0efec;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #111110;
+    --surface: #1a1a19;
+    --fg: #f0efec;
+    --fg-secondary: #c3c2b7;
+    --fg-muted: #898781;
+    --border: #2c2c2a;
+    --border-light: #232322;
+    --accent: #e05555;
+    --accent-light: rgba(224,85,85,0.12);
+    --tab-active: #f0efec;
+    --tab-inactive: #898781;
+    --chart-surface: #1a1a19;
+    --gridline: #2c2c2a;
+    --baseline: #383835;
+    --cat-1: #3987e5;
+    --cat-2: #d95926;
+    --cat-3: #199e70;
+    --cat-4: #c98500;
+    --cat-5: #d55181;
+    --cat-6: #008300;
+    --cat-7: #9085e9;
+    --cat-8: #e66767;
+    --tooltip-bg: #f0efec;
+    --tooltip-fg: #1a1a18;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111110;
+  --surface: #1a1a19;
+  --fg: #f0efec;
+  --fg-secondary: #c3c2b7;
+  --fg-muted: #898781;
+  --border: #2c2c2a;
+  --border-light: #232322;
+  --accent: #e05555;
+  --accent-light: rgba(224,85,85,0.12);
+  --tab-active: #f0efec;
+  --tab-inactive: #898781;
+  --chart-surface: #1a1a19;
+  --gridline: #2c2c2a;
+  --baseline: #383835;
+  --cat-1: #3987e5;
+  --cat-2: #d95926;
+  --cat-3: #199e70;
+  --cat-4: #c98500;
+  --cat-5: #d55181;
+  --cat-6: #008300;
+  --cat-7: #9085e9;
+  --cat-8: #e66767;
+  --tooltip-bg: #f0efec;
+  --tooltip-fg: #1a1a18;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+  margin: 0;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: var(--bg);
+}
+
+.page-header {
+  text-align: center;
+  padding: 32px 0 8px;
+}
+.page-header h1 {
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 700;
+  margin: 0;
+  text-wrap: balance;
+  letter-spacing: -0.02em;
+}
+.page-header .subtitle {
+  font-size: 0.85rem;
+  color: var(--fg-secondary);
+  margin-top: 4px;
+}
+
+/* Tabs */
+.tab-bar {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 5;
+  background: var(--bg);
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  border-bottom: 1px solid var(--border);
+  padding-top: 8px;
+}
+.tab-bar::-webkit-scrollbar { display: none; }
+.tab-btn {
+  flex: 0 0 auto;
+  padding: 10px 16px;
+  font: 500 0.82rem/1.3 'Inter', system-ui, sans-serif;
+  color: var(--tab-inactive);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s;
+}
+.tab-btn:hover { color: var(--fg-secondary); }
+.tab-btn.active {
+  color: var(--tab-active);
+  border-bottom-color: var(--accent);
+  font-weight: 600;
+}
+
+/* Content panels */
+.panel { display: none; padding: 24px 0 40px; }
+.panel.active { display: block; }
+.panel-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+  text-wrap: balance;
+}
+.panel-desc {
+  font-size: 0.85rem;
+  color: var(--fg-secondary);
+  margin: 0 0 20px;
+  max-width: 65ch;
+}
+
+/* Chart cards */
+.chart-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.chart-card h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+.chart-card .chart-subtitle {
+  font-size: 0.78rem;
+  color: var(--fg-muted);
+  margin: 0 0 16px;
+}
+.chart-wrap {
+  position: relative;
+  width: 100%;
+}
+.chart-wrap canvas {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+/* Hero stat */
+.hero-stat {
+  text-align: center;
+  padding: 16px 0;
+}
+.hero-stat .value {
+  font-size: clamp(2.5rem, 8vw, 3.5rem);
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.1;
+}
+.hero-stat .label {
+  font-size: 0.85rem;
+  color: var(--fg-secondary);
+  margin-top: 4px;
+}
+
+/* Stat row */
+.stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.stat-tile {
+  flex: 1 1 140px;
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+.stat-tile .st-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 4px;
+}
+.stat-tile .st-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Data tables */
+.table-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 500 0.78rem/1 'Inter', system-ui, sans-serif;
+  color: var(--cat-1);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+}
+.table-toggle:hover { text-decoration: underline; }
+.data-table-wrap { display: none; overflow-x: auto; margin-top: 8px; }
+.data-table-wrap.open { display: block; }
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+.data-table th {
+  text-align: left;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-bottom: 2px solid var(--border);
+  color: var(--fg-secondary);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.data-table td {
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--border-light);
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table .num { text-align: right; }
+
+/* Caveat / source callout */
+.caveat {
+  font-size: 0.75rem;
+  color: var(--fg-muted);
+  border-top: 1px solid var(--border-light);
+  margin-top: 16px;
+  padding-top: 12px;
+  line-height: 1.6;
+}
+.caveat strong { color: var(--fg-secondary); font-weight: 600; }
+
+/* Sources footer */
+.sources-footer {
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+  padding: 24px 0;
+  font-size: 0.78rem;
+  color: var(--fg-muted);
+  line-height: 1.7;
+}
+.sources-footer h3 {
+  font-size: 0.85rem;
+  color: var(--fg-secondary);
+  margin: 0 0 8px;
+}
+.sources-footer a { color: var(--cat-1); }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .chart-card { padding: 14px; }
+  .stat-tile { flex: 1 1 100%; }
+  .tab-btn { padding: 10px 12px; font-size: 0.75rem; }
+}
+</style>
+
+<div class="page-header">
+  <h1>American Death Toll Explorer</h1>
+  <div class="subtitle">Comprehensive data on abortion, war casualties, homicide, disease & more &mdash; updated Oct 2026</div>
+</div>
+
+<nav class="tab-bar" role="tablist">
+  <button class="tab-btn active" data-tab="overview" role="tab">Overview</button>
+  <button class="tab-btn" data-tab="wars" role="tab">Wars Detail</button>
+  <button class="tab-btn" data-tab="decades" role="tab">By Decade</button>
+  <button class="tab-btn" data-tab="homicide" role="tab">Homicide</button>
+  <button class="tab-btn" data-tab="reasons" role="tab">Abortion Reasons</button>
+</nav>
+
+<!-- ===== TAB 1: OVERVIEW ===== -->
+<section class="panel active" id="panel-overview" role="tabpanel">
+  <h2 class="panel-title">Total American Deaths by Cause</h2>
+  <p class="panel-desc">Estimated total abortion deaths compared to all U.S. war casualties, homicides, pandemics, and the transatlantic slave trade (Middle Passage to the U.S.).</p>
+
+  <div class="hero-stat">
+    <div class="value">~93.1M</div>
+    <div class="label">Estimated total U.S. abortions (all time through Oct 2026)</div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">All Wars Combined</p><p class="st-value">~1.43M</p></div>
+    <div class="stat-tile"><p class="st-label">Homicides (since 1900)</p><p class="st-value">~1.6M</p></div>
+    <div class="stat-tile"><p class="st-label">COVID-19</p><p class="st-value">~1.2M</p></div>
+    <div class="stat-tile"><p class="st-label">1918 Influenza</p><p class="st-value">~675K</p></div>
+    <div class="stat-tile"><p class="st-label">Slave Trade (Middle Passage)</p><p class="st-value">~50K</p></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>All Causes Compared</h3>
+    <div class="chart-subtitle">Proportional share of estimated deaths by category</div>
+    <div class="chart-wrap" style="max-width:520px;margin:0 auto"><canvas id="chart-overview-pie"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Scale Comparison (Horizontal Bar)</h3>
+    <div class="chart-subtitle">Same data as the pie, shown to scale</div>
+    <div class="chart-wrap"><canvas id="chart-overview-bar" style="height:260px"></canvas></div>
+  </div>
+
+  <button class="table-toggle" onclick="toggleTable('table-overview')">&#9662; View data table</button>
+  <div class="data-table-wrap" id="table-overview">
+    <table class="data-table">
+      <thead><tr><th>Category</th><th class="num">Estimated Deaths</th><th class="num">% of Total</th></tr></thead>
+      <tbody>
+        <tr><td>Abortion (all time est.)</td><td class="num">93,100,000</td><td class="num">95.86%</td></tr>
+        <tr><td>Homicides (since 1900)</td><td class="num">1,600,000</td><td class="num">1.65%</td></tr>
+        <tr><td>All U.S. Wars</td><td class="num">1,434,830</td><td class="num">1.48%</td></tr>
+        <tr><td>COVID-19</td><td class="num">1,200,000</td><td class="num">1.24%</td></tr>
+        <tr><td>1918 Influenza</td><td class="num">675,000</td><td class="num">0.69%</td></tr>
+        <tr><td>Slave Trade (Middle Passage)</td><td class="num">50,000</td><td class="num">0.05%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="caveat">
+    <strong>Notes:</strong> Abortion figures include pre-Roe scholarly estimates (~26M before 1973) and documented post-Roe totals (~67.1M, 1973-2026). Pre-Roe numbers draw from Guttmacher Institute 1955/1967 estimates, Taussig 1936, and Mohr 1978 historical research. War deaths are U.S. military casualties only. Homicide total is estimated from FBI/DOJ annual reports since 1900. COVID figure from CDC cumulative through 2026. 1918 Flu from CDC historical estimates. Slave trade Middle Passage deaths to the U.S. specifically (not total Atlantic trade) per Trans-Atlantic Slave Trade Database.
+  </div>
+</section>
+
+<!-- ===== TAB 2: WARS DETAIL ===== -->
+<section class="panel" id="panel-wars" role="tabpanel">
+  <h2 class="panel-title">U.S. War Deaths Breakdown</h2>
+  <p class="panel-desc">Individual war casualties compared to each other and to abortion totals.</p>
+
+  <div class="chart-card">
+    <h3>Each War as a Share of All War Deaths</h3>
+    <div class="chart-subtitle">Total U.S. military casualties: ~1,434,830</div>
+    <div class="chart-wrap" style="max-width:480px;margin:0 auto"><canvas id="chart-wars-pie"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>War Deaths vs Abortion (Log Scale)</h3>
+    <div class="chart-subtitle">Logarithmic scale to show the full range</div>
+    <div class="chart-wrap"><canvas id="chart-wars-bar" style="height:380px"></canvas></div>
+  </div>
+
+  <button class="table-toggle" onclick="toggleTable('table-wars')">&#9662; View data table</button>
+  <div class="data-table-wrap" id="table-wars">
+    <table class="data-table">
+      <thead><tr><th>War</th><th class="num">Deaths</th><th class="num">Period</th></tr></thead>
+      <tbody>
+        <tr><td>Civil War</td><td class="num">750,000</td><td class="num">1861-1865</td></tr>
+        <tr><td>World War II</td><td class="num">405,399</td><td class="num">1941-1945</td></tr>
+        <tr><td>World War I</td><td class="num">116,516</td><td class="num">1917-1918</td></tr>
+        <tr><td>Vietnam War</td><td class="num">58,209</td><td class="num">1955-1975</td></tr>
+        <tr><td>Korean War</td><td class="num">36,516</td><td class="num">1950-1953</td></tr>
+        <tr><td>Revolutionary War</td><td class="num">25,000</td><td class="num">1775-1783</td></tr>
+        <tr><td>War of 1812</td><td class="num">20,000</td><td class="num">1812-1815</td></tr>
+        <tr><td>Mexican-American War</td><td class="num">13,283</td><td class="num">1846-1848</td></tr>
+        <tr><td>War on Terror</td><td class="num">7,078</td><td class="num">2001-2021</td></tr>
+        <tr><td>Spanish-American War</td><td class="num">2,446</td><td class="num">1898</td></tr>
+        <tr><td>Gulf War</td><td class="num">383</td><td class="num">1990-1991</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="caveat">
+    <strong>Notes:</strong> Civil War figure uses J. David Hacker's 2011 revised estimate (~750,000) rather than the older 620,000. All figures are U.S. military deaths (killed in action + other causes). War on Terror includes operations in Afghanistan and Iraq through withdrawal.
+  </div>
+</section>
+
+<!-- ===== TAB 3: BY DECADE ===== -->
+<section class="panel" id="panel-decades" role="tabpanel">
+  <h2 class="panel-title">Deaths by Decade</h2>
+  <p class="panel-desc">Abortion and war casualties allocated to the time periods in which they occurred.</p>
+
+  <div class="chart-card">
+    <h3>Abortion Deaths by Era</h3>
+    <div class="chart-subtitle">Estimated abortions per period, including pre-Roe scholarly estimates</div>
+    <div class="chart-wrap"><canvas id="chart-decade-abortion" style="height:320px"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>War Deaths by Era</h3>
+    <div class="chart-subtitle">U.S. military casualties allocated to the decade of conflict</div>
+    <div class="chart-wrap"><canvas id="chart-decade-wars" style="height:320px"></canvas></div>
+  </div>
+
+  <button class="table-toggle" onclick="toggleTable('table-decades')">&#9662; View data table</button>
+  <div class="data-table-wrap" id="table-decades">
+    <table class="data-table">
+      <thead><tr><th>Period</th><th class="num">Abortion Est.</th><th class="num">War Deaths</th></tr></thead>
+      <tbody>
+        <tr><td>Pre-1900</td><td class="num">4,000,000</td><td class="num">811,000</td></tr>
+        <tr><td>1900-1949</td><td class="num">10,000,000</td><td class="num">522,000</td></tr>
+        <tr><td>1950-1972</td><td class="num">12,000,000</td><td class="num">95,000</td></tr>
+        <tr><td>1973-1979</td><td class="num">8,100,000</td><td class="num">150</td></tr>
+        <tr><td>1980s</td><td class="num">15,700,000</td><td class="num">300</td></tr>
+        <tr><td>1990s</td><td class="num">14,300,000</td><td class="num">400</td></tr>
+        <tr><td>2000s</td><td class="num">12,400,000</td><td class="num">5,500</td></tr>
+        <tr><td>2010s</td><td class="num">9,500,000</td><td class="num">1,200</td></tr>
+        <tr><td>2020-2026</td><td class="num">7,100,000</td><td class="num">400</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="caveat">
+    <strong>Notes:</strong> Pre-1900 and pre-1973 abortion figures are scholarly estimates based on Taussig (1936), Guttmacher (1955, 1967), and Mohr (1978). Post-1973 figures are documented totals from Guttmacher Institute, CDC, NRLC, Live Action, and SFP #WeCount project.
+  </div>
+</section>
+
+<!-- ===== TAB 4: HOMICIDE ===== -->
+<section class="panel" id="panel-homicide" role="tabpanel">
+  <h2 class="panel-title">Homicide by Race</h2>
+  <p class="panel-desc">FBI Supplementary Homicide Reports (2019) cross-tabulated by victim and offender race, plus CDC per-capita rates.</p>
+
+  <div class="chart-card">
+    <h3>Homicides by Victim-Offender Race (2019)</h3>
+    <div class="chart-subtitle">FBI SHR data, single victim / single offender, known race only (~40% of total homicides)</div>
+    <div class="chart-wrap"><canvas id="chart-homicide-raw" style="height:280px"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Per-Capita Homicide Rates by Race</h3>
+    <div class="chart-subtitle">Per 100,000 population (2019 FBI SHR + CDC 2022 overall rates)</div>
+    <div class="chart-wrap"><canvas id="chart-homicide-capita" style="height:280px"></canvas></div>
+  </div>
+
+  <button class="table-toggle" onclick="toggleTable('table-homicide')">&#9662; View data table</button>
+  <div class="data-table-wrap" id="table-homicide">
+    <table class="data-table">
+      <thead><tr><th>Category</th><th class="num">Count / Rate</th></tr></thead>
+      <tbody>
+        <tr><td colspan="2" style="font-weight:600;color:var(--fg-secondary)">Raw Counts (FBI 2019 SHR)</td></tr>
+        <tr><td>White-on-White</td><td class="num">2,594</td></tr>
+        <tr><td>Black-on-Black</td><td class="num">2,574</td></tr>
+        <tr><td>Black-on-White</td><td class="num">566</td></tr>
+        <tr><td>White-on-Black</td><td class="num">246</td></tr>
+        <tr><td>Other combinations</td><td class="num">526</td></tr>
+        <tr><td colspan="2" style="font-weight:600;color:var(--fg-secondary);padding-top:12px">Per-Capita Rates (per 100K)</td></tr>
+        <tr><td>White victimization rate (SHR)</td><td class="num">1.65</td></tr>
+        <tr><td>Black victimization rate (SHR)</td><td class="num">6.62</td></tr>
+        <tr><td>White offending rate (SHR)</td><td class="num">1.47</td></tr>
+        <tr><td>Black offending rate (SHR)</td><td class="num">7.28</td></tr>
+        <tr><td>CDC overall rate, White (2022)</td><td class="num">2.7</td></tr>
+        <tr><td>CDC overall rate, Black (2022)</td><td class="num">30.6</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="caveat">
+    <strong>Important caveats:</strong> FBI SHR data covers only ~40% of all homicides (single victim, single offender, known race). It excludes unsolved cases and mass-casualty events. Per-capita rates computed using 2019 Census estimates (White ~196.8M, Black ~43.4M). CDC WONDER overall homicide rates (2022) are more comprehensive and show significantly higher Black victimization rates than the SHR subset alone. "White" and "Black" as used here follow FBI/CDC racial categories.
+  </div>
+</section>
+
+<!-- ===== TAB 5: ABORTION REASONS ===== -->
+<section class="panel" id="panel-reasons" role="tabpanel">
+  <h2 class="panel-title">Reasons for Abortion</h2>
+  <p class="panel-desc">Primary reason and contributing factors reported by patients, based on Guttmacher Institute surveys (2004) and state-level mandatory reporting data.</p>
+
+  <div class="chart-card">
+    <h3>Primary Reason Category</h3>
+    <div class="chart-subtitle">Percentage of abortions by primary stated reason</div>
+    <div class="chart-wrap" style="max-width:480px;margin:0 auto"><canvas id="chart-reasons-pie"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Contributing Factors (Multiple Reasons Allowed)</h3>
+    <div class="chart-subtitle">Patients could cite more than one reason; percentages exceed 100%</div>
+    <div class="chart-wrap"><canvas id="chart-reasons-bar" style="height:400px"></canvas></div>
+  </div>
+
+  <button class="table-toggle" onclick="toggleTable('table-reasons')">&#9662; View data table</button>
+  <div class="data-table-wrap" id="table-reasons">
+    <table class="data-table">
+      <thead><tr><th>Factor</th><th class="num">%</th></tr></thead>
+      <tbody>
+        <tr><td colspan="2" style="font-weight:600;color:var(--fg-secondary)">Primary Reason</td></tr>
+        <tr><td>Social / economic reasons</td><td class="num">96.50%</td></tr>
+        <tr><td>Mother's health risk</td><td class="num">3.11%</td></tr>
+        <tr><td>Rape or incest</td><td class="num">0.39%</td></tr>
+        <tr><td colspan="2" style="font-weight:600;color:var(--fg-secondary);padding-top:12px">Contributing Factors (multiple allowed)</td></tr>
+        <tr><td>Would dramatically change life</td><td class="num">74%</td></tr>
+        <tr><td>Can't afford a baby</td><td class="num">73%</td></tr>
+        <tr><td>Single or relationship problems</td><td class="num">48%</td></tr>
+        <tr><td>Pursuing education</td><td class="num">38%</td></tr>
+        <tr><td>Career concerns</td><td class="num">38%</td></tr>
+        <tr><td>Already have other children</td><td class="num">32%</td></tr>
+        <tr><td>Partner wants abortion</td><td class="num">14%</td></tr>
+        <tr><td>Fetal health concerns</td><td class="num">13%</td></tr>
+        <tr><td>Own health risk</td><td class="num">12%</td></tr>
+        <tr><td>Parents want abortion</td><td class="num">6%</td></tr>
+        <tr><td>Partner is abusive</td><td class="num">2%</td></tr>
+        <tr><td>Rape</td><td class="num">1%</td></tr>
+        <tr><td>Incest</td><td class="num">&lt;0.5%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="caveat">
+    <strong>Source:</strong> Guttmacher Institute, "Reasons U.S. Women Have Abortions" (2004), supplemented by Florida, Arizona, and other states' mandatory abortion reporting data. The "contributing factors" total exceeds 100% because respondents could select multiple reasons.
+  </div>
+</section>
+
+<!-- Sources -->
+<footer class="sources-footer">
+  <h3>Sources</h3>
+  Guttmacher Institute &bull; CDC Abortion Surveillance &bull; National Right to Life Committee (NRLC) &bull; Live Action &bull; Society of Family Planning (#WeCount) &bull;
+  J. David Hacker, "A Census-Based Count of the Civil War Dead" (2011) &bull;
+  Department of Veterans Affairs &bull; Congressional Research Service &bull;
+  FBI Supplementary Homicide Reports (2019) &bull; CDC WONDER (2022) &bull;
+  CDC COVID-19 Data Tracker &bull; Trans-Atlantic Slave Trade Database &bull;
+  Taussig (1936), Guttmacher (1955, 1967), Mohr (1978)
+</footer>
+
+<script>
+// === Helpers ===
+function fmt(n) {
+  if (n >= 1e6) return (n/1e6).toFixed(n >= 1e7 ? 0 : 1).replace(/\.0$/,'') + 'M';
+  if (n >= 1e3) return (n/1e3).toFixed(n >= 1e5 ? 0 : 1).replace(/\.0$/,'') + 'K';
+  return n.toLocaleString();
+}
+
+function isDark() {
+  const dt = document.documentElement.getAttribute('data-theme');
+  if (dt === 'dark') return true;
+  if (dt === 'light') return false;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
+function getCSS(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+function chartColors() {
+  return {
+    fg: getCSS('--fg'),
+    fgSec: getCSS('--fg-secondary'),
+    muted: getCSS('--fg-muted'),
+    grid: getCSS('--gridline'),
+    base: getCSS('--baseline'),
+    surface: getCSS('--chart-surface'),
+    cat: [getCSS('--cat-1'), getCSS('--cat-2'), getCSS('--cat-3'), getCSS('--cat-4'),
+          getCSS('--cat-5'), getCSS('--cat-6'), getCSS('--cat-7'), getCSS('--cat-8')],
+    accent: getCSS('--accent')
+  };
+}
+
+// === Tab switching ===
+const tabBtns = document.querySelectorAll('.tab-btn');
+const panels = document.querySelectorAll('.panel');
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    tabBtns.forEach(b => b.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+    // Save tab preference
+    try { localStorage.setItem('dtab', btn.dataset.tab); } catch(e) {}
+  });
+});
+// Restore last tab
+try {
+  const saved = localStorage.getItem('dtab');
+  if (saved) {
+    const btn = document.querySelector(`[data-tab="${saved}"]`);
+    if (btn) btn.click();
+  }
+} catch(e) {}
+
+// Hash-based navigation
+function checkHash() {
+  const h = location.hash.replace('#','');
+  if (h) {
+    const btn = document.querySelector(`[data-tab="${h}"]`);
+    if (btn) btn.click();
+  }
+}
+checkHash();
+window.addEventListener('hashchange', checkHash);
+
+// === Table toggle ===
+function toggleTable(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+// === Chart defaults ===
+Chart.defaults.font.family = "'Inter', system-ui, -apple-system, sans-serif";
+Chart.defaults.font.size = 12;
+Chart.defaults.plugins.legend.display = false;
+
+// === Build all charts ===
+let charts = {};
+
+function buildCharts() {
+  // Destroy existing
+  Object.values(charts).forEach(c => c.destroy());
+  charts = {};
+  const C = chartColors();
+
+  // ---- OVERVIEW PIE ----
+  const overviewData = [93100000, 1600000, 1434830, 1200000, 675000, 50000];
+  const overviewLabels = ['Abortion (~93.1M)', 'Homicides (~1.6M)', 'All Wars (~1.43M)', 'COVID-19 (~1.2M)', '1918 Flu (~675K)', 'Slave Trade (~50K)'];
+  const overviewColors = [C.accent, C.cat[0], C.cat[1], C.cat[2], C.cat[3], C.cat[4]];
+
+  charts.overviewPie = new Chart(document.getElementById('chart-overview-pie'), {
+    type: 'doughnut',
+    data: {
+      labels: overviewLabels,
+      datasets: [{
+        data: overviewData,
+        backgroundColor: overviewColors,
+        borderColor: C.surface,
+        borderWidth: 2,
+        hoverOffset: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      layout: { padding: 8 },
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: { color: C.fgSec, padding: 12, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } }
+        },
+        tooltip: {
+          backgroundColor: C.fg,
+          titleColor: C.surface,
+          bodyColor: C.surface,
+          padding: 10,
+          callbacks: {
+            label: ctx => {
+              const v = ctx.parsed;
+              const total = ctx.dataset.data.reduce((a,b) => a+b, 0);
+              return ` ${fmt(v)}  (${(v/total*100).toFixed(2)}%)`;
+            }
+          }
+        }
+      }
+    }
+  });
+
+  // ---- OVERVIEW BAR ----
+  charts.overviewBar = new Chart(document.getElementById('chart-overview-bar'), {
+    type: 'bar',
+    data: {
+      labels: ['Abortion', 'Homicides', 'All Wars', 'COVID-19', '1918 Flu', 'Slave Trade'],
+      datasets: [{
+        data: overviewData,
+        backgroundColor: overviewColors,
+        borderRadius: { topRight: 4, bottomRight: 4 },
+        borderSkipped: 'start',
+        barThickness: 22
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          type: 'logarithmic',
+          grid: { color: C.grid, lineWidth: 1 },
+          border: { color: C.base },
+          ticks: { color: C.muted, callback: (v, i, ticks) => { const log = Math.log10(v); if (log === Math.floor(log) || [5e4,5e5,5e6,5e7].includes(v)) return fmt(v); return ''; }, autoSkip: true, maxRotation: 0 }
+        },
+        y: {
+          grid: { display: false },
+          border: { display: false },
+          ticks: { color: C.fg, font: { weight: 500 } }
+        }
+      },
+      plugins: {
+        tooltip: {
+          backgroundColor: C.fg,
+          titleColor: C.surface,
+          bodyColor: C.surface,
+          padding: 10,
+          callbacks: { label: ctx => ' ' + ctx.parsed.x.toLocaleString() }
+        }
+      }
+    }
+  });
+
+  // ---- WARS PIE ----
+  const warNames = ['Civil War','WWII','WWI','Vietnam','Korean','Revolutionary','War of 1812','Mexican-American','War on Terror','Spanish-American','Gulf War'];
+  const warDeaths = [750000, 405399, 116516, 58209, 36516, 25000, 20000, 13283, 7078, 2446, 383];
+  // Use categorical slots + extended grays for >8
+  const warColors = [C.cat[0], C.cat[1], C.cat[2], C.cat[3], C.cat[4], C.cat[5], C.cat[6], C.cat[7], C.muted, C.fgSec, C.base];
+
+  charts.warsPie = new Chart(document.getElementById('chart-wars-pie'), {
+    type: 'doughnut',
+    data: {
+      labels: warNames,
+      datasets: [{
+        data: warDeaths,
+        backgroundColor: warColors,
+        borderColor: C.surface,
+        borderWidth: 2,
+        hoverOffset: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      layout: { padding: 8 },
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: { color: C.fgSec, padding: 10, usePointStyle: true, pointStyle: 'circle', font: { size: 10 } }
+        },
+        tooltip: {
+          backgroundColor: C.fg,
+          titleColor: C.surface,
+          bodyColor: C.surface,
+          padding: 10,
+          callbacks: {
+            label: ctx => {
+              const v = ctx.parsed;
+              const total = ctx.dataset.data.reduce((a,b) => a+b, 0);
+              return ` ${v.toLocaleString()}  (${(v/total*100).toFixed(1)}%)`;
+            }
+          }
+        }
+      }
+    }
+  });
+
+  // ---- WARS BAR (log scale, including abortion for comparison) ----
+  const warsBarLabels = ['Abortion (all time)', ...warNames];
+  const warsBarData = [93100000, ...warDeaths];
+  const warsBarColors = [C.accent, ...warColors];
+
+  charts.warsBar = new Chart(document.getElementById('chart-wars-bar'), {
+    type: 'bar',
+    data: {
+      labels: warsBarLabels,
+      datasets: [{
+        data: warsBarData,
+        backgroundColor: warsBarColors,
+        borderRadius: { topRight: 4, bottomRight: 4 },
+        borderSkipped: 'start',
+        barThickness: 20
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          type: 'logarithmic',
+          grid: { color: C.grid },
+          border: { color: C.base },
+          ticks: { color: C.muted, callback: (v, i, ticks) => { const log = Math.log10(v); if (log === Math.floor(log) || [5e2,5e3,5e4,5e5,5e6,5e7].includes(v)) return fmt(v); return ''; }, autoSkip: true, maxRotation: 0 }
+        },
+        y: {
+          grid: { display: false },
+          border: { display: false },
+          ticks: { color: C.fg, font: { size: 11 } }
+        }
+      },
+      plugins: {
+        tooltip: {
+          backgroundColor: C.fg,
+          titleColor: C.surface,
+          bodyColor: C.surface,
+          callbacks: { label: ctx => ' ' + ctx.parsed.x.toLocaleString() }
+        }
+      }
+    }
+  });
+
+  // ---- DECADE: ABORTION ----
+  const decades = ['Pre-1900','1900-49','1950-72','1973-79','1980s','1990s','2000s','2010s','2020-26'];
+  const abortByDecade = [4000000, 10000000, 12000000, 8100000, 15700000, 14300000, 12400000, 9500000, 7100000];
+
+  charts.decadeAbortion = new Chart(document.getElementById('chart-decade-abortion'), {
+    type: 'bar',
+    data: {
+      labels: decades,
+      datasets: [{
+        label: 'Abortions',
+        data: abortByDecade,
+        backgroundColor: C.accent,
+        borderRadius: { topLeft: 4, topRight: 4 },
+        borderSkipped: 'bottom',
+        barThickness: 28
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: { color: C.grid },
+          border: { color: C.base },
+          ticks: { color: C.muted, callback: v => fmt(v), maxTicksLimit: 6, padding: 4 }
+        },
+        x: {
+          grid: { display: false },
+          border: { color: C.base },
+          ticks: { color: C.fg, font: { size: 10 }, maxRotation: 45 }
+        }
+      },
+      plugins: {
+        tooltip: {
+          backgroundColor: C.fg,
+          titleColor: C.surface,
+          bodyColor: C.surface,
+          callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString() }
+        }
+      }
+    }
+  });
+
+  // ---- DECADE: WARS ----
+  const warsByDecade = [811000, 522000, 95000, 150, 300, 400, 5500, 1200, 400];
+
+  charts.decadeWars = new Chart(document.getElementById('chart-decade-wars'), {
+    type: 'bar',
+    data: {
+      labels: decades,
+      datasets: [{
+        label: 'War Deaths',
+        data: warsByDecade,
+        backgroundColor: C.cat[0],
+        borderRadius: { topLeft: 4, topRight: 4 },
+        borderSkipped: 'bottom',
+        barThickness: 28
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: { color: C.grid },
+          border: { color: C.base },
+          ticks: { color: C.muted, callback: v => fmt(v), maxTicksLimit: 6, padding: 4 }
+        },
+        x: {
+          grid: { display: false },
+          border: { color: C.base },
+          ticks: { color: C.fg, font: { size: 10 }, maxRotation: 45 }
+        }
+      },
+      plugins: {
+        tooltip: {
+          backgroundColor: C.fg,
+          titleColor: C.surface,
+          bodyColor: C.surface,
+          callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString() }
+        }
+      }
+    }
+  });
+
+  // ---- HOMICIDE RAW ----
+  const homLabels = ['White-on-White','Black-on-Black','Black-on-White','White-on-Black','Other'];
+  const homData = [2594, 2574, 566, 246, 526];
+  const homColors = [C.cat[0], C.cat[1], C.cat[2], C.cat[3], C.cat[4]];
+
+  charts.homRaw = new Chart(document.getElementById('chart-homicide-raw'), {
+    type: 'bar',
+    data: {
+      labels: homLabels,
+      datasets: [{
+        data: homData,
+        backgroundColor: homColors,
+        borderRadius: { topLeft: 4, topRight: 4 },
+        borderSkipped: 'bottom',
+        barThickness: 32
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: { color: C.grid },
+          border: { color: C.base },
+          ticks: { color: C.muted }
+        },
+        x: {
+          grid: { display: false },
+          border: { color: C.base },
+          ticks: { color: C.fg, font: { size: 10 } }
+        }
+      },
+      plugins: {
+        tooltip: {
+          backgroundColor: C.fg,
+          titleColor: C.surface,
+          bodyColor: C.surface,
+          callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString() + ' homicides' }
+        }
+      }
+    }
+  });
+
+  // ---- HOMICIDE PER CAPITA ----
+  charts.homCapita = new Chart(document.getElementById('chart-homicide-capita'), {
+    type: 'bar',
+    data: {
+      labels: ['Victimization (SHR)', 'Offending (SHR)', 'Overall Homicide (CDC 2022)'],
+      datasets: [
+        {
+          label: 'White',
+          data: [1.65, 1.47, 2.7],
+          backgroundColor: C.cat[0],
+          borderRadius: 4,
+          barThickness: 24
+        },
+        {
+          label: 'Black',
+          data: [6.62, 7.28, 30.6],
+          backgroundColor: C.cat[1],
+          borderRadius: 4,
+          barThickness: 24
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: { color: C.grid },
+          border: { color: C.base },
+          ticks: { color: C.muted, callback: v => v + '/100K' }
+        },
+        x: {
+          grid: { display: false },
+          border: { color: C.base },
+          ticks: { color: C.fg, font: { size: 10 } }
+        }
+      },
+      plugins: {
+        legend: {
+          display: true,
+          position: 'top',
+          labels: { color: C.fgSec, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } }
+        },
+        tooltip: {
+          backgroundColor: C.fg,
+          titleColor: C.surface,
+          bodyColor: C.surface,
+          callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y} per 100K` }
+        }
+      }
+    }
+  });
+
+  // ---- REASONS PIE ----
+  charts.reasonsPie = new Chart(document.getElementById('chart-reasons-pie'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Social / Economic (96.5%)', "Mother's Health (3.1%)", 'Rape / Incest (0.4%)'],
+      datasets: [{
+        data: [96.5, 3.11, 0.39],
+        backgroundColor: [C.cat[0], C.cat[2], C.cat[3]],
+        borderColor: C.surface,
+        borderWidth: 2,
+        hoverOffset: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      layout: { padding: 8 },
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: { color: C.fgSec, padding: 12, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } }
+        },
+        tooltip: {
+          backgroundColor: C.fg,
+          titleColor: C.surface,
+          bodyColor: C.surface,
+          callbacks: { label: ctx => ` ${ctx.parsed}%` }
+        }
+      }
+    }
+  });
+
+  // ---- REASONS BAR ----
+  const reasonLabels = ['Would change life','Can\'t afford','Single / relationship','Education','Career','Other children','Partner wants','Fetal health','Own health','Parents want','Partner abusive','Rape','Incest'];
+  const reasonData = [74, 73, 48, 38, 38, 32, 14, 13, 12, 6, 2, 1, 0.5];
+
+  charts.reasonsBar = new Chart(document.getElementById('chart-reasons-bar'), {
+    type: 'bar',
+    data: {
+      labels: reasonLabels,
+      datasets: [{
+        data: reasonData,
+        backgroundColor: C.cat[0],
+        borderRadius: { topRight: 4, bottomRight: 4 },
+        borderSkipped: 'start',
+        barThickness: 20
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          beginAtZero: true,
+          max: 100,
+          grid: { color: C.grid },
+          border: { color: C.base },
+          ticks: { color: C.muted, callback: v => v + '%' }
+        },
+        y: {
+          grid: { display: false },
+          border: { display: false },
+          ticks: { color: C.fg, font: { size: 11 } }
+        }
+      },
+      plugins: {
+        tooltip: {
+          backgroundColor: C.fg,
+          titleColor: C.surface,
+          bodyColor: C.surface,
+          callbacks: { label: ctx => ' ' + ctx.parsed.x + '% of patients cite this' }
+        }
+      }
+    }
+  });
+}
+
+// Build on load and rebuild on theme change
+buildCharts();
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+  setTimeout(buildCharts, 50);
+});
+new MutationObserver(() => setTimeout(buildCharts, 50))
+  .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+</script>
