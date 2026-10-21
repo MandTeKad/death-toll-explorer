@@ -332,6 +332,7 @@ body::before {
   <button class="tab-btn" data-tab="homicide" role="tab">Homicide</button>
   <button class="tab-btn" data-tab="reasons" role="tab">Abortion Reasons</button>
   <div class="tab-divider"></div>
+  <button class="tab-btn" data-tab="global-overview" role="tab">Global Overview</button>
   <button class="tab-btn" data-tab="global-abortion" role="tab">Global Abortion</button>
   <button class="tab-btn" data-tab="global-wars" role="tab">Global Wars</button>
   <button class="tab-btn" data-tab="global-homicide" role="tab">Global Homicide</button>
@@ -562,7 +563,59 @@ body::before {
   </div>
 </section>
 
-<!-- ===== TAB 6: GLOBAL ABORTION ===== -->
+<!-- ===== TAB 6: GLOBAL OVERVIEW ===== -->
+<section class="panel" id="panel-global-overview" role="tabpanel">
+  <h2 class="panel-title">Worldwide Deaths by Cause</h2>
+  <p class="panel-desc">Estimated global deaths from abortion, wars, pandemics, homicides, and the transatlantic slave trade. These figures span the 20th&ndash;21st centuries where possible, drawing on WHO, Guttmacher, UNODC, UNAIDS, and historical compilations.</p>
+
+  <div class="hero-stat">
+    <div class="value">~2B</div>
+    <div class="label">Estimated total worldwide abortions (~1920s&ndash;2026)</div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">All Wars (20th&ndash;21st c.)</p><p class="st-value">~165M</p></div>
+    <div class="stat-tile"><p class="st-label">1918 Influenza</p><p class="st-value">~50M</p></div>
+    <div class="stat-tile"><p class="st-label">HIV/AIDS (cumulative)</p><p class="st-value">~44.2M</p></div>
+    <div class="stat-tile"><p class="st-label">Homicides (since 1900)</p><p class="st-value">~40M</p></div>
+    <div class="stat-tile"><p class="st-label">COVID-19</p><p class="st-value">~7.6M</p></div>
+    <div class="stat-tile"><p class="st-label">Slave Trade (Middle Passage)</p><p class="st-value">~1.8M</p></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>All Causes Compared (Global)</h3>
+    <div class="chart-subtitle">Proportional share of estimated deaths by category</div>
+    <div class="chart-wrap" style="max-width:520px;margin:0 auto"><canvas id="chart-global-overview-pie"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Scale Comparison (Horizontal Bar)</h3>
+    <div class="chart-subtitle">Logarithmic scale &mdash; numbers span several orders of magnitude</div>
+    <div class="chart-wrap"><canvas id="chart-global-overview-bar" style="height:280px"></canvas></div>
+  </div>
+
+  <button class="table-toggle" onclick="toggleTable('table-global-overview')">&#9662; View data table</button>
+  <div class="data-table-wrap" id="table-global-overview">
+    <table class="data-table">
+      <thead><tr><th>Category</th><th class="num">Estimated Deaths</th><th class="num">% of Total</th></tr></thead>
+      <tbody>
+        <tr><td>Abortion (worldwide, ~1920s&ndash;2026)</td><td class="num">2,000,000,000</td><td class="num">86.67%</td></tr>
+        <tr><td>All Wars (20th&ndash;21st century)</td><td class="num">165,000,000</td><td class="num">7.15%</td></tr>
+        <tr><td>1918 Influenza (worldwide)</td><td class="num">50,000,000</td><td class="num">2.17%</td></tr>
+        <tr><td>HIV/AIDS (cumulative)</td><td class="num">44,200,000</td><td class="num">1.91%</td></tr>
+        <tr><td>Homicides (since 1900 est.)</td><td class="num">40,000,000</td><td class="num">1.73%</td></tr>
+        <tr><td>COVID-19 (official WHO)</td><td class="num">7,600,000</td><td class="num">0.33%</td></tr>
+        <tr><td>Transatlantic Slave Trade (Middle Passage)</td><td class="num">1,800,000</td><td class="num">0.08%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="caveat">
+    <strong>Notes:</strong> Global abortion estimate combines Johnston's Archive (~950M through April 2010) and WHO/Guttmacher annual estimates (~73M/year from 2010&ndash;2026). War deaths draw from compilations by Scaruffi, White, and academic sources covering 20th&ndash;21st century conflicts (includes military and civilian). 1918 Flu is the traditional CDC worldwide estimate (some newer studies suggest lower figures). HIV/AIDS cumulative figure from UNAIDS 2024 Global AIDS Update (range 33.8&ndash;61.1M). Homicides estimated from UNODC data (~400K&ndash;460K/year averaged over 125 years). COVID-19 uses official WHO cumulative count; Lancet excess-mortality studies suggest 15&ndash;20M total. Slave Trade Middle Passage deaths per the Trans-Atlantic Slave Trade Database (12.5M embarked, 10.7M disembarked).
+  </div>
+</section>
+
+<!-- ===== TAB 7: GLOBAL ABORTION ===== -->
 <section class="panel" id="panel-global-abortion" role="tabpanel">
   <h2 class="panel-title">Global Abortion Comparison</h2>
   <p class="panel-desc">Estimated cumulative abortions by country since legalization, plus current annual rates. Data quality varies widely &mdash; China and Russia have government statistics; India figures are Guttmacher estimates.</p>
@@ -984,6 +1037,43 @@ function buildCharts() {
   });
 
   // ======= GLOBAL TABS =======
+
+  // ---- GLOBAL OVERVIEW PIE ----
+  const gOverData = [2000000000, 165000000, 50000000, 44200000, 40000000, 7600000, 1800000];
+  const gOverLabels = ['Abortion (~2B)', 'All Wars (~165M)', '1918 Flu (~50M)', 'HIV/AIDS (~44.2M)', 'Homicides (~40M)', 'COVID-19 (~7.6M)', 'Slave Trade (~1.8M)'];
+  const gOverColors = [C.accent, C.cat[1], C.cat[3], C.cat[2], C.cat[0], C.cat[5], C.cat[4]];
+
+  charts.globalOverPie = new Chart(document.getElementById('chart-global-overview-pie'), {
+    type: 'doughnut',
+    data: {
+      labels: gOverLabels,
+      datasets: [{ data: gOverData, backgroundColor: gOverColors, borderColor: C.surface, borderWidth: 2, hoverOffset: 6 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true, layout: { padding: 8 },
+      plugins: {
+        legend: { display: true, position: 'bottom', labels: { color: C.fgSec, padding: 12, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => { const v = ctx.parsed; const total = ctx.dataset.data.reduce((a,b) => a+b, 0); return ` ${fmt(v)}  (${(v/total*100).toFixed(2)}%)`; } } }
+      }
+    }
+  });
+
+  // ---- GLOBAL OVERVIEW BAR ----
+  charts.globalOverBar = new Chart(document.getElementById('chart-global-overview-bar'), {
+    type: 'bar',
+    data: {
+      labels: ['Abortion', 'All Wars', '1918 Flu', 'HIV/AIDS', 'Homicides', 'COVID-19', 'Slave Trade'],
+      datasets: [{ data: gOverData, backgroundColor: gOverColors, borderRadius: { topRight: 4, bottomRight: 4 }, borderSkipped: 'start', barThickness: 22 }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { type: 'logarithmic', grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: logTickCb([5e5,5e6,5e7,5e8]), autoSkip: true, maxRotation: 0 } },
+        y: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { weight: 500 } } }
+      },
+      plugins: { tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.parsed.x.toLocaleString() } } }
+    }
+  });
 
   // ---- GLOBAL ABORTION BAR (cumulative, log scale) ----
   const gAbortCountries = ['China','Russia / USSR','India','United States','Japan','UK','France','Germany'];
