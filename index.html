@@ -1,10 +1,9 @@
-<title>American Death Toll Explorer</title>
+<title>Death Toll Explorer</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 
 <style>
-/* === Layout: tabbed dashboard, single column, chart + data table per view === */
 :root {
   --bg: #fafaf8;
   --surface: #ffffff;
@@ -125,7 +124,6 @@ body::before {
   margin-top: 4px;
 }
 
-/* Tabs */
 .tab-bar {
   position: sticky;
   top: env(safe-area-inset-top, 0px);
@@ -143,7 +141,7 @@ body::before {
 .tab-btn {
   flex: 0 0 auto;
   padding: 10px 16px;
-  font: 500 0.82rem/1.3 'Inter', system-ui, sans-serif;
+  font: 500 0.78rem/1.3 'Inter', system-ui, sans-serif;
   color: var(--tab-inactive);
   background: none;
   border: none;
@@ -159,7 +157,6 @@ body::before {
   font-weight: 600;
 }
 
-/* Content panels */
 .panel { display: none; padding: 24px 0 40px; }
 .panel.active { display: block; }
 .panel-title {
@@ -175,7 +172,6 @@ body::before {
   max-width: 65ch;
 }
 
-/* Chart cards */
 .chart-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -202,7 +198,6 @@ body::before {
   max-width: 100%;
 }
 
-/* Hero stat */
 .hero-stat {
   text-align: center;
   padding: 16px 0;
@@ -219,7 +214,6 @@ body::before {
   margin-top: 4px;
 }
 
-/* Stat row */
 .stat-row {
   display: flex;
   flex-wrap: wrap;
@@ -249,7 +243,6 @@ body::before {
   line-height: 1.2;
 }
 
-/* Data tables */
 .table-toggle {
   display: inline-flex;
   align-items: center;
@@ -287,7 +280,6 @@ body::before {
 .data-table tr:last-child td { border-bottom: none; }
 .data-table .num { text-align: right; }
 
-/* Caveat / source callout */
 .caveat {
   font-size: 0.75rem;
   color: var(--fg-muted);
@@ -298,7 +290,6 @@ body::before {
 }
 .caveat strong { color: var(--fg-secondary); font-weight: 600; }
 
-/* Sources footer */
 .sources-footer {
   border-top: 1px solid var(--border);
   margin-top: 40px;
@@ -314,28 +305,39 @@ body::before {
 }
 .sources-footer a { color: var(--cat-1); }
 
-/* Responsive */
+/* Section divider for tab groups */
+.tab-divider {
+  width: 1px;
+  background: var(--border);
+  margin: 8px 4px;
+  flex: 0 0 auto;
+}
+
 @media (max-width: 600px) {
   .chart-card { padding: 14px; }
   .stat-tile { flex: 1 1 100%; }
-  .tab-btn { padding: 10px 12px; font-size: 0.75rem; }
+  .tab-btn { padding: 10px 10px; font-size: 0.72rem; }
 }
 </style>
 
 <div class="page-header">
-  <h1>American Death Toll Explorer</h1>
-  <div class="subtitle">Comprehensive data on abortion, war casualties, homicide, disease & more &mdash; updated Oct 2026</div>
+  <h1>Death Toll Explorer</h1>
+  <div class="subtitle">Comparing abortion, war casualties, homicide & disease across major nations &mdash; updated Oct 2026</div>
 </div>
 
 <nav class="tab-bar" role="tablist">
-  <button class="tab-btn active" data-tab="overview" role="tab">Overview</button>
-  <button class="tab-btn" data-tab="wars" role="tab">Wars Detail</button>
+  <button class="tab-btn active" data-tab="overview" role="tab">U.S. Overview</button>
+  <button class="tab-btn" data-tab="wars" role="tab">U.S. Wars</button>
   <button class="tab-btn" data-tab="decades" role="tab">By Decade</button>
   <button class="tab-btn" data-tab="homicide" role="tab">Homicide</button>
   <button class="tab-btn" data-tab="reasons" role="tab">Abortion Reasons</button>
+  <div class="tab-divider"></div>
+  <button class="tab-btn" data-tab="global-abortion" role="tab">Global Abortion</button>
+  <button class="tab-btn" data-tab="global-wars" role="tab">Global Wars</button>
+  <button class="tab-btn" data-tab="global-homicide" role="tab">Global Homicide</button>
 </nav>
 
-<!-- ===== TAB 1: OVERVIEW ===== -->
+<!-- ===== TAB 1: U.S. OVERVIEW ===== -->
 <section class="panel active" id="panel-overview" role="tabpanel">
   <h2 class="panel-title">Total American Deaths by Cause</h2>
   <p class="panel-desc">Estimated total abortion deaths compared to all U.S. war casualties, homicides, pandemics, and the transatlantic slave trade (Middle Passage to the U.S.).</p>
@@ -385,7 +387,7 @@ body::before {
   </div>
 </section>
 
-<!-- ===== TAB 2: WARS DETAIL ===== -->
+<!-- ===== TAB 2: U.S. WARS DETAIL ===== -->
 <section class="panel" id="panel-wars" role="tabpanel">
   <h2 class="panel-title">U.S. War Deaths Breakdown</h2>
   <p class="panel-desc">Individual war casualties compared to each other and to abortion totals.</p>
@@ -560,19 +562,160 @@ body::before {
   </div>
 </section>
 
+<!-- ===== TAB 6: GLOBAL ABORTION ===== -->
+<section class="panel" id="panel-global-abortion" role="tabpanel">
+  <h2 class="panel-title">Global Abortion Comparison</h2>
+  <p class="panel-desc">Estimated cumulative abortions by country since legalization, plus current annual rates. Data quality varies widely &mdash; China and Russia have government statistics; India figures are Guttmacher estimates.</p>
+
+  <div class="chart-card">
+    <h3>Cumulative Abortions by Country (All Time Est.)</h3>
+    <div class="chart-subtitle">Log scale &mdash; data spans different periods depending on legalization date</div>
+    <div class="chart-wrap"><canvas id="chart-global-abort-bar" style="height:340px"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Current Annual Abortions</h3>
+    <div class="chart-subtitle">Most recent available year (2019&ndash;2024)</div>
+    <div class="chart-wrap"><canvas id="chart-global-abort-annual" style="height:340px"></canvas></div>
+  </div>
+
+  <button class="table-toggle" onclick="toggleTable('table-global-abort')">&#9662; View data table</button>
+  <div class="data-table-wrap" id="table-global-abort">
+    <table class="data-table">
+      <thead><tr><th>Country</th><th class="num">Cumulative Est.</th><th class="num">Period</th><th class="num">Recent Annual</th><th class="num">Year</th></tr></thead>
+      <tbody>
+        <tr><td>Russia / USSR</td><td class="num">~260,000,000</td><td class="num">1920-2026</td><td class="num">321,000</td><td class="num">2025</td></tr>
+        <tr><td>China</td><td class="num">~336,000,000+</td><td class="num">1971-2013</td><td class="num">9,700,000</td><td class="num">2021</td></tr>
+        <tr><td>India</td><td class="num">~100,000,000+</td><td class="num">1971-2026</td><td class="num">15,600,000</td><td class="num">2015</td></tr>
+        <tr><td>United States</td><td class="num">~93,100,000</td><td class="num">All time</td><td class="num">930,000</td><td class="num">2023</td></tr>
+        <tr><td>Japan</td><td class="num">~39,800,000</td><td class="num">1949-2024</td><td class="num">128,000</td><td class="num">2024</td></tr>
+        <tr><td>United Kingdom</td><td class="num">~11,100,000</td><td class="num">1968-2026</td><td class="num">252,000</td><td class="num">2023</td></tr>
+        <tr><td>France</td><td class="num">~10,500,000</td><td class="num">1975-2024</td><td class="num">251,000</td><td class="num">2024</td></tr>
+        <tr><td>Germany</td><td class="num">~8,000,000</td><td class="num">1968-2025</td><td class="num">106,000</td><td class="num">2025</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="caveat">
+    <strong>Notes:</strong> Russia/USSR figure covers 1920&ndash;2026; 260M+ is from Soviet-era health ministry data (1954&ndash;1991 alone accounts for ~258M) plus post-Soviet reported totals. China's 336M figure is the government's own 1971&ndash;2013 count; actual totals through 2026 are higher. India's 100M+ is estimated by Guttmacher Institute (only ~700K/year are officially reported; actual rate est. at 15.6M/year). Japan peaked at 1.17M/year in 1955. France averages ~210&ndash;250K/year. Germany figure includes both East and West from 1968. UK figure from Right to Life UK compilation of government data since 1968.
+  </div>
+</section>
+
+<!-- ===== TAB 7: GLOBAL WARS ===== -->
+<section class="panel" id="panel-global-wars" role="tabpanel">
+  <h2 class="panel-title">Global War Deaths by Country</h2>
+  <p class="panel-desc">Total military deaths across major conflicts for each nation. Figures are military killed only (not civilian) using best available scholarly estimates.</p>
+
+  <div class="chart-card">
+    <h3>Total Military Deaths (All Wars Combined)</h3>
+    <div class="chart-subtitle">Log scale &mdash; military killed in action + died of wounds/disease in service</div>
+    <div class="chart-wrap"><canvas id="chart-global-wars-total" style="height:340px"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Deadliest Conflicts by Country</h3>
+    <div class="chart-subtitle">Each country&rsquo;s top wars by military death toll</div>
+    <div class="chart-wrap"><canvas id="chart-global-wars-detail" style="height:480px"></canvas></div>
+  </div>
+
+  <button class="table-toggle" onclick="toggleTable('table-global-wars')">&#9662; View data table</button>
+  <div class="data-table-wrap" id="table-global-wars">
+    <table class="data-table">
+      <thead><tr><th>Country</th><th>War</th><th class="num">Military Dead</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="5" style="font-weight:600">Russia / USSR</td><td>WWII</td><td class="num">8,668,000</td></tr>
+        <tr><td>WWI</td><td class="num">1,800,000</td></tr>
+        <tr><td>Russo-Ukrainian War</td><td class="num">~500,000</td></tr>
+        <tr><td>Napoleonic Wars</td><td class="num">210,000</td></tr>
+        <tr><td>Afghan War (1979-88)</td><td class="num">15,000</td></tr>
+        <tr><td rowspan="4" style="font-weight:600">China</td><td>Second Sino-Japanese / WWII</td><td class="num">3,800,000</td></tr>
+        <tr><td>Chinese Civil War</td><td class="num">1,500,000</td></tr>
+        <tr><td>Korean War</td><td class="num">180,000</td></tr>
+        <tr><td>Sino-Vietnamese War</td><td class="num">26,000</td></tr>
+        <tr><td rowspan="4" style="font-weight:600">Germany</td><td>WWII</td><td class="num">5,300,000</td></tr>
+        <tr><td>WWI</td><td class="num">2,050,000</td></tr>
+        <tr><td>Franco-Prussian War</td><td class="num">45,000</td></tr>
+        <tr><td>Napoleonic Wars</td><td class="num">~300,000</td></tr>
+        <tr><td rowspan="4" style="font-weight:600">France</td><td>WWI</td><td class="num">1,400,000</td></tr>
+        <tr><td>Napoleonic Wars</td><td class="num">~600,000</td></tr>
+        <tr><td>WWII</td><td class="num">210,000</td></tr>
+        <tr><td>Indochina + Algeria</td><td class="num">~90,000</td></tr>
+        <tr><td rowspan="4" style="font-weight:600">United Kingdom</td><td>WWI</td><td class="num">888,000</td></tr>
+        <tr><td>WWII</td><td class="num">384,000</td></tr>
+        <tr><td>Napoleonic Wars</td><td class="num">311,000</td></tr>
+        <tr><td>Boer Wars</td><td class="num">27,000</td></tr>
+        <tr><td rowspan="3" style="font-weight:600">Japan</td><td>WWII</td><td class="num">2,120,000</td></tr>
+        <tr><td>Russo-Japanese War</td><td class="num">47,000</td></tr>
+        <tr><td>WWI</td><td class="num">415</td></tr>
+        <tr><td rowspan="3" style="font-weight:600">United States</td><td>Civil War</td><td class="num">750,000</td></tr>
+        <tr><td>WWII</td><td class="num">405,000</td></tr>
+        <tr><td>WWI</td><td class="num">117,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="caveat">
+    <strong>Notes:</strong> Russia WWII uses Krivosheev (2001) military-only estimate. China Sino-Japanese War figure from Rummel and Chinese government estimates. Germany WWII uses Overmans (2000). France WWI includes colonial troops. Japan WWII includes all theaters. U.S. Civil War uses Hacker (2011). Russia-Ukraine figure is mid-range estimate as of Oct 2026. All figures are military deaths only; civilian casualties are excluded.
+  </div>
+</section>
+
+<!-- ===== TAB 8: GLOBAL HOMICIDE ===== -->
+<section class="panel" id="panel-global-homicide" role="tabpanel">
+  <h2 class="panel-title">Global Homicide Rates</h2>
+  <p class="panel-desc">Intentional homicide rates per 100,000 population across major nations, from UNODC data. Most recent available year shown.</p>
+
+  <div class="chart-card">
+    <h3>Homicide Rate per 100,000 by Country</h3>
+    <div class="chart-subtitle">UNODC / national statistics, most recent year (2020&ndash;2023)</div>
+    <div class="chart-wrap"><canvas id="chart-global-hom-rate" style="height:340px"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Estimated Annual Homicides (Absolute Count)</h3>
+    <div class="chart-subtitle">Rate &times; population &mdash; shows total scale by country</div>
+    <div class="chart-wrap"><canvas id="chart-global-hom-count" style="height:340px"></canvas></div>
+  </div>
+
+  <button class="table-toggle" onclick="toggleTable('table-global-hom')">&#9662; View data table</button>
+  <div class="data-table-wrap" id="table-global-hom">
+    <table class="data-table">
+      <thead><tr><th>Country</th><th class="num">Rate / 100K</th><th class="num">Year</th><th class="num">Est. Annual Total</th><th class="num">Population</th></tr></thead>
+      <tbody>
+        <tr><td>Russia</td><td class="num">6.77</td><td class="num">2021</td><td class="num">~9,800</td><td class="num">145M</td></tr>
+        <tr><td>United States</td><td class="num">5.76</td><td class="num">2023</td><td class="num">~19,200</td><td class="num">334M</td></tr>
+        <tr><td>India</td><td class="num">2.82</td><td class="num">2022</td><td class="num">~40,300</td><td class="num">1,430M</td></tr>
+        <tr><td>France</td><td class="num">1.34</td><td class="num">2023</td><td class="num">~900</td><td class="num">68M</td></tr>
+        <tr><td>United Kingdom</td><td class="num">1.12</td><td class="num">2021</td><td class="num">~750</td><td class="num">67M</td></tr>
+        <tr><td>Germany</td><td class="num">0.91</td><td class="num">2023</td><td class="num">~760</td><td class="num">84M</td></tr>
+        <tr><td>China</td><td class="num">0.50</td><td class="num">2020</td><td class="num">~7,100</td><td class="num">1,411M</td></tr>
+        <tr><td>Japan</td><td class="num">0.23</td><td class="num">2023</td><td class="num">~290</td><td class="num">125M</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="caveat">
+    <strong>Notes:</strong> UNODC intentional homicide data. China's reported rate of 0.5/100K is considered reliable by some analysts but questioned by others due to classification practices. India's count is high in absolute terms due to population size despite a moderate per-capita rate. Russia's rate has fallen dramatically from ~30/100K in the early 2000s. Annual totals are calculated estimates (rate &times; population).
+  </div>
+</section>
+
 <!-- Sources -->
 <footer class="sources-footer">
   <h3>Sources</h3>
-  Guttmacher Institute &bull; CDC Abortion Surveillance &bull; National Right to Life Committee (NRLC) &bull; Live Action &bull; Society of Family Planning (#WeCount) &bull;
+  <strong>U.S. Data:</strong> Guttmacher Institute &bull; CDC Abortion Surveillance &bull; National Right to Life Committee (NRLC) &bull; Live Action &bull; Society of Family Planning (#WeCount) &bull;
   J. David Hacker, "A Census-Based Count of the Civil War Dead" (2011) &bull;
   Department of Veterans Affairs &bull; Congressional Research Service &bull;
   FBI Supplementary Homicide Reports (2019) &bull; CDC WONDER (2022) &bull;
   CDC COVID-19 Data Tracker &bull; Trans-Atlantic Slave Trade Database &bull;
-  Taussig (1936), Guttmacher (1955, 1967), Mohr (1978)
+  Taussig (1936), Guttmacher (1955, 1967), Mohr (1978)<br><br>
+  <strong>International Data:</strong> Chinese National Health and Family Planning Commission (336M, 1971-2013) &bull;
+  Soviet/Russian Ministry of Health &bull; Russian Federal State Statistics Service (Rosstat) &bull;
+  Wikipedia/Johnston&rsquo;s Archive (Japan, Germany) &bull; UK Right to Life compilation (11.1M since 1968) &bull;
+  INED France &bull; Guttmacher Institute (India estimates) &bull; Lancet Global Health (2018) &bull;
+  Overmans (2000), Krivosheev (2001) for war casualties &bull;
+  UNODC Global Study on Homicide &bull; Our World in Data
 </footer>
 
 <script>
-// === Helpers ===
 function fmt(n) {
   if (n >= 1e6) return (n/1e6).toFixed(n >= 1e7 ? 0 : 1).replace(/\.0$/,'') + 'M';
   if (n >= 1e3) return (n/1e3).toFixed(n >= 1e5 ? 0 : 1).replace(/\.0$/,'') + 'K';
@@ -602,7 +745,7 @@ function chartColors() {
   };
 }
 
-// === Tab switching ===
+// Tab switching
 const tabBtns = document.querySelectorAll('.tab-btn');
 const panels = document.querySelectorAll('.panel');
 tabBtns.forEach(btn => {
@@ -611,11 +754,9 @@ tabBtns.forEach(btn => {
     panels.forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
-    // Save tab preference
     try { localStorage.setItem('dtab', btn.dataset.tab); } catch(e) {}
   });
 });
-// Restore last tab
 try {
   const saved = localStorage.getItem('dtab');
   if (saved) {
@@ -624,7 +765,6 @@ try {
   }
 } catch(e) {}
 
-// Hash-based navigation
 function checkHash() {
   const h = location.hash.replace('#','');
   if (h) {
@@ -635,22 +775,35 @@ function checkHash() {
 checkHash();
 window.addEventListener('hashchange', checkHash);
 
-// === Table toggle ===
 function toggleTable(id) {
-  const el = document.getElementById(id);
-  el.classList.toggle('open');
+  document.getElementById(id).classList.toggle('open');
 }
 
-// === Chart defaults ===
+// Chart defaults
 Chart.defaults.font.family = "'Inter', system-ui, -apple-system, sans-serif";
 Chart.defaults.font.size = 12;
 Chart.defaults.plugins.legend.display = false;
 
-// === Build all charts ===
 let charts = {};
 
+function logTickCb(midpoints) {
+  return (v) => {
+    const log = Math.log10(v);
+    if (log === Math.floor(log) || midpoints.includes(v)) return fmt(v);
+    return '';
+  };
+}
+
+function ttOpts(C) {
+  return {
+    backgroundColor: C.fg,
+    titleColor: C.surface,
+    bodyColor: C.surface,
+    padding: 10
+  };
+}
+
 function buildCharts() {
-  // Destroy existing
   Object.values(charts).forEach(c => c.destroy());
   charts = {};
   const C = chartColors();
@@ -664,37 +817,13 @@ function buildCharts() {
     type: 'doughnut',
     data: {
       labels: overviewLabels,
-      datasets: [{
-        data: overviewData,
-        backgroundColor: overviewColors,
-        borderColor: C.surface,
-        borderWidth: 2,
-        hoverOffset: 6
-      }]
+      datasets: [{ data: overviewData, backgroundColor: overviewColors, borderColor: C.surface, borderWidth: 2, hoverOffset: 6 }]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: true,
-      layout: { padding: 8 },
+      responsive: true, maintainAspectRatio: true, layout: { padding: 8 },
       plugins: {
-        legend: {
-          display: true,
-          position: 'bottom',
-          labels: { color: C.fgSec, padding: 12, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } }
-        },
-        tooltip: {
-          backgroundColor: C.fg,
-          titleColor: C.surface,
-          bodyColor: C.surface,
-          padding: 10,
-          callbacks: {
-            label: ctx => {
-              const v = ctx.parsed;
-              const total = ctx.dataset.data.reduce((a,b) => a+b, 0);
-              return ` ${fmt(v)}  (${(v/total*100).toFixed(2)}%)`;
-            }
-          }
-        }
+        legend: { display: true, position: 'bottom', labels: { color: C.fgSec, padding: 12, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => { const v = ctx.parsed; const total = ctx.dataset.data.reduce((a,b) => a+b, 0); return ` ${fmt(v)}  (${(v/total*100).toFixed(2)}%)`; } } }
       }
     }
   });
@@ -704,130 +833,49 @@ function buildCharts() {
     type: 'bar',
     data: {
       labels: ['Abortion', 'Homicides', 'All Wars', 'COVID-19', '1918 Flu', 'Slave Trade'],
-      datasets: [{
-        data: overviewData,
-        backgroundColor: overviewColors,
-        borderRadius: { topRight: 4, bottomRight: 4 },
-        borderSkipped: 'start',
-        barThickness: 22
-      }]
+      datasets: [{ data: overviewData, backgroundColor: overviewColors, borderRadius: { topRight: 4, bottomRight: 4 }, borderSkipped: 'start', barThickness: 22 }]
     },
     options: {
-      indexAxis: 'y',
-      responsive: true,
-      maintainAspectRatio: false,
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       scales: {
-        x: {
-          type: 'logarithmic',
-          grid: { color: C.grid, lineWidth: 1 },
-          border: { color: C.base },
-          ticks: { color: C.muted, callback: (v, i, ticks) => { const log = Math.log10(v); if (log === Math.floor(log) || [5e4,5e5,5e6,5e7].includes(v)) return fmt(v); return ''; }, autoSkip: true, maxRotation: 0 }
-        },
-        y: {
-          grid: { display: false },
-          border: { display: false },
-          ticks: { color: C.fg, font: { weight: 500 } }
-        }
+        x: { type: 'logarithmic', grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: logTickCb([5e4,5e5,5e6,5e7]), autoSkip: true, maxRotation: 0 } },
+        y: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { weight: 500 } } }
       },
-      plugins: {
-        tooltip: {
-          backgroundColor: C.fg,
-          titleColor: C.surface,
-          bodyColor: C.surface,
-          padding: 10,
-          callbacks: { label: ctx => ' ' + ctx.parsed.x.toLocaleString() }
-        }
-      }
+      plugins: { tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.parsed.x.toLocaleString() } } }
     }
   });
 
   // ---- WARS PIE ----
   const warNames = ['Civil War','WWII','WWI','Vietnam','Korean','Revolutionary','War of 1812','Mexican-American','War on Terror','Spanish-American','Gulf War'];
   const warDeaths = [750000, 405399, 116516, 58209, 36516, 25000, 20000, 13283, 7078, 2446, 383];
-  // Use categorical slots + extended grays for >8
   const warColors = [C.cat[0], C.cat[1], C.cat[2], C.cat[3], C.cat[4], C.cat[5], C.cat[6], C.cat[7], C.muted, C.fgSec, C.base];
 
   charts.warsPie = new Chart(document.getElementById('chart-wars-pie'), {
     type: 'doughnut',
-    data: {
-      labels: warNames,
-      datasets: [{
-        data: warDeaths,
-        backgroundColor: warColors,
-        borderColor: C.surface,
-        borderWidth: 2,
-        hoverOffset: 6
-      }]
-    },
+    data: { labels: warNames, datasets: [{ data: warDeaths, backgroundColor: warColors, borderColor: C.surface, borderWidth: 2, hoverOffset: 6 }] },
     options: {
-      responsive: true,
-      maintainAspectRatio: true,
-      layout: { padding: 8 },
+      responsive: true, maintainAspectRatio: true, layout: { padding: 8 },
       plugins: {
-        legend: {
-          display: true,
-          position: 'bottom',
-          labels: { color: C.fgSec, padding: 10, usePointStyle: true, pointStyle: 'circle', font: { size: 10 } }
-        },
-        tooltip: {
-          backgroundColor: C.fg,
-          titleColor: C.surface,
-          bodyColor: C.surface,
-          padding: 10,
-          callbacks: {
-            label: ctx => {
-              const v = ctx.parsed;
-              const total = ctx.dataset.data.reduce((a,b) => a+b, 0);
-              return ` ${v.toLocaleString()}  (${(v/total*100).toFixed(1)}%)`;
-            }
-          }
-        }
+        legend: { display: true, position: 'bottom', labels: { color: C.fgSec, padding: 10, usePointStyle: true, pointStyle: 'circle', font: { size: 10 } } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => { const v = ctx.parsed; const total = ctx.dataset.data.reduce((a,b) => a+b, 0); return ` ${v.toLocaleString()}  (${(v/total*100).toFixed(1)}%)`; } } }
       }
     }
   });
 
-  // ---- WARS BAR (log scale, including abortion for comparison) ----
-  const warsBarLabels = ['Abortion (all time)', ...warNames];
-  const warsBarData = [93100000, ...warDeaths];
-  const warsBarColors = [C.accent, ...warColors];
-
+  // ---- WARS BAR ----
   charts.warsBar = new Chart(document.getElementById('chart-wars-bar'), {
     type: 'bar',
     data: {
-      labels: warsBarLabels,
-      datasets: [{
-        data: warsBarData,
-        backgroundColor: warsBarColors,
-        borderRadius: { topRight: 4, bottomRight: 4 },
-        borderSkipped: 'start',
-        barThickness: 20
-      }]
+      labels: ['Abortion (all time)', ...warNames],
+      datasets: [{ data: [93100000, ...warDeaths], backgroundColor: [C.accent, ...warColors], borderRadius: { topRight: 4, bottomRight: 4 }, borderSkipped: 'start', barThickness: 20 }]
     },
     options: {
-      indexAxis: 'y',
-      responsive: true,
-      maintainAspectRatio: false,
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       scales: {
-        x: {
-          type: 'logarithmic',
-          grid: { color: C.grid },
-          border: { color: C.base },
-          ticks: { color: C.muted, callback: (v, i, ticks) => { const log = Math.log10(v); if (log === Math.floor(log) || [5e2,5e3,5e4,5e5,5e6,5e7].includes(v)) return fmt(v); return ''; }, autoSkip: true, maxRotation: 0 }
-        },
-        y: {
-          grid: { display: false },
-          border: { display: false },
-          ticks: { color: C.fg, font: { size: 11 } }
-        }
+        x: { type: 'logarithmic', grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: logTickCb([5e2,5e3,5e4,5e5,5e6,5e7]), autoSkip: true, maxRotation: 0 } },
+        y: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { size: 11 } } }
       },
-      plugins: {
-        tooltip: {
-          backgroundColor: C.fg,
-          titleColor: C.surface,
-          bodyColor: C.surface,
-          callbacks: { label: ctx => ' ' + ctx.parsed.x.toLocaleString() }
-        }
-      }
+      plugins: { tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.parsed.x.toLocaleString() } } }
     }
   });
 
@@ -837,128 +885,45 @@ function buildCharts() {
 
   charts.decadeAbortion = new Chart(document.getElementById('chart-decade-abortion'), {
     type: 'bar',
-    data: {
-      labels: decades,
-      datasets: [{
-        label: 'Abortions',
-        data: abortByDecade,
-        backgroundColor: C.accent,
-        borderRadius: { topLeft: 4, topRight: 4 },
-        borderSkipped: 'bottom',
-        barThickness: 28
-      }]
-    },
+    data: { labels: decades, datasets: [{ label: 'Abortions', data: abortByDecade, backgroundColor: C.accent, borderRadius: { topLeft: 4, topRight: 4 }, borderSkipped: 'bottom', barThickness: 28 }] },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
+      responsive: true, maintainAspectRatio: false,
       scales: {
-        y: {
-          beginAtZero: true,
-          grid: { color: C.grid },
-          border: { color: C.base },
-          ticks: { color: C.muted, callback: v => fmt(v), maxTicksLimit: 6, padding: 4 }
-        },
-        x: {
-          grid: { display: false },
-          border: { color: C.base },
-          ticks: { color: C.fg, font: { size: 10 }, maxRotation: 45 }
-        }
+        y: { beginAtZero: true, grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: v => fmt(v), maxTicksLimit: 6, padding: 4 } },
+        x: { grid: { display: false }, border: { color: C.base }, ticks: { color: C.fg, font: { size: 10 }, maxRotation: 45 } }
       },
-      plugins: {
-        tooltip: {
-          backgroundColor: C.fg,
-          titleColor: C.surface,
-          bodyColor: C.surface,
-          callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString() }
-        }
-      }
+      plugins: { tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString() } } }
     }
   });
 
   // ---- DECADE: WARS ----
-  const warsByDecade = [811000, 522000, 95000, 150, 300, 400, 5500, 1200, 400];
-
   charts.decadeWars = new Chart(document.getElementById('chart-decade-wars'), {
     type: 'bar',
-    data: {
-      labels: decades,
-      datasets: [{
-        label: 'War Deaths',
-        data: warsByDecade,
-        backgroundColor: C.cat[0],
-        borderRadius: { topLeft: 4, topRight: 4 },
-        borderSkipped: 'bottom',
-        barThickness: 28
-      }]
-    },
+    data: { labels: decades, datasets: [{ label: 'War Deaths', data: [811000, 522000, 95000, 150, 300, 400, 5500, 1200, 400], backgroundColor: C.cat[0], borderRadius: { topLeft: 4, topRight: 4 }, borderSkipped: 'bottom', barThickness: 28 }] },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
+      responsive: true, maintainAspectRatio: false,
       scales: {
-        y: {
-          beginAtZero: true,
-          grid: { color: C.grid },
-          border: { color: C.base },
-          ticks: { color: C.muted, callback: v => fmt(v), maxTicksLimit: 6, padding: 4 }
-        },
-        x: {
-          grid: { display: false },
-          border: { color: C.base },
-          ticks: { color: C.fg, font: { size: 10 }, maxRotation: 45 }
-        }
+        y: { beginAtZero: true, grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: v => fmt(v), maxTicksLimit: 6, padding: 4 } },
+        x: { grid: { display: false }, border: { color: C.base }, ticks: { color: C.fg, font: { size: 10 }, maxRotation: 45 } }
       },
-      plugins: {
-        tooltip: {
-          backgroundColor: C.fg,
-          titleColor: C.surface,
-          bodyColor: C.surface,
-          callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString() }
-        }
-      }
+      plugins: { tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString() } } }
     }
   });
 
   // ---- HOMICIDE RAW ----
-  const homLabels = ['White-on-White','Black-on-Black','Black-on-White','White-on-Black','Other'];
-  const homData = [2594, 2574, 566, 246, 526];
-  const homColors = [C.cat[0], C.cat[1], C.cat[2], C.cat[3], C.cat[4]];
-
   charts.homRaw = new Chart(document.getElementById('chart-homicide-raw'), {
     type: 'bar',
     data: {
-      labels: homLabels,
-      datasets: [{
-        data: homData,
-        backgroundColor: homColors,
-        borderRadius: { topLeft: 4, topRight: 4 },
-        borderSkipped: 'bottom',
-        barThickness: 32
-      }]
+      labels: ['White-on-White','Black-on-Black','Black-on-White','White-on-Black','Other'],
+      datasets: [{ data: [2594, 2574, 566, 246, 526], backgroundColor: [C.cat[0], C.cat[1], C.cat[2], C.cat[3], C.cat[4]], borderRadius: { topLeft: 4, topRight: 4 }, borderSkipped: 'bottom', barThickness: 32 }]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
+      responsive: true, maintainAspectRatio: false,
       scales: {
-        y: {
-          beginAtZero: true,
-          grid: { color: C.grid },
-          border: { color: C.base },
-          ticks: { color: C.muted }
-        },
-        x: {
-          grid: { display: false },
-          border: { color: C.base },
-          ticks: { color: C.fg, font: { size: 10 } }
-        }
+        y: { beginAtZero: true, grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted } },
+        x: { grid: { display: false }, border: { color: C.base }, ticks: { color: C.fg, font: { size: 10 } } }
       },
-      plugins: {
-        tooltip: {
-          backgroundColor: C.fg,
-          titleColor: C.surface,
-          bodyColor: C.surface,
-          callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString() + ' homicides' }
-        }
-      }
+      plugins: { tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString() + ' homicides' } } }
     }
   });
 
@@ -968,50 +933,19 @@ function buildCharts() {
     data: {
       labels: ['Victimization (SHR)', 'Offending (SHR)', 'Overall Homicide (CDC 2022)'],
       datasets: [
-        {
-          label: 'White',
-          data: [1.65, 1.47, 2.7],
-          backgroundColor: C.cat[0],
-          borderRadius: 4,
-          barThickness: 24
-        },
-        {
-          label: 'Black',
-          data: [6.62, 7.28, 30.6],
-          backgroundColor: C.cat[1],
-          borderRadius: 4,
-          barThickness: 24
-        }
+        { label: 'White', data: [1.65, 1.47, 2.7], backgroundColor: C.cat[0], borderRadius: 4, barThickness: 24 },
+        { label: 'Black', data: [6.62, 7.28, 30.6], backgroundColor: C.cat[1], borderRadius: 4, barThickness: 24 }
       ]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
+      responsive: true, maintainAspectRatio: false,
       scales: {
-        y: {
-          beginAtZero: true,
-          grid: { color: C.grid },
-          border: { color: C.base },
-          ticks: { color: C.muted, callback: v => v + '/100K' }
-        },
-        x: {
-          grid: { display: false },
-          border: { color: C.base },
-          ticks: { color: C.fg, font: { size: 10 } }
-        }
+        y: { beginAtZero: true, grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: v => v + '/100K' } },
+        x: { grid: { display: false }, border: { color: C.base }, ticks: { color: C.fg, font: { size: 10 } } }
       },
       plugins: {
-        legend: {
-          display: true,
-          position: 'top',
-          labels: { color: C.fgSec, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } }
-        },
-        tooltip: {
-          backgroundColor: C.fg,
-          titleColor: C.surface,
-          bodyColor: C.surface,
-          callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y} per 100K` }
-        }
+        legend: { display: true, position: 'top', labels: { color: C.fgSec, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y} per 100K` } }
       }
     }
   });
@@ -1021,85 +955,173 @@ function buildCharts() {
     type: 'doughnut',
     data: {
       labels: ['Social / Economic (96.5%)', "Mother's Health (3.1%)", 'Rape / Incest (0.4%)'],
-      datasets: [{
-        data: [96.5, 3.11, 0.39],
-        backgroundColor: [C.cat[0], C.cat[2], C.cat[3]],
-        borderColor: C.surface,
-        borderWidth: 2,
-        hoverOffset: 6
-      }]
+      datasets: [{ data: [96.5, 3.11, 0.39], backgroundColor: [C.cat[0], C.cat[2], C.cat[3]], borderColor: C.surface, borderWidth: 2, hoverOffset: 6 }]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: true,
-      layout: { padding: 8 },
+      responsive: true, maintainAspectRatio: true, layout: { padding: 8 },
       plugins: {
-        legend: {
-          display: true,
-          position: 'bottom',
-          labels: { color: C.fgSec, padding: 12, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } }
-        },
-        tooltip: {
-          backgroundColor: C.fg,
-          titleColor: C.surface,
-          bodyColor: C.surface,
-          callbacks: { label: ctx => ` ${ctx.parsed}%` }
-        }
+        legend: { display: true, position: 'bottom', labels: { color: C.fgSec, padding: 12, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ` ${ctx.parsed}%` } }
       }
     }
   });
 
   // ---- REASONS BAR ----
-  const reasonLabels = ['Would change life','Can\'t afford','Single / relationship','Education','Career','Other children','Partner wants','Fetal health','Own health','Parents want','Partner abusive','Rape','Incest'];
-  const reasonData = [74, 73, 48, 38, 38, 32, 14, 13, 12, 6, 2, 1, 0.5];
-
   charts.reasonsBar = new Chart(document.getElementById('chart-reasons-bar'), {
     type: 'bar',
     data: {
-      labels: reasonLabels,
-      datasets: [{
-        data: reasonData,
-        backgroundColor: C.cat[0],
-        borderRadius: { topRight: 4, bottomRight: 4 },
-        borderSkipped: 'start',
-        barThickness: 20
-      }]
+      labels: ['Would change life','Can\'t afford','Single / relationship','Education','Career','Other children','Partner wants','Fetal health','Own health','Parents want','Partner abusive','Rape','Incest'],
+      datasets: [{ data: [74, 73, 48, 38, 38, 32, 14, 13, 12, 6, 2, 1, 0.5], backgroundColor: C.cat[0], borderRadius: { topRight: 4, bottomRight: 4 }, borderSkipped: 'start', barThickness: 20 }]
     },
     options: {
-      indexAxis: 'y',
-      responsive: true,
-      maintainAspectRatio: false,
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       scales: {
-        x: {
-          beginAtZero: true,
-          max: 100,
-          grid: { color: C.grid },
-          border: { color: C.base },
-          ticks: { color: C.muted, callback: v => v + '%' }
-        },
-        y: {
-          grid: { display: false },
-          border: { display: false },
-          ticks: { color: C.fg, font: { size: 11 } }
-        }
+        x: { beginAtZero: true, max: 100, grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: v => v + '%' } },
+        y: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { size: 11 } } }
       },
-      plugins: {
-        tooltip: {
-          backgroundColor: C.fg,
-          titleColor: C.surface,
-          bodyColor: C.surface,
-          callbacks: { label: ctx => ' ' + ctx.parsed.x + '% of patients cite this' }
-        }
-      }
+      plugins: { tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.parsed.x + '% of patients cite this' } } }
+    }
+  });
+
+  // ======= GLOBAL TABS =======
+
+  // ---- GLOBAL ABORTION BAR (cumulative, log scale) ----
+  const gAbortCountries = ['China','Russia / USSR','India','United States','Japan','UK','France','Germany'];
+  const gAbortCumulative = [336000000, 260000000, 100000000, 93100000, 39800000, 11100000, 10500000, 8000000];
+
+  charts.globalAbortBar = new Chart(document.getElementById('chart-global-abort-bar'), {
+    type: 'bar',
+    data: {
+      labels: gAbortCountries,
+      datasets: [{ data: gAbortCumulative, backgroundColor: [C.cat[0], C.cat[1], C.cat[2], C.accent, C.cat[3], C.cat[4], C.cat[5], C.cat[6]], borderRadius: { topRight: 4, bottomRight: 4 }, borderSkipped: 'start', barThickness: 24 }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { type: 'logarithmic', grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: logTickCb([5e6,5e7,5e8]), autoSkip: true, maxRotation: 0 } },
+        y: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { weight: 500, size: 11 } } }
+      },
+      plugins: { tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.parsed.x.toLocaleString() } } }
+    }
+  });
+
+  // ---- GLOBAL ABORTION ANNUAL ----
+  const gAbortAnnualCountries = ['India','China','United States','France','UK','Japan','Germany'];
+  const gAbortAnnual = [15600000, 9700000, 930000, 251000, 252000, 128000, 106000];
+
+  charts.globalAbortAnnual = new Chart(document.getElementById('chart-global-abort-annual'), {
+    type: 'bar',
+    data: {
+      labels: gAbortAnnualCountries,
+      datasets: [{ data: gAbortAnnual, backgroundColor: [C.cat[2], C.cat[0], C.accent, C.cat[5], C.cat[4], C.cat[3], C.cat[6]], borderRadius: { topRight: 4, bottomRight: 4 }, borderSkipped: 'start', barThickness: 24 }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { type: 'logarithmic', grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: logTickCb([5e4,5e5,5e6]), autoSkip: true, maxRotation: 0 } },
+        y: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { weight: 500, size: 11 } } }
+      },
+      plugins: { tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.parsed.x.toLocaleString() + '/year' } } }
+    }
+  });
+
+  // ---- GLOBAL WARS: TOTAL BY COUNTRY ----
+  const gWarCountries = ['Russia / USSR','Germany','China','Japan','France','United States','United Kingdom'];
+  const gWarTotals = [11193000, 7695000, 5506000, 2167000, 2300000, 1435000, 1610000];
+
+  charts.globalWarsTotal = new Chart(document.getElementById('chart-global-wars-total'), {
+    type: 'bar',
+    data: {
+      labels: gWarCountries,
+      datasets: [{ data: gWarTotals, backgroundColor: [C.cat[1], C.cat[6], C.cat[0], C.cat[3], C.cat[5], C.accent, C.cat[4]], borderRadius: { topRight: 4, bottomRight: 4 }, borderSkipped: 'start', barThickness: 24 }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { type: 'logarithmic', grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: logTickCb([5e5,5e6]), autoSkip: true, maxRotation: 0 } },
+        y: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { weight: 500, size: 11 } } }
+      },
+      plugins: { tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.parsed.x.toLocaleString() + ' military dead' } } }
+    }
+  });
+
+  // ---- GLOBAL WARS: DETAIL GROUPED ----
+  const gWarDetailLabels = ['Russia WWII','Germany WWII','China WWII','Japan WWII','Germany WWI','Russia WWI','France WWI','UK WWI','China Civil War','Russia-Ukraine','US Civil War','US WWII','France Napoleonic','UK WWII','UK Napoleonic','France WWII','Russia Napoleonic','China Korean','US WWI','France Colonial'];
+  const gWarDetailData = [8668000,5300000,3800000,2120000,2050000,1800000,1400000,888000,1500000,500000,750000,405000,600000,384000,311000,210000,210000,180000,117000,90000];
+  // Color by country
+  const countryColorMap = { 'Russia': C.cat[1], 'Germany': C.cat[6], 'China': C.cat[0], 'Japan': C.cat[3], 'France': C.cat[5], 'UK': C.cat[4], 'US': C.accent };
+  const gWarDetailColors = gWarDetailLabels.map(l => {
+    if (l.startsWith('Russia')) return countryColorMap['Russia'];
+    if (l.startsWith('Germany')) return countryColorMap['Germany'];
+    if (l.startsWith('China')) return countryColorMap['China'];
+    if (l.startsWith('Japan')) return countryColorMap['Japan'];
+    if (l.startsWith('France')) return countryColorMap['France'];
+    if (l.startsWith('UK')) return countryColorMap['UK'];
+    if (l.startsWith('US')) return countryColorMap['US'];
+    return C.muted;
+  });
+
+  charts.globalWarsDetail = new Chart(document.getElementById('chart-global-wars-detail'), {
+    type: 'bar',
+    data: {
+      labels: gWarDetailLabels,
+      datasets: [{ data: gWarDetailData, backgroundColor: gWarDetailColors, borderRadius: { topRight: 4, bottomRight: 4 }, borderSkipped: 'start', barThickness: 16 }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { type: 'logarithmic', grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: logTickCb([5e4,5e5,5e6]), autoSkip: true, maxRotation: 0 } },
+        y: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { size: 10 } } }
+      },
+      plugins: { tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.parsed.x.toLocaleString() + ' killed' } } }
+    }
+  });
+
+  // ---- GLOBAL HOMICIDE RATE ----
+  const gHomCountries = ['Russia','United States','India','France','UK','Germany','China','Japan'];
+  const gHomRates = [6.77, 5.76, 2.82, 1.34, 1.12, 0.91, 0.50, 0.23];
+  const gHomRateColors = [C.cat[1], C.accent, C.cat[2], C.cat[5], C.cat[4], C.cat[6], C.cat[0], C.cat[3]];
+
+  charts.globalHomRate = new Chart(document.getElementById('chart-global-hom-rate'), {
+    type: 'bar',
+    data: {
+      labels: gHomCountries,
+      datasets: [{ data: gHomRates, backgroundColor: gHomRateColors, borderRadius: { topRight: 4, bottomRight: 4 }, borderSkipped: 'start', barThickness: 24 }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { beginAtZero: true, grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: v => v + '/100K' } },
+        y: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { weight: 500, size: 11 } } }
+      },
+      plugins: { tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.parsed.x + ' per 100,000 population' } } }
+    }
+  });
+
+  // ---- GLOBAL HOMICIDE COUNT ----
+  const gHomCountCountries = ['India','United States','Russia','China','France','Germany','UK','Japan'];
+  const gHomCounts = [40300, 19200, 9800, 7100, 900, 760, 750, 290];
+  const gHomCountColors = [C.cat[2], C.accent, C.cat[1], C.cat[0], C.cat[5], C.cat[6], C.cat[4], C.cat[3]];
+
+  charts.globalHomCount = new Chart(document.getElementById('chart-global-hom-count'), {
+    type: 'bar',
+    data: {
+      labels: gHomCountCountries,
+      datasets: [{ data: gHomCounts, backgroundColor: gHomCountColors, borderRadius: { topRight: 4, bottomRight: 4 }, borderSkipped: 'start', barThickness: 24 }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { type: 'logarithmic', grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: logTickCb([5e2,5e3,5e4]), autoSkip: true, maxRotation: 0 } },
+        y: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { weight: 500, size: 11 } } }
+      },
+      plugins: { tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ~' + ctx.parsed.x.toLocaleString() + ' homicides/year' } } }
     }
   });
 }
 
-// Build on load and rebuild on theme change
 buildCharts();
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-  setTimeout(buildCharts, 50);
-});
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setTimeout(buildCharts, 50));
 new MutationObserver(() => setTimeout(buildCharts, 50))
   .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 </script>
