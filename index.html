@@ -930,9 +930,9 @@ body::before {
   <p class="panel-desc">Demographics and ideology of mass shooters from the Mother Jones database (strict definition: indiscriminate public attacks, 3&ndash;4+ killed, 1982&ndash;2025) and other compiled sources. Most mass shooters have no clear political affiliation.</p>
 
   <div class="stat-row">
-    <div class="stat-tile"><p class="st-label">Male</p><p class="st-value">~97%</p></div>
-    <div class="stat-tile"><p class="st-label">White (Non-Hispanic)</p><p class="st-value">~54%</p></div>
-    <div class="stat-tile"><p class="st-label">Black</p><p class="st-value">~17%</p></div>
+    <div class="stat-tile"><p class="st-label">Cis Male</p><p class="st-value">97.5%</p></div>
+    <div class="stat-tile"><p class="st-label">Cis Female</p><p class="st-value">2.0%</p></div>
+    <div class="stat-tile"><p class="st-label">Trans/Nonbinary</p><p class="st-value">0.5%</p></div>
     <div class="stat-tile"><p class="st-label">Had Ideological Motive</p><p class="st-value">~25%</p></div>
   </div>
 
@@ -940,6 +940,18 @@ body::before {
     <h3>Mass Shooter Race vs. U.S. Population Share</h3>
     <div class="chart-subtitle">Mother Jones database (1982&ndash;2025) vs. 2020 Census</div>
     <div class="chart-wrap"><canvas id="chart-shooter-race" style="height:280px"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Mass Shooter Gender Breakdown</h3>
+    <div class="chart-subtitle">Violence Project database (1966&ndash;2024, 201 shooters, strict definition)</div>
+    <div class="chart-wrap" style="max-width:420px;margin:0 auto"><canvas id="chart-shooter-gender"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Trans/Nonbinary Shooters in Context</h3>
+    <div class="chart-subtitle">GVA broad definition (2013&ndash;2025): 5 of 5,748 incidents (&lt;0.1%); ~1% of U.S. adults identify as trans</div>
+    <div class="chart-wrap"><canvas id="chart-shooter-trans" style="height:220px"></canvas></div>
   </div>
 
   <div class="chart-card">
@@ -957,8 +969,13 @@ body::before {
   <button class="table-toggle" onclick="toggleTable('table-shooter')">&#9662; View data table</button>
   <div class="data-table-wrap" id="table-shooter">
     <table class="data-table">
-      <thead><tr><th>Demographic</th><th class="num">% of Shooters</th><th class="num">% of U.S. Pop.</th><th class="num">Per 100K (MJ)</th></tr></thead>
+      <thead><tr><th>Category</th><th class="num">% of Shooters</th><th class="num">% of U.S. Pop.</th><th class="num">Per 100K (MJ)</th></tr></thead>
       <tbody>
+        <tr><td colspan="4" style="font-weight:700;background:var(--chart-surface)">Gender (Violence Project, 1966&ndash;2024)</td></tr>
+        <tr><td>Cisgender Male</td><td class="num">97.5%</td><td class="num">~49%</td><td class="num">&mdash;</td></tr>
+        <tr><td>Cisgender Female</td><td class="num">2.0%</td><td class="num">~51%</td><td class="num">&mdash;</td></tr>
+        <tr><td>Transgender/Nonbinary</td><td class="num">0.5%</td><td class="num">~1%</td><td class="num">&mdash;</td></tr>
+        <tr><td colspan="4" style="font-weight:700;background:var(--chart-surface)">Race (Mother Jones, 1982&ndash;2025)</td></tr>
         <tr><td>White (Non-Hispanic)</td><td class="num">54.5%</td><td class="num">57.8%</td><td class="num">0.05</td></tr>
         <tr><td>Black</td><td class="num">17.4%</td><td class="num">13.6%</td><td class="num">0.12</td></tr>
         <tr><td>Hispanic</td><td class="num">8.3%</td><td class="num">18.7%</td><td class="num">&mdash;</td></tr>
@@ -971,7 +988,7 @@ body::before {
   </div>
 
   <div class="caveat">
-    <strong>Notes:</strong> Mass shooter demographics from the Mother Jones database (1982&ndash;2025, ~150 incidents, strict definition: indiscriminate public attack, 3&ndash;4+ killed). Race percentages corroborated by the Violence Project, CPRC, and Eugene Volokh&rsquo;s analysis. Per-capita rates from Mother Jones data (1982&ndash;2022). Political ideology: ~75% of mass shooters show no clear political affiliation. Of the ~25% with identifiable ideology, the U.S. Extremist Crime Database (1990&ndash;2020) finds ~84% far-right and ~16% far-left among <em>ideologically motivated</em> killings specifically. This does NOT mean 84% of mass shooters are right-wing &mdash; it means that among the small subset with identifiable political motives, right-wing extremism predominates. Notable ideological cases include El Paso (2019, white supremacist), Buffalo (2022, white supremacist), Orlando (2016, Islamist), and San Bernardino (2015, Islamist). The vast majority of mass shooters are motivated by personal grievances, mental health crises, or workplace/domestic disputes, not politics.
+    <strong>Notes:</strong> Mass shooter demographics from the Mother Jones database (1982&ndash;2025, ~150 incidents, strict definition: indiscriminate public attack, 3&ndash;4+ killed). Race percentages corroborated by the Violence Project, CPRC, and Eugene Volokh&rsquo;s analysis. Per-capita rates from Mother Jones data (1982&ndash;2022). <strong>Gender:</strong> Violence Project (1966&ndash;2024, 201 shooters): 196 cis male (97.5%), 4 cis female (2.0%), 1 trans (0.5% &mdash; Audrey Hale, Nashville 2023). Under the Gun Violence Archive&rsquo;s broader definition (4+ shot, 2013&ndash;2025, 5,748 incidents), 5 confirmed trans/nonbinary shooters (&lt;0.1%). Co-founder James Densley of the Violence Project notes trans people (~1% of U.S. adults) are statistically <em>under</em>represented among mass shooters, not over. <strong>Ideology:</strong> ~75% of mass shooters show no clear political affiliation. Of the ~25% with identifiable ideology, the U.S. Extremist Crime Database (1990&ndash;2020) finds ~84% far-right and ~16% far-left among <em>ideologically motivated</em> killings specifically. This does NOT mean 84% of mass shooters are right-wing &mdash; it means that among the small subset with identifiable political motives, right-wing extremism predominates. Notable ideological cases include El Paso (2019, white supremacist), Buffalo (2022, white supremacist), Orlando (2016, Islamist), and San Bernardino (2015, Islamist). The vast majority of mass shooters are motivated by personal grievances, mental health crises, or workplace/domestic disputes, not politics.
   </div>
 </section>
 
@@ -996,7 +1013,9 @@ body::before {
   Gun Violence Archive (GVA) &bull; Mother Jones Mass Shooting Database &bull;
   FBI Active Shooter Reports (2023, 2024) &bull;
   Beard et al. (2023) &ldquo;Analysis of Mass Shootings&rdquo; <em>JAMA Surgery</em> &bull;
-  Violence Project Mass Shooter Database &bull;
+  Violence Project Mass Shooter Database (gender &amp; ideology, 1966&ndash;2024) &bull;
+  Gun Violence Archive (trans/nonbinary shooter incidents, 2013&ndash;2025) &bull;
+  FactCheck.org (Sept. 2025, trans shooter analysis) &bull;
   U.S. Extremist Crime Database (ECDB, 1990&ndash;2020) &bull;
   ADL Murder &amp; Extremism Report &bull;
   Congressional Research Service (CRS) Mass Murder reports
@@ -1648,6 +1667,38 @@ function buildCharts() {
         legend: { labels: { color: C.fg, usePointStyle: true, pointStyle: 'circle' } },
         tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + ctx.parsed.y + '%' } }
       }
+    }
+  });
+
+  charts.shooterGender = new Chart(document.getElementById('chart-shooter-gender'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Cisgender Male','Cisgender Female','Transgender/Nonbinary'],
+      datasets: [{ data: [196,4,1], backgroundColor: [C.cat[0],C.cat[3],C.cat[5]], borderColor: C.surface, borderWidth: 2, hoverOffset: 6 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true, layout: { padding: 8 },
+      plugins: {
+        legend: { display: true, position: 'bottom', labels: { color: C.fgSec, padding: 10, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => { const t = ctx.dataset.data.reduce((a,b)=>a+b,0); return ' ' + ctx.label + ': ' + ctx.parsed + ' (' + (ctx.parsed/t*100).toFixed(1) + '%)'; } } }
+      }
+    }
+  });
+
+  charts.shooterTrans = new Chart(document.getElementById('chart-shooter-trans'), {
+    type: 'bar',
+    data: {
+      labels: ['% of Mass Shooters\n(VP strict def.)','% of Mass Shootings\n(GVA broad def.)','% of U.S. Adults\nIdentifying as Trans'],
+      datasets: [{ data: [0.5,0.09,1.0], backgroundColor: [C.cat[5],C.cat[3],C.cat[0]], borderRadius: 4, barThickness: 40 }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { weight: 500, size: 11 } } },
+        x: { grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: v => v + '%' }, beginAtZero: true }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.parsed.x + '%' } } }
     }
   });
 
