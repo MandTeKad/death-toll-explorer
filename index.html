@@ -287,6 +287,41 @@ body::before {
 .data-table tr:last-child td { border-bottom: none; }
 .data-table .num { text-align: right; }
 
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.stat-grid .stat-tile {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+.stat-grid .stat-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 4px;
+}
+.stat-grid .stat-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0;
+  line-height: 1.4;
+}
+.chart-desc {
+  font-size: 0.82rem;
+  color: var(--fg-secondary);
+  margin: 0 0 14px;
+  line-height: 1.5;
+  max-width: 72ch;
+}
+
 .caveat {
   font-size: 0.75rem;
   color: var(--fg-muted);
@@ -315,9 +350,34 @@ body::before {
 @media (max-width: 600px) {
   .chart-card { padding: 14px; }
   .stat-tile { flex: 1 1 100%; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .stat-grid .stat-tile { padding: 10px 12px; }
+  .stat-grid .stat-value { font-size: 1.1rem; }
+  .stat-grid .stat-label { font-size: 0.65rem; }
   .tab-bar { padding: 8px 12px; }
   .tab-select { max-width: 100%; font-size: 0.8rem; }
   .tab-label { display: none; }
+  .panel { padding: 16px 0 32px; }
+  .panel-title { font-size: 1.1rem; }
+  .panel-desc { font-size: 0.8rem; }
+  .chart-card h3 { font-size: 0.88rem; }
+  .chart-desc { font-size: 0.78rem; }
+  .chart-wrap { min-height: 260px; }
+  .caveat { font-size: 0.7rem; }
+  .sources-footer { font-size: 0.72rem; }
+  .hero-stat .value { font-size: clamp(2rem, 7vw, 3rem); }
+  .stat-row .stat-tile { flex: 1 1 calc(50% - 6px); }
+  .data-table { font-size: 0.72rem; }
+  .data-table th, .data-table td { padding: 5px 8px; }
+  .page-header { padding: 20px 0 6px; }
+}
+@media (max-width: 400px) {
+  .stat-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+  .stat-grid .stat-value { font-size: 1rem; }
+  .stat-grid .stat-label { font-size: 0.6rem; }
+  .chart-card { padding: 10px; margin-bottom: 14px; }
+  .chart-card h3 { font-size: 0.82rem; }
+  .panel-desc { font-size: 0.75rem; }
 }
 
 /* Skull splash */
