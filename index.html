@@ -348,36 +348,46 @@ body::before {
 .sources-footer a { color: var(--cat-1); }
 
 @media (max-width: 600px) {
-  .chart-card { padding: 14px; }
-  .stat-tile { flex: 1 1 100%; }
-  .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-  .stat-grid .stat-tile { padding: 10px 12px; }
-  .stat-grid .stat-value { font-size: 1.1rem; }
-  .stat-grid .stat-label { font-size: 0.65rem; }
+  /* Nav */
   .tab-bar { padding: 8px 12px; }
-  .tab-select { max-width: 100%; font-size: 0.8rem; }
+  .tab-select { max-width: 100%; font-size: 0.85rem; padding: 10px 36px 10px 12px; }
   .tab-label { display: none; }
-  .panel { padding: 16px 0 32px; }
-  .panel-title { font-size: 1.1rem; }
-  .panel-desc { font-size: 0.8rem; }
-  .chart-card h3 { font-size: 0.88rem; }
-  .chart-desc { font-size: 0.78rem; }
-  .chart-wrap { min-height: 260px; }
-  .caveat { font-size: 0.7rem; }
-  .sources-footer { font-size: 0.72rem; }
+  .page-header { padding: 16px 0 4px; }
+
+  /* Panels */
+  .panel { padding: 14px 0 28px; }
+  .panel-title { font-size: 1.15rem; }
+  .panel-desc { font-size: 0.8rem; margin-bottom: 16px; }
+
+  /* Stat tiles - old style (.stat-row) */
+  .stat-row { gap: 8px; }
+  .stat-row .stat-tile { flex: 1 1 calc(50% - 4px); padding: 10px 12px; }
+  .stat-row .stat-tile .st-value { font-size: 1.1rem; }
+  .stat-row .stat-tile .st-label { font-size: 0.65rem; }
+
+  /* Stat tiles - new style (.stat-grid) */
+  .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .stat-grid .stat-tile { padding: 12px; }
+  .stat-grid .stat-value { font-size: 1.15rem; }
+  .stat-grid .stat-label { font-size: 0.68rem; line-height: 1.3; }
+
+  /* Charts */
+  .chart-card { padding: 14px; margin-bottom: 16px; }
+  .chart-card h3 { font-size: 0.9rem; margin-bottom: 6px; }
+  .chart-desc { font-size: 0.78rem; margin-bottom: 12px; }
+  .chart-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* Hero stat */
   .hero-stat .value { font-size: clamp(2rem, 7vw, 3rem); }
-  .stat-row .stat-tile { flex: 1 1 calc(50% - 6px); }
+  .hero-stat .label { font-size: 0.78rem; }
+
+  /* Tables */
   .data-table { font-size: 0.72rem; }
   .data-table th, .data-table td { padding: 5px 8px; }
-  .page-header { padding: 20px 0 6px; }
-}
-@media (max-width: 400px) {
-  .stat-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
-  .stat-grid .stat-value { font-size: 1rem; }
-  .stat-grid .stat-label { font-size: 0.6rem; }
-  .chart-card { padding: 10px; margin-bottom: 14px; }
-  .chart-card h3 { font-size: 0.82rem; }
-  .panel-desc { font-size: 0.75rem; }
+
+  /* Footer */
+  .caveat { font-size: 0.7rem; line-height: 1.5; }
+  .sources-footer { font-size: 0.72rem; line-height: 1.6; }
 }
 
 /* Skull splash */
@@ -1586,8 +1596,9 @@ function toggleTable(id) {
 }
 
 // Chart defaults
+const isMobile = window.innerWidth < 600;
 Chart.defaults.font.family = "'Inter', system-ui, -apple-system, sans-serif";
-Chart.defaults.font.size = 12;
+Chart.defaults.font.size = isMobile ? 10 : 12;
 Chart.defaults.plugins.legend.display = false;
 
 let charts = {};
@@ -1609,6 +1620,36 @@ function ttOpts(C) {
   };
 }
 
+function setMobileChartHeights() {
+  if (window.innerWidth >= 600) return;
+  // Increase height for horizontal bar charts so labels don't squish
+  document.querySelectorAll('.chart-wrap').forEach(el => {
+    const canvas = el.querySelector('canvas');
+    if (!canvas) return;
+    const id = canvas.id;
+    // Horizontal bars need more vertical space on mobile
+    if (['chart-overview-bar','chart-rape-funnel'].includes(id)) {
+      el.style.minHeight = '380px';
+    } else if (id === 'chart-rape-false') {
+      el.style.minHeight = '480px'; // 11 studies need room
+    } else if (['chart-century-global-stack','chart-century-us-stack'].includes(id)) {
+      el.style.minHeight = '300px';
+    } else {
+      el.style.minHeight = '280px';
+    }
+  });
+  // Also adjust canvases that have inline height styles
+  document.querySelectorAll('canvas[style*="height"]').forEach(el => {
+    const h = parseInt(el.style.height);
+    if (h > 0) {
+      const parent = el.closest('.chart-wrap');
+      if (parent) {
+        parent.style.minHeight = Math.max(h, 280) + 'px';
+      }
+    }
+  });
+}
+
 function buildCharts() {
   Object.values(charts).forEach(c => c.destroy());
   charts = {};
@@ -1619,33 +1660,39 @@ function buildCharts() {
   const overviewLabels = ['Abortion (~93.1M)', 'Heart Disease (~65M)', 'Cancer (~35M)', 'Tobacco (~20M)', 'Stroke (~10M)', 'Diabetes (~5M)', 'Traffic (~3.8M)', 'Overdoses (~2M)', 'Homicides (~1.6M)', 'Suicide (~1.5M)', 'All Wars (~1.43M)', 'COVID-19 (~1.2M)', '1918 Flu (~675K)', 'Slave Trade (~50K)'];
   const overviewColors = [C.accent, C.cat[0], C.cat[1], C.cat[3], C.cat[2], C.cat[4], C.cat[5], C.cat[6], C.cat[7], C.muted, C.fgSec, C.cat[0], C.cat[1], C.cat[3]];
 
+  const overviewPieLabels = isMobile
+    ? ['Abortion', 'Heart Dis.', 'Cancer', 'Tobacco', 'Stroke', 'Diabetes', 'Traffic', 'Overdose', 'Homicide', 'Suicide', 'Wars', 'COVID', '1918 Flu', 'Slave Trade']
+    : overviewLabels;
   charts.overviewPie = new Chart(document.getElementById('chart-overview-pie'), {
     type: 'doughnut',
     data: {
-      labels: overviewLabels,
+      labels: overviewPieLabels,
       datasets: [{ data: overviewData, backgroundColor: overviewColors, borderColor: C.surface, borderWidth: 2, hoverOffset: 6 }]
     },
     options: {
-      responsive: true, maintainAspectRatio: true, layout: { padding: 8 },
+      responsive: true, maintainAspectRatio: true, layout: { padding: isMobile ? 2 : 8 },
       plugins: {
-        legend: { display: true, position: 'bottom', labels: { color: C.fgSec, padding: 12, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } } },
+        legend: { display: true, position: 'bottom', labels: { color: C.fgSec, padding: isMobile ? 6 : 12, usePointStyle: true, pointStyle: 'circle', font: { size: isMobile ? 9 : 11 } } },
         tooltip: { ...ttOpts(C), callbacks: { label: ctx => { const v = ctx.parsed; const total = ctx.dataset.data.reduce((a,b) => a+b, 0); return ` ${fmt(v)}  (${(v/total*100).toFixed(2)}%)`; } } }
       }
     }
   });
 
   // ---- OVERVIEW BAR ----
+  const overviewBarLabels = isMobile
+    ? ['Abortion', 'Heart Dis.', 'Cancer', 'Tobacco', 'Stroke', 'Diabetes', 'Traffic', 'Overdose', 'Homicide', 'Suicide', 'Wars', 'COVID', '1918 Flu', 'Slave Trade']
+    : ['Abortion', 'Heart Disease', 'Cancer', 'Tobacco', 'Stroke', 'Diabetes', 'Traffic', 'Overdoses', 'Homicides', 'Suicide', 'All Wars', 'COVID-19', '1918 Flu', 'Slave Trade'];
   charts.overviewBar = new Chart(document.getElementById('chart-overview-bar'), {
     type: 'bar',
     data: {
-      labels: ['Abortion', 'Heart Disease', 'Cancer', 'Tobacco', 'Stroke', 'Diabetes', 'Traffic', 'Overdoses', 'Homicides', 'Suicide', 'All Wars', 'COVID-19', '1918 Flu', 'Slave Trade'],
-      datasets: [{ data: overviewData, backgroundColor: overviewColors, borderRadius: { topRight: 4, bottomRight: 4 }, borderSkipped: 'start', barThickness: 18 }]
+      labels: overviewBarLabels,
+      datasets: [{ data: overviewData, backgroundColor: overviewColors, borderRadius: { topRight: 4, bottomRight: 4 }, borderSkipped: 'start', barThickness: isMobile ? 14 : 18 }]
     },
     options: {
       indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       scales: {
-        x: { type: 'logarithmic', grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, callback: logTickCb([5e4,5e5,5e6,5e7]), autoSkip: true, maxRotation: 0 } },
-        y: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { weight: 500 } } }
+        x: { type: 'logarithmic', grid: { color: C.grid }, border: { color: C.base }, ticks: { color: C.muted, font: { size: isMobile ? 9 : 12 }, callback: logTickCb([5e4,5e5,5e6,5e7]), autoSkip: true, maxRotation: 0 } },
+        y: { grid: { display: false }, border: { display: false }, ticks: { color: C.fg, font: { size: isMobile ? 10 : 12, weight: 500 } } }
       },
       plugins: { tooltip: { ...ttOpts(C), callbacks: { label: ctx => ' ' + ctx.parsed.x.toLocaleString() } } }
     }
@@ -2688,93 +2735,90 @@ function buildCharts() {
   charts.rapeDefinitions = new Chart(document.getElementById('chart-rape-definitions'), {
     type: 'bar',
     data: {
-      labels: ['2010', '2011', '2012', '2013\n(revised)', '2014', '2015', '2016', '2017', '2018', '2019'],
+      labels: isMobile ? ["'10","'11","'12","'13*","'14","'15","'16","'17","'18","'19"] : ['2010', '2011', '2012', '2013\n(revised)', '2014', '2015', '2016', '2017', '2018', '2019'],
       datasets: [
-        { label: 'Legacy Definition', data: [84767, 83425, 84376, null, null, null, null, null, null, null], backgroundColor: C.cat[0], borderRadius: 4, barThickness: 24 },
-        { label: 'Revised Definition', data: [null, null, null, 113695, 116645, 124047, 130755, 135755, 142847, 139815], backgroundColor: C.accent, borderRadius: 4, barThickness: 24 }
+        { label: 'Legacy Definition', data: [84767, 83425, 84376, null, null, null, null, null, null, null], backgroundColor: C.cat[0], borderRadius: 4, barThickness: isMobile ? 14 : 24 },
+        { label: 'Revised Definition', data: [null, null, null, 113695, 116645, 124047, 130755, 135755, 142847, 139815], backgroundColor: C.accent, borderRadius: 4, barThickness: isMobile ? 14 : 24 }
       ]
     },
     options: {
       responsive: true, maintainAspectRatio: false,
       scales: {
-        x: { grid: { display: false }, ticks: { color: C.fg, font: { size: 11 } } },
-        y: { grid: { color: C.grid }, ticks: { color: C.fgSec, callback: v => fmt(v) }, title: { display: true, text: 'reported rapes', color: C.muted } }
+        x: { grid: { display: false }, ticks: { color: C.fg, font: { size: isMobile ? 9 : 11 } } },
+        y: { grid: { color: C.grid }, ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 12 }, callback: v => fmt(v) }, title: { display: !isMobile, text: 'reported rapes', color: C.muted } }
       },
-      plugins: { legend: { labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + (ctx.raw ? ctx.raw.toLocaleString() : 'N/A') } } }
+      plugins: { legend: { position: isMobile ? 'bottom' : 'top', labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: isMobile ? 8 : 16, font: { size: isMobile ? 10 : 12 } } }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + (ctx.raw ? ctx.raw.toLocaleString() : 'N/A') } } }
     }
   });
 
   // Justice System Funnel (horizontal bar)
+  const funnelLabels = isMobile
+    ? ['Estimated', 'Reported', 'Arrests', 'Prosecutor', 'Convicted', 'Incarcerated']
+    : ['Estimated Rapes', 'Reported to Police', 'Arrests', 'Reach Prosecutor', 'Felony Conviction', 'Incarcerated'];
   charts.rapeFunnel = new Chart(document.getElementById('chart-rape-funnel'), {
     type: 'bar',
     data: {
-      labels: ['Estimated Rapes', 'Reported to Police', 'Arrests', 'Reach Prosecutor', 'Felony Conviction', 'Incarcerated'],
+      labels: funnelLabels,
       datasets: [{
         data: [465483, 144300, 26533, 6046, 3258, 2795],
         backgroundColor: [C.cat[7], C.cat[0], C.cat[1], C.cat[3], C.cat[2], C.cat[4]],
-        borderRadius: 4, barThickness: 32
+        borderRadius: 4, barThickness: isMobile ? 22 : 32
       }]
     },
     options: {
       indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       scales: {
-        x: { type: 'logarithmic', grid: { color: C.grid }, ticks: { color: C.fgSec, callback: function(v) { if ([1000,5000,10000,50000,100000,500000].includes(v)) return fmt(v); return ''; } }, title: { display: true, text: 'count (log scale)', color: C.muted } },
-        y: { grid: { display: false }, ticks: { color: C.fg, font: { size: 12, weight: '500' } } }
+        x: { type: 'logarithmic', grid: { color: C.grid }, ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 12 }, callback: function(v) { if ([1000,5000,10000,50000,100000,500000].includes(v)) return fmt(v); return ''; } }, title: { display: !isMobile, text: 'count (log scale)', color: C.muted } },
+        y: { grid: { display: false }, ticks: { color: C.fg, font: { size: isMobile ? 10 : 12, weight: '500' } } }
       },
       plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => { const pct = (ctx.raw / 465483 * 100); return ctx.raw.toLocaleString() + ' (' + (pct < 1 ? pct.toFixed(1) : Math.round(pct)) + '% of estimated)'; } } } }
     }
   });
 
   // False Accusation Rates by Study (horizontal bar)
+  const falseLabels = isMobile
+    ? ['Kelly (UK)', 'DOD SAPRO', 'Rumney meta', 'Ferguson meta', 'Lisak 2010', 'UK CPS', 'FBI UCR', 'Prosecutor Int.', 'US Military', 'Kanin 1994', 'Kanin (Purdue)']
+    : ['Kelly et al. (UK, n=2,643)', 'DOD SAPRO (Military)', 'Rumney meta (UK, 12 studies)', 'Ferguson & Malouff meta (11 studies)', 'Lisak (2010, n=136)', 'UK CPS (multi-year)', 'FBI UCR "Unfounded"', 'Center for Prosecutor Integrity', 'U.S. Military (range)', 'Kanin (1994, n=109)', 'Kanin (Purdue, university)'];
   charts.rapeFalse = new Chart(document.getElementById('chart-rape-false'), {
     type: 'bar',
     data: {
-      labels: [
-        'Kelly et al. (UK, n=2,643)',
-        'DOD SAPRO (Military)',
-        'Rumney meta (UK, 12 studies)',
-        'Ferguson & Malouff meta (11 studies)',
-        'Lisak (2010, n=136)',
-        'UK CPS (multi-year)',
-        'FBI UCR "Unfounded"',
-        'Center for Prosecutor Integrity',
-        'U.S. Military (range)',
-        'Kanin (1994, n=109)',
-        'Kanin (Purdue, university)'
-      ],
+      labels: falseLabels,
       datasets: [{
         data: [3, 3.5, 4.6, 5.2, 5.9, 6, 6.8, 33, 23.5, 41, 50],
         backgroundColor: [C.cat[2], C.cat[2], C.cat[2], C.cat[2], C.cat[2], C.cat[2], C.cat[2], C.accent, C.cat[3], C.accent, C.accent],
-        borderRadius: 4, barThickness: 26
+        borderRadius: 4, barThickness: isMobile ? 18 : 26
       }]
     },
     options: {
       indexAxis: 'y', responsive: true, maintainAspectRatio: false,
       scales: {
-        x: { grid: { color: C.grid }, ticks: { color: C.fgSec, callback: v => v + '%' }, max: 55, title: { display: true, text: '% of reports classified as false', color: C.muted } },
-        y: { grid: { display: false }, ticks: { color: C.fg, font: { size: 11 } } }
+        x: { grid: { color: C.grid }, ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 12 }, callback: v => v + '%' }, max: 55, title: { display: !isMobile, text: '% of reports classified as false', color: C.muted } },
+        y: { grid: { display: false }, ticks: { color: C.fg, font: { size: isMobile ? 9 : 11 } } }
       },
       plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.raw + '% false report rate' } } }
     }
   });
 
   // False Accusation Spectrum (grouped bar: low/mid/high)
+  const spectrumLabels = isMobile
+    ? ['Proven\nFalse', 'Unfounded', 'Academic\nConsensus', 'Controversial\n(Kanin)']
+    : ['Proven False\n(strictest)', 'Unfounded\n(police classification)', 'Academic Consensus\n(meta-analyses)', 'Controversial\n(Kanin methodology)'];
   charts.rapeSpectrum = new Chart(document.getElementById('chart-rape-spectrum'), {
     type: 'bar',
     data: {
-      labels: ['Proven False\n(strictest)', 'Unfounded\n(police classification)', 'Academic Consensus\n(meta-analyses)', 'Controversial\n(Kanin methodology)'],
+      labels: spectrumLabels,
       datasets: [
-        { label: 'Low Estimate', data: [2, 5, 5, 41], backgroundColor: C.cat[2], borderRadius: 4, barThickness: 28 },
-        { label: 'High Estimate', data: [3, 8, 10, 50], backgroundColor: C.cat[3], borderRadius: 4, barThickness: 28 }
+        { label: 'Low Estimate', data: [2, 5, 5, 41], backgroundColor: C.cat[2], borderRadius: 4, barThickness: isMobile ? 18 : 28 },
+        { label: 'High Estimate', data: [3, 8, 10, 50], backgroundColor: C.cat[3], borderRadius: 4, barThickness: isMobile ? 18 : 28 }
       ]
     },
     options: {
       responsive: true, maintainAspectRatio: false,
       scales: {
-        x: { grid: { display: false }, ticks: { color: C.fg, font: { size: 11 } } },
-        y: { grid: { color: C.grid }, ticks: { color: C.fgSec, callback: v => v + '%' }, title: { display: true, text: '% of reports', color: C.muted } }
+        x: { grid: { display: false }, ticks: { color: C.fg, font: { size: isMobile ? 9 : 11 } } },
+        y: { grid: { color: C.grid }, ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 12 }, callback: v => v + '%' }, title: { display: !isMobile, text: '% of reports', color: C.muted } }
       },
-      plugins: { legend: { labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw + '%' } } }
+      plugins: { legend: { position: isMobile ? 'bottom' : 'top', labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: isMobile ? 8 : 16, font: { size: isMobile ? 10 : 12 } } }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw + '%' } } }
     }
   });
 
@@ -2782,12 +2826,12 @@ function buildCharts() {
   charts.rapeExoneration = new Chart(document.getElementById('chart-rape-exoneration'), {
     type: 'doughnut',
     data: {
-      labels: ['False Accusation', 'Mistaken ID', 'Official Misconduct', 'Other/Multiple'],
+      labels: isMobile ? ['False Accus.', 'Mistaken ID', 'Misconduct', 'Other'] : ['False Accusation', 'Mistaken ID', 'Official Misconduct', 'Other/Multiple'],
       datasets: [{ data: [53, 24, 13, 10], backgroundColor: [C.accent, C.cat[0], C.cat[3], C.cat[5]], borderColor: C.base, borderWidth: 2 }]
     },
     options: {
       responsive: true, maintainAspectRatio: false, cutout: '55%',
-      plugins: { legend: { labels: { color: C.fg, usePointStyle: true, pointStyle: 'circle', padding: 14 } }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.label + ': ' + ctx.raw + '% of wrongful convictions' } } }
+      plugins: { legend: { labels: { color: C.fg, usePointStyle: true, pointStyle: 'circle', padding: isMobile ? 8 : 14, font: { size: isMobile ? 10 : 12 } } }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.label + ': ' + ctx.raw + '% of wrongful convictions' } } }
     }
   });
 
@@ -2797,8 +2841,8 @@ function buildCharts() {
   charts.centuryGlobalStack = new Chart(document.getElementById('chart-century-global-stack'), {
     type: 'bar',
     data: {
-      labels: ['Abortion','Wars &\nConflicts','Pandemics','Tobacco','Famine','Genocide &\nDemocide','Natural\nDisasters'],
-      datasets: [{ label: 'Estimated Deaths (millions)', data: [1500,150,115,100,70,25,8], backgroundColor: [C.cat[7],C.cat[0],C.cat[1],C.cat[3],C.cat[2],C.cat[4],C.cat[5]], borderRadius: 4, barThickness: 36 }]
+      labels: isMobile ? ['Abortion','Wars','Pandemics','Tobacco','Famine','Genocide','Disasters'] : ['Abortion','Wars &\nConflicts','Pandemics','Tobacco','Famine','Genocide &\nDemocide','Natural\nDisasters'],
+      datasets: [{ label: 'Estimated Deaths (millions)', data: [1500,150,115,100,70,25,8], backgroundColor: [C.cat[7],C.cat[0],C.cat[1],C.cat[3],C.cat[2],C.cat[4],C.cat[5]], borderRadius: 4, barThickness: isMobile ? 22 : 36 }]
     },
     options: {
       responsive: true, maintainAspectRatio: false,
@@ -2814,7 +2858,7 @@ function buildCharts() {
   charts.centuryGlobalPie = new Chart(document.getElementById('chart-century-global-pie'), {
     type: 'doughnut',
     data: {
-      labels: ['Abortion (~1.5B)','Wars (~150M)','Pandemics (~115M)','Tobacco (~100M)','Famine (~70M)','Genocide (~25M)','Natural Disasters (~8M)'],
+      labels: isMobile ? ['Abortion','Wars','Pandemics','Tobacco','Famine','Genocide','Disasters'] : ['Abortion (~1.5B)','Wars (~150M)','Pandemics (~115M)','Tobacco (~100M)','Famine (~70M)','Genocide (~25M)','Natural Disasters (~8M)'],
       datasets: [{ data: [1500,150,115,100,70,25,8], backgroundColor: [C.cat[7],C.cat[0],C.cat[1],C.cat[3],C.cat[2],C.cat[4],C.cat[5]], borderColor: C.surface, borderWidth: 2, hoverOffset: 8 }]
     },
     options: {
@@ -2830,8 +2874,8 @@ function buildCharts() {
   charts.centuryUsStack = new Chart(document.getElementById('chart-century-us-stack'), {
     type: 'bar',
     data: {
-      labels: ['Abortion','Heart\nDisease','Cancer','Traffic\nDeaths','Homicide','COVID-19','War\nDeaths'],
-      datasets: [{ label: 'Estimated Deaths (millions)', data: [93,65,35,3.6,1.6,1.2,0.507], backgroundColor: [C.cat[7],C.cat[0],C.cat[1],C.cat[2],C.cat[3],C.cat[4],C.cat[5]], borderRadius: 4, barThickness: 36 }]
+      labels: isMobile ? ['Abortion','Heart Dis.','Cancer','Traffic','Homicide','COVID','Wars'] : ['Abortion','Heart\nDisease','Cancer','Traffic\nDeaths','Homicide','COVID-19','War\nDeaths'],
+      datasets: [{ label: 'Estimated Deaths (millions)', data: [93,65,35,3.6,1.6,1.2,0.507], backgroundColor: [C.cat[7],C.cat[0],C.cat[1],C.cat[2],C.cat[3],C.cat[4],C.cat[5]], borderRadius: 4, barThickness: isMobile ? 22 : 36 }]
     },
     options: {
       responsive: true, maintainAspectRatio: false,
@@ -2847,7 +2891,7 @@ function buildCharts() {
   charts.centuryUsPie = new Chart(document.getElementById('chart-century-us-pie'), {
     type: 'doughnut',
     data: {
-      labels: ['Abortion (~93M)','Heart Disease (~65M)','Cancer (~35M)','Traffic (~3.6M)','Homicide (~1.6M)','COVID-19 (~1.2M)','War Deaths (~507K)'],
+      labels: isMobile ? ['Abortion','Heart Dis.','Cancer','Traffic','Homicide','COVID','Wars'] : ['Abortion (~93M)','Heart Disease (~65M)','Cancer (~35M)','Traffic (~3.6M)','Homicide (~1.6M)','COVID-19 (~1.2M)','War Deaths (~507K)'],
       datasets: [{ data: [93,65,35,3.6,1.6,1.2,0.507], backgroundColor: [C.cat[7],C.cat[0],C.cat[1],C.cat[2],C.cat[3],C.cat[4],C.cat[5]], borderColor: C.surface, borderWidth: 2, hoverOffset: 8 }]
     },
     options: {
@@ -2952,7 +2996,8 @@ function buildCharts() {
 }
 
 buildCharts();
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setTimeout(buildCharts, 50));
-new MutationObserver(() => setTimeout(buildCharts, 50))
+setMobileChartHeights();
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setTimeout(() => { buildCharts(); setMobileChartHeights(); }, 50));
+new MutationObserver(() => setTimeout(() => { buildCharts(); setMobileChartHeights(); }, 50))
   .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 </script>
