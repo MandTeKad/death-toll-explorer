@@ -1,4 +1,4 @@
-<title>Death Toll Explorer</title>
+<title>Statistics Explorer</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -436,7 +436,7 @@ body::before {
 </div>
 
 <div class="page-header">
-  <h1>Death Toll Explorer</h1>
+  <h1>Statistics Explorer</h1>
   <div class="subtitle">Comparing abortion, war casualties, homicide & disease across major nations &mdash; updated Oct 2026</div>
 </div>
 
@@ -1453,21 +1453,38 @@ body::before {
     <div class="chart-wrap"><canvas id="chart-co-cinderella"></canvas></div>
   </div>
 
-  <!-- Same-Sex Parents -->
+  <!-- Same-Sex Parents: Contested Research -->
   <div class="chart-card">
-    <h3>Same-Sex vs. Different-Sex Parent Outcomes</h3>
-    <p class="chart-desc">The research consensus (multiple meta-analyses) finds no significant differences in child outcomes between same-sex and different-sex parent households across academic, cognitive, social, and psychological measures. The key predictor is family stability and parental relationship quality, not parental gender or orientation.</p>
+    <h3>Same-Sex Parent Outcomes: The Contested Data</h3>
+    <p class="chart-desc">This is one of the most politically charged areas in social science. Meta-analyses (Manning 2014, Fedewa &amp; Clark 2009) report &ldquo;no significant difference&rdquo; across most measures. However, several studies using large or national samples report worse outcomes. The chart below shows findings from both sides. Each study has methodological strengths and limitations&mdash;see the debate section below.</p>
     <div class="chart-wrap"><canvas id="chart-co-samesex"></canvas></div>
   </div>
 
   <!-- The Research Debate -->
   <div class="chart-card">
     <h3>The Research Landscape: Key Studies &amp; Controversy</h3>
-    <p class="chart-desc">Research on family structure is politically charged. Most studies show family <em>stability</em>&mdash;not structure per se&mdash;as the dominant predictor. The Regnerus (2012) NFSS study, which found negative outcomes for children of same-sex parents, was widely criticized for methodological flaws (most &ldquo;same-sex parent&rdquo; subjects actually grew up in broken heterosexual homes where a parent later had a same-sex relationship). The scholarly consensus, reflected in the APA, AAP, and NASW positions, is that children of stable same-sex couples fare as well as those of stable different-sex couples.</p>
+    <p class="chart-desc"><strong>Studies finding &ldquo;no difference&rdquo;:</strong> Multiple meta-analyses (Manning 2014, Fedewa &amp; Clark 2009), the National Longitudinal Lesbian Family Study (Gartrell &amp; Bos 2010), and Wainright &amp; Patterson (2006, Add Health) find children of same-sex parents fare comparably on academic, social, and psychological measures. These form the basis for APA, AAP, and NASW position statements.</p>
+    <p class="chart-desc"><strong>Studies finding worse outcomes:</strong> Regnerus (2012, NFSS, n=2,988) found children who reported a parent had a same-sex relationship fared worse on 25 of 40 outcomes&mdash;69% received public assistance vs 17%, 26% employed full-time vs 50%. <em>Major caveat:</em> most of his subjects experienced divorce or family breakup, so the study may measure family instability rather than same-sex parenting. Sullins (2015, NHIS, n=207,007 including 512 children of same-sex parents) found 2&ndash;3&times; higher rates of emotional and developmental problems, rising to 4.5&times; with full controls. Allen (2013, Canadian census, n=~65,000) found children in same-sex households were 35% less likely to graduate high school.</p>
+    <p class="chart-desc"><strong>The core debate:</strong> Critics of the &ldquo;no difference&rdquo; consensus note many early studies used small convenience samples of well-educated lesbian mothers. Critics of the dissenting studies argue they conflate family disruption with same-sex parenting, or that same-sex families face social stigma that affects outcomes independently. Both sides agree that more large-scale, longitudinal research is needed.</p>
+    <p class="chart-desc"><strong>LGBTQ &amp; transgender adoption:</strong> Research on transgender parent households specifically is extremely limited. One 2021 study (White &amp; Moody, <em>Journal of Family Psychology</em>) of children adopted by LGBT parents found no significant behavioral differences from children adopted by heterosexual parents&mdash;but it used small samples and self-selected participants. The Regnerus (2012) and Sullins (2015) data include some LGBT-identifying parents but do not separately analyze trans households. What data exists on trans-specific parenting largely consists of case studies and qualitative interviews rather than large-scale outcome research, making confident conclusions premature in either direction.</p>
+  </div>
+
+  <!-- Adoption Outcomes -->
+  <div class="chart-card">
+    <h3>The Adoption Paradox: How Adopted Children Fare</h3>
+    <p class="chart-desc">Adoptive parents are typically screened, well-educated, and well-resourced&mdash;yet adopted children show elevated rates of behavioral and academic difficulties compared to peers raised by biological parents. This &ldquo;adoption paradox&rdquo; likely reflects pre-adoption experiences (prenatal exposure, early neglect, institutional care) rather than adoptive parenting quality. Data from the 2016 National Household Education Survey (NHES, n=14,075 including 436 adopted) and the ECLS-K longitudinal study (n=~19,000 including 160 adopted).</p>
+    <div class="chart-wrap"><canvas id="chart-co-adoption"></canvas></div>
+  </div>
+
+  <!-- Transracial Adoption -->
+  <div class="chart-card">
+    <h3>Transracial Adoption: A Complex Picture</h3>
+    <p class="chart-desc">About 40% of adoptions from foster care are transracial. While transracially adopted children generally show strong academic and mental health outcomes, many face challenges with racial identity and cultural belonging that same-race adoptees do not. Research suggests both real difficulties and overall resilience.</p>
+    <div class="chart-wrap"><canvas id="chart-co-transracial"></canvas></div>
   </div>
 
   <div class="caveat">
-    <strong>Notes:</strong> Correlation is not causation. Family structure is deeply intertwined with socioeconomic status, neighborhood effects, parental education, and selection effects (the same factors that lead to family instability also affect child outcomes independently). The poverty gap alone explains a substantial portion of outcome differences. Foster care outcomes are especially confounded by the trauma and neglect that led to removal in the first place. Same-sex parent research has been limited by small sample sizes in older studies, though recent large-sample studies (including census-linked data from the Netherlands, Canada, and Sweden) confirm the consensus of &ldquo;no difference.&rdquo; The Cinderella Effect data is from the 1970s&ndash;1990s and primarily Canadian/American samples. Adoptive parent outcomes are complicated by selection (adoptive parents undergo screening) and by the varied pre-adoption experiences of adopted children.
+    <strong>Notes:</strong> Correlation is not causation. Family structure is deeply intertwined with socioeconomic status, neighborhood effects, parental education, and selection effects (the same factors that lead to family instability also affect child outcomes independently). The poverty gap alone explains a substantial portion of outcome differences. Foster care outcomes are especially confounded by the trauma and neglect that led to removal in the first place. Same-sex parent research is actively contested&mdash;meta-analyses of mostly small convenience samples show &ldquo;no difference,&rdquo; while some larger population-based studies (Regnerus, Sullins, Allen) find significant gaps, though each has methodological limitations. This dashboard presents both sets of findings. The Cinderella Effect data is from the 1970s&ndash;1990s and primarily Canadian/American samples. Adoptive parent outcomes are complicated by selection (adoptive parents undergo screening) and by the varied pre-adoption experiences of adopted children. Transracial adoption research draws from multiple studies with varying sample sizes; identity struggle figures are self-reported.
   </div>
 </section>
 
@@ -1606,6 +1623,13 @@ body::before {
   Manning et al. (2014) meta-analysis of same-sex parent outcomes &bull;
   Gartrell &amp; Bos (2010) National Longitudinal Lesbian Family Study &bull;
   Wainright &amp; Patterson (2006) Add Health same-sex parent study &bull;
+  Regnerus (2012) New Family Structures Study (NFSS, n=2,988) &bull;
+  Sullins (2015) &ldquo;Emotional Problems among Children with Same-Sex Parents&rdquo; (NHIS, n=207,007) &bull;
+  Sullins (2015) Add Health analysis of same-sex married parent outcomes &bull;
+  Allen (2013) Canadian census analysis of high school graduation rates &bull;
+  NHES 2016 (National Household Education Survey, adopted child outcomes, n=14,075) &bull;
+  ECLS-K (Early Childhood Longitudinal Study, adoption paradox) &bull;
+  Gitnux (2024) transracial adoption statistics compilation &bull;
   U.S. Census Bureau &ldquo;Divorce, Family Arrangements, and Children&rsquo;s Adult Outcomes&rdquo; (2025) &bull;
   NLSY79 &amp; NLSY97 (National Longitudinal Surveys of Youth)<br><br>
   <strong>Century of Death:</strong> WHO &ldquo;Tobacco: 100 million deaths in the 20th century&rdquo; &bull;
@@ -3224,40 +3248,94 @@ function buildCharts() {
     }
   });
 
-  // Same-Sex Parent Outcomes (meta-analysis summary)
+  // Same-Sex Parent Outcomes: Contested Findings
+  // Shows multiplier of problems compared to married bio-parent baseline (1×)
   charts.coSamesex = new Chart(document.getElementById('chart-co-samesex'), {
     type: 'bar',
     data: {
-      labels: isMobile ? ['Academic','Cognitive','Social','Psych.','Behavior','Substance\nUse'] : ['Academic\nPerformance','Cognitive\nDevelopment','Social\nDevelopment','Psychological\nWellbeing','Behavioral\nProblems','Substance\nUse'],
+      labels: isMobile ? ['Emotional\nProblems\n(Sullins)','Public\nAssist.\n(Regnerus)','Full-Time\nEmployed\n(Regnerus)','HS Grad\nRate\n(Allen)','Suicidal\nThoughts\n(Regnerus)','In Therapy\n(Regnerus)'] : ['Emotional/Dev.\nProblems\n(Sullins NHIS)','Received Public\nAssistance\n(Regnerus NFSS)','Employed\nFull-Time\n(Regnerus NFSS)','High School\nGraduation\n(Allen Census)','Suicidal\nThoughts\n(Regnerus NFSS)','Currently in\nTherapy\n(Regnerus NFSS)'],
       datasets: [
         {
-          label: 'Different-Sex Parents',
-          data: [50, 50, 50, 50, 50, 50],
+          label: 'Married Bio Parents',
+          data: [6, 17, 49, 72, 5, 8],
           backgroundColor: C.cat[0],
           borderRadius: 4,
-          barThickness: isMobile ? 14 : 22
+          barThickness: isMobile ? 12 : 20
         },
         {
-          label: 'Same-Sex Parents',
-          data: [50, 50, 52, 51, 48, 50],
-          backgroundColor: C.cat[2],
+          label: 'Same-Sex Parent HH',
+          data: [26, 69, 26, 47, 12, 19],
+          backgroundColor: C.cat[7],
           borderRadius: 4,
-          barThickness: isMobile ? 14 : 22
+          barThickness: isMobile ? 12 : 20
         }
       ]
     },
     options: {
       scales: {
-        y: { min: 30, max: 70, ticks: { color: C.fgSec, callback: v => v === 50 ? 'Avg' : '' }, grid: { color: C.grid } },
-        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } }
+        y: { beginAtZero: true, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 7 : 10 } }, grid: { display: false } }
       },
       plugins: {
         legend: { display: true, labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } },
-        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
-          const diff = ctx.parsed.y - 50;
-          if (diff === 0) return ctx.dataset.label + ': No significant difference';
-          return ctx.dataset.label + ': Slightly ' + (diff > 0 ? 'better' : 'lower') + ' (not statistically significant in most studies)';
-        } } }
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } }
+      }
+    }
+  });
+
+  // Adoption Paradox: Adopted vs Bio Children (NHES 2016)
+  charts.coAdoption = new Chart(document.getElementById('chart-co-adoption'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Grade\nRepetition','Suspended/\nExpelled','Behavior\nContact','Any Dx\nCondition','Emotional\nDisturbance','Excellent\nSchoolwork'] : ['Repeated a\nGrade','Suspended or\nExpelled','Behavior\nProblem Contact','Any Diagnosed\nCondition','Severe Emotional\nDisturbance','Excellent/Above\nAvg Schoolwork'],
+      datasets: [
+        {
+          label: 'Married Bio Parents',
+          data: [5, 6, 13, 18, 1, 72],
+          backgroundColor: C.cat[0],
+          borderRadius: 4,
+          barThickness: isMobile ? 12 : 20
+        },
+        {
+          label: 'Adopted Children',
+          data: [20, 18, 38, 54, 12, 49],
+          backgroundColor: C.cat[3],
+          borderRadius: 4,
+          barThickness: isMobile ? 12 : 20
+        }
+      ]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 7 : 10 } }, grid: { display: false } }
+      },
+      plugins: {
+        legend: { display: true, labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } }
+      }
+    }
+  });
+
+  // Transracial Adoption: Strengths & Challenges
+  charts.coTransracial = new Chart(document.getElementById('chart-co-transracial'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Racial\nIdentity\nStruggle','Experienced\nDiscrim.','Felt\nDisconnected','Positive\nMental\nHealth','HS Grad\nRate','Excel\nAcademically','Satisfied\nw/ Family'] : ['Struggle w/\nRacial Identity','Experienced\nDiscrimination','Disconnected\nfrom Heritage','Positive\nMental Health','High School\nGraduation','Excel\nAcademically','Satisfied with\nFamily Life'],
+      datasets: [{
+        data: [73, 58, 42, 85, 92, 76, 88],
+        backgroundColor: [C.cat[7], C.cat[7], C.cat[7], C.cat[0], C.cat[0], C.cat[0], C.cat[0]],
+        borderRadius: 4,
+        barThickness: isMobile ? 24 : 40
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, max: 100, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 7 : 10 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y + '% of transracially adopted children' } }
       }
     }
   });
