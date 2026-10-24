@@ -1515,10 +1515,10 @@ body::before {
     <div class="stat-tile"><p class="st-label">Countries Restricting Youth Transition</p><p class="st-value">7+</p></div>
   </div>
 
-  <!-- Bathroom Safety -->
+  <!-- Bathroom & Changing Room Safety -->
   <div class="chart-card">
-    <h3>Bathroom Safety: What the Data Shows</h3>
-    <p class="chart-desc">The Williams Institute (2025) found that trans-inclusive bathroom policies did not increase safety incidents. Massachusetts crime data showed no change in violations after nondiscrimination laws took effect. Meanwhile, the 2022 U.S. Trans Survey found trans people themselves face significant harassment and assault in restrooms&mdash;especially when forced to use facilities matching their birth sex.</p>
+    <h3>Women&rsquo;s Safety in Mixed-Sex Facilities</h3>
+    <p class="chart-desc">UK Freedom of Information data (2017&ndash;2018) found that of 134 reported sexual assaults, voyeurism, and harassment incidents in changing rooms, <strong>120 (90%) occurred in unisex/mixed-sex facilities</strong> vs. just 14 in single-sex spaces. Two-thirds of sexual attacks at leisure centers and pools were in unisex changing areas (The Sunday Times). In the U.S., the Family Research Council documented 21 cases of males exploiting inclusive policies to access women&rsquo;s spaces. A UK voyeurism convictions analysis found rates rose from ~2/yr (2006&ndash;09) to ~16/yr (2013&ndash;16) as mixed-sex facilities expanded. Notable cases include Wi Spa (LA, 2021)&mdash;a registered sex offender exposed himself to women and girls in a women&rsquo;s spa area&mdash;and Loudoun County (VA, 2021), where a male student sexually assaulted a girl in a school restroom.</p>
     <div class="chart-wrap"><canvas id="chart-ti-bathroom"></canvas></div>
   </div>
 
@@ -3495,28 +3495,28 @@ function buildCharts() {
 
   // ===== TRANS ISSUES TAB CHARTS =====
 
-  // Bathroom Safety
+  // Bathroom & Changing Room Safety — Women's safety data
   charts.tiBathroom = new Chart(document.getElementById('chart-ti-bathroom'), {
     type: 'bar',
     data: {
-      labels: isMobile ? ['Denied\nAccess','Verbally\nHarassed','Physically/\nSexually\nAssaulted','Crime Increase\nAfter Inclusive\nPolicies'] : ['Denied Restroom\nAccess (USTS 2022)','Verbally Harassed\nin Restroom (USTS 2022)','Physically/Sexually\nAssaulted (USTS 2022)','Crime Increase After\nInclusive Policies\n(Williams Inst.)'],
+      labels: isMobile ? ['Assaults in\nUnisex\nFacilities','Assaults in\nSingle-Sex\nFacilities','UK Voyeurism\nConvictions/yr\n2006-09','UK Voyeurism\nConvictions/yr\n2013-16','FRC\nDocumented\nCases (US)'] : ['Sexual Incidents in\nUnisex Changing Rooms\n(UK FOI 2017-18)','Sexual Incidents in\nSingle-Sex Rooms\n(UK FOI 2017-18)','UK Voyeurism\nConvictions per Year\n(2006–09 avg)','UK Voyeurism\nConvictions per Year\n(2013–16 avg)','FRC Documented Cases\nof Males Exploiting\nInclusive Policies (US)'],
       datasets: [{
-        label: 'Trans People Reporting (%)',
-        data: [4, 6, 1.5, 0],
-        backgroundColor: [C.cat[7], C.cat[7], C.cat[7], C.cat[0]],
+        label: 'Incidents / Convictions',
+        data: [120, 14, 2.25, 16, 21],
+        backgroundColor: [C.cat[7], C.cat[0], C.cat[0], C.cat[7], C.cat[7]],
         borderRadius: 4,
-        barThickness: isMobile ? 24 : 40
+        barThickness: isMobile ? 18 : 36
       }]
     },
     options: {
       scales: {
-        y: { beginAtZero: true, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        y: { beginAtZero: true, ticks: { color: C.fgSec }, grid: { color: C.grid } },
         x: { ticks: { color: C.fgSec, font: { size: isMobile ? 7 : 10 } }, grid: { display: false } }
       },
       plugins: {
         tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
-          const tips = ['4% denied access in past year','6% harassed, attacked or assaulted','~1.5% physically attacked or unwanted sexual contact','No statistically significant increase found'];
-          return tips[ctx.dataIndex] || ctx.parsed.y + '%';
+          const tips = ['120 of 134 complaints (90%) were in mixed-sex facilities','Only 14 of 134 complaints in single-sex facilities','~2.25 voyeurism convictions/yr before mixed-sex expansion','~16 convictions/yr — 7x increase as unisex facilities grew','21 documented cases of males accessing women\'s spaces'];
+          return tips[ctx.dataIndex] || String(ctx.parsed.y);
         } } }
       }
     }
