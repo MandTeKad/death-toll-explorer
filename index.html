@@ -464,6 +464,7 @@ body::before {
       <option value="intl-violence">International Violence</option>
       <option value="criminal-justice">Criminal Justice</option>
       <option value="rape-stats">Rape Statistics</option>
+      <option value="child-outcomes">Child Outcomes</option>
     </optgroup>
     <optgroup label="The Big Picture">
       <option value="century-death">Century of Death</option>
@@ -1396,6 +1397,80 @@ body::before {
   </div>
 </section>
 
+<!-- ===== TAB: CHILD OUTCOMES ===== -->
+<section class="panel" id="panel-child-outcomes" role="tabpanel">
+  <h2 class="panel-title">How Kids Turn Out: Outcomes by Family Structure</h2>
+  <p class="panel-desc">Child outcomes vary dramatically based on household environment. Data drawn from the U.S. Census, Bureau of Justice Statistics, National Longitudinal Surveys (NLSY), Annie E. Casey Foundation, Institute for Family Studies, and peer-reviewed research. All figures represent statistical averages and correlations&mdash;not deterministic predictions for any individual child.</p>
+
+  <div class="stat-grid">
+    <div class="stat-tile"><p class="stat-value">23M</p><p class="stat-label">US Kids in Single-Parent Homes</p></div>
+    <div class="stat-tile"><p class="stat-value">~344K</p><p class="stat-label">Children in Foster Care (2024)</p></div>
+    <div class="stat-tile"><p class="stat-value">~20K</p><p class="stat-label">Age Out of Foster Care / Year</p></div>
+    <div class="stat-tile"><p class="stat-value">4&times;</p><p class="stat-label">Poverty Rate: Single vs. Two-Parent</p></div>
+    <div class="stat-tile"><p class="stat-value">3&times;</p><p class="stat-label">Incarceration Risk: Single-Parent</p></div>
+    <div class="stat-tile"><p class="stat-value">3%</p><p class="stat-label">Foster Youth Earn College Degree</p></div>
+  </div>
+
+  <!-- Poverty by Family Structure -->
+  <div class="chart-card">
+    <h3>Poverty Rate by Family Structure</h3>
+    <p class="chart-desc">Children in single-mother households face a 36% poverty rate, versus 6% for married-couple families. The gap has widened over time as the economic returns to two-parent stability have increased.</p>
+    <div class="chart-wrap"><canvas id="chart-co-poverty"></canvas></div>
+  </div>
+
+  <!-- College Graduation -->
+  <div class="chart-card">
+    <h3>College Graduation by Family Structure (by late 20s)</h3>
+    <p class="chart-desc">The college graduation gap between children from intact vs. non-intact families has grown over generations. For Millennials, growing up in an intact family more than doubled the odds of graduating college.</p>
+    <div class="chart-wrap"><canvas id="chart-co-college"></canvas></div>
+  </div>
+
+  <!-- Incarceration -->
+  <div class="chart-card">
+    <h3>Incarceration Rate by Family Structure &amp; Race (by late 20s)</h3>
+    <p class="chart-desc">14% of Black men from intact families have been incarcerated, compared with 24% from single-parent and 26% from stepfamilies. Notably, Black men from intact families have lower incarceration than White men from single-parent homes (18%).</p>
+    <div class="chart-wrap"><canvas id="chart-co-incarceration"></canvas></div>
+  </div>
+
+  <!-- Foster Care Outcomes -->
+  <div class="chart-card">
+    <h3>Foster Care: Aging Out Outcomes vs. General Population</h3>
+    <p class="chart-desc">Youth who age out of foster care at 18 face devastating outcomes across every measurable dimension. Roughly 20% become homeless the day they age out; fewer than 3% ever earn a college degree.</p>
+    <div class="chart-wrap"><canvas id="chart-co-foster" style="height:340px"></canvas></div>
+  </div>
+
+  <!-- Behavioral Outcomes -->
+  <div class="chart-card">
+    <h3>Behavioral Risk: Single-Parent vs. Two-Parent Homes</h3>
+    <p class="chart-desc">Children from single-parent homes show elevated risk across multiple behavioral measures. These are statistical correlations that persist even after controlling for income, though poverty is a significant mediating factor.</p>
+    <div class="chart-wrap"><canvas id="chart-co-behavioral"></canvas></div>
+  </div>
+
+  <!-- Cinderella Effect -->
+  <div class="chart-card">
+    <h3>The Cinderella Effect: Abuse Risk by Parent Type</h3>
+    <p class="chart-desc">Evolutionary psychologists Daly &amp; Wilson documented that children living with a stepparent face significantly elevated abuse risk (the &ldquo;Cinderella Effect&rdquo;). Notably, adoptive parents show the <em>lowest</em> abuse rates&mdash;undermining any simple &ldquo;non-genetic = more dangerous&rdquo; explanation.</p>
+    <div class="chart-wrap"><canvas id="chart-co-cinderella"></canvas></div>
+  </div>
+
+  <!-- Same-Sex Parents -->
+  <div class="chart-card">
+    <h3>Same-Sex vs. Different-Sex Parent Outcomes</h3>
+    <p class="chart-desc">The research consensus (multiple meta-analyses) finds no significant differences in child outcomes between same-sex and different-sex parent households across academic, cognitive, social, and psychological measures. The key predictor is family stability and parental relationship quality, not parental gender or orientation.</p>
+    <div class="chart-wrap"><canvas id="chart-co-samesex"></canvas></div>
+  </div>
+
+  <!-- The Research Debate -->
+  <div class="chart-card">
+    <h3>The Research Landscape: Key Studies &amp; Controversy</h3>
+    <p class="chart-desc">Research on family structure is politically charged. Most studies show family <em>stability</em>&mdash;not structure per se&mdash;as the dominant predictor. The Regnerus (2012) NFSS study, which found negative outcomes for children of same-sex parents, was widely criticized for methodological flaws (most &ldquo;same-sex parent&rdquo; subjects actually grew up in broken heterosexual homes where a parent later had a same-sex relationship). The scholarly consensus, reflected in the APA, AAP, and NASW positions, is that children of stable same-sex couples fare as well as those of stable different-sex couples.</p>
+  </div>
+
+  <div class="caveat">
+    <strong>Notes:</strong> Correlation is not causation. Family structure is deeply intertwined with socioeconomic status, neighborhood effects, parental education, and selection effects (the same factors that lead to family instability also affect child outcomes independently). The poverty gap alone explains a substantial portion of outcome differences. Foster care outcomes are especially confounded by the trauma and neglect that led to removal in the first place. Same-sex parent research has been limited by small sample sizes in older studies, though recent large-sample studies (including census-linked data from the Netherlands, Canada, and Sweden) confirm the consensus of &ldquo;no difference.&rdquo; The Cinderella Effect data is from the 1970s&ndash;1990s and primarily Canadian/American samples. Adoptive parent outcomes are complicated by selection (adoptive parents undergo screening) and by the varied pre-adoption experiences of adopted children.
+  </div>
+</section>
+
 <!-- ===== TAB 7: CENTURY OF DEATH ===== -->
 <section class="panel" id="panel-century-death" role="tabpanel">
   <h2 class="panel-title">Century of Death (1924&ndash;2024)</h2>
@@ -1519,6 +1594,20 @@ body::before {
   Center for Prosecutor Integrity &bull;
   UK Crown Prosecution Service (CPS) &bull;
   DOD Sexual Assault Prevention and Response Office (SAPRO)<br><br>
+  <strong>Child Outcomes:</strong> Institute for Family Studies &ldquo;Less Poverty, Less Prison, More College&rdquo; (Wilcox &amp; Wang) &bull;
+  Institute for Family Studies &ldquo;Do Two Parents Matter More Than Ever?&rdquo; &bull;
+  Annie E. Casey Foundation &ldquo;What Happens to Youth Aging Out of Foster Care&rdquo; &bull;
+  Child Trends &ldquo;344,000 Children in Foster Care in 2024&rdquo; &bull;
+  National Foster Youth Institute (aging out statistics) &bull;
+  CalYOUTH Study (California foster youth longitudinal) &bull;
+  Gitnux &ldquo;Single Parent vs Two Parent Statistics&rdquo; (meta-compilation) &bull;
+  Daly &amp; Wilson (1985, 1988) &ldquo;Cinderella Effect&rdquo; (evolutionary psychology of stepparent abuse) &bull;
+  Tooley et al. (2006) Australian fatal injury study &bull;
+  Manning et al. (2014) meta-analysis of same-sex parent outcomes &bull;
+  Gartrell &amp; Bos (2010) National Longitudinal Lesbian Family Study &bull;
+  Wainright &amp; Patterson (2006) Add Health same-sex parent study &bull;
+  U.S. Census Bureau &ldquo;Divorce, Family Arrangements, and Children&rsquo;s Adult Outcomes&rdquo; (2025) &bull;
+  NLSY79 &amp; NLSY97 (National Longitudinal Surveys of Youth)<br><br>
   <strong>Century of Death:</strong> WHO &ldquo;Tobacco: 100 million deaths in the 20th century&rdquo; &bull;
   WHO/Guttmacher Institute (73M abortions/year worldwide) &bull;
   Live Action / NRLC (63.5M US abortions since Roe v. Wade) &bull;
@@ -2985,6 +3074,193 @@ function buildCharts() {
     { label: 'Genocide', value: 25, display: '~25M', color: tC[4] },
     { label: 'Natural Disasters', value: 8, display: '~8M', color: tC[5] }
   ], 'total');
+
+  // ===== CHILD OUTCOMES TAB =====
+
+  // Poverty by Family Structure
+  charts.coPoverty = new Chart(document.getElementById('chart-co-poverty'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Married\nCouple','Single\nMother','Single\nFather','Cohabiting'] : ['Married Couple','Single Mother','Single Father','Cohabiting'],
+      datasets: [{
+        data: [6, 36, 24, 20],
+        backgroundColor: [C.cat[0], C.cat[7], C.cat[1], C.cat[3]],
+        borderRadius: 4,
+        barThickness: isMobile ? 28 : 44
+      }]
+    },
+    options: {
+      indexAxis: 'x',
+      scales: {
+        y: { beginAtZero: true, max: 45, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 12 } }, grid: { display: false } }
+      },
+      plugins: { tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y + '% poverty rate' } } }
+    }
+  });
+
+  // College Graduation by generation & family structure
+  charts.coCollege = new Chart(document.getElementById('chart-co-college'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Boomers\nIntact','Boomers\nNon-intact','Millennials\nIntact','Millennials\nNon-intact'] : ['Boomers\n(Intact)','Boomers\n(Non-intact)','Millennials\n(Intact)','Millennials\n(Non-intact)'],
+      datasets: [{
+        data: [26, 12, 40, 17],
+        backgroundColor: [C.cat[0], C.cat[0]+'80', C.cat[2], C.cat[2]+'80'],
+        borderRadius: 4,
+        barThickness: isMobile ? 24 : 40
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, max: 50, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 11 } }, grid: { display: false } }
+      },
+      plugins: { tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y + '% college graduation rate' } } }
+    }
+  });
+
+  // Incarceration by family structure & race
+  charts.coIncarceration = new Chart(document.getElementById('chart-co-incarceration'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Black\nIntact','Black\nSingle','Black\nStep','White\nIntact','White\nSingle','White\nStep'] : ['Black Men\n(Intact)','Black Men\n(Single Parent)','Black Men\n(Stepfamily)','White Men\n(Intact)','White Men\n(Single Parent)','White Men\n(Stepfamily)'],
+      datasets: [{
+        data: [14, 24, 26, 5, 18, 15],
+        backgroundColor: [C.cat[0], C.cat[0]+'90', C.cat[0]+'60', C.cat[1], C.cat[1]+'90', C.cat[1]+'60'],
+        borderRadius: 4,
+        barThickness: isMobile ? 20 : 36
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, max: 32, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } }
+      },
+      plugins: { tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y + '% incarcerated by late 20s' } } }
+    }
+  });
+
+  // Foster Care Outcomes vs General Population
+  charts.coFoster = new Chart(document.getElementById('chart-co-foster'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Homeless','College\nDegree','Employed\nat 24','Substance\nDisorder','Incarcerated\nby 20','Teen\nParent'] : ['Experienced\nHomelessness','College\nDegree','Employed\nat 24','Substance Use\nDisorder','Incarcerated\nby 20','Parent\nby 21'],
+      datasets: [
+        {
+          label: 'Foster Youth',
+          data: [25, 3, 50, 21, 40, 19],
+          backgroundColor: C.cat[7],
+          borderRadius: 4,
+          barThickness: isMobile ? 14 : 22
+        },
+        {
+          label: 'General Population',
+          data: [4, 49, 82, 5, 6, 5],
+          backgroundColor: C.cat[0],
+          borderRadius: 4,
+          barThickness: isMobile ? 14 : 22
+        }
+      ]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, max: 90, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } }
+      },
+      plugins: {
+        legend: { display: true, labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } }
+      }
+    }
+  });
+
+  // Behavioral Risk Multipliers
+  charts.coBehavioral = new Chart(document.getElementById('chart-co-behavioral'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Mental\nHealth','Delinquency','Drug Use','Alcohol\nAbuse','Suicide\nAttempts','Dropout','Suspension'] : ['Mental Health\nIssues','Juvenile\nDelinquency','Drug Use\nInitiation','Alcohol\nAbuse','Suicide\nAttempts','High School\nDropout','School\nSuspension'],
+      datasets: [{
+        label: 'Risk multiplier (single vs. two-parent)',
+        data: [2.5, 2.0, 2.0, 2.2, 3.0, 1.9, 2.0],
+        backgroundColor: [C.cat[4], C.cat[7], C.cat[1], C.cat[3], C.cat[7], C.cat[0], C.cat[2]],
+        borderRadius: 4,
+        barThickness: isMobile ? 18 : 32
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      scales: {
+        x: { beginAtZero: true, max: 3.5, ticks: { color: C.fgSec, callback: v => v + '×' }, grid: { color: C.grid } },
+        y: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 12 } }, grid: { display: false } }
+      },
+      plugins: { tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.x + '× more likely in single-parent homes' } } }
+    }
+  });
+
+  // Cinderella Effect
+  charts.coCinderella = new Chart(document.getElementById('chart-co-cinderella'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Two Bio\nParents','Stepparent\nHousehold','Adoptive\nParents'] : ['Two Biological\nParents (baseline)','Stepparent\nHousehold','Adoptive\nParents'],
+      datasets: [{
+        data: [1, 7, 0.5],
+        backgroundColor: [C.cat[0], C.cat[7], C.cat[2]],
+        borderRadius: 4,
+        barThickness: isMobile ? 32 : 52
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, max: 9, ticks: { color: C.fgSec, callback: v => v + '×' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 12 } }, grid: { display: false } }
+      },
+      plugins: { tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+        const v = ctx.parsed.y;
+        if (v === 1) return 'Baseline rate (1×)';
+        if (v < 1) return v + '× — lower than biological (screened families)';
+        return v + '× more likely to be abused (Daly & Wilson)';
+      } } } }
+    }
+  });
+
+  // Same-Sex Parent Outcomes (meta-analysis summary)
+  charts.coSamesex = new Chart(document.getElementById('chart-co-samesex'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Academic','Cognitive','Social','Psych.','Behavior','Substance\nUse'] : ['Academic\nPerformance','Cognitive\nDevelopment','Social\nDevelopment','Psychological\nWellbeing','Behavioral\nProblems','Substance\nUse'],
+      datasets: [
+        {
+          label: 'Different-Sex Parents',
+          data: [50, 50, 50, 50, 50, 50],
+          backgroundColor: C.cat[0],
+          borderRadius: 4,
+          barThickness: isMobile ? 14 : 22
+        },
+        {
+          label: 'Same-Sex Parents',
+          data: [50, 50, 52, 51, 48, 50],
+          backgroundColor: C.cat[2],
+          borderRadius: 4,
+          barThickness: isMobile ? 14 : 22
+        }
+      ]
+    },
+    options: {
+      scales: {
+        y: { min: 30, max: 70, ticks: { color: C.fgSec, callback: v => v === 50 ? 'Avg' : '' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } }
+      },
+      plugins: {
+        legend: { display: true, labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const diff = ctx.parsed.y - 50;
+          if (diff === 0) return ctx.dataset.label + ': No significant difference';
+          return ctx.dataset.label + ': Slightly ' + (diff > 0 ? 'better' : 'lower') + ' (not statistically significant in most studies)';
+        } } }
+      }
+    }
+  });
 
   buildTreemap('treemap-us', [
     { label: 'Abortion', value: 93, display: '~93M', color: tC[7] },
