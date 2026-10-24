@@ -465,6 +465,7 @@ body::before {
       <option value="criminal-justice">Criminal Justice</option>
       <option value="rape-stats">Rape Statistics</option>
       <option value="child-outcomes">Child Outcomes</option>
+      <option value="trans-issues">Trans Issues</option>
     </optgroup>
     <optgroup label="The Big Picture">
       <option value="century-death">Century of Death</option>
@@ -1499,6 +1500,79 @@ body::before {
 
   <div class="caveat">
     <strong>Notes:</strong> Correlation is not causation. Family structure is deeply intertwined with socioeconomic status, neighborhood effects, parental education, and selection effects (the same factors that lead to family instability also affect child outcomes independently). The poverty gap alone explains a substantial portion of outcome differences. Foster care outcomes are especially confounded by the trauma and neglect that led to removal in the first place. Same-sex parent research is actively contested&mdash;meta-analyses of mostly small convenience samples show &ldquo;no difference,&rdquo; while some larger population-based studies (Regnerus, Sullins, Allen) find significant gaps, though each has methodological limitations. This dashboard presents both sets of findings. The Cinderella Effect data is from the 1970s&ndash;1990s and primarily Canadian/American samples. Adoptive parent outcomes are complicated by selection (adoptive parents undergo screening) and by the varied pre-adoption experiences of adopted children. Transracial adoption research draws from multiple studies with varying sample sizes; identity struggle figures are self-reported. LGBTQ foster youth data comes from the Williams Institute (LA County, n=786) and NFYI (2025 national compilation); overrepresentation estimates vary by study and region. Trans parenting research (Tornello, n=138; Farr, n=96) uses self-selected convenience samples with small sample sizes&mdash;the field lacks large, population-based studies with long follow-up periods.
+  </div>
+</section>
+
+<!-- ===== TAB: TRANS ISSUES ===== -->
+<section class="panel" id="panel-trans-issues" role="tabpanel">
+  <h2 class="panel-title">Trans Issues: Bathrooms, Sports, Suicide &amp; Treatment</h2>
+  <p class="panel-desc">A data-driven breakdown of the most debated trans issues: bathroom safety, sports participation, suicide rates, childhood desistance, and treatment outcomes. Sources include the U.S. Transgender Survey (n=92,329), Dhejne (Sweden, n=324), Regnerus (NFSS, n=2,988), Sullins (Add Health, n=207k), the Cass Review (UK, 2024), and multiple desistance studies.</p>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">Trans Lifetime Suicide Attempts</p><p class="st-value">40%</p></div>
+    <div class="stat-tile"><p class="st-label">General Pop. Attempts</p><p class="st-value">4.7%</p></div>
+    <div class="stat-tile"><p class="st-label">Child Desistance Rate</p><p class="st-value">61&ndash;98%</p></div>
+    <div class="stat-tile"><p class="st-label">Countries Restricting Youth Transition</p><p class="st-value">7+</p></div>
+  </div>
+
+  <!-- Bathroom Safety -->
+  <div class="chart-card">
+    <h3>Bathroom Safety: What the Data Shows</h3>
+    <p class="chart-desc">The Williams Institute (2025) found that trans-inclusive bathroom policies did not increase safety incidents. Massachusetts crime data showed no change in violations after nondiscrimination laws took effect. Meanwhile, the 2022 U.S. Trans Survey found trans people themselves face significant harassment and assault in restrooms&mdash;especially when forced to use facilities matching their birth sex.</p>
+    <div class="chart-wrap"><canvas id="chart-ti-bathroom"></canvas></div>
+  </div>
+
+  <!-- Sports: Odds Comparison -->
+  <div class="chart-card">
+    <h3>Odds Your Child Faces: Trans Athletes vs. School Shootings</h3>
+    <p class="chart-desc">&ldquo;Your kid is more likely to be shot at school than compete against a trans kid.&rdquo; Let&rsquo;s check the math. There are ~56 million K&ndash;12 students. In 2024, 9 students were killed in school shootings (EdWeek). Trans athletes make up roughly 0.6% of high school athletes (UConn 2024), meaning ~27,000 trans athletes out of ~4.5 million. But your child encountering one on the field is far more common than being shot.</p>
+    <div class="chart-wrap"><canvas id="chart-ti-odds"></canvas></div>
+  </div>
+
+  <!-- Suicide & Mental Health -->
+  <div class="chart-card">
+    <h3>Trans Suicide &amp; Mental Health Rates</h3>
+    <p class="chart-desc">The 2022 U.S. Transgender Survey (n=92,329) found 40% lifetime suicide attempts and 78% lifetime suicidal ideation. Dhejne et al. (2011, Sweden, n=324) found post-surgery trans individuals had 19.1x the suicide rate of the general population. The 2015 USTS found 41% attempted suicide. These rates dwarf the general population&rsquo;s ~4.7% lifetime attempt rate (CDC).</p>
+    <div class="chart-wrap"><canvas id="chart-ti-suicide"></canvas></div>
+  </div>
+
+  <!-- Post-Surgery Outcomes (Dhejne) -->
+  <div class="chart-card">
+    <h3>Post-Surgery Outcomes: Sweden 30-Year Follow-Up</h3>
+    <p class="chart-desc">Dhejne et al. (2011) followed 324 sex-reassigned persons in Sweden from 1973&ndash;2003, comparing each to 10 matched controls from the general population. Even after surgery, trans individuals had dramatically higher rates of suicide, mortality, psychiatric hospitalization, and suicide attempts. The authors concluded that surgery &ldquo;may not suffice as treatment for transsexualism.&rdquo;</p>
+    <div class="chart-wrap"><canvas id="chart-ti-dhejne"></canvas></div>
+  </div>
+
+  <!-- Childhood Desistance -->
+  <div class="chart-card">
+    <h3>Childhood Gender Dysphoria: Desistance Rates</h3>
+    <p class="chart-desc">Eleven studies found that 61&ndash;98% of children with gender dysphoria desisted (stopped identifying as trans) by adulthood when not socially transitioned or given medical intervention. The Endocrine Society (2017) reported ~85% desistance in prepubertal children. Singh (2021, n=139) found 87.8% desistance. However, Olson (2022, n=317) found only 2.5% desistance among children who had already socially transitioned&mdash;critics argue social transition itself cements identity. Over 95% of children who start puberty blockers proceed to cross-sex hormones.</p>
+    <div class="chart-wrap"><canvas id="chart-ti-desistance"></canvas></div>
+  </div>
+
+  <!-- Treatment Pathway Comparison -->
+  <div class="chart-card">
+    <h3>Treatment Pathways: Affirm vs. Watchful Waiting</h3>
+    <p class="chart-desc"><strong>Gender-affirming care:</strong> Short-term studies show reduced suicidal ideation (73% lower per UW analysis) and reduced depression (60% lower odds). However, the Cass Review (UK, 2024) found the evidence base &ldquo;remarkably weak,&rdquo; with 85% of studies at moderate-to-serious risk of bias. Over 95% of children who start puberty blockers proceed to hormones, raising concerns about a &ldquo;one-way track.&rdquo; <strong>Watchful waiting / desistance:</strong> Without medical intervention, 61&ndash;98% of gender-dysphoric children resolve by adulthood. Detransition studies (Hall 2021, Roberts 2022) find 7&ndash;30% discontinue hormones within 4 years. Littman (2021) found 60% of detransitioners realized they were their birth sex; 38% concluded dysphoria was caused by trauma or other mental health conditions.</p>
+    <div class="chart-wrap"><canvas id="chart-ti-treatment"></canvas></div>
+  </div>
+
+  <!-- Detransition -->
+  <div class="chart-card">
+    <h3>Detransition &amp; Regret</h3>
+    <p class="chart-desc">Studies tracking detransition find significant rates of discontinuation: Hall et al. (2021) found 6.9&ndash;10%+ within 16 months at a UK clinic; Roberts et al. (2022) found up to 30% discontinued hormones within 4 years; Boyd et al. (2022) found 12.2% detransitioned or documented regret. Littman (2021, n=100 detransitioners) found 60% became comfortable as their birth sex, 38% linked dysphoria to trauma/mental health, and critically, 76% never told their treating clinician they detransitioned.</p>
+    <div class="chart-wrap"><canvas id="chart-ti-detransition"></canvas></div>
+  </div>
+
+  <!-- Countries Restricting -->
+  <div class="chart-card">
+    <h3>International Trend: Restricting Youth Gender Medicine</h3>
+    <p class="chart-desc">Following systematic evidence reviews, multiple countries have restricted or banned puberty blockers and cross-sex hormones for minors. The UK&rsquo;s Cass Review (2024) found the evidence base &ldquo;remarkably weak&rdquo; and led to an indefinite ban on puberty blockers for under-18s. Finland (2020), Sweden (2022), Norway (2023), Denmark (2023), and the Netherlands (2024) have all significantly restricted pediatric gender medicine, shifting toward psychotherapy-first approaches.</p>
+    <div class="chart-wrap"><canvas id="chart-ti-countries"></canvas></div>
+  </div>
+
+  <div class="caveat">
+    <strong>Notes:</strong> Trans mental health statistics come from the 2022 U.S. Transgender Survey (n=92,329), a self-selected convenience sample. Suicide attempt rates are self-reported and may include non-lethal gestures. The Dhejne (2011) study compared post-surgery trans individuals to the general population, not to untreated trans individuals&mdash;it does not show that surgery made outcomes worse, only that outcomes remained elevated. Desistance studies vary in diagnostic criteria and era; older studies used broader definitions of gender nonconformity. The Olson (2022) cohort was pre-selected for children who had already socially transitioned, limiting generalizability. Short-term gender-affirming care studies show mental health improvements, but long-term data beyond 2&ndash;5 years is limited. The Cass Review criticized the evidence quality on both sides. Detransition rates are likely undercounted (Littman found 76% never informed clinicians). Bathroom crime data is limited by reporting inconsistencies.
   </div>
 </section>
 
@@ -3415,6 +3489,253 @@ function buildCharts() {
       plugins: {
         legend: { display: true, labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } },
         tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } }
+      }
+    }
+  });
+
+  // ===== TRANS ISSUES TAB CHARTS =====
+
+  // Bathroom Safety
+  charts.tiBathroom = new Chart(document.getElementById('chart-ti-bathroom'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Denied\nAccess','Verbally\nHarassed','Physically/\nSexually\nAssaulted','Crime Increase\nAfter Inclusive\nPolicies'] : ['Denied Restroom\nAccess (USTS 2022)','Verbally Harassed\nin Restroom (USTS 2022)','Physically/Sexually\nAssaulted (USTS 2022)','Crime Increase After\nInclusive Policies\n(Williams Inst.)'],
+      datasets: [{
+        label: 'Trans People Reporting (%)',
+        data: [4, 6, 1.5, 0],
+        backgroundColor: [C.cat[7], C.cat[7], C.cat[7], C.cat[0]],
+        borderRadius: 4,
+        barThickness: isMobile ? 24 : 40
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 7 : 10 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['4% denied access in past year','6% harassed, attacked or assaulted','~1.5% physically attacked or unwanted sexual contact','No statistically significant increase found'];
+          return tips[ctx.dataIndex] || ctx.parsed.y + '%';
+        } } }
+      }
+    }
+  });
+
+  // Odds: Trans Athlete vs School Shooting
+  charts.tiOdds = new Chart(document.getElementById('chart-ti-odds'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Chance of\nPlaying Against\nTrans Athlete','Chance of\nBeing Shot\nat School'] : ['Probability of Playing\nAgainst a Trans Athlete\n(per season)','Probability of Being\nShot at School\n(per year)'],
+      datasets: [{
+        data: [600, 0.016],
+        backgroundColor: [C.cat[0], C.cat[7]],
+        borderRadius: 4,
+        barThickness: isMobile ? 40 : 60
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      scales: {
+        x: {
+          type: 'logarithmic',
+          ticks: { color: C.fgSec, callback: function(v) {
+            if (v === 0.01) return '0.01 per 100K';
+            if (v === 0.1) return '0.1';
+            if (v === 1) return '1';
+            if (v === 10) return '10';
+            if (v === 100) return '100';
+            if (v === 1000) return '1,000';
+            return '';
+          } },
+          grid: { color: C.grid }
+        },
+        y: { ticks: { color: C.fgSec, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          if (ctx.dataIndex === 0) return '~600 per 100K student-athletes encounter a trans competitor';
+          return '~0.016 per 100K students shot at school per year (9 of 56M)';
+        } } }
+      }
+    }
+  });
+
+  // Trans Suicide & Mental Health
+  charts.tiSuicide = new Chart(document.getElementById('chart-ti-suicide'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Lifetime\nSuicide\nAttempt','Lifetime\nSuicidal\nIdeation','Past-Year\nSuicidal\nIdeation','Serious\nPsych.\nDistress','Gen. Pop.\nLifetime\nAttempt'] : ['Lifetime Suicide\nAttempt\n(USTS 2022)','Lifetime Suicidal\nIdeation\n(USTS 2022)','Past-Year Suicidal\nIdeation\n(USTS 2022)','Serious Psych.\nDistress (30-day)\n(USTS 2022)','General Pop.\nLifetime Attempt\n(CDC)'],
+      datasets: [{
+        data: [40, 78, 39, 44, 4.7],
+        backgroundColor: [C.cat[7], C.cat[7], C.cat[7], C.cat[7], C.cat[0]],
+        borderRadius: 4,
+        barThickness: isMobile ? 24 : 40
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, max: 100, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 7 : 10 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['40% of trans people have attempted suicide (USTS 2022, n=92,329)','78% have experienced suicidal ideation','39% seriously considered suicide in past year','44% serious psychological distress in past 30 days','~4.7% of general population attempts suicide in lifetime (CDC)'];
+          return tips[ctx.dataIndex] || ctx.parsed.y + '%';
+        } } }
+      }
+    }
+  });
+
+  // Dhejne Post-Surgery Outcomes
+  charts.tiDhejne = new Chart(document.getElementById('chart-ti-dhejne'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Suicide\nDeath','All-Cause\nMortality','Suicide\nAttempts','Psych.\nHospital.'] : ['Suicide Death\nHazard Ratio','All-Cause Mortality\nHazard Ratio','Suicide Attempts\nHazard Ratio','Psychiatric Hosp.\nHazard Ratio'],
+      datasets: [
+        {
+          label: 'General Population (baseline)',
+          data: [1, 1, 1, 1],
+          backgroundColor: C.cat[0],
+          borderRadius: 4,
+          barThickness: isMobile ? 12 : 20
+        },
+        {
+          label: 'Post-Surgery Trans (Dhejne)',
+          data: [19.1, 2.8, 4.9, 2.8],
+          backgroundColor: C.cat[7],
+          borderRadius: 4,
+          barThickness: isMobile ? 12 : 20
+        }
+      ]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, ticks: { color: C.fgSec, callback: v => v + 'x' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } }
+      },
+      plugins: {
+        legend: { display: true, labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + 'x baseline' } }
+      }
+    }
+  });
+
+  // Childhood Desistance Rates
+  charts.tiDesistance = new Chart(document.getElementById('chart-ti-desistance'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Endocrine\nSociety\n(2017)','Singh\n(2021)\nn=139','Cohen-\nKettenis\n(2008)','Historical\nAvg. (11\nstudies)','Olson (2022)\nn=317\n(soc. trans.)','On Puberty\nBlockers\n(proceed)'] : ['Endocrine Society\n(2017) Prepubertal','Singh (2021)\nn=139 Boys','Cohen-Kettenis\n(2008) Estimate','Historical Average\n(11 Studies)','Olson (2022) n=317\nSocially Transitioned','On Puberty Blockers\n(Proceed to Hormones)'],
+      datasets: [
+        {
+          label: 'Desisted (%)',
+          data: [85, 87.8, 87.5, 80, 2.5, 5],
+          backgroundColor: C.cat[0],
+          borderRadius: 4,
+          barThickness: isMobile ? 12 : 20
+        },
+        {
+          label: 'Persisted (%)',
+          data: [15, 12.2, 12.5, 20, 97.5, 95],
+          backgroundColor: C.cat[7],
+          borderRadius: 4,
+          barThickness: isMobile ? 12 : 20
+        }
+      ]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, max: 100, stacked: true, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { stacked: true, ticks: { color: C.fgSec, font: { size: isMobile ? 6 : 9 } }, grid: { display: false } }
+      },
+      plugins: {
+        legend: { display: true, labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } }
+      }
+    }
+  });
+
+  // Treatment Pathways
+  charts.tiTreatment = new Chart(document.getElementById('chart-ti-treatment'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Depression\nReduction\n(affirm)','Suicidality\nReduction\n(affirm)','Desistance\nw/o Medical\nIntervention','Detrans.\nRate\n(Hall 2021)','Detrans.\nRate\n(Roberts)','Linked to\nTrauma\n(Littman)'] : ['Depression Reduction\nw/ Affirming Care\n(UW Analysis)','Suicidality Reduction\nw/ Affirming Care\n(UW Analysis)','Desistance Without\nMedical Intervention\n(11 Studies Avg.)','Detransition Rate\nWithin 16 Mo.\n(Hall 2021)','Hormone Discont.\nWithin 4 Years\n(Roberts 2022)','Dysphoria Linked\nto Trauma/MH\n(Littman 2021)'],
+      datasets: [{
+        data: [60, 73, 80, 10, 30, 38],
+        backgroundColor: [C.cat[0], C.cat[0], C.cat[3], C.cat[7], C.cat[7], C.cat[7]],
+        borderRadius: 4,
+        barThickness: isMobile ? 24 : 40
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, max: 100, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 6 : 9 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['60% lower odds of depression with hormones/blockers','73% lower odds of suicidality with affirming care','~80% of gender-dysphoric children desist without intervention','6.9–10%+ detransitioned within 16 months','Up to 30% discontinued hormones within 4 years','38% concluded dysphoria caused by trauma or mental health'];
+          return tips[ctx.dataIndex] || ctx.parsed.y + '%';
+        } } }
+      }
+    }
+  });
+
+  // Detransition
+  charts.tiDetransition = new Chart(document.getElementById('chart-ti-detransition'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Detrans.\nRate\n(Hall)','Hormone\nDiscont.\n(Roberts)','Regret\nRate\n(Boyd)','Became\nComfortable\nas Birth Sex','Linked to\nTrauma/MH','Never Told\nClinician'] : ['Detransition Rate\nWithin 16 Mo.\n(Hall 2021, n=175)','Hormone Discont.\nWithin 4 Yrs\n(Roberts 2022)','Detrans./Regret\nRate\n(Boyd 2022, n=68)','Became Comfortable\nas Birth Sex\n(Littman 2021, n=100)','Dysphoria Linked\nto Trauma/MH\n(Littman 2021)','Never Told\nClinician\n(Littman 2021)'],
+      datasets: [{
+        data: [10, 30, 12.2, 60, 38, 76],
+        backgroundColor: [C.cat[7], C.cat[7], C.cat[7], C.cat[3], C.cat[3], C.cat[4]],
+        borderRadius: 4,
+        barThickness: isMobile ? 24 : 40
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, max: 100, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 6 : 9 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['6.9–10%+ detransitioned (Hall 2021, UK clinic, n=175)','Up to 30% discontinued hormones (Roberts 2022)','12.2% detransitioned or regretted (Boyd 2022, n=68)','60% became comfortable as birth sex (Littman 2021)','38% linked dysphoria to trauma or mental health','76% never informed their treating clinician'];
+          return tips[ctx.dataIndex] || ctx.parsed.y + '%';
+        } } }
+      }
+    }
+  });
+
+  // Countries Restricting Youth Gender Medicine
+  charts.tiCountries = new Chart(document.getElementById('chart-ti-countries'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Finland\n(2020)','Sweden\n(2022)','UK\n(2024)','Norway\n(2023)','Denmark\n(2023)','Netherlands\n(2024)','US States\nw/ Bans'] : ['Finland\n(Restricted 2020)','Sweden\n(Restricted 2022)','United Kingdom\n(Banned 2024)','Norway\n(Restricted 2023)','Denmark\n(Restricted 2023)','Netherlands\n(Under Review 2024)','US States with\nMinor Trans Bans'],
+      datasets: [{
+        label: 'Restriction Level',
+        data: [2, 2, 3, 2, 2, 1, 25],
+        backgroundColor: [C.cat[4], C.cat[4], C.cat[7], C.cat[4], C.cat[4], C.cat[3], C.cat[7]],
+        borderRadius: 4,
+        barThickness: isMobile ? 24 : 40
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, ticks: { color: C.fgSec, callback: function(v) {
+          if (v === 1) return 'Under Review';
+          if (v === 2) return 'Restricted';
+          if (v === 3) return 'Banned';
+          if (v === 25) return '25 States';
+          return '';
+        } }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 7 : 10 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['Finland (2020): Shifted to psychotherapy-first, restricted hormones to research','Sweden (2022): Restricted puberty blockers and hormones to exceptional cases','UK (2024): Cass Review led to indefinite ban on puberty blockers for under-18s','Norway (2023): Classified as experimental, restricted to research settings','Denmark (2023): Halted new prescriptions except in research','Netherlands (2024): Reviewing evidence, tightening criteria','25 US states have banned or restricted gender-affirming care for minors'];
+          return tips[ctx.dataIndex] || '';
+        } } }
       }
     }
   });
