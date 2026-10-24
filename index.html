@@ -1490,12 +1490,11 @@ body::before {
     <div class="chart-wrap"><canvas id="chart-co-lgbtfoster"></canvas></div>
   </div>
 
-  <!-- Trans Parenting Outcomes -->
+  <!-- LGBT Parenting Outcomes: Suicide, Depression, etc. -->
   <div class="chart-card">
-    <h3>Transgender Parenting: Limited but Growing Research</h3>
-    <p class="chart-desc"><strong>What the studies show:</strong> The largest study to date (Tornello, Penn State, n=138 trans &amp; nonbinary parents) found children&rsquo;s internalizing and externalizing behaviors at &ldquo;sub-clinical levels,&rdquo; described as &ldquo;indistinguishable from children in the general population.&rdquo; Parenting stress was comparable to cisgender parents. However, trans/nonbinary parents themselves reported higher depressive symptoms (attributed to identity-based discrimination). Farr (2016, n=96 adoptive families including LGB parents) found no behavioral differences by parental sexual orientation at either preschool or school age.</p>
-    <p class="chart-desc"><strong>Conservative critique:</strong> These studies have small, self-selected samples and short follow-up periods. None of the larger population-based studies (Regnerus NFSS, Sullins NHIS) separately analyzed transgender parent households. The 2025 Young &amp; Cumberworth multiverse reanalysis of the Regnerus data found that across &gt;2 million alternative statistical models, none showed positive outcomes for children of LGBT parents&mdash;effects were often smaller than Regnerus reported, but the negative direction held. Critics argue the existing &ldquo;no difference&rdquo; trans parenting literature consists of too-small convenience samples to draw population-level conclusions.</p>
-    <p class="chart-desc"><strong>Bottom line:</strong> Transgender-specific parenting research is in its infancy. Proponents point to consistent sub-clinical behavioral scores; critics point to methodological limitations and the pattern from larger LGBT parenting studies showing worse outcomes. More large-scale, longitudinal research with representative samples is needed before confident conclusions in either direction.</p>
+    <h3>Children of LGBT Parents: Outcome Disparities</h3>
+    <p class="chart-desc">Population-based studies (Sullins, Add Health longitudinal n=207k; Regnerus, NFSS n=2,988; Sullins, NHIS reanalysis n=512 same-sex HH) find significantly worse outcomes for children raised by same-sex parents compared to married biological parents. The 2025 Young &amp; Cumberworth multiverse reanalysis tested &gt;2 million alternative models of Regnerus data&mdash;none showed positive outcomes for children of LGBT parents. Trans-specific parenting research lacks large population studies (largest: Tornello, n=138).</p>
+    <div class="chart-wrap"><canvas id="chart-co-lgbtoutcomes"></canvas></div>
   </div>
 
   <div class="caveat">
@@ -3382,6 +3381,40 @@ function buildCharts() {
           const labels = ['~30-34% identify as LGBTQIA2S+ (NFYI 2025)','~11% of general youth population','78% removed/fled due to caregiver hostility','Up to 40% experience homelessness after aging out','12.9% vs 5.8% of non-LGBTQ youth (Williams Inst.)'];
           return labels[ctx.dataIndex] || ctx.parsed.y + '%';
         } } }
+      }
+    }
+  });
+
+  // LGBT Parenting Outcomes: Suicide, Depression, Obesity, etc.
+  charts.coLgbtOutcomes = new Chart(document.getElementById('chart-co-lgbtoutcomes'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Depression\n(Sullins)','Obesity\n(Sullins)','Emotional\nProblems\n(Sullins)','Suicidal\nThoughts\n(Regnerus)','Sexual Abuse\nby Parent\n(Regnerus)','Forced\nSex\n(Regnerus)'] : ['Depression in\nAdulthood\n(Sullins Add Health)','Obesity\n(Sullins Add Health)','Serious Emotional\nProblems\n(Sullins NHIS)','Suicidal\nThoughts\n(Regnerus NFSS)','Sexual Touching\nby Parent/Adult\n(Regnerus NFSS)','Forced to\nHave Sex\n(Regnerus NFSS)'],
+      datasets: [
+        {
+          label: 'Married Bio Parents',
+          data: [20, 31, 4.6, 5, 2, 8],
+          backgroundColor: C.cat[0],
+          borderRadius: 4,
+          barThickness: isMobile ? 12 : 20
+        },
+        {
+          label: 'Same-Sex Parent HH',
+          data: [51, 72, 17.6, 12, 23, 31],
+          backgroundColor: C.cat[7],
+          borderRadius: 4,
+          barThickness: isMobile ? 12 : 20
+        }
+      ]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 7 : 10 } }, grid: { display: false } }
+      },
+      plugins: {
+        legend: { display: true, labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } }
       }
     }
   });
