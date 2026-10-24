@@ -1483,8 +1483,23 @@ body::before {
     <div class="chart-wrap"><canvas id="chart-co-transracial"></canvas></div>
   </div>
 
+  <!-- LGBTQ/Trans Youth in Foster Care -->
+  <div class="chart-card">
+    <h3>LGBTQ &amp; Trans Youth in Foster Care</h3>
+    <p class="chart-desc">LGBTQ youth are dramatically overrepresented in foster care&mdash;roughly 30&ndash;34% of foster youth identify as LGBTQIA2S+, compared to ~11% of youth nationally (NFYI 2025). A Williams Institute study of LA County found 19% of foster youth ages 12&ndash;21 identified as LGBTQ, with 5.6% identifying as transgender. These youth face significantly worse placement outcomes: 78% were removed from or ran away from placements due to caregiver hostility toward their identity. Up to 40% experience homelessness after aging out.</p>
+    <div class="chart-wrap"><canvas id="chart-co-lgbtfoster"></canvas></div>
+  </div>
+
+  <!-- Trans Parenting Outcomes -->
+  <div class="chart-card">
+    <h3>Transgender Parenting: Limited but Growing Research</h3>
+    <p class="chart-desc"><strong>What the studies show:</strong> The largest study to date (Tornello, Penn State, n=138 trans &amp; nonbinary parents) found children&rsquo;s internalizing and externalizing behaviors at &ldquo;sub-clinical levels,&rdquo; described as &ldquo;indistinguishable from children in the general population.&rdquo; Parenting stress was comparable to cisgender parents. However, trans/nonbinary parents themselves reported higher depressive symptoms (attributed to identity-based discrimination). Farr (2016, n=96 adoptive families including LGB parents) found no behavioral differences by parental sexual orientation at either preschool or school age.</p>
+    <p class="chart-desc"><strong>Conservative critique:</strong> These studies have small, self-selected samples and short follow-up periods. None of the larger population-based studies (Regnerus NFSS, Sullins NHIS) separately analyzed transgender parent households. The 2025 Young &amp; Cumberworth multiverse reanalysis of the Regnerus data found that across &gt;2 million alternative statistical models, none showed positive outcomes for children of LGBT parents&mdash;effects were often smaller than Regnerus reported, but the negative direction held. Critics argue the existing &ldquo;no difference&rdquo; trans parenting literature consists of too-small convenience samples to draw population-level conclusions.</p>
+    <p class="chart-desc"><strong>Bottom line:</strong> Transgender-specific parenting research is in its infancy. Proponents point to consistent sub-clinical behavioral scores; critics point to methodological limitations and the pattern from larger LGBT parenting studies showing worse outcomes. More large-scale, longitudinal research with representative samples is needed before confident conclusions in either direction.</p>
+  </div>
+
   <div class="caveat">
-    <strong>Notes:</strong> Correlation is not causation. Family structure is deeply intertwined with socioeconomic status, neighborhood effects, parental education, and selection effects (the same factors that lead to family instability also affect child outcomes independently). The poverty gap alone explains a substantial portion of outcome differences. Foster care outcomes are especially confounded by the trauma and neglect that led to removal in the first place. Same-sex parent research is actively contested&mdash;meta-analyses of mostly small convenience samples show &ldquo;no difference,&rdquo; while some larger population-based studies (Regnerus, Sullins, Allen) find significant gaps, though each has methodological limitations. This dashboard presents both sets of findings. The Cinderella Effect data is from the 1970s&ndash;1990s and primarily Canadian/American samples. Adoptive parent outcomes are complicated by selection (adoptive parents undergo screening) and by the varied pre-adoption experiences of adopted children. Transracial adoption research draws from multiple studies with varying sample sizes; identity struggle figures are self-reported.
+    <strong>Notes:</strong> Correlation is not causation. Family structure is deeply intertwined with socioeconomic status, neighborhood effects, parental education, and selection effects (the same factors that lead to family instability also affect child outcomes independently). The poverty gap alone explains a substantial portion of outcome differences. Foster care outcomes are especially confounded by the trauma and neglect that led to removal in the first place. Same-sex parent research is actively contested&mdash;meta-analyses of mostly small convenience samples show &ldquo;no difference,&rdquo; while some larger population-based studies (Regnerus, Sullins, Allen) find significant gaps, though each has methodological limitations. This dashboard presents both sets of findings. The Cinderella Effect data is from the 1970s&ndash;1990s and primarily Canadian/American samples. Adoptive parent outcomes are complicated by selection (adoptive parents undergo screening) and by the varied pre-adoption experiences of adopted children. Transracial adoption research draws from multiple studies with varying sample sizes; identity struggle figures are self-reported. LGBTQ foster youth data comes from the Williams Institute (LA County, n=786) and NFYI (2025 national compilation); overrepresentation estimates vary by study and region. Trans parenting research (Tornello, n=138; Farr, n=96) uses self-selected convenience samples with small sample sizes&mdash;the field lacks large, population-based studies with long follow-up periods.
   </div>
 </section>
 
@@ -1630,6 +1645,11 @@ body::before {
   NHES 2016 (National Household Education Survey, adopted child outcomes, n=14,075) &bull;
   ECLS-K (Early Childhood Longitudinal Study, adoption paradox) &bull;
   Gitnux (2024) transracial adoption statistics compilation &bull;
+  Williams Institute (2014) &ldquo;Sexual and Gender Minority Youth in LA Foster Care&rdquo; &bull;
+  NFYI (2025) &ldquo;LGBTQIA2S+ in Foster Care Fact Sheet&rdquo; &bull;
+  Tornello (Penn State, 2021) transgender/nonbinary parent study (n=138) &bull;
+  Farr (2016) &ldquo;Longitudinal development of adoptive families with LGB parents&rdquo; (n=96) &bull;
+  Young &amp; Cumberworth (2025) multiverse reanalysis of Regnerus NFSS data &bull;
   U.S. Census Bureau &ldquo;Divorce, Family Arrangements, and Children&rsquo;s Adult Outcomes&rdquo; (2025) &bull;
   NLSY79 &amp; NLSY97 (National Longitudinal Surveys of Youth)<br><br>
   <strong>Century of Death:</strong> WHO &ldquo;Tobacco: 100 million deaths in the 20th century&rdquo; &bull;
@@ -3336,6 +3356,32 @@ function buildCharts() {
       },
       plugins: {
         tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y + '% of transracially adopted children' } }
+      }
+    }
+  });
+
+  // LGBTQ & Trans Youth in Foster Care
+  charts.coLgbtFoster = new Chart(document.getElementById('chart-co-lgbtfoster'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['% of Foster\nYouth','% of Gen.\nPopulation','Removed/Ran\nAway (hostility)','Homeless\nAfter Aging\nOut','Treated\nPoorly by\nSystem'] : ['% of Foster Youth\nIdentifying LGBTQ+','% of General Youth\nPopulation LGBTQ+','Removed/Ran Away\nDue to Hostility','Homeless After\nAging Out','Reported Being\nTreated Poorly'],
+      datasets: [{
+        data: [32, 11, 78, 40, 13],
+        backgroundColor: [C.cat[7], C.cat[0], C.cat[7], C.cat[7], C.cat[7]],
+        borderRadius: 4,
+        barThickness: isMobile ? 24 : 40
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, max: 100, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 7 : 10 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const labels = ['~30-34% identify as LGBTQIA2S+ (NFYI 2025)','~11% of general youth population','78% removed/fled due to caregiver hostility','Up to 40% experience homelessness after aging out','12.9% vs 5.8% of non-LGBTQ youth (Williams Inst.)'];
+          return labels[ctx.dataIndex] || ctx.parsed.y + '%';
+        } } }
       }
     }
   });
