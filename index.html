@@ -466,6 +466,8 @@ body::before {
       <option value="rape-stats">Rape Statistics</option>
       <option value="child-outcomes">Child Outcomes</option>
       <option value="trans-issues">Trans Issues</option>
+      <option value="child-deaths">Child Deaths</option>
+      <option value="abortion-data">Abortion Data</option>
     </optgroup>
     <optgroup label="The Big Picture">
       <option value="century-death">Century of Death</option>
@@ -1576,6 +1578,103 @@ body::before {
   </div>
 </section>
 
+<!-- ===== CHILD DEATHS TAB ===== -->
+<section class="panel" id="panel-child-deaths" role="tabpanel">
+  <h2 class="panel-title">Child Deaths &amp; Abuse</h2>
+  <p class="panel-desc">Who kills children? The data consistently shows that biological parents&mdash;especially mothers acting alone&mdash;are the most common perpetrators of fatal child abuse. However, when adjusting for time spent with the child, unrelated males in the household (mother&rsquo;s boyfriends, stepfathers) are <strong>dramatically</strong> more dangerous per capita. Sources: HHS Child Maltreatment reports, Bureau of Justice Statistics, Stiffman et al. (Pediatrics, 2002), Margolin (Child Abuse &amp; Neglect), Family Education Trust (UK 1993), Forensic Science International (1976&ndash;2007).</p>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">Child Abuse Deaths/Year (US)</p><p class="st-value">~1,500&ndash;1,700</p></div>
+    <div class="stat-tile"><p class="st-label">Victims Under Age 1</p><p class="st-value">30&ndash;40%</p></div>
+    <div class="stat-tile"><p class="st-label">Victims Under Age 6</p><p class="st-value">~85%</p></div>
+    <div class="stat-tile"><p class="st-label">Filicides per Year</p><p class="st-value">~500</p></div>
+  </div>
+
+  <!-- Who Kills Children: Perpetrator Relationship -->
+  <div class="chart-card">
+    <h3>Who Kills Children: Perpetrator Relationship</h3>
+    <p class="chart-desc">HHS data (2003) shows that in fatal child abuse cases, mothers acting alone account for 39% of deaths, fathers alone 19%, and both parents together 20%. About 78% of perpetrators are biological parents. The remaining 22% are stepparents, boyfriends, and other caregivers. A 32-year filicide study (Forensic Science International) found fathers responsible for ~57% of filicides and mothers ~40%, with ~90% of victims being biological children.</p>
+    <div class="chart-wrap"><canvas id="chart-cd-perpetrator"></canvas></div>
+  </div>
+
+  <!-- The Boyfriend Problem: Risk Multiplier -->
+  <div class="chart-card">
+    <h3>The &ldquo;Boyfriend Problem&rdquo;: Risk Multipliers</h3>
+    <p class="chart-desc">While biological parents commit the majority of child abuse deaths in raw numbers (because they have the most access), unrelated males in the household are <em>vastly</em> more dangerous per capita. Stiffman (2002, Pediatrics) found children were <strong>8x more likely</strong> to be killed by an unrelated adult. Margolin found boyfriends were <strong>27x more likely</strong> than biological parents to abuse a child. The Family Education Trust (UK, 1993) found abuse was <strong>33x more likely</strong> in homes with a cohabiting boyfriend. Daly &amp; Wilson estimated the risk at <strong>40&ndash;100x</strong> higher with stepparents or unrelated partners.</p>
+    <div class="chart-wrap"><canvas id="chart-cd-boyfriend"></canvas></div>
+  </div>
+
+  <!-- Children Living Arrangements vs Abuse -->
+  <div class="chart-card">
+    <h3>Where Abused Children Live vs. All Children</h3>
+    <p class="chart-desc">A 1994 study of 32,000 documented child abuse cases (Journal of Comparative Family Studies) found that children in single-mother and mother-plus-boyfriend households are massively overrepresented in abuse statistics compared to their share of the child population. Children living with both biological parents made up 68% of all children but only 28% of abuse victims.</p>
+    <div class="chart-wrap"><canvas id="chart-cd-household"></canvas></div>
+  </div>
+
+  <!-- Filicide by Parent Gender -->
+  <div class="chart-card">
+    <h3>Filicide: Mother vs. Father</h3>
+    <p class="chart-desc">A 32-year analysis of filicide cases (1976&ndash;2007, Forensic Science International) found fathers were responsible for ~57% and mothers ~40% of parental child killings. However, ~90% of victims were biological children, while ~10% were killed by stepparents. Sons made up 52% of victims and daughters 38%. A mother kills a child roughly every 3 days in the U.S. (Cheryl Meyer). HHS data found mothers acting alone committed 39% of fatal abuse vs. 19% for fathers alone.</p>
+    <div class="chart-wrap"><canvas id="chart-cd-filicide"></canvas></div>
+  </div>
+
+  <div class="caveat">
+    <strong>Notes:</strong> Child abuse fatality numbers are likely undercounted by 16&ndash;59% (HHS Advisory Board). &ldquo;Mother acting alone&rdquo; being the largest raw category reflects that mothers spend the most time with young children&mdash;when adjusted for hours of care, unrelated males are far more dangerous. The &ldquo;boyfriend problem&rdquo; risk multipliers come from different studies with different methodologies and time periods; all point in the same direction but exact magnitudes vary. Filicide data includes parents killing adult children (13% of victims were 18&ndash;40).
+  </div>
+</section>
+
+<!-- ===== ABORTION DATA TAB ===== -->
+<section class="panel" id="panel-abortion-data" role="tabpanel">
+  <h2 class="panel-title">Abortion: The Full Picture</h2>
+  <p class="panel-desc">A comprehensive breakdown of abortion in the United States: when they happen, who gets them, why, and what the baby looks like at each stage. Sources: CDC Abortion Surveillance, Guttmacher Institute, Florida Agency for Health Care Administration, Arizona DHS, Charlotte Lozier Institute.</p>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">US Abortions (2025 est.)</p><p class="st-value">~1.13M</p></div>
+    <div class="stat-tile"><p class="st-label">Since Roe v. Wade (1973)</p><p class="st-value">60M+</p></div>
+    <div class="stat-tile"><p class="st-label">Late-Term Elective (21+ wk)</p><p class="st-value">~80%</p></div>
+    <div class="stat-tile"><p class="st-label">For Rape/Incest</p><p class="st-value">&lt;0.5%</p></div>
+  </div>
+
+  <!-- Abortions by Gestational Age -->
+  <div class="chart-card">
+    <h3>When Abortions Happen: By Gestational Age</h3>
+    <p class="chart-desc">CDC data (2022) shows 93% of abortions occur in the first trimester (&le;13 weeks). However, the remaining 7% still amounts to tens of thousands of abortions annually. At 21+ weeks&mdash;when the baby can feel pain and some survive outside the womb&mdash;about 1.1% of abortions occur (~11,000&ndash;12,000 per year at current volumes).</p>
+    <div class="chart-wrap"><canvas id="chart-ab-gestational"></canvas></div>
+  </div>
+
+  <!-- Fetal Development vs Abortion -->
+  <div class="chart-card">
+    <h3>Fetal Development: What Exists at Each Stage</h3>
+    <p class="chart-desc">Key developmental milestones mapped against when abortions occur. By 5 weeks the heart beats, by 8 weeks brain waves are measurable, by 12 weeks fingerprints form, by 15 weeks the baby feels pain, and by 21&ndash;22 weeks premature babies have survived outside the womb. Sources: Charlotte Lozier Institute, standard embryology references.</p>
+    <div class="chart-wrap"><canvas id="chart-ab-development"></canvas></div>
+  </div>
+
+  <!-- Abortion by Race -->
+  <div class="chart-card">
+    <h3>Abortion Rates by Race</h3>
+    <p class="chart-desc">Black women are 4.3x more likely than white women to have an abortion (CDC 2022). Black women make up ~13% of women of childbearing age but account for 38&ndash;40% of all abortions. 30% of Black pregnancies end in abortion vs. 10% of white pregnancies. Since 1973, abortion has killed more Black Americans than every other cause of death combined.</p>
+    <div class="chart-wrap"><canvas id="chart-ab-race"></canvas></div>
+  </div>
+
+  <!-- Reasons for Abortion -->
+  <div class="chart-card">
+    <h3>Why Women Get Abortions</h3>
+    <p class="chart-desc">Florida (2021, n=79,817) recorded specific reasons: <strong>74.2% were purely elective</strong> with no reason given. Rape accounted for 0.15% and incest 0.01%. The Guttmacher Institute (2004) found the top reasons were &ldquo;not ready&rdquo; (25%), &ldquo;can&rsquo;t afford&rdquo; (23%), and &ldquo;done having children&rdquo; (19%). Physical health (4%), fetal problems (3%), and rape (&lt;0.5%) were the smallest categories.</p>
+    <div class="chart-wrap"><canvas id="chart-ab-reasons"></canvas></div>
+  </div>
+
+  <!-- Late-Term Abortion Reasons -->
+  <div class="chart-card">
+    <h3>Late-Term Abortions (21+ Weeks): Why?</h3>
+    <p class="chart-desc">Arizona DHS data (2012&ndash;2017) analyzed 674 late-term abortions. Roughly <strong>80% were elective</strong>&mdash;not for fetal anomaly or maternal health. About 20% cited fetal health reasons. Maternal life endangerment accounted for 5 or fewer cases per year (suppressed for privacy). The common claim that late-term abortions are &ldquo;always for medical reasons&rdquo; is not supported by available state-level data.</p>
+    <div class="chart-wrap"><canvas id="chart-ab-lateterm"></canvas></div>
+  </div>
+
+  <div class="caveat">
+    <strong>Notes:</strong> US abortion statistics are incomplete&mdash;some states (including California) do not report to the CDC. Guttmacher estimates are generally higher than CDC counts. The &ldquo;since Roe v. Wade&rdquo; figure of 60M+ is a CDC estimate. Late-term abortion reason data comes from states that require reporting (Arizona, Florida); most states do not require reasons. The &ldquo;80% elective&rdquo; figure is derived from Arizona data and may not be nationally representative. Fetal pain capability at 15 weeks is supported by some researchers but debated; earlier estimates exist. The racial disparity in abortion rates involves complex socioeconomic factors.
+  </div>
+</section>
+
 <!-- ===== TAB 7: CENTURY OF DEATH ===== -->
 <section class="panel" id="panel-century-death" role="tabpanel">
   <h2 class="panel-title">Century of Death (1924&ndash;2024)</h2>
@@ -1842,6 +1941,8 @@ function setMobileChartHeights() {
       el.style.minHeight = '480px'; // 11 studies need room
     } else if (['chart-century-global-stack','chart-century-us-stack'].includes(id)) {
       el.style.minHeight = '300px';
+    } else if (['chart-ab-reasons','chart-cd-filicide','chart-ab-race'].includes(id)) {
+      el.style.minHeight = '380px';
     } else {
       el.style.minHeight = '280px';
     }
@@ -3735,6 +3836,248 @@ function buildCharts() {
         tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
           const tips = ['Finland (2020): Shifted to psychotherapy-first, restricted hormones to research','Sweden (2022): Restricted puberty blockers and hormones to exceptional cases','UK (2024): Cass Review led to indefinite ban on puberty blockers for under-18s','Norway (2023): Classified as experimental, restricted to research settings','Denmark (2023): Halted new prescriptions except in research','Netherlands (2024): Reviewing evidence, tightening criteria','25 US states have banned or restricted gender-affirming care for minors'];
           return tips[ctx.dataIndex] || '';
+        } } }
+      }
+    }
+  });
+
+  // ===== CHILD DEATHS TAB CHARTS =====
+
+  // Who Kills Children: Perpetrator Relationship
+  charts.cdPerpetrator = new Chart(document.getElementById('chart-cd-perpetrator'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Mother\nAlone','Both\nParents','Father\nAlone','Stepparent/\nOther'] : ['Mother Acting\nAlone (HHS)','Both Parents\nTogether (HHS)','Father Acting\nAlone (HHS)','Stepparent/Partner/\nOther (HHS)'],
+      datasets: [{
+        label: '% of Fatal Child Abuse Cases',
+        data: [39, 20, 19, 22],
+        backgroundColor: [C.cat[7], C.cat[3], C.cat[0], C.cat[1]],
+        borderRadius: 4,
+        barThickness: isMobile ? 24 : 40
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['39% — mothers acting alone (most access to young children)','20% — both parents acting together','19% — fathers acting alone','22% — stepparents, boyfriends, other caregivers'];
+          return tips[ctx.dataIndex] || ctx.parsed.y + '%';
+        } } }
+      }
+    }
+  });
+
+  // The Boyfriend Problem: Risk Multipliers
+  charts.cdBoyfriend = new Chart(document.getElementById('chart-cd-boyfriend'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Biological\nParent\n(Baseline)','Unrelated\nAdult\n(Stiffman)','Boyfriend\n(Margolin)','Cohabiting BF\n(Family Ed\nTrust UK)','Stepparent/\nPartner\n(Daly & Wilson)'] : ['Biological Parent\n(Baseline)','Unrelated Adult\nin Home\n(Stiffman 2002)','Mother\'s Boyfriend\n(Margolin,\nChild Abuse & Neglect)','Cohabiting Boyfriend\n(Family Education\nTrust UK 1993)','Stepparent or\nUnrelated Partner\n(Daly & Wilson)'],
+      datasets: [{
+        label: 'Risk Multiplier vs. Bio Parents',
+        data: [1, 8, 27, 33, 50],
+        backgroundColor: [C.cat[0], C.cat[7], C.cat[7], C.cat[7], C.cat[7]],
+        borderRadius: 4,
+        barThickness: isMobile ? 16 : 32
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, ticks: { color: C.fgSec, callback: v => v + 'x' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 6 : 9 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['1x — baseline risk with biological parents','8x more likely to be killed (Stiffman, 175 Missouri child murders)','27x more likely to abuse (Margolin, Univ. of Iowa)','33x more likely in homes with cohabiting boyfriend (UK data 1982-88)','40-100x higher risk of fatal abuse (Daly & Wilson, 4 countries)'];
+          return tips[ctx.dataIndex] || ctx.parsed.y + 'x';
+        } } }
+      }
+    }
+  });
+
+  // Where Abused Children Live vs All Children
+  charts.cdHousehold = new Chart(document.getElementById('chart-cd-household'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Both Bio\nParents','Mother\nOnly','Mother +\nUnrelated\nAdult'] : ['Both Biological\nParents','Mother\nOnly','Mother + Unrelated\nAdult (Boyfriend)'],
+      datasets: [
+        { label: '% of All Children', data: [68, 25, 9], backgroundColor: C.cat[0], borderRadius: 4, barThickness: isMobile ? 16 : 28 },
+        { label: '% of Abuse Victims', data: [28, 44, 18], backgroundColor: C.cat[7], borderRadius: 4, barThickness: isMobile ? 16 : 28 }
+      ]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } }
+      },
+      plugins: {
+        legend: { display: true, labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } }
+      }
+    }
+  });
+
+  // Filicide: Mother vs Father
+  charts.cdFilicide = new Chart(document.getElementById('chart-cd-filicide'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Fathers\n(Filicide\nStudy)','Mothers\n(Filicide\nStudy)','Mother\nAlone\n(HHS)','Father\nAlone\n(HHS)','Bio Child\nVictims','Stepchild\nVictims'] : ['Fathers\n(32-yr Filicide Study)','Mothers\n(32-yr Filicide Study)','Mother Acting Alone\n(HHS Fatal Abuse)','Father Acting Alone\n(HHS Fatal Abuse)','Biological Child\nVictims (Filicide)','Stepchild\nVictims (Filicide)'],
+      datasets: [{
+        label: 'Percentage',
+        data: [57, 40, 39, 19, 90, 10],
+        backgroundColor: [C.cat[0], C.cat[7], C.cat[7], C.cat[0], C.cat[0], C.cat[1]],
+        borderRadius: 4,
+        barThickness: isMobile ? 16 : 28
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 6 : 9 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['57% of filicides committed by fathers','40% of filicides committed by mothers','39% of HHS fatal abuse — mother acting alone','19% of HHS fatal abuse — father acting alone','90% of filicide victims are biological children','10% of filicide victims are stepchildren'];
+          return tips[ctx.dataIndex] || ctx.parsed.y + '%';
+        } } }
+      }
+    }
+  });
+
+  // ===== ABORTION DATA TAB CHARTS =====
+
+  // Abortions by Gestational Age
+  charts.abGestational = new Chart(document.getElementById('chart-ab-gestational'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['≤6\nWeeks','7-9\nWeeks','10-13\nWeeks','14-15\nWeeks','16-17\nWeeks','18-20\nWeeks','21+\nWeeks'] : ['≤6 Weeks','7–9 Weeks','10–13 Weeks','14–15 Weeks','16–17 Weeks','18–20 Weeks','21+ Weeks'],
+      datasets: [{
+        label: '% of All Abortions',
+        data: [40.2, 38.4, 14.2, 3.0, 1.6, 1.5, 1.1],
+        backgroundColor: [C.cat[0], C.cat[0], C.cat[0], C.cat[3], C.cat[3], C.cat[7], C.cat[7]],
+        borderRadius: 4,
+        barThickness: isMobile ? 16 : 32
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['40.2% — before heartbeat detectable by ultrasound','38.4% — brain waves measurable at 8 weeks','14.2% — fingerprints form at 12 weeks','3.0% — baby may begin to feel pain','1.6% — pain receptors confirmed active','1.5% — approaching viability','1.1% — premature babies have survived at 21 weeks (~11,000-12,000/yr)'];
+          return tips[ctx.dataIndex] || ctx.parsed.y + '%';
+        } } }
+      }
+    }
+  });
+
+  // Fetal Development Timeline
+  charts.abDevelopment = new Chart(document.getElementById('chart-ab-development'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Heart\nBeats','Brain\nWaves','Finger-\nprints','Feels\nPain','Earliest\nSurvival','50%\nSurvival'] : ['Heartbeat\nBegins','Brain Waves\nDetectable','Fingerprints\nForm','Baby Feels\nPain','Earliest Premature\nSurvival','50%+ Survival\nRate'],
+      datasets: [{
+        label: 'Gestational Week',
+        data: [5, 8, 12, 15, 21, 24],
+        backgroundColor: [C.cat[0], C.cat[0], C.cat[3], C.cat[7], C.cat[7], C.cat[7]],
+        borderRadius: 4,
+        barThickness: isMobile ? 24 : 40
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, title: { display: true, text: 'Gestational Week', color: C.fgSec }, ticks: { color: C.fgSec }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['Week 5 — heart starts beating rhythmically','Week 8 — brain waves recorded, size of a jellybean','Week 12 — unique fingerprints form','Week 15 — baby feels pain (possibly earlier)','Week 21 — youngest known premature survivor','Week 24 — more than 50% of premature babies survive'];
+          return tips[ctx.dataIndex] || 'Week ' + ctx.parsed.y;
+        } } }
+      }
+    }
+  });
+
+  // Abortion by Race
+  charts.abRace = new Chart(document.getElementById('chart-ab-race'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Black\n(% of\nabortions)','White\n(% of\nabortions)','Hispanic\n(% of\nabortions)','Black\n(% of\nwomen)','White\n(% of\nwomen)','Hispanic\n(% of\nwomen)'] : ['Black Women\n(% of Abortions)','White Women\n(% of Abortions)','Hispanic Women\n(% of Abortions)','Black Women\n(% of Women\n15-44)','White Women\n(% of Women\n15-44)','Hispanic Women\n(% of Women\n15-44)'],
+      datasets: [{
+        label: 'Percentage',
+        data: [39, 34, 21, 13, 60, 19],
+        backgroundColor: [C.cat[7], C.cat[0], C.cat[3], C.cat[7], C.cat[0], C.cat[3]],
+        borderRadius: 4,
+        barThickness: isMobile ? 16 : 28
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 6 : 9 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['39% of all abortions — Black women','34% of all abortions — White women','21% of all abortions — Hispanic women','13% of women of childbearing age are Black','60% of women of childbearing age are White','19% of women of childbearing age are Hispanic'];
+          return tips[ctx.dataIndex] || ctx.parsed.y + '%';
+        } } }
+      }
+    }
+  });
+
+  // Reasons for Abortion (Florida 2021)
+  charts.abReasons = new Chart(document.getElementById('chart-ab-reasons'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Elective\n(No Reason)','Social/\nEconomic','Mental\nHealth','Physical\nHealth','Fetal\nAbnormality','Rape','Life\nEndangered','Incest'] : ['Elective / No Reason\nGiven','Social or Economic\nReasons','Psychological Health\nof Mother','Physical Health\nof Mother','Serious Fetal\nAbnormality','Rape','Life of Mother\nEndangered','Incest'],
+      datasets: [{
+        label: '% of Abortions (Florida 2021)',
+        data: [74.2, 21.3, 1.89, 1.34, 0.95, 0.15, 0.15, 0.01],
+        backgroundColor: [C.cat[7], C.cat[3], C.cat[1], C.cat[1], C.cat[0], C.cat[0], C.cat[0], C.cat[0]],
+        borderRadius: 4,
+        barThickness: isMobile ? 14 : 26
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 6 : 9 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['74.2% — no medical reason given (elective)','21.3% — social or economic reasons','1.89% — psychological health threatened','1.34% — physical health of mother threatened','0.95% — serious fetal abnormality','0.15% — woman was raped','0.15% — woman\'s life endangered','0.01% — incestuous relationship'];
+          return tips[ctx.dataIndex] || ctx.parsed.y + '%';
+        } } }
+      }
+    }
+  });
+
+  // Late-Term Abortion Reasons (21+ weeks)
+  charts.abLateterm = new Chart(document.getElementById('chart-ab-lateterm'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Elective\n(No Medical\nReason)','Fetal Health\nReasons','Maternal\nLife/Health'] : ['Elective — No Medical\nReason (Arizona DHS)','Fetal Health\nReasons (Arizona DHS)','Maternal Life/Health\nEndangerment (Arizona DHS)'],
+      datasets: [{
+        label: '% of Late-Term Abortions (21+ weeks)',
+        data: [77, 20, 3],
+        backgroundColor: [C.cat[7], C.cat[3], C.cat[0]],
+        borderRadius: 4,
+        barThickness: isMobile ? 36 : 60
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['~77-80% elective — not for fetal anomaly or maternal health','~20% cited fetal health reasons','~3% (5 or fewer/yr) — maternal life endangerment'];
+          return tips[ctx.dataIndex] || ctx.parsed.y + '%';
         } } }
       }
     }
