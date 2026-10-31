@@ -468,6 +468,7 @@ body::before {
       <option value="trans-issues">Trans Issues</option>
       <option value="child-deaths">Child Deaths</option>
       <option value="abortion-data">Abortion Data</option>
+      <option value="divorce-stats">Divorce Statistics</option>
     </optgroup>
     <optgroup label="The Big Picture">
       <option value="century-death">Century of Death</option>
@@ -1675,6 +1676,57 @@ body::before {
   </div>
 </section>
 
+<!-- ===== DIVORCE STATISTICS ===== -->
+<section class="panel" id="panel-divorce-stats" role="tabpanel">
+  <div class="stat-row">
+    <div class="stat-tile"><div class="stat-number">69%</div><div class="stat-label">Of Divorces Filed by Women</div></div>
+    <div class="stat-tile"><div class="stat-number">~45%</div><div class="stat-label">Of US Marriages End in Divorce</div></div>
+    <div class="stat-tile"><div class="stat-number">8 yrs</div><div class="stat-label">Average Marriage Before Divorce</div></div>
+    <div class="stat-tile"><div class="stat-number">67-75%</div><div class="stat-label">2nd/3rd Marriage Divorce Rate</div></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Who Files for Divorce</h3>
+    <p class="chart-desc">Women initiate approximately 69% of all divorces (Stanford, Rosenfeld 2015). Notably, in <em>non-marital</em> breakups, men and women initiate at equal rates — the asymmetry is unique to marriage. Women cite husband's infidelity (35%), domestic violence (24%), and unmet needs (64%) as primary drivers.</p>
+    <div class="chart-wrap"><canvas id="chart-dv-initiation"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Reasons for Divorce</h3>
+    <p class="chart-desc">The most commonly cited reasons for divorce in survey data. "Lack of commitment" and "infidelity" top every survey. Note that respondents can select multiple reasons — these are not mutually exclusive. The "final straw" that triggers filing is most often infidelity (24%), substance abuse, or domestic violence.</p>
+    <div class="chart-wrap"><canvas id="chart-dv-reasons"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Same-Sex vs. Heterosexual Divorce Rates (10-Year %)</h3>
+    <p class="chart-desc">Cross-country data consistently shows lesbian couples divorce at significantly higher rates than both gay male and heterosexual couples. Gay male couples divorce at rates similar to or slightly below heterosexual couples. Data from government statistics offices in the Netherlands, Finland, and Sweden.</p>
+    <div class="chart-wrap"><canvas id="chart-dv-samesex"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Divorce Rate by Marriage Number</h3>
+    <p class="chart-desc">Remarriage does not fix the underlying problem — it makes it worse. Second marriages fail at ~67% and third marriages at ~75%, despite the assumption that experience improves partner selection. People who remarry are 2.5x more likely to divorce than first-timers.</p>
+    <div class="chart-wrap"><canvas id="chart-dv-remarriage"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Divorce Rate by Age Group (per 1,000 married)</h3>
+    <p class="chart-desc">Younger couples divorce at dramatically higher rates. Couples who marry before 25 divorce at roughly twice the rate of those who marry after 25. The "gray divorce" rate (50+) has doubled since the 1990s, now accounting for 36% of all divorces.</p>
+    <div class="chart-wrap"><canvas id="chart-dv-age"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>US Divorce Rate Over Time (per 1,000 population)</h3>
+    <p class="chart-desc">The US divorce rate peaked around 1980 at 5.3 per 1,000 and has fallen steadily since — but largely because fewer people are getting married at all. The marriage rate has dropped alongside divorce, meaning the decline reflects avoidance of marriage, not happier marriages.</p>
+    <div class="chart-wrap"><canvas id="chart-dv-trend"></canvas></div>
+  </div>
+
+  <div class="caveat">
+    <h4>Sources &amp; Methodology</h4>
+    <p>Who initiates: Rosenfeld (Stanford, 2015) — nationally representative survey, n=2,262. Same-sex rates: Statistics Netherlands, Statistics Finland (Einiö & Ponkilainen 2025), Kolk & Andersson (Sweden, Demography 2020), Zahl-Olsen & Thuen (Norway, 2023). Reasons: National survey data compiled from multiple peer-reviewed studies; respondents could select multiple reasons. Remarriage rates: US Census Bureau, Memphis Divorce compilations. Age data: CDC/NCHS, Pew Research. US trend: CDC National Vital Statistics. The "lack of commitment" figure (94.4%) likely reflects survey design allowing multiple selections.</p>
+  </div>
+</section>
+
 <!-- ===== TAB 7: CENTURY OF DEATH ===== -->
 <section class="panel" id="panel-century-death" role="tabpanel">
   <h2 class="panel-title">Century of Death (1924&ndash;2024)</h2>
@@ -1941,7 +1993,7 @@ function setMobileChartHeights() {
       el.style.minHeight = '480px'; // 11 studies need room
     } else if (['chart-century-global-stack','chart-century-us-stack'].includes(id)) {
       el.style.minHeight = '300px';
-    } else if (['chart-ab-reasons','chart-cd-filicide','chart-ab-race'].includes(id)) {
+    } else if (['chart-ab-reasons','chart-cd-filicide','chart-ab-race','chart-dv-reasons','chart-dv-samesex'].includes(id)) {
       el.style.minHeight = '380px';
     } else {
       el.style.minHeight = '280px';
@@ -4079,6 +4131,185 @@ function buildCharts() {
           const tips = ['~77-80% elective — not for fetal anomaly or maternal health','~20% cited fetal health reasons','~3% (5 or fewer/yr) — maternal life endangerment'];
           return tips[ctx.dataIndex] || ctx.parsed.y + '%';
         } } }
+      }
+    }
+  });
+
+  // ===== DIVORCE STATISTICS TAB CHARTS =====
+
+  // Who Files for Divorce
+  charts.dvInitiation = new Chart(document.getElementById('chart-dv-initiation'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Women\nFile\n(Marriage)','Men\nFile\n(Marriage)','Women\nInitiate\n(Unmarried)','Men\nInitiate\n(Unmarried)'] : ['Women File\nfor Divorce\n(Stanford 2015)','Men File\nfor Divorce\n(Stanford 2015)','Women Initiate\nBreakup (Unmarried\nCouples)','Men Initiate\nBreakup (Unmarried\nCouples)'],
+      datasets: [{
+        label: '% Who Initiate',
+        data: [69, 31, 50, 50],
+        backgroundColor: [C.cat[7], C.cat[0], C.cat[3], C.cat[3]],
+        borderRadius: 4,
+        barThickness: isMobile ? 28 : 48
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, max: 100, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['69% — women file for nearly 7 in 10 divorces','31% — men file for about 3 in 10 divorces','50% — no gender gap in non-marital breakups','50% — equal initiation when not legally married'];
+          return tips[ctx.dataIndex] || ctx.parsed.y + '%';
+        } } }
+      }
+    }
+  });
+
+  // Reasons for Divorce
+  charts.dvReasons = new Chart(document.getElementById('chart-dv-reasons'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Lack of\nCommit.','Infidelity','Too Much\nConflict','Married\nToo Young','Financial\nProblems','Substance\nAbuse','Domestic\nViolence','Health\nProblems'] : ['Lack of\nCommitment','Infidelity /\nAffairs','Excessive\nConflict','Married\nToo Young','Financial\nProblems','Substance\nAbuse','Domestic\nViolence','Health\nProblems'],
+      datasets: [{
+        label: '% Citing This Reason',
+        data: [94.4, 88.8, 72.2, 61.1, 55.6, 50.0, 27.8, 27.8],
+        backgroundColor: [C.cat[7], C.cat[7], C.cat[7], C.cat[3], C.cat[3], C.cat[3], C.cat[0], C.cat[0]],
+        borderRadius: 4,
+        barThickness: isMobile ? 14 : 26
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, max: 100, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 7 : 10 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['94.4% — cited as a factor (multiple selections allowed)','88.8% — final straw in 24% of divorces','72.2% — excessive arguing and conflict','61.1% — married before age 25','55.6% — money fights and financial stress','50.0% — alcohol or drug abuse','27.8% — physical or emotional abuse','27.8% — serious health issues'];
+          return tips[ctx.dataIndex] || ctx.parsed.y + '%';
+        } } }
+      }
+    }
+  });
+
+  // Same-Sex vs Heterosexual Divorce (10-Year Rates)
+  charts.dvSamesex = new Chart(document.getElementById('chart-dv-samesex'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['Lesbian\n(NL)','Gay\nMale\n(NL)','Hetero\n(NL)','Lesbian\n(Finland)','Gay\nMale\n(Finland)','Hetero\n(Finland)','Lesbian\n(Sweden)','Gay\nMale\n(Sweden)','Hetero\n(Sweden)'] : ['Lesbian\n(Netherlands)','Gay Male\n(Netherlands)','Heterosexual\n(Netherlands)','Lesbian\n(Finland)','Gay Male\n(Finland)','Heterosexual\n(Finland)','Lesbian\n(Sweden)','Gay Male\n(Sweden)','Heterosexual\n(Sweden)'],
+      datasets: [{
+        label: '% Divorced Within 10 Years',
+        data: [26, 14, 16, 40, 24, 21, 40, 30, 30],
+        backgroundColor: [C.cat[7], C.cat[0], C.cat[3], C.cat[7], C.cat[0], C.cat[3], C.cat[7], C.cat[0], C.cat[3]],
+        borderRadius: 4,
+        barThickness: isMobile ? 12 : 22
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, max: 50, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 6 : 9 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['26% — lesbian couples (NL, 10yr)','14% — gay male couples (NL, 10yr)','16% — heterosexual couples (NL, 10yr)','40% — lesbian couples (Finland, 10yr)','24% — gay male couples (Finland, 10yr)','21% — heterosexual couples (Finland, 10yr)','40% — lesbian couples (Sweden, 1995-2012)','30% — gay male couples (Sweden, 1995-2012)','30% — heterosexual couples (Sweden, 1995-2012)'];
+          return tips[ctx.dataIndex] || ctx.parsed.y + '%';
+        } } }
+      }
+    }
+  });
+
+  // Divorce by Marriage Number
+  charts.dvRemarriage = new Chart(document.getElementById('chart-dv-remarriage'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['1st\nMarriage','2nd\nMarriage','3rd\nMarriage'] : ['First\nMarriage','Second\nMarriage','Third\nMarriage'],
+      datasets: [{
+        label: '% Ending in Divorce',
+        data: [50, 67, 75],
+        backgroundColor: [C.cat[0], C.cat[3], C.cat[7]],
+        borderRadius: 4,
+        barThickness: isMobile ? 48 : 72
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, max: 100, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 10 : 13 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['~50% of first marriages end in divorce (avg. 8 years)','~67% of second marriages fail (avg. 7 years)','~75% of third marriages fail — experience doesn\'t help'];
+          return tips[ctx.dataIndex] || ctx.parsed.y + '%';
+        } } }
+      }
+    }
+  });
+
+  // Divorce by Age Group
+  charts.dvAge = new Chart(document.getElementById('chart-dv-age'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['15-24','25-34','35-44','45-54','55-64','65+'] : ['Ages 15-24\n(Married Young)','Ages 25-34','Ages 35-44','Ages 45-54','Ages 55-64','Ages 65+'],
+      datasets: [{
+        label: 'Divorces per 1,000 Married',
+        data: [27, 23, 21, 18, 12, 5],
+        backgroundColor: [C.cat[7], C.cat[7], C.cat[3], C.cat[3], C.cat[0], C.cat[0]],
+        borderRadius: 4,
+        barThickness: isMobile ? 24 : 40
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, ticks: { color: C.fgSec }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['27 per 1,000 — highest risk; marrying before 25 doubles divorce rate','23 per 1,000 — most common age range for divorce','21 per 1,000 — mid-career stress period','18 per 1,000 — "gray divorce" rising rapidly','12 per 1,000 — 36% of divorces now involve 50+ adults','5 per 1,000 — lowest rate but growing'];
+          return tips[ctx.dataIndex] || ctx.parsed.y + ' per 1,000';
+        } } }
+      }
+    }
+  });
+
+  // US Divorce Rate Over Time
+  charts.dvTrend = new Chart(document.getElementById('chart-dv-trend'), {
+    type: 'line',
+    data: {
+      labels: ['1970','1975','1980','1985','1990','1995','2000','2005','2010','2015','2019','2021'],
+      datasets: [
+        {
+          label: 'Divorce Rate',
+          data: [3.5, 4.8, 5.3, 5.0, 4.7, 4.4, 4.0, 3.6, 3.6, 3.1, 2.7, 2.5],
+          borderColor: C.cat[7],
+          backgroundColor: C.cat[7] + '33',
+          fill: true,
+          tension: 0.3,
+          pointRadius: isMobile ? 2 : 4,
+          pointHoverRadius: 6,
+          borderWidth: 2
+        },
+        {
+          label: 'Marriage Rate',
+          data: [10.6, 10.0, 10.6, 10.1, 9.8, 8.9, 8.2, 7.6, 6.8, 6.9, 6.1, 6.0],
+          borderColor: C.cat[0],
+          backgroundColor: C.cat[0] + '33',
+          fill: true,
+          tension: 0.3,
+          pointRadius: isMobile ? 2 : 4,
+          pointHoverRadius: 6,
+          borderWidth: 2
+        }
+      ]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, ticks: { color: C.fgSec }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } }
+      },
+      plugins: {
+        legend: { display: true, labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + ' per 1,000 population' } }
       }
     }
   });
