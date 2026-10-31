@@ -472,9 +472,13 @@ body::before {
       <option value="pair-bonding">Sexual Partners & Marriage</option>
       <option value="maternal-mortality">Maternal Mortality</option>
       <option value="post-dobbs">Post-Dobbs Impact</option>
+      <option value="fertility">Fertility & Demographics</option>
+      <option value="adoption">Adoption Gap</option>
+      <option value="preventable">Scale Comparison</option>
     </optgroup>
     <optgroup label="The Big Picture">
       <option value="century-death">Century of Death</option>
+      <option value="methodology">Methodology & Sources</option>
     </optgroup>
   </select>
 </nav>
@@ -1858,6 +1862,81 @@ body::before {
   </div>
 </section>
 
+<!-- ===== FERTILITY & DEMOGRAPHICS ===== -->
+<section class="panel" id="panel-fertility" role="tabpanel">
+  <h2 class="panel-title">Fertility &amp; Demographics</h2>
+  <p class="panel-desc">The U.S. total fertility rate has fallen from 3.65 children per woman in 1960 to a record-low 1.60 in 2024&mdash;well below the 2.1 replacement level. Abortion legalization is one factor among several, including contraception, delayed marriage, and rising costs of childrearing. The decline represents tens of millions of Americans who were never born.</p>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">TFR in 1960</p><p class="st-value">3.65</p></div>
+    <div class="stat-tile"><p class="st-label">TFR in 2024</p><p class="st-value">1.60</p></div>
+    <div class="stat-tile"><p class="st-label">Replacement Level</p><p class="st-value">2.10</p></div>
+    <div class="stat-tile"><p class="st-label">Decline</p><p class="st-value">&minus;56%</p></div>
+  </div>
+
+  <h3 class="chart-title">U.S. Total Fertility Rate, 1960&ndash;2024</h3>
+  <p class="chart-subtitle">Children per woman &mdash; replacement level (2.1) shown as dashed line</p>
+  <div class="chart-wrap"><canvas id="chart-fert-trend"></canvas></div>
+
+  <h3 class="chart-title">Missing Americans: Cumulative &ldquo;Birth Deficit&rdquo;</h3>
+  <p class="chart-subtitle">Estimated additional births that would have occurred at replacement-level fertility, by decade</p>
+  <div class="chart-wrap"><canvas id="chart-fert-deficit"></canvas></div>
+
+  <div class="source-note">
+    <p><strong>Sources:</strong> CDC/NCHS Vital Statistics (TFR 1960&ndash;2024). Pew Research Center analysis of NCHS data (2026). Birth deficit is a rough estimate: (2.1 &minus; actual TFR) &times; women of childbearing age per decade, illustrative only.</p>
+  </div>
+</section>
+
+<!-- ===== ADOPTION GAP ===== -->
+<section class="panel" id="panel-adoption" role="tabpanel">
+  <h2 class="panel-title">The Adoption Gap</h2>
+  <p class="panel-desc">Before <em>Roe v. Wade</em>, roughly 20% of births to unmarried white women were placed for adoption. Today, fewer than 1 in 200 births are relinquished&mdash;a 97% collapse. Meanwhile, demand from prospective adoptive families far exceeds the supply of available infants. Over 67,000 children in foster care are waiting for permanent families.</p>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">Relinquishment (pre-1973)</p><p class="st-value">~20%</p></div>
+    <div class="stat-tile"><p class="st-label">Relinquishment (today)</p><p class="st-value">&lt;0.5%</p></div>
+    <div class="stat-tile"><p class="st-label">Domestic Infant Adoptions/yr</p><p class="st-value">~18,000</p></div>
+    <div class="stat-tile"><p class="st-label">Foster Children Waiting</p><p class="st-value">67,249</p></div>
+  </div>
+
+  <h3 class="chart-title">Infant Relinquishment Rate Over Time</h3>
+  <p class="chart-subtitle">Percentage of unmarried births placed for adoption &mdash; a near-total collapse after Roe</p>
+  <div class="chart-wrap"><canvas id="chart-adopt-relin"></canvas></div>
+
+  <h3 class="chart-title">Adoption Landscape (Annual)</h3>
+  <p class="chart-subtitle">Domestic infant adoptions vs. foster care adoptions vs. intercountry adoptions</p>
+  <div class="chart-wrap"><canvas id="chart-adopt-types"></canvas></div>
+
+  <div class="source-note">
+    <p><strong>Sources:</strong> National Council for Adoption, Adoption Statistics (2025&ndash;2026). Child Welfare Information Gateway. Guttmacher Institute. Wikipedia, &ldquo;Adoption in the United States&rdquo; (compiled from NCHS, CDC, and state data). Pre-Roe relinquishment: ~20% of unmarried white births (NCHS); current: &lt;1 in 200 all births (2021 NCHS data).</p>
+  </div>
+</section>
+
+<!-- ===== SCALE COMPARISON ===== -->
+<section class="panel" id="panel-preventable" role="tabpanel">
+  <h2 class="panel-title">Scale Comparison: Annual Deaths</h2>
+  <p class="panel-desc">How does the annual scale of abortion compare to other leading causes of preventable death in America? This is not an equivalence argument&mdash;the causes are different in nature. It is a scale reference to help calibrate what the numbers mean.</p>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">Abortions (2025)</p><p class="st-value">~1.13M</p></div>
+    <div class="stat-tile"><p class="st-label">Drug Overdoses (2024)</p><p class="st-value">~81,700</p></div>
+    <div class="stat-tile"><p class="st-label">Gun Deaths (2024)</p><p class="st-value">~44,400</p></div>
+    <div class="stat-tile"><p class="st-label">Drunk Driving (2024)</p><p class="st-value">~11,900</p></div>
+  </div>
+
+  <h3 class="chart-title">Annual Preventable Deaths in the U.S.</h3>
+  <p class="chart-subtitle">Abortion dwarfs every other category of preventable death combined</p>
+  <div class="chart-wrap"><canvas id="chart-prev-bar"></canvas></div>
+
+  <h3 class="chart-title">Trend: Overdose, Gun, &amp; Drunk Driving Deaths (2020&ndash;2024)</h3>
+  <p class="chart-subtitle">Overdose deaths fell 27% in 2024; gun deaths declined modestly</p>
+  <div class="chart-wrap"><canvas id="chart-prev-trend"></canvas></div>
+
+  <div class="source-note">
+    <p><strong>Sources:</strong> Abortion: Guttmacher Institute / CDC Abortion Surveillance. Overdose: CDC NCHS (2024 provisional). Gun deaths: CDC WONDER / Pew Research Center (2024). Drunk driving: NHTSA / MADD (2024). All figures are the most recent full-year data available.</p>
+  </div>
+</section>
+
 <!-- ===== TAB 7: CENTURY OF DEATH ===== -->
 <section class="panel" id="panel-century-death" role="tabpanel">
   <h2 class="panel-title">Century of Death (1924&ndash;2024)</h2>
@@ -1926,6 +2005,58 @@ body::before {
 
   <div class="caveat">
     <strong>Notes:</strong> Global and US abortion estimates vary enormously by source. The ~1.5 billion global figure is derived from WHO/Guttmacher&rsquo;s current estimate of ~73 million abortions/year, extrapolated back with lower historical rates. The US figure of ~93 million includes ~63.5 million since Roe v. Wade (1973, Guttmacher/NRLC estimates) plus rough pre-Roe estimates of ~25&ndash;30 million (Taussig, Guttmacher Institute historical). War deaths include both military and civilian casualties. &ldquo;Tobacco&rdquo; figure from WHO estimate of 100 million tobacco-related deaths in the 20th century. Pandemic deaths include Spanish Flu tail (~50M+ total, most pre-1924), HIV/AIDS (~33M), COVID-19 (~27M excess), and others. Famine deaths dominated by Chinese Great Famine (~30&ndash;55M), Soviet/Holodomor (~3.5M), Bengal 1943 (~3M), and North Korean famine (~2.5M). Natural disaster total from KIT Karlsruhe (~8M since 1900). Genocide figure includes Holocaust (~6M), Cambodian (~1.7M), Rwandan (~900K), Armenian tail, Bangladeshi, and others. All estimates carry substantial uncertainty and scholarly debate continues on most figures.
+  </div>
+</section>
+
+<!-- ===== METHODOLOGY & SOURCES ===== -->
+<section class="panel" id="panel-methodology" role="tabpanel">
+  <h2 class="panel-title">Methodology &amp; Sources</h2>
+  <p class="panel-desc">This dashboard presents abortion data alongside other causes of death. Below is an explanation of how figures were derived, what assumptions were made, and where the data comes from.</p>
+
+  <div style="max-width:780px;margin:0 auto;">
+    <h3 class="chart-title" style="margin-top:1.5rem;">Framing &amp; Editorial Position</h3>
+    <p style="line-height:1.7;color:var(--fg-sec);">This dashboard treats every abortion as a life lost. That is an editorial choice, not a neutral one. The CDC does not count abortion in its mortality statistics; this site does. The underlying numbers&mdash;how many abortions occur, when they occur, and at what gestational age&mdash;come from the CDC&rsquo;s and Guttmacher Institute&rsquo;s own published data. The framing is ours.</p>
+
+    <h3 class="chart-title" style="margin-top:2rem;">U.S. Abortion Estimates</h3>
+    <p style="line-height:1.7;color:var(--fg-sec);"><strong>Post-Roe (1973&ndash;2026):</strong> ~67.1 million. This is a composite of Guttmacher Institute surveys (1973&ndash;2020), CDC Abortion Surveillance Reports (gap years), and Society of Family Planning #WeCount data (2022&ndash;present). Guttmacher figures are generally 15&ndash;20% higher than CDC because not all states report to the CDC, and Guttmacher surveys providers directly.<br><br>
+    <strong>Pre-Roe (before 1973):</strong> ~20&ndash;26 million estimated. This range draws from Frederick Taussig (1936), Alan Guttmacher (1955, 1967), and James Mohr (1978). Pre-Roe estimates are inherently uncertain because most abortions were illegal and unrecorded. The commonly cited range of 200,000&ndash;1.2 million per year for the mid-20th century produces a wide cumulative band. We use a midpoint estimate of ~26 million but display the full range (~67&ndash;93 million total) in the hero statistic.</p>
+
+    <h3 class="chart-title" style="margin-top:2rem;">Global Abortion Estimates</h3>
+    <p style="line-height:1.7;color:var(--fg-sec);">The WHO and Guttmacher Institute estimate ~73 million induced abortions per year worldwide (2015&ndash;2019 average). Extrapolating backward with lower historical rates produces a cumulative estimate of ~1.0&ndash;2.0 billion since the 1920s. The wide range reflects deep uncertainty about abortion rates in the Soviet Union, China, and the developing world before 1970. We display the full range rather than a false-precision point estimate.</p>
+
+    <h3 class="chart-title" style="margin-top:2rem;">War &amp; Conflict Deaths</h3>
+    <p style="line-height:1.7;color:var(--fg-sec);">U.S. war deaths come from the Department of Veterans Affairs, Congressional Research Service, and academic sources. Figures include combat deaths and, where noted, non-combat military deaths. Civilian casualties in foreign conflicts are not attributed to U.S. totals. Global war deaths (Century of Death tab) include both military and civilian casualties and draw from multiple academic sources; all carry scholarly debate.</p>
+
+    <h3 class="chart-title" style="margin-top:2rem;">Other Cause-of-Death Data</h3>
+    <p style="line-height:1.7;color:var(--fg-sec);">
+      <strong>Homicide:</strong> FBI Supplementary Homicide Reports and CDC WONDER.<br>
+      <strong>COVID-19:</strong> CDC COVID-19 Data Tracker (excess death methodology).<br>
+      <strong>Drug overdose:</strong> CDC NCHS provisional data (2024).<br>
+      <strong>Gun deaths:</strong> CDC WONDER / Pew Research Center analysis (2024).<br>
+      <strong>Drunk driving:</strong> NHTSA / MADD (2024).<br>
+      <strong>Maternal mortality:</strong> CDC NCHS Vital Statistics, WHO Global Health Observatory.<br>
+      <strong>Slavery:</strong> Trans-Atlantic Slave Trade Database (est. ~2 million died in the Middle Passage of ~12.5 million embarked).<br>
+      <strong>Tobacco:</strong> WHO estimate of ~100 million tobacco-related deaths in the 20th century.<br>
+      <strong>Pandemics:</strong> Academic consensus estimates for Spanish Flu, HIV/AIDS, COVID-19, and others.<br>
+      <strong>Famine:</strong> Academic sources for Chinese Great Famine, Soviet/Holodomor, Bengal 1943, and others.<br>
+      <strong>Genocide:</strong> Academic and archival sources for Holocaust, Cambodian, Rwandan, Armenian, and others.
+    </p>
+
+    <h3 class="chart-title" style="margin-top:2rem;">Fertility &amp; Adoption Data</h3>
+    <p style="line-height:1.7;color:var(--fg-sec);">
+      <strong>Total Fertility Rate:</strong> CDC/NCHS Vital Statistics (1960&ndash;2024), compiled by Pew Research Center.<br>
+      <strong>Adoption:</strong> National Council for Adoption, Child Welfare Information Gateway, NCHS. Pre-Roe relinquishment rates (~20% of unmarried white births) from NCHS historical data; current rates (&lt;1 in 200 births) from 2021 NCHS data.
+    </p>
+
+    <h3 class="chart-title" style="margin-top:2rem;">Post-<em>Dobbs</em> Data</h3>
+    <p style="line-height:1.7;color:var(--fg-sec);">Post-<em>Dobbs</em> abortion counts come from the Society of Family Planning&rsquo;s #WeCount project and the Guttmacher Institute&rsquo;s Monthly Abortion Provision Study. Interstate travel estimates draw from state-level reporting where available. The national increase in abortions despite state bans reflects expansion of telehealth/mail-order medication abortion and interstate travel to access states.</p>
+
+    <h3 class="chart-title" style="margin-top:2rem;">Uncertainty &amp; Limitations</h3>
+    <p style="line-height:1.7;color:var(--fg-sec);">Nearly every figure in this dashboard carries uncertainty. Pre-Roe abortion estimates, pre-1970 global estimates, and historical war/famine death tolls are particularly imprecise. Where possible, we display ranges rather than point estimates. Where a single number is shown for readability, it represents a midpoint or most-cited figure from reputable sources. All figures are approximate totals since ~1900 unless otherwise noted. Scholarly debate continues on most of these numbers.</p>
+  </div>
+
+  <div class="source-note" style="margin-top:2rem;">
+    <p><strong>Primary Sources:</strong> Guttmacher Institute &bull; CDC Abortion Surveillance &bull; CDC NCHS Vital Statistics &bull; CDC WONDER &bull; WHO Global Health Observatory &bull; Society of Family Planning (#WeCount) &bull; National Right to Life Committee &bull; Pew Research Center &bull; Congressional Research Service &bull; Department of Veterans Affairs &bull; FBI Supplementary Homicide Reports &bull; National Council for Adoption &bull; Child Welfare Information Gateway &bull; Trans-Atlantic Slave Trade Database &bull; NHTSA &bull; Taussig (1936) &bull; Guttmacher (1955, 1967) &bull; Mohr (1978)</p>
   </div>
 </section>
 
@@ -2118,7 +2249,7 @@ function setMobileChartHeights() {
     if (!canvas) return;
     const id = canvas.id;
     // Horizontal bars need more vertical space on mobile
-    if (['chart-overview-bar','chart-rape-funnel','chart-mm-intl','chart-pd-bans','chart-pd-travel'].includes(id)) {
+    if (['chart-overview-bar','chart-rape-funnel','chart-mm-intl','chart-pd-bans','chart-pd-travel','chart-prev-bar'].includes(id)) {
       el.style.minHeight = '380px';
     } else if (id === 'chart-rape-false') {
       el.style.minHeight = '480px'; // 11 studies need room
@@ -4829,6 +4960,229 @@ function buildCharts() {
       plugins: {
         legend: { display: true, labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } },
         tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } }
+      }
+    }
+  });
+
+  // ===== FERTILITY & DEMOGRAPHICS CHARTS =====
+
+  // TFR Trend 1960-2024
+  const fertLabels = ['1960','1965','1970','1974','1980','1985','1990','1995','2000','2005','2007','2010','2015','2020','2022','2024'];
+  new Chart(document.getElementById('chart-fert-trend'), {
+    type: 'line',
+    data: {
+      labels: fertLabels,
+      datasets: [
+        {
+          label: 'Total Fertility Rate',
+          data: [3.65, 2.91, 2.48, 1.84, 1.84, 1.84, 2.08, 2.02, 2.06, 2.05, 2.12, 1.93, 1.84, 1.64, 1.67, 1.60],
+          borderColor: C.accent,
+          backgroundColor: C.accent + '22',
+          fill: true,
+          tension: 0.3,
+          pointRadius: isMobile ? 2 : 4,
+          borderWidth: 2
+        },
+        {
+          label: 'Replacement Level (2.1)',
+          data: fertLabels.map(() => 2.1),
+          borderColor: C.cat[3],
+          borderDash: [6, 4],
+          borderWidth: 2,
+          pointRadius: 0,
+          fill: false
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      scales: {
+        y: {
+          min: 1.0, max: 4.0,
+          title: { display: true, text: 'Children per woman', color: C.fgSec },
+          grid: { color: C.grid },
+          ticks: { color: C.fgSec }
+        },
+        x: { grid: { color: C.grid }, ticks: { color: C.fgSec, maxRotation: 45 } }
+      },
+      plugins: {
+        legend: { display: true, labels: { color: C.fg, boxWidth: 12, padding: 12 } },
+        tooltip: ttOpts(C)
+      }
+    }
+  });
+
+  // Birth Deficit by Decade
+  new Chart(document.getElementById('chart-fert-deficit'), {
+    type: 'bar',
+    data: {
+      labels: ['1970s','1980s','1990s','2000s','2010s','2020s (proj.)'],
+      datasets: [{
+        label: 'Est. "missing" births (millions)',
+        data: [5.2, 5.8, 1.0, 1.5, 5.5, 8.0],
+        backgroundColor: C.cat.slice(0, 6),
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      scales: {
+        y: {
+          title: { display: true, text: 'Millions of births', color: C.fgSec },
+          grid: { color: C.grid },
+          ticks: { color: C.fgSec }
+        },
+        x: { grid: { display: false }, ticks: { color: C.fgSec } }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y.toFixed(1) + 'M est. additional births at replacement TFR' } }
+      }
+    }
+  });
+
+  // ===== ADOPTION GAP CHARTS =====
+
+  // Relinquishment Rate Over Time
+  new Chart(document.getElementById('chart-adopt-relin'), {
+    type: 'line',
+    data: {
+      labels: ['1960','1965','1970','1973','1975','1980','1985','1990','1995','2000','2005','2010','2015','2021'],
+      datasets: [{
+        label: 'Relinquishment rate (%)',
+        data: [19.3, 19.2, 20.0, 12.0, 7.0, 4.0, 2.5, 2.0, 1.5, 1.0, 0.9, 0.7, 0.6, 0.5],
+        borderColor: C.cat[4],
+        backgroundColor: C.cat[4] + '22',
+        fill: true,
+        tension: 0.3,
+        pointRadius: isMobile ? 2 : 4,
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      scales: {
+        y: {
+          min: 0, max: 25,
+          title: { display: true, text: '% of unmarried births relinquished', color: C.fgSec },
+          grid: { color: C.grid },
+          ticks: { color: C.fgSec, callback: v => v + '%' }
+        },
+        x: { grid: { color: C.grid }, ticks: { color: C.fgSec, maxRotation: 45 } }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y.toFixed(1) + '% relinquished' } }
+      }
+    }
+  });
+
+  // Adoption Types (bar)
+  new Chart(document.getElementById('chart-adopt-types'), {
+    type: 'bar',
+    data: {
+      labels: ['Domestic Infant','Foster Care','Intercountry'],
+      datasets: [{
+        label: 'Annual adoptions',
+        data: [18000, 54000, 2900],
+        backgroundColor: [C.cat[0], C.cat[2], C.cat[5]],
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      scales: {
+        y: {
+          title: { display: true, text: 'Adoptions per year', color: C.fgSec },
+          grid: { color: C.grid },
+          ticks: { color: C.fgSec, callback: v => fmt(v) }
+        },
+        x: { grid: { display: false }, ticks: { color: C.fgSec } }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => fmt(ctx.parsed.y) + ' per year' } }
+      }
+    }
+  });
+
+  // ===== SCALE COMPARISON (PREVENTABLE DEATHS) CHARTS =====
+
+  // Annual Preventable Deaths (horizontal bar)
+  const prevLabels = ['Abortion','Drug Overdose','Gun Deaths','Drunk Driving'];
+  const prevData = [1130000, 81700, 44400, 11900];
+  const prevColors = [C.cat[1], C.cat[2], C.cat[0], C.cat[5]];
+  new Chart(document.getElementById('chart-prev-bar'), {
+    type: 'bar',
+    data: {
+      labels: prevLabels,
+      datasets: [{
+        label: 'Annual deaths',
+        data: prevData,
+        backgroundColor: prevColors,
+        borderRadius: 4
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: true,
+      scales: {
+        x: {
+          title: { display: true, text: 'Annual deaths', color: C.fgSec },
+          grid: { color: C.grid },
+          ticks: { color: C.fgSec, callback: v => fmt(v) }
+        },
+        y: { grid: { display: false }, ticks: { color: C.fgSec } }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.x.toLocaleString() + ' deaths/year' } }
+      }
+    }
+  });
+
+  // Preventable Deaths Trend 2020-2024
+  new Chart(document.getElementById('chart-prev-trend'), {
+    type: 'line',
+    data: {
+      labels: ['2020','2021','2022','2023','2024'],
+      datasets: [
+        {
+          label: 'Drug Overdose',
+          data: [93500, 109100, 110900, 108600, 81700],
+          borderColor: C.cat[2],
+          backgroundColor: C.cat[2] + '22',
+          tension: 0.3, pointRadius: isMobile ? 2 : 4, borderWidth: 2
+        },
+        {
+          label: 'Gun Deaths',
+          data: [45222, 48830, 48204, 46598, 44400],
+          borderColor: C.cat[0],
+          backgroundColor: C.cat[0] + '22',
+          tension: 0.3, pointRadius: isMobile ? 2 : 4, borderWidth: 2
+        },
+        {
+          label: 'Drunk Driving',
+          data: [11654, 13384, 13524, 12538, 11904],
+          borderColor: C.cat[5],
+          backgroundColor: C.cat[5] + '22',
+          tension: 0.3, pointRadius: isMobile ? 2 : 4, borderWidth: 2
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      scales: {
+        y: {
+          title: { display: true, text: 'Annual deaths', color: C.fgSec },
+          grid: { color: C.grid },
+          ticks: { color: C.fgSec, callback: v => fmt(v) }
+        },
+        x: { grid: { color: C.grid }, ticks: { color: C.fgSec } }
+      },
+      plugins: {
+        legend: { display: true, labels: { color: C.fg, boxWidth: 12, padding: 12 } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() } }
       }
     }
   });
