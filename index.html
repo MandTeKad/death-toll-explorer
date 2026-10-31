@@ -469,6 +469,7 @@ body::before {
       <option value="child-deaths">Child Deaths</option>
       <option value="abortion-data">Abortion Data</option>
       <option value="divorce-stats">Divorce Statistics</option>
+      <option value="pair-bonding">Sexual Partners & Marriage</option>
     </optgroup>
     <optgroup label="The Big Picture">
       <option value="century-death">Century of Death</option>
@@ -1724,6 +1725,54 @@ body::before {
   <div class="caveat">
     <h4>Sources &amp; Methodology</h4>
     <p>Who initiates: Rosenfeld (Stanford, 2015) — nationally representative survey, n=2,262. Same-sex rates: Statistics Netherlands, Statistics Finland (Einiö & Ponkilainen 2025), Kolk & Andersson (Sweden, Demography 2020), Zahl-Olsen & Thuen (Norway, 2023). Reasons: National survey data compiled from multiple peer-reviewed studies; respondents could select multiple reasons. Remarriage rates: US Census Bureau, Memphis Divorce compilations. Age data: CDC/NCHS, Pew Research. US trend: CDC National Vital Statistics. The "lack of commitment" figure (94.4%) likely reflects survey design allowing multiple selections.</p>
+  </div>
+</section>
+
+<!-- ===== TAB: SEXUAL PARTNERS & MARRIAGE ===== -->
+<section class="panel" id="panel-pair-bonding" role="tabpanel">
+  <h2 class="panel-title">Sexual Partners &amp; Marriage</h2>
+  <p class="panel-intro">Research consistently shows a correlation between the number of premarital sexual partners and marriage outcomes. More partners before marriage is associated with higher divorce risk, lower marital satisfaction, and increased infidelity — with significant differences between men and women in both partner counts and effects.</p>
+
+  <div class="stat-tiles">
+    <div class="stat-tile"><div class="stat-num">6.1</div><div class="stat-label">Median Lifetime Partners (Men, 25–44)</div></div>
+    <div class="stat-tile"><div class="stat-num">4.2</div><div class="stat-label">Median Lifetime Partners (Women, 25–44)</div></div>
+    <div class="stat-tile"><div class="stat-num">33%</div><div class="stat-label">Divorce Rate (10+ Premarital Partners)</div></div>
+    <div class="stat-tile"><div class="stat-num">2&times;</div><div class="stat-label">Infidelity Risk (10+ Partners vs 0–1)</div></div>
+  </div>
+
+  <!-- Chart 1: Partner Count Distribution by Gender -->
+  <div class="chart-card">
+    <h3>Lifetime Sexual Partners — Distribution by Gender</h3>
+    <p>CDC National Survey of Family Growth data (ages 25–44). Men consistently report more partners than women across all age groups. The gap is widest at the extremes — 26% of men report 15+ lifetime partners vs. 12% of women.</p>
+    <div class="chart-wrap"><canvas id="chart-pb-distribution"></canvas></div>
+  </div>
+
+  <!-- Chart 2: Divorce Risk by Premarital Partners -->
+  <div class="chart-card">
+    <h3>5-Year Divorce Risk by Premarital Partners</h3>
+    <p>Women who married as virgins had the lowest divorce rates at ~5%. The risk holds steady for one premarital partner, doubles at two, and rises to 33% for those with 10+ premarital sexual partners — a 6&times; increase over those with zero.</p>
+    <div class="chart-wrap"><canvas id="chart-pb-divorce"></canvas></div>
+  </div>
+
+  <!-- Chart 3: Marital Happiness by Partner Count -->
+  <div class="chart-card">
+    <h3>Marital Happiness by Lifetime Partner Count</h3>
+    <p>General Social Survey data shows a steady decline in the percentage of married people who describe their marriage as "very happy" as lifetime partner count increases — from 65% among those with 0–1 partners down to 44% for those with 13+.</p>
+    <div class="chart-wrap"><canvas id="chart-pb-happiness"></canvas></div>
+  </div>
+
+  <!-- Chart 4: Infidelity by Partner Count -->
+  <div class="chart-card">
+    <h3>Infidelity Rates by Premarital Partner Count</h3>
+    <p>The Institute for Family Studies found that people with more premarital sexual partners are significantly more likely to report infidelity within marriage. Those with 10+ premarital partners were roughly twice as likely to cheat as those with 0–1.</p>
+    <div class="chart-wrap"><canvas id="chart-pb-infidelity"></canvas></div>
+  </div>
+
+  <div class="caveat">
+    <h4>Pair Bonding &amp; The Mechanism</h4>
+    <p>Researchers theorize that repeated sexual bonding and breaking with multiple partners may desensitize the oxytocin and vasopressin response systems that facilitate pair bonding. Each new partner triggers oxytocin release during intimacy, which normally strengthens attachment — but cycling through partners may weaken this neurochemical bonding mechanism over time. While the correlation between partner count and poor marriage outcomes is well-established across multiple large datasets, the exact causal mechanism remains debated. Selection effects (personality traits that lead to both more partners and less stable marriages) may partially explain the pattern, though the effect persists even after controlling for religiosity, education, and other demographic factors.</p>
+    <h4>Sources &amp; Methodology</h4>
+    <p>Partner counts: CDC/NCHS National Survey of Family Growth (2015–2019), ages 25–44. Divorce risk: Nicholas Wolfinger analysis of NSFG data for the Institute for Family Studies (2016). Marital happiness: General Social Survey cross-tabulations compiled by IFS. Infidelity: IFS analysis of GSS data (Wolfinger, 2018). Pair bonding mechanism: Research on oxytocin/vasopressin systems (Young &amp; Wang, 2004; Scheele et al., 2012). All correlational — causation not established.</p>
   </div>
 </section>
 
@@ -4310,6 +4359,123 @@ function buildCharts() {
       plugins: {
         legend: { display: true, labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } },
         tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + ' per 1,000 population' } }
+      }
+    }
+  });
+
+  // ===== SEXUAL PARTNERS & MARRIAGE TAB CHARTS =====
+
+  // Partner Count Distribution by Gender
+  charts.pbDistribution = new Chart(document.getElementById('chart-pb-distribution'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['0–1','2–4','5–9','10–14','15+'] : ['0–1\nPartners','2–4\nPartners','5–9\nPartners','10–14\nPartners','15+\nPartners'],
+      datasets: [
+        {
+          label: 'Men',
+          data: [13, 22, 24, 15, 26],
+          backgroundColor: C.cat[0],
+          borderRadius: 4,
+          barThickness: isMobile ? 14 : 28
+        },
+        {
+          label: 'Women',
+          data: [20, 31, 26, 11, 12],
+          backgroundColor: C.cat[7],
+          borderRadius: 4,
+          barThickness: isMobile ? 14 : 28
+        }
+      ]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, max: 40, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 11 } }, grid: { display: false } }
+      },
+      plugins: {
+        legend: { display: true, labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '% of respondents' } }
+      }
+    }
+  });
+
+  // Divorce Risk by Premarital Partners
+  charts.pbDivorce = new Chart(document.getElementById('chart-pb-divorce'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['0\n(Virgin)','1','2','3–9','10+'] : ['0 Partners\n(Virgin at\nMarriage)','1\nPartner','2\nPartners','3–9\nPartners','10+\nPartners'],
+      datasets: [{
+        label: '5-Year Divorce Rate',
+        data: [5, 5, 10, 14, 33],
+        backgroundColor: [C.cat[0], C.cat[0], C.cat[3], C.cat[3], C.cat[7]],
+        borderRadius: 4,
+        barThickness: isMobile ? 28 : 48
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, max: 40, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['5% — lowest divorce risk; virgins at marriage','5% — same risk as 0 when partner was future spouse','10% — risk doubles with 2 premarital partners','14% — steady climb through moderate partner counts','33% — 6× the risk of those who married as virgins'];
+          return tips[ctx.dataIndex] || ctx.parsed.y + '%';
+        } } }
+      }
+    }
+  });
+
+  // Marital Happiness by Partner Count
+  charts.pbHappiness = new Chart(document.getElementById('chart-pb-happiness'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['0–1','2–3','4–6','7–12','13+'] : ['0–1\nPartners','2–3\nPartners','4–6\nPartners','7–12\nPartners','13+\nPartners'],
+      datasets: [{
+        label: '% "Very Happy" in Marriage',
+        data: [65, 59, 55, 50, 44],
+        backgroundColor: [C.cat[0], C.cat[0], C.cat[3], C.cat[3], C.cat[7]],
+        borderRadius: 4,
+        barThickness: isMobile ? 28 : 48
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, max: 80, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 11 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['65% report "very happy" marriage — highest satisfaction','59% — slight decline with 2–3 prior partners','55% — 10 percentage points below the 0–1 group','50% — coin-flip on marital happiness','44% — 21 points below those with 0–1 partners'];
+          return tips[ctx.dataIndex] || ctx.parsed.y + '%';
+        } } }
+      }
+    }
+  });
+
+  // Infidelity by Premarital Partner Count
+  charts.pbInfidelity = new Chart(document.getElementById('chart-pb-infidelity'), {
+    type: 'bar',
+    data: {
+      labels: isMobile ? ['0–1','2–4','5–9','10+'] : ['0–1\nPremarital\nPartners','2–4\nPremarital\nPartners','5–9\nPremarital\nPartners','10+\nPremarital\nPartners'],
+      datasets: [{
+        label: '% Who Report Infidelity',
+        data: [11, 17, 21, 24],
+        backgroundColor: [C.cat[0], C.cat[3], C.cat[3], C.cat[7]],
+        borderRadius: 4,
+        barThickness: isMobile ? 32 : 56
+      }]
+    },
+    options: {
+      scales: {
+        y: { beginAtZero: true, max: 30, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } }
+      },
+      plugins: {
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const tips = ['11% — baseline infidelity rate','17% — 55% higher than the 0–1 group','21% — nearly double the baseline','24% — more than twice the rate of the 0–1 group'];
+          return tips[ctx.dataIndex] || ctx.parsed.y + '%';
+        } } }
       }
     }
   });
