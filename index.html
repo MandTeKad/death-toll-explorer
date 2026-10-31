@@ -470,6 +470,8 @@ body::before {
       <option value="abortion-data">Abortion Data</option>
       <option value="divorce-stats">Divorce Statistics</option>
       <option value="pair-bonding">Sexual Partners & Marriage</option>
+      <option value="maternal-mortality">Maternal Mortality</option>
+      <option value="post-dobbs">Post-Dobbs Impact</option>
     </optgroup>
     <optgroup label="The Big Picture">
       <option value="century-death">Century of Death</option>
@@ -480,11 +482,11 @@ body::before {
 <!-- ===== TAB 1: U.S. OVERVIEW ===== -->
 <section class="panel active" id="panel-overview" role="tabpanel">
   <h2 class="panel-title">Total American Deaths by Cause</h2>
-  <p class="panel-desc">Estimated cumulative American deaths by cause — abortion compared to disease, violence, accidents, and other major causes. Figures are approximate totals since ~1900 unless noted.</p>
+  <p class="panel-desc">Estimated cumulative American deaths by cause — abortion compared to disease, violence, accidents, and other major causes. The CDC does not count abortion in its mortality statistics. This dashboard does, because it treats the unborn as lives lost. The numbers themselves come from the CDC&rsquo;s and Guttmacher Institute&rsquo;s own data. Figures are approximate totals since ~1900 unless noted.</p>
 
   <div class="hero-stat">
-    <div class="value">~93.1M</div>
-    <div class="label">Estimated total U.S. abortions (all time through Oct 2026)</div>
+    <div class="value">~67&ndash;93M</div>
+    <div class="label">Estimated total U.S. abortions (all time through Oct 2026) &mdash; ~67.1M documented post-Roe; ~26M est. pre-Roe</div>
   </div>
 
   <div class="stat-row">
@@ -724,8 +726,8 @@ body::before {
   <p class="panel-desc">Estimated global deaths from abortion, wars, pandemics, homicides, and the transatlantic slave trade. These figures span the 20th&ndash;21st centuries where possible, drawing on WHO, Guttmacher, UNODC, UNAIDS, and historical compilations.</p>
 
   <div class="hero-stat">
-    <div class="value">~2B</div>
-    <div class="label">Estimated total worldwide abortions (~1920s&ndash;2026)</div>
+    <div class="value">~1.0&ndash;2.0B</div>
+    <div class="label">Estimated total worldwide abortions (~1920s&ndash;2026) &mdash; range reflects uncertainty in pre-1970 estimates</div>
   </div>
 
   <div class="stat-row">
@@ -1790,6 +1792,72 @@ body::before {
   </div>
 </section>
 
+<!-- ===== MATERNAL MORTALITY ===== -->
+<section class="panel" id="panel-maternal-mortality" role="tabpanel">
+  <h2 class="panel-title">Maternal Mortality in America</h2>
+  <p class="panel-desc">The U.S. has the highest maternal mortality rate among wealthy nations&mdash;ranked 68th globally. Black women die at 3&times; the rate of white and Hispanic women. These are CDC National Vital Statistics data (deaths per 100,000 live births).</p>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">U.S. Maternal Deaths (2024)</p><p class="st-value">649</p></div>
+    <div class="stat-tile"><p class="st-label">U.S. Rate (2024)</p><p class="st-value">17.9</p></div>
+    <div class="stat-tile"><p class="st-label">Black Maternal Rate</p><p class="st-value">44.8</p></div>
+    <div class="stat-tile"><p class="st-label">U.S. Global Rank</p><p class="st-value">68th</p></div>
+  </div>
+
+  <h3 class="chart-title">U.S. Maternal Mortality Rate, 2018&ndash;2024</h3>
+  <p class="chart-subtitle">Deaths per 100,000 live births &mdash; 2021 spike driven by COVID-19</p>
+  <div class="chart-wrap"><canvas id="chart-mm-trend"></canvas></div>
+
+  <h3 class="chart-title">Racial Disparities in Maternal Mortality (2024)</h3>
+  <p class="chart-subtitle">Deaths per 100,000 live births by race/ethnicity</p>
+  <div class="chart-wrap"><canvas id="chart-mm-race"></canvas></div>
+
+  <h3 class="chart-title">Maternal Mortality by Age Group (2024)</h3>
+  <p class="chart-subtitle">Risk rises sharply after age 40</p>
+  <div class="chart-wrap"><canvas id="chart-mm-age"></canvas></div>
+
+  <h3 class="chart-title">International Comparison</h3>
+  <p class="chart-subtitle">U.S. vs. peer nations &mdash; deaths per 100,000 live births</p>
+  <div class="chart-wrap"><canvas id="chart-mm-intl"></canvas></div>
+
+  <div class="source-note">
+    <p><strong>Sources:</strong> CDC National Center for Health Statistics, Maternal Mortality Rates in the United States (2018&ndash;2024). International: WHO/UNICEF/UNFPA Maternal Mortality Estimation Inter-agency Group (2023). U.S. global ranking: CIA World Factbook (2024).</p>
+  </div>
+</section>
+
+<!-- ===== POST-DOBBS IMPACT ===== -->
+<section class="panel" id="panel-post-dobbs" role="tabpanel">
+  <h2 class="panel-title">Post-Dobbs Impact</h2>
+  <p class="panel-desc">After <em>Dobbs v. Jackson</em> (June 2022), 14 states enacted near-total bans and 7 imposed gestational limits. National abortion numbers <strong>increased</strong> despite bans, driven by medication abortion and interstate travel. Data from the Society of Family Planning (WeCount), KFF, and the CDC.</p>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">U.S. Abortions (2025)</p><p class="st-value">~1.13M</p></div>
+    <div class="stat-tile"><p class="st-label">Medication Share</p><p class="st-value">65%</p></div>
+    <div class="stat-tile"><p class="st-label">Telehealth Share (2025)</p><p class="st-value">28%</p></div>
+    <div class="stat-tile"><p class="st-label">Est. Babies Saved by Bans</p><p class="st-value">~32,000</p></div>
+  </div>
+
+  <h3 class="chart-title">National Abortion Trend, 2020&ndash;2025</h3>
+  <p class="chart-subtitle">Total abortions increased post-Dobbs despite state bans</p>
+  <div class="chart-wrap"><canvas id="chart-pd-trend"></canvas></div>
+
+  <h3 class="chart-title">Decrease in Ban States (Annual Change)</h3>
+  <p class="chart-subtitle">Estimated abortions lost per year in states with near-total bans</p>
+  <div class="chart-wrap"><canvas id="chart-pd-bans"></canvas></div>
+
+  <h3 class="chart-title">Top Destinations for Interstate Travel</h3>
+  <p class="chart-subtitle">Abortions provided to out-of-state residents (2025 est.)</p>
+  <div class="chart-wrap"><canvas id="chart-pd-travel"></canvas></div>
+
+  <h3 class="chart-title">Medication vs. Procedural Abortions</h3>
+  <p class="chart-subtitle">Medication abortion now accounts for nearly two-thirds of all abortions</p>
+  <div class="chart-wrap"><canvas id="chart-pd-method"></canvas></div>
+
+  <div class="source-note">
+    <p><strong>Sources:</strong> Society of Family Planning, #WeCount reports (2022&ndash;2025). Kaiser Family Foundation (KFF), Abortion in the U.S. Dashboard (2025). CDC Abortion Surveillance (2022&ndash;2023). Guttmacher Institute, Monthly Abortion Provision Study. ERLC, The State of Abortion in America (2025). &ldquo;Babies saved&rdquo; estimate: ~20&ndash;25% of women seeking abortions in ban states did not obtain one elsewhere, applied to ban-state decreases.</p>
+  </div>
+</section>
+
 <!-- ===== TAB 7: CENTURY OF DEATH ===== -->
 <section class="panel" id="panel-century-death" role="tabpanel">
   <h2 class="panel-title">Century of Death (1924&ndash;2024)</h2>
@@ -1797,9 +1865,9 @@ body::before {
 
   <div class="stat-row">
     <div class="stat-tile"><p class="st-label">Global Deaths (est.)</p><p class="st-value">~2.2B</p></div>
-    <div class="stat-tile"><p class="st-label">Global Abortions (est.)</p><p class="st-value">~1.5B</p></div>
+    <div class="stat-tile"><p class="st-label">Global Abortions (est.)</p><p class="st-value">~1.0&ndash;2.0B</p></div>
     <div class="stat-tile"><p class="st-label">US Deaths (all causes)</p><p class="st-value">~220M</p></div>
-    <div class="stat-tile"><p class="st-label">US Abortions (est.)</p><p class="st-value">~93M</p></div>
+    <div class="stat-tile"><p class="st-label">US Abortions (est.)</p><p class="st-value">~67&ndash;93M</p></div>
   </div>
   <div class="stat-row">
     <div class="stat-tile"><p class="st-label">Global War Deaths</p><p class="st-value">~150M</p></div>
@@ -2050,7 +2118,7 @@ function setMobileChartHeights() {
     if (!canvas) return;
     const id = canvas.id;
     // Horizontal bars need more vertical space on mobile
-    if (['chart-overview-bar','chart-rape-funnel'].includes(id)) {
+    if (['chart-overview-bar','chart-rape-funnel','chart-mm-intl','chart-pd-bans','chart-pd-travel'].includes(id)) {
       el.style.minHeight = '380px';
     } else if (id === 'chart-rape-false') {
       el.style.minHeight = '480px'; // 11 studies need room
@@ -4569,6 +4637,198 @@ function buildCharts() {
       plugins: {
         legend: { display: true, labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } },
         tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label.split(' —')[0] + ': ' + ctx.parsed.y + '% report "very happy" marriage' } }
+      }
+    }
+  });
+
+  // ===== MATERNAL MORTALITY CHARTS =====
+  new Chart(document.getElementById('chart-mm-trend'), {
+    type: 'line',
+    data: {
+      labels: ['2018','2019','2020','2021','2022','2023','2024'],
+      datasets: [{
+        label: 'Maternal mortality rate',
+        data: [17.4, 20.1, 23.8, 32.9, 22.3, 18.6, 17.9],
+        borderColor: C.cat[0],
+        backgroundColor: C.cat[0] + '22',
+        fill: true,
+        tension: 0.3,
+        pointRadius: isMobile ? 4 : 5,
+        pointBackgroundColor: C.cat[0]
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true, title: { display: true, text: 'Deaths per 100K live births', color: C.fgSec }, ticks: { color: C.fgSec }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec }, grid: { display: false } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y + ' per 100K' } } }
+    }
+  });
+
+  new Chart(document.getElementById('chart-mm-race'), {
+    type: 'bar',
+    data: {
+      labels: ['Black','American Indian / Alaska Native','White','Hispanic','Asian'],
+      datasets: [{
+        label: 'Maternal mortality rate',
+        data: [44.8, 36.1, 15.3, 12.6, 11.4],
+        backgroundColor: [C.cat[0], C.cat[1], C.cat[2], C.cat[3], C.cat[4]],
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true, title: { display: true, text: 'Deaths per 100K', color: C.fgSec }, ticks: { color: C.fgSec }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 11 } }, grid: { display: false } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y + ' per 100K live births' } } }
+    }
+  });
+
+  new Chart(document.getElementById('chart-mm-age'), {
+    type: 'bar',
+    data: {
+      labels: ['Under 25','25–39','40+'],
+      datasets: [{
+        label: 'Maternal mortality rate',
+        data: [13.7, 21.8, 62.3],
+        backgroundColor: [C.cat[2], C.cat[3], C.cat[0]],
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true, title: { display: true, text: 'Deaths per 100K', color: C.fgSec }, ticks: { color: C.fgSec }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec }, grid: { display: false } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y + ' per 100K live births' } } }
+    }
+  });
+
+  new Chart(document.getElementById('chart-mm-intl'), {
+    type: 'bar',
+    data: {
+      labels: ['United States','New Zealand','France','Canada','U.K.','Germany','Japan','Switzerland','Sweden','Norway'],
+      datasets: [{
+        label: 'Maternal mortality rate',
+        data: [17.9, 13.6, 8.1, 7.3, 6.9, 4.2, 3.4, 1.3, 3.3, 0.8],
+        backgroundColor: ['United States'].map(() => C.cat[0]).concat(Array(9).fill(C.cat[2])),
+        borderRadius: 4
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { beginAtZero: true, title: { display: true, text: 'Deaths per 100K live births', color: C.fgSec }, ticks: { color: C.fgSec }, grid: { color: C.grid } },
+        y: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 11 } }, grid: { display: false } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.x + ' per 100K' } } }
+    }
+  });
+
+  // ===== POST-DOBBS CHARTS =====
+  new Chart(document.getElementById('chart-pd-trend'), {
+    type: 'line',
+    data: {
+      labels: ['2020','2021','2022','2023','2024','2025'],
+      datasets: [{
+        label: 'Total U.S. abortions',
+        data: [930, 940, 990, 1050, 1110, 1130],
+        borderColor: C.cat[0],
+        backgroundColor: C.cat[0] + '22',
+        fill: true,
+        tension: 0.3,
+        pointRadius: isMobile ? 4 : 5,
+        pointBackgroundColor: C.cat[0]
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { title: { display: true, text: 'Thousands', color: C.fgSec }, ticks: { color: C.fgSec }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec }, grid: { display: false } }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => fmt(ctx.parsed.y * 1000) + ' abortions' } },
+        annotation: {
+          annotations: {
+            dobbsLine: { type: 'line', xMin: 2, xMax: 2, borderColor: C.accent, borderWidth: 2, borderDash: [6,3],
+              label: { display: true, content: 'Dobbs (Jun 2022)', color: C.fg, backgroundColor: C.surface || C.base, font: { size: 10 }, position: 'start' }
+            }
+          }
+        }
+      }
+    }
+  });
+
+  new Chart(document.getElementById('chart-pd-bans'), {
+    type: 'bar',
+    data: {
+      labels: ['Texas','Georgia','Tennessee','Louisiana','Arizona','Alabama','Mississippi','Oklahoma','Arkansas','Idaho'],
+      datasets: [{
+        label: 'Annual decrease',
+        data: [-24420, -14415, -10235, -6755, -6000, -5715, -3245, -3100, -2810, -2600],
+        backgroundColor: C.cat[0],
+        borderRadius: 4
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { title: { display: true, text: 'Change in annual abortions', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => fmt(v) }, grid: { color: C.grid } },
+        y: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 11 } }, grid: { display: false } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => fmt(Math.abs(ctx.parsed.x)) + ' fewer abortions/year' } } }
+    }
+  });
+
+  new Chart(document.getElementById('chart-pd-travel'), {
+    type: 'bar',
+    data: {
+      labels: ['Illinois','North Carolina','Kansas','New Mexico','Virginia','Colorado','Florida','New York'],
+      datasets: [{
+        label: 'Out-of-state patients (2025)',
+        data: [32560, 17870, 13630, 10180, 8940, 7650, 6280, 5410],
+        backgroundColor: C.cat[3],
+        borderRadius: 4
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { beginAtZero: true, title: { display: true, text: 'Out-of-state patients', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => fmt(v) }, grid: { color: C.grid } },
+        y: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 11 } }, grid: { display: false } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => fmt(ctx.parsed.x) + ' out-of-state patients' } } }
+    }
+  });
+
+  new Chart(document.getElementById('chart-pd-method'), {
+    type: 'bar',
+    data: {
+      labels: ['2020','2021','2022','2023','2024','2025'],
+      datasets: [
+        { label: 'Medication', data: [54, 56, 58, 63, 64, 65], backgroundColor: C.cat[3], borderRadius: 4 },
+        { label: 'Procedural', data: [46, 44, 42, 37, 36, 35], backgroundColor: C.cat[2], borderRadius: 4 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { stacked: true, max: 100, title: { display: true, text: '% of abortions', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { stacked: true, ticks: { color: C.fgSec }, grid: { display: false } }
+      },
+      plugins: {
+        legend: { display: true, labels: { color: C.fg, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } }
       }
     }
   });
