@@ -447,7 +447,6 @@ body::before {
       <option value="overview" selected>U.S. Overview</option>
       <option value="wars">U.S. Wars</option>
       <option value="decades">By Decade</option>
-      <option value="homicide">Homicide</option>
       <option value="reasons">Abortion Reasons</option>
     </optgroup>
     <optgroup label="Global Data">
@@ -456,31 +455,35 @@ body::before {
       <option value="global-wars">Global Wars</option>
       <option value="global-homicide">Global Homicide</option>
     </optgroup>
-    <optgroup label="Deep Dives">
-      <option value="all-causes">All Causes of Death</option>
+    <optgroup label="Violence &amp; Crime">
+      <option value="homicide">Homicide</option>
       <option value="mass-shootings">Mass Shootings</option>
-      <option value="homicide-demographics">Homicide Demographics</option>
-      <option value="shooter-profiles">Shooter Profiles</option>
       <option value="intl-violence">International Violence</option>
       <option value="criminal-justice">Criminal Justice</option>
       <option value="rape-stats">Rape Statistics</option>
-      <option value="child-outcomes">Child Outcomes</option>
-      <option value="trans-issues">Trans Issues</option>
-      <option value="child-deaths">Child Deaths</option>
-      <option value="abortion-data">Abortion Data</option>
-      <option value="divorce-stats">Divorce Statistics</option>
-      <option value="pair-bonding">Sexual Partners & Marriage</option>
-      <option value="maternal-mortality">Maternal Mortality</option>
-      <option value="post-dobbs">Post-Dobbs Impact</option>
-      <option value="fertility">Fertility & Demographics</option>
-      <option value="adoption">Adoption Gap</option>
-      <option value="preventable">Scale Comparison</option>
+    </optgroup>
+    <optgroup label="Sexual &amp; Social">
       <option value="sexual-deviancy">Sexual Deviancy</option>
-      <option value="trans">Transgender</option>
+      <option value="trans-issues">Transgender</option>
+      <option value="pair-bonding">Sexual Partners &amp; Marriage</option>
+      <option value="divorce-stats">Divorce Statistics</option>
+    </optgroup>
+    <optgroup label="Life &amp; Death">
+      <option value="all-causes">All Causes of Death</option>
+      <option value="child-deaths">Child Deaths</option>
+      <option value="child-outcomes">Child Outcomes</option>
+      <option value="maternal-mortality">Maternal Mortality</option>
+    </optgroup>
+    <optgroup label="Abortion &amp; Family">
+      <option value="abortion-data">Abortion Data</option>
+      <option value="post-dobbs">Post-Dobbs Impact</option>
+      <option value="fertility">Fertility &amp; Demographics</option>
+      <option value="adoption">Adoption Gap</option>
     </optgroup>
     <optgroup label="The Big Picture">
+      <option value="preventable">Scale Comparison</option>
       <option value="century-death">Century of Death</option>
-      <option value="methodology">Methodology & Sources</option>
+      <option value="methodology">Methodology &amp; Sources</option>
     </optgroup>
   </select>
 </nav>
@@ -633,10 +636,10 @@ body::before {
   </div>
 </section>
 
-<!-- ===== TAB 4: HOMICIDE ===== -->
+<!-- ===== TAB: HOMICIDE ===== -->
 <section class="panel" id="panel-homicide" role="tabpanel">
-  <h2 class="panel-title">Homicide by Race</h2>
-  <p class="panel-desc">FBI Supplementary Homicide Reports (2019) cross-tabulated by victim and offender race, plus CDC per-capita rates.</p>
+  <h2 class="panel-title">Homicide</h2>
+  <p class="panel-desc">FBI Supplementary Homicide Reports and BJS data on who is killed and who kills, broken down by race. Both raw counts and per-capita rates are shown &mdash; raw numbers without population context are misleading. Includes 2019 FBI SHR cross-tabulations and 2023 BJS victimization data.</p>
 
   <div class="chart-card">
     <h3>Homicides by Victim-Offender Race (2019)</h3>
@@ -672,8 +675,55 @@ body::before {
     </table>
   </div>
 
+  <h3 class="section-head">2023 BJS Victimization Data</h3>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">Total Homicides (2023)</p><p class="st-value">~19,800</p></div>
+    <div class="stat-tile"><p class="st-label">Black Victim Rate</p><p class="st-value">21.3/100K</p></div>
+    <div class="stat-tile"><p class="st-label">White Victim Rate</p><p class="st-value">3.2/100K</p></div>
+    <div class="stat-tile"><p class="st-label">Firearm Involved</p><p class="st-value">79.6%</p></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Homicide Victimization Rate per 100K by Race (2023)</h3>
+    <div class="chart-subtitle">BJS &ldquo;Homicide Victimization in the United States, 2023&rdquo;</div>
+    <div class="chart-wrap"><canvas id="chart-hom-rate" style="height:260px"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Victims by Race: Share vs. Population Share</h3>
+    <div class="chart-subtitle">FBI/BJS 2023 &mdash; victims with known race only</div>
+    <div class="chart-wrap"><canvas id="chart-hom-victim-share" style="height:280px"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Offenders by Race (2019, FBI Expanded Homicide)</h3>
+    <div class="chart-subtitle">Known offenders only &mdash; ~40% of homicides go unsolved</div>
+    <div class="chart-wrap"><canvas id="chart-hom-offender" style="height:260px"></canvas></div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Cross-Race Patterns (2019)</h3>
+    <div class="chart-subtitle">FBI Expanded Homicide Data Table 6 &mdash; most homicide is intraracial</div>
+    <div class="chart-wrap"><canvas id="chart-hom-cross" style="height:220px"></canvas></div>
+  </div>
+
+  <button class="table-toggle" onclick="toggleTable('table-hom-demo')">&#9662; View demographics data</button>
+  <div class="data-table-wrap" id="table-hom-demo">
+    <table class="data-table">
+      <thead><tr><th>Metric</th><th class="num">Black</th><th class="num">White</th><th class="num">AIAN</th><th class="num">NHPI</th><th class="num">Asian</th></tr></thead>
+      <tbody>
+        <tr><td>Victim rate per 100K (2023)</td><td class="num">21.3</td><td class="num">3.2</td><td class="num">4.2</td><td class="num">6.5</td><td class="num">1.4</td></tr>
+        <tr><td>Share of victims (2023)</td><td class="num">55.8%</td><td class="num">40.8%</td><td class="num">1.3%</td><td class="num">0.3%</td><td class="num">1.9%</td></tr>
+        <tr><td>Share of U.S. pop.</td><td class="num">~14%</td><td class="num">~75%</td><td class="num">~1.3%</td><td class="num">~0.3%</td><td class="num">~6%</td></tr>
+        <tr><td>Known offenders (2019)</td><td class="num">55.9%</td><td class="num">41.1%</td><td class="num" colspan="3">~3% combined</td></tr>
+        <tr><td>Killed by same race (2019)</td><td class="num">89%</td><td class="num">79%</td><td class="num" colspan="3">&mdash;</td></tr>
+      </tbody>
+    </table>
+  </div>
+
   <div class="caveat">
-    <strong>Important caveats:</strong> FBI SHR data covers only ~40% of all homicides (single victim, single offender, known race). It excludes unsolved cases and mass-casualty events. Per-capita rates computed using 2019 Census estimates (White ~196.8M, Black ~43.4M). CDC WONDER overall homicide rates (2022) are more comprehensive and show significantly higher Black victimization rates than the SHR subset alone. "White" and "Black" as used here follow FBI/CDC racial categories.
+    <strong>Important caveats:</strong> FBI SHR data covers only ~40% of all homicides (single victim, single offender, known race). It excludes unsolved cases and mass-casualty events. Per-capita rates computed using 2019 Census estimates (White ~196.8M, Black ~43.4M). CDC WONDER overall homicide rates (2022) are more comprehensive and show significantly higher Black victimization rates than the SHR subset alone. "White" and "Black" as used here follow FBI/CDC racial categories. Victimization rates from BJS &ldquo;Homicide Victimization in the United States, 2023&rdquo; (May 2025). Offender race from FBI Expanded Homicide Data Table 6 (2019). About 40% of homicides go unsolved, meaning offender demographics reflect only solved cases. Cross-race data: 79% of white victims were killed by white offenders; 89% of Black victims by Black offenders. Hispanic ethnicity is not reliably reported across jurisdictions so is excluded from race breakdowns.
   </div>
 </section>
 
@@ -1022,70 +1072,8 @@ body::before {
     </table>
   </div>
 
-  <div class="caveat">
-    <strong>Notes:</strong> GVA defines a &ldquo;mass shooting&rdquo; as 4+ people shot (not counting the shooter) at one location at roughly the same time. Mother Jones uses a stricter definition: indiscriminate public attacks with 3+ killed (4+ post-2013). FBI &ldquo;Active Shooter&rdquo; counts individuals actively engaged in killing in a confined/populated area. The CRS excludes gang, profit-motivated, and terrorist shootings. The LSU Health typology study (Beard et al., 2023, <em>JAMA Surgery</em>) categorized all 4,011 GVA incidents from 2014&ndash;2022: &ldquo;Crime-related&rdquo; (15.8%) includes gang/drug violence, armed robbery, and carjacking; &ldquo;Social-related&rdquo; (27.3%) covers bar/club and party shootings; &ldquo;DV-related&rdquo; (11.1%) covers domestic violence and family annihilations; &ldquo;Other&rdquo; (52%) includes terrorism, spree shootings, hate crimes, and unclassified.
-  </div>
-</section>
-
-<!-- ===== TAB 12: HOMICIDE DEMOGRAPHICS ===== -->
-<section class="panel" id="panel-homicide-demographics" role="tabpanel">
-  <h2 class="panel-title">Homicide Demographics by Race</h2>
-  <p class="panel-desc">FBI Supplementary Homicide Reports and BJS data on who is killed and who kills, broken down by race. Both raw counts and per-capita rates are shown &mdash; raw numbers without population context are misleading.</p>
-
-  <div class="stat-row">
-    <div class="stat-tile"><p class="st-label">Total Homicides (2023)</p><p class="st-value">~19,800</p></div>
-    <div class="stat-tile"><p class="st-label">Black Victim Rate</p><p class="st-value">21.3/100K</p></div>
-    <div class="stat-tile"><p class="st-label">White Victim Rate</p><p class="st-value">3.2/100K</p></div>
-    <div class="stat-tile"><p class="st-label">Firearm Involved</p><p class="st-value">79.6%</p></div>
-  </div>
-
-  <div class="chart-card">
-    <h3>Homicide Victimization Rate per 100K by Race (2023)</h3>
-    <div class="chart-subtitle">BJS &ldquo;Homicide Victimization in the United States, 2023&rdquo;</div>
-    <div class="chart-wrap"><canvas id="chart-hom-rate" style="height:260px"></canvas></div>
-  </div>
-
-  <div class="chart-card">
-    <h3>Victims by Race: Share vs. Population Share</h3>
-    <div class="chart-subtitle">FBI/BJS 2023 &mdash; victims with known race only</div>
-    <div class="chart-wrap"><canvas id="chart-hom-victim-share" style="height:280px"></canvas></div>
-  </div>
-
-  <div class="chart-card">
-    <h3>Offenders by Race (2019, FBI Expanded Homicide)</h3>
-    <div class="chart-subtitle">Known offenders only &mdash; ~40% of homicides go unsolved</div>
-    <div class="chart-wrap"><canvas id="chart-hom-offender" style="height:260px"></canvas></div>
-  </div>
-
-  <div class="chart-card">
-    <h3>Cross-Race Patterns (2019)</h3>
-    <div class="chart-subtitle">FBI Expanded Homicide Data Table 6 &mdash; most homicide is intraracial</div>
-    <div class="chart-wrap"><canvas id="chart-hom-cross" style="height:220px"></canvas></div>
-  </div>
-
-  <button class="table-toggle" onclick="toggleTable('table-hom-demo')">&#9662; View data table</button>
-  <div class="data-table-wrap" id="table-hom-demo">
-    <table class="data-table">
-      <thead><tr><th>Metric</th><th class="num">Black</th><th class="num">White</th><th class="num">AIAN</th><th class="num">NHPI</th><th class="num">Asian</th></tr></thead>
-      <tbody>
-        <tr><td>Victim rate per 100K (2023)</td><td class="num">21.3</td><td class="num">3.2</td><td class="num">4.2</td><td class="num">6.5</td><td class="num">1.4</td></tr>
-        <tr><td>Share of victims (2023)</td><td class="num">55.8%</td><td class="num">40.8%</td><td class="num">1.3%</td><td class="num">0.3%</td><td class="num">1.9%</td></tr>
-        <tr><td>Share of U.S. pop.</td><td class="num">~14%</td><td class="num">~75%</td><td class="num">~1.3%</td><td class="num">~0.3%</td><td class="num">~6%</td></tr>
-        <tr><td>Known offenders (2019)</td><td class="num">55.9%</td><td class="num">41.1%</td><td class="num" colspan="3">~3% combined</td></tr>
-        <tr><td>Killed by same race (2019)</td><td class="num">89%</td><td class="num">79%</td><td class="num" colspan="3">&mdash;</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="caveat">
-    <strong>Notes:</strong> Victimization rates from BJS &ldquo;Homicide Victimization in the United States, 2023&rdquo; (May 2025). Offender race from FBI Expanded Homicide Data Table 6 (2019) &mdash; the most recent year with full detailed reporting by race of offender. About 40% of homicides go unsolved, meaning offender demographics reflect only solved cases. Cross-race data: 79% of white victims were killed by white offenders; 89% of Black victims by Black offenders. Hispanic ethnicity is not reliably reported across jurisdictions (missing for ~22% of victims) so is excluded from race breakdowns. &ldquo;White&rdquo; in FBI data may include some Hispanic individuals.
-  </div>
-</section>
-
-<!-- ===== TAB 13: SHOOTER PROFILES ===== -->
-<section class="panel" id="panel-shooter-profiles" role="tabpanel">
-  <h2 class="panel-title">Mass Shooter Profiles</h2>
-  <p class="panel-desc">Demographics and ideology of mass shooters under the <strong>strict definition</strong> only: indiscriminate public attacks with 3&ndash;4+ killed (Mother Jones 1982&ndash;2025, Violence Project 1966&ndash;2024). Excludes gang violence, crime-related, and domestic incidents. Most mass shooters have no clear political affiliation.</p>
+  <h3 class="section-head">Shooter Profiles (Strict Definition)</h3>
+  <p class="chart-desc">Demographics and ideology of mass shooters under the <strong>strict definition</strong> only: indiscriminate public attacks with 3&ndash;4+ killed (Mother Jones 1982&ndash;2025, Violence Project 1966&ndash;2024). Excludes gang violence, crime-related, and domestic incidents. Most mass shooters have no clear political affiliation.</p>
 
   <div class="stat-row">
     <div class="stat-tile"><p class="st-label">Cis Male</p><p class="st-value">97.5%</p></div>
@@ -1212,7 +1200,7 @@ body::before {
   </div>
 
   <div class="caveat">
-    <strong>Notes:</strong> All data on this tab uses the <strong>strict definition</strong> of mass shootings: indiscriminate public attacks with 3&ndash;4+ people killed (Mother Jones, Violence Project). This excludes gang violence, drug-related shootings, domestic violence spillovers, and other crime-related incidents. <strong>Demographics:</strong> Mother Jones database (1982&ndash;2025, ~162 incidents). Race percentages corroborated by the Violence Project, CPRC, and Eugene Volokh&rsquo;s analysis. Per-capita rates from Mother Jones data (1982&ndash;2022). <strong>Gender:</strong> Violence Project (1966&ndash;2024, 201 shooters): 196 cis male (97.5%), 4 cis female (2.0%), 1 trans (0.5% &mdash; Audrey Hale, Nashville 2023). Per-capita gender rates are annualized (shooters &divide; years &divide; group population &times; 100K). Trans population: ~2.1M adults (0.8%), per Williams Institute/UCLA (2025). Co-founder James Densley of the Violence Project notes trans people are statistically <em>under</em>represented among mass shooters. <strong>Annual trend:</strong> Mother Jones incident counts by year (2006&ndash;2024); 5-year rolling average shown as trend line. Peak years: 2017 (11), 2018 (12), 2022 (12), 2023 (12). COVID year 2020 saw only 2 incidents. <strong>Ideology:</strong> ~75% of mass shooters show no clear political affiliation. Of the ~25% with identifiable ideology, the U.S. Extremist Crime Database (1990&ndash;2020) finds ~84% far-right and ~16% far-left among <em>ideologically motivated</em> killings specifically. This does NOT mean 84% of mass shooters are right-wing &mdash; it means that among the small subset with identifiable political motives, right-wing extremism predominates. The vast majority of mass shooters are motivated by personal grievances, mental health crises, or workplace/domestic disputes, not politics.
+    <strong>Notes:</strong> GVA defines a &ldquo;mass shooting&rdquo; as 4+ people shot (not counting the shooter) at one location at roughly the same time. Mother Jones uses a stricter definition: indiscriminate public attacks with 3+ killed (4+ post-2013). FBI &ldquo;Active Shooter&rdquo; counts individuals actively engaged in killing in a confined/populated area. The CRS excludes gang, profit-motivated, and terrorist shootings. The LSU Health typology study (Beard et al., 2023, <em>JAMA Surgery</em>) categorized all 4,011 GVA incidents from 2014&ndash;2022. <strong>Shooter profile data</strong> uses the strict definition only. <strong>Demographics:</strong> Mother Jones database (1982&ndash;2025, ~162 incidents). Race percentages corroborated by the Violence Project, CPRC, and Eugene Volokh&rsquo;s analysis. Per-capita rates from Mother Jones data (1982&ndash;2022). <strong>Gender:</strong> Violence Project (1966&ndash;2024, 201 shooters): 196 cis male (97.5%), 4 cis female (2.0%), 1 trans (0.5% &mdash; Audrey Hale, Nashville 2023). Per-capita gender rates are annualized. Trans population: ~2.1M adults (0.8%), per Williams Institute/UCLA (2025). <strong>Ideology:</strong> ~75% of mass shooters show no clear political affiliation. Of the ~25% with identifiable ideology, the U.S. Extremist Crime Database (1990&ndash;2020) finds ~84% far-right and ~16% far-left among <em>ideologically motivated</em> killings specifically. This does NOT mean 84% of mass shooters are right-wing &mdash; the vast majority are motivated by personal grievances, mental health crises, or workplace/domestic disputes, not politics.
   </div>
 </section>
 
@@ -1515,10 +1503,10 @@ body::before {
   </div>
 </section>
 
-<!-- ===== TAB: TRANS ISSUES ===== -->
+<!-- ===== TAB: TRANSGENDER ===== -->
 <section class="panel" id="panel-trans-issues" role="tabpanel">
-  <h2 class="panel-title">Trans Issues: Bathrooms, Sports, Suicide &amp; Treatment</h2>
-  <p class="panel-desc">A data-driven breakdown of the most debated trans issues: bathroom safety, sports participation, suicide rates, childhood desistance, and treatment outcomes. Sources include the U.S. Transgender Survey (n=92,329), Dhejne (Sweden, n=324), Regnerus (NFSS, n=2,988), Sullins (Add Health, n=207k), the Cass Review (UK, 2024), and multiple desistance studies.</p>
+  <h2 class="panel-title">Transgender</h2>
+  <p class="panel-desc">A comprehensive data-driven breakdown of transgender issues: bathroom safety, sports participation, suicide rates, childhood desistance, treatment outcomes, sex offender rates, and childhood sexual abuse prevalence. Sources include the U.S. Transgender Survey (n=92,329), Dhejne (Sweden, n=324), the Cass Review (UK, 2024), UK Ministry of Justice data, CDC BRFSS, and multiple desistance/detransition studies.</p>
 
   <div class="stat-row">
     <div class="stat-tile"><p class="st-label">Trans Lifetime Suicide Attempts</p><p class="st-value">40%</p></div>
@@ -1583,8 +1571,43 @@ body::before {
     <div class="chart-wrap"><canvas id="chart-ti-countries"></canvas></div>
   </div>
 
+  <h3 class="section-head">Sex Offender Rates</h3>
+  <p class="chart-desc">Multiple UK Ministry of Justice datasets show that transgender women (biological males identifying as female) are convicted of sexual offences at dramatically higher rates than either the general male or female prison population.</p>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">Trans Women with Sex Offences (2024 MoJ)</p><p class="st-value">62%</p></div>
+    <div class="stat-tile"><p class="st-label">General Male Prisoners with Sex Offences</p><p class="st-value">17%</p></div>
+    <div class="stat-tile"><p class="st-label">General Female Prisoners with Sex Offences</p><p class="st-value">3.3%</p></div>
+    <div class="stat-tile"><p class="st-label">Trans Women vs Male Rate</p><p class="st-value">3.5&times;</p></div>
+  </div>
+
+  <div class="chart-wrap"><canvas id="chart-trans-prison"></canvas></div>
+  <p class="chart-desc">In 2024, the UK Ministry of Justice reported that 151 of 245 trans women inmates who are legally male (62%) had at least one sexual offence&mdash;compared to roughly 17% of the general male prison population and 3.3% of female prisoners. Earlier FOI data (2019) showed 76 of 129 male-born trans prisoners (58.9%) had sexual offence convictions. HMPPS 2023 data confirmed 42&ndash;44% of male trans-identifying prisoners had a principal sexual offence vs 18% of the general male prison population.</p>
+
+  <div class="chart-wrap"><canvas id="chart-trans-pop"></canvas></div>
+  <p class="chart-desc">When measured against the general population rather than just the prison population, the disparity is even more striking. Using 2021 hard counts: 92 trans women serving for sex offences out of an estimated ~48,000 trans women population = 1 in 522. The general male rate is approximately 1 in 2,530, and the general female rate is approximately 1 in 295,000. Trans women are roughly 5&times; more likely than men and ~566&times; more likely than women to be serving for a sexual offence.</p>
+
+  <div class="chart-wrap"><canvas id="chart-trans-sweden"></canvas></div>
+  <p class="chart-desc">The Dhejne et al. (2011) Swedish cohort study followed 324 sex-reassigned persons (1973&ndash;2003) and found that male-to-female transitioners were 6&times; more likely than female controls to be convicted of any crime, and 18&times; more likely for violent offences. The authors concluded that MtF transsexuals &ldquo;retained a male pattern regarding criminality.&rdquo;</p>
+
+  <h3 class="section-head">Childhood Sexual Abuse</h3>
+  <p class="chart-desc">Multiple studies show significantly elevated rates of childhood sexual abuse among transgender-identifying individuals compared to cisgender peers.</p>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">Trans CSA Rate (BRFSS)</p><p class="st-value">20%</p></div>
+    <div class="stat-tile"><p class="st-label">Cis CSA Rate (BRFSS)</p><p class="st-value">12.8%</p></div>
+    <div class="stat-tile"><p class="st-label">Trans Adolescent Sexual Abuse (Thoma 2021)</p><p class="st-value">19%</p></div>
+    <div class="stat-tile"><p class="st-label">Trans vs Cis Odds Ratio</p><p class="st-value">2.04&times;</p></div>
+  </div>
+
+  <div class="chart-wrap"><canvas id="chart-trans-csa"></canvas></div>
+  <p class="chart-desc">CDC BRFSS 2019&ndash;2020 data (n=519 trans, n=127,214 cis) found that 20% of transgender respondents reported childhood sexual abuse, compared to 12.8% of cisgender respondents (1.6&times; higher overall). When broken down by sex assigned at birth: AMAB trans individuals reported CSA at 17.1% vs 7.2% for cis males (2.4&times; higher), while AFAB trans individuals reported CSA at 22.9% vs 17.4% for cis females (1.3&times; higher).</p>
+
+  <div class="chart-wrap"><canvas id="chart-trans-csa-sex"></canvas></div>
+  <p class="chart-desc">Thoma et al. (2021), published in <em>Pediatrics</em> (n=1,055 trans adolescents), found 19% reported sexual abuse by a parent or adult caregiver (OR 2.04 vs cisgender peers). The same study found 73% reported psychological abuse and 39% reported physical abuse. These figures suggest that childhood trauma, particularly sexual abuse, is a significant factor in the backgrounds of many transgender-identifying individuals.</p>
+
   <div class="caveat">
-    <strong>Notes:</strong> Trans mental health statistics come from the 2022 U.S. Transgender Survey (n=92,329), a self-selected convenience sample. Suicide attempt rates are self-reported and may include non-lethal gestures. The Dhejne (2011) study compared post-surgery trans individuals to the general population, not to untreated trans individuals&mdash;it does not show that surgery made outcomes worse, only that outcomes remained elevated. Desistance studies vary in diagnostic criteria and era; older studies used broader definitions of gender nonconformity. The Olson (2022) cohort was pre-selected for children who had already socially transitioned, limiting generalizability. Short-term gender-affirming care studies show mental health improvements, but long-term data beyond 2&ndash;5 years is limited. The Cass Review criticized the evidence quality on both sides. Detransition rates are likely undercounted (Littman found 76% never informed clinicians). Bathroom crime data is limited by reporting inconsistencies.
+    <strong>Notes:</strong> Trans mental health statistics come from the 2022 U.S. Transgender Survey (n=92,329), a self-selected convenience sample. Suicide attempt rates are self-reported and may include non-lethal gestures. The Dhejne (2011) study compared post-surgery trans individuals to the general population, not to untreated trans individuals&mdash;it does not show that surgery made outcomes worse, only that outcomes remained elevated. Desistance studies vary in diagnostic criteria and era; older studies used broader definitions of gender nonconformity. The Olson (2022) cohort was pre-selected for children who had already socially transitioned, limiting generalizability. Short-term gender-affirming care studies show mental health improvements, but long-term data beyond 2&ndash;5 years is limited. The Cass Review criticized the evidence quality on both sides. Detransition rates are likely undercounted (Littman found 76% never informed clinicians). Bathroom crime data is limited by reporting inconsistencies. <strong>Sex offender data:</strong> UK Ministry of Justice FOI (2019), 76/129 trans prisoners with sexual offences. HMPPS (2023), trans-identifying prisoners principal offence data. GBNews/MoJ (2024), 151/245 trans women with sexual offences. Dhejne et al. (2011), criminality data. <strong>CSA data:</strong> CDC BRFSS 2019&ndash;2020 (n=127,733). Thoma et al., <em>Pediatrics</em> 148(2), 2021.
   </div>
 </section>
 
@@ -2026,50 +2049,6 @@ body::before {
   </div>
 </section>
 
-<!-- ===== TAB: TRANSGENDER ===== -->
-<section class="panel" id="panel-trans" role="tabpanel">
-  <h2 class="panel-title">Transgender</h2>
-  <p class="panel-desc">Data on transgender sex offender rates compared to the general population, and rates of childhood sexual abuse among transgender-identifying individuals. All figures are drawn from government records, peer-reviewed research, and official inquiries.</p>
-
-  <h3 class="section-head">Sex Offender Rates</h3>
-  <p class="chart-desc">Multiple UK Ministry of Justice datasets show that transgender women (biological males identifying as female) are convicted of sexual offences at dramatically higher rates than either the general male or female prison population.</p>
-
-  <div class="stat-row">
-    <div class="stat-tile"><p class="st-label">Trans Women with Sex Offences (2024 MoJ)</p><p class="st-value">62%</p></div>
-    <div class="stat-tile"><p class="st-label">General Male Prisoners with Sex Offences</p><p class="st-value">17%</p></div>
-    <div class="stat-tile"><p class="st-label">General Female Prisoners with Sex Offences</p><p class="st-value">3.3%</p></div>
-    <div class="stat-tile"><p class="st-label">Trans Women vs Male Rate</p><p class="st-value">3.5&times;</p></div>
-  </div>
-
-  <div class="chart-wrap"><canvas id="chart-trans-prison"></canvas></div>
-  <p class="chart-desc">In 2024, the UK Ministry of Justice reported that 151 of 245 trans women inmates who are legally male (62%) had at least one sexual offence&mdash;compared to roughly 17% of the general male prison population and 3.3% of female prisoners. Earlier FOI data (2019) showed 76 of 129 male-born trans prisoners (58.9%) had sexual offence convictions. HMPPS 2023 data confirmed 42&ndash;44% of male trans-identifying prisoners had a principal sexual offence vs 18% of the general male prison population.</p>
-
-  <div class="chart-wrap"><canvas id="chart-trans-pop"></canvas></div>
-  <p class="chart-desc">When measured against the general population rather than just the prison population, the disparity is even more striking. Using 2021 hard counts: 92 trans women serving for sex offences out of an estimated ~48,000 trans women population = 1 in 522. The general male rate is approximately 1 in 2,530, and the general female rate is approximately 1 in 295,000. Trans women are roughly 5&times; more likely than men and ~566&times; more likely than women to be serving for a sexual offence.</p>
-
-  <div class="chart-wrap"><canvas id="chart-trans-sweden"></canvas></div>
-  <p class="chart-desc">The Dhejne et al. (2011) Swedish cohort study followed 324 sex-reassigned persons (1973&ndash;2003) and found that male-to-female transitioners were 6&times; more likely than female controls to be convicted of any crime, and 18&times; more likely for violent offences. The authors concluded that MtF transsexuals &ldquo;retained a male pattern regarding criminality.&rdquo;</p>
-
-  <h3 class="section-head">Childhood Sexual Abuse</h3>
-  <p class="chart-desc">Multiple studies show significantly elevated rates of childhood sexual abuse among transgender-identifying individuals compared to cisgender peers.</p>
-
-  <div class="stat-row">
-    <div class="stat-tile"><p class="st-label">Trans CSA Rate (BRFSS)</p><p class="st-value">20%</p></div>
-    <div class="stat-tile"><p class="st-label">Cis CSA Rate (BRFSS)</p><p class="st-value">12.8%</p></div>
-    <div class="stat-tile"><p class="st-label">Trans Adolescent Sexual Abuse (Thoma 2021)</p><p class="st-value">19%</p></div>
-    <div class="stat-tile"><p class="st-label">Trans vs Cis Odds Ratio</p><p class="st-value">2.04&times;</p></div>
-  </div>
-
-  <div class="chart-wrap"><canvas id="chart-trans-csa"></canvas></div>
-  <p class="chart-desc">CDC BRFSS 2019&ndash;2020 data (n=519 trans, n=127,214 cis) found that 20% of transgender respondents reported childhood sexual abuse, compared to 12.8% of cisgender respondents (1.6&times; higher overall). When broken down by sex assigned at birth: AMAB trans individuals reported CSA at 17.1% vs 7.2% for cis males (2.4&times; higher), while AFAB trans individuals reported CSA at 22.9% vs 17.4% for cis females (1.3&times; higher).</p>
-
-  <div class="chart-wrap"><canvas id="chart-trans-csa-sex"></canvas></div>
-  <p class="chart-desc">Thoma et al. (2021), published in <em>Pediatrics</em> (n=1,055 trans adolescents), found 19% reported sexual abuse by a parent or adult caregiver (OR 2.04 vs cisgender peers). The same study found 73% reported psychological abuse and 39% reported physical abuse. These figures suggest that childhood trauma, particularly sexual abuse, is a significant factor in the backgrounds of many transgender-identifying individuals.</p>
-
-  <div class="source-note">
-    <p><strong>Sources:</strong> UK Ministry of Justice FOI (2019), 76/129 trans prisoners with sexual offences. BBC Reality Check (2018). HMPPS (2023), trans-identifying prisoners principal offence data. GBNews/MoJ (2024), 151/245 trans women with sexual offences. HMPPS Annual Report 2024&ndash;25, 339 total trans prisoners. Dhejne et al., &ldquo;Long-Term Follow-Up of Transsexual Persons,&rdquo; <em>PLoS ONE</em> 6(2), 2011. CDC BRFSS 2019&ndash;2020 (n=127,733). Thoma et al., &ldquo;Disparities in Childhood Abuse Between Transgender and Cisgender Adolescents,&rdquo; <em>Pediatrics</em> 148(2), 2021.</p>
-  </div>
-</section>
 
 <!-- ===== TAB 7: CENTURY OF DEATH ===== -->
 <section class="panel" id="panel-century-death" role="tabpanel">
