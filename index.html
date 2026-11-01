@@ -1963,6 +1963,8 @@ body::before {
 
   <p class="chart-desc"><strong>The dog semen claim:</strong> The claim that &ldquo;1 in 100 women swabbed have dog semen&rdquo; does not appear in any published peer-reviewed study. No gynecological screening study has reported testing for or detecting animal semen as a routine finding. The figure may originate from anecdotal clinical reports or misattributed claims. What IS documented: dogs are by far the most common animal involved in bestiality cases&mdash;~75% in the Virginia SVP study (Holoyda et al., 2020), ~70% in Edwards&rsquo; arrest analysis (1975&ndash;2015), and consistently across other forensic literature.</p>
 
+  <p class="chart-desc"><strong>Are female bestiality rates underreported?</strong> Kinsey&rsquo;s 3.6% figure for adult women (1953) is almost certainly an undercount. Prior to law-enforcement crackdowns, entire commercial pornography websites existed dedicated to women with dogs and horses, indicating a market far larger than 3.6% would suggest. A 2003 online survey by Beetz (n=113 zoophiles) found 12% were women&mdash;but this was a self-selected sample from zoophilia forums. The true prevalence among women is unknown: unlike male bestiality (often detected through animal abuse investigations), female bestiality rarely involves animal injury and thus rarely enters the criminal justice system. The combination of lower detection rates, social desirability bias in surveys, and the existence of a substantial commercial pornography industry suggests actual rates are meaningfully higher than Kinsey&rsquo;s estimates.</p>
+
   <p class="chart-desc"><strong>Bestiality&ndash;child abuse link:</strong> Among sexually violent predators in Virginia, those with bestiality histories were significantly more likely to have also committed child sexual abuse (63.6% vs. 38.5%, p&lt;.005) and to have been victims of childhood sexual abuse themselves. Edwards (2019) found that in 456 bestiality-related arrests (1975&ndash;2015), 144 (31.6%) also involved direct sexual victimization of 213 children.</p>
 
   <h3 class="section-head">Child Sexual Abuse &mdash; Perpetrator Demographics</h3>
@@ -1975,6 +1977,10 @@ body::before {
   <div class="chart-wrap"><canvas id="chart-sd-race"></canvas></div>
 
   <p class="chart-desc"><strong>Racial disparity context:</strong> White individuals make up ~67% of registered sex offenders versus ~60% of the U.S. population (slight overrepresentation). African Americans make up ~22% of registered sex offenders versus ~13% of the population (significant overrepresentation). Research on online CSAM offenders specifically finds even stronger white overrepresentation. Multiple studies suggest these disparities reflect both actual offense rates and systemic differences in detection, reporting, prosecution, and plea bargaining.</p>
+
+  <p class="chart-subtitle">Per capita sex offender registration rate by race (per 100,000)</p>
+  <div class="chart-wrap"><canvas id="chart-sd-percapita"></canvas></div>
+  <p class="chart-desc"><strong>Rate-adjusted data:</strong> Ackerman et al. (2011, n=445,000+) found that approximately 1 in 100 Black men in the U.S. are on a sex offender registry (~1,000 per 100K), compared to roughly 1 in 200 white men (~500 per 100K)&mdash;a 2:1 ratio. Ticknor &amp; Warner (2018) found Black men are also ~2x more likely to be classified at higher risk tiers on registries, even after controlling for offense characteristics. These per capita figures reveal a disparity that raw percentage shares obscure: while white offenders make up the largest share by count (67%), the rate of registration relative to population is significantly higher for Black men.</p>
 
   <p class="chart-subtitle">Federal sexual offense sentencing by race (USSC FY2024)</p>
   <div class="chart-wrap"><canvas id="chart-sd-federal"></canvas></div>
@@ -1992,10 +1998,30 @@ body::before {
     <div class="stat-tile"><p class="st-label">Perpetrator Age 25&ndash;44</p><p class="st-value">69.4%</p></div>
   </div>
 
+  <h3 class="section-head">UK Grooming Gang Inquiry</h3>
+  <p class="chart-desc">A series of UK government inquiries and police investigations have exposed large-scale child sexual exploitation (CSE) networks operating across England. Perpetrators were overwhelmingly men of Pakistani Muslim heritage, and victims were predominantly white British girls. Official reports documented systematic institutional failures by police, councils, and social services.</p>
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">Rotherham Victims (1997&ndash;2013)</p><p class="st-value">1,400+</p></div>
+    <div class="stat-tile"><p class="st-label">Telford Victims</p><p class="st-value">1,000+</p></div>
+    <div class="stat-tile"><p class="st-label">UK Areas Affected (Lowe Report)</p><p class="st-value">149</p></div>
+    <div class="stat-tile"><p class="st-label">Met Police CSE Cases Under Review (2025)</p><p class="st-value">9,000</p></div>
+  </div>
+
+  <p class="chart-subtitle">Grooming gang perpetrator demographics (multiple UK inquiries)</p>
+  <div class="chart-wrap"><canvas id="chart-sd-grooming"></canvas></div>
+  <p class="chart-desc"><strong>Key findings:</strong> The Jay Report (2014) on Rotherham found &ldquo;the majority of perpetrators were of Pakistani heritage&rdquo; and that agencies had suppressed reports out of fear of appearing racist. Christian Concern&rsquo;s 2018 analysis of 264 convicted grooming gang members found 87% had &ldquo;distinctively Muslim names.&rdquo; The Telford Inquiry (2022) documented similar patterns. A 2020 Home Office report found group-based CSE perpetrators were &ldquo;most commonly white,&rdquo; but this counted all group-based CSE (including online), while the &ldquo;grooming gang&rdquo; model&mdash;street grooming of girls through gifts, alcohol, and drugs&mdash;was overwhelmingly associated with men of South Asian (predominantly Pakistani) heritage. In Oct 2025 the Met Police announced 9,000 CSE cases under active review.</p>
+
+  <h3 class="section-head">Hispanic-as-White Misclassification in Crime Statistics</h3>
+  <p class="chart-desc">Until 2013, the FBI&rsquo;s Uniform Crime Reports (UCR) had no separate &ldquo;Hispanic&rdquo; category. Hispanic offenders were classified as &ldquo;white&rdquo; in arrest data, inflating &ldquo;white&rdquo; crime statistics. The FBI briefly collected Hispanic ethnicity data from 1980&ndash;1987, then dropped it for 26 years. Even after 2013, many jurisdictions still fail to report ethnicity separately. Over half of Census Hispanics self-identify racially as &ldquo;white,&rdquo; further compounding the issue.</p>
+
+  <p class="chart-subtitle">Effect of Hispanic-as-white classification on violent crime arrest shares</p>
+  <div class="chart-wrap"><canvas id="chart-sd-hispanic"></canvas></div>
+  <p class="chart-desc"><strong>The inflation effect:</strong> DOJ/BJS 2018 data shows Hispanics comprise ~18% of the U.S. population and ~18% of violent crime arrests. When Hispanic offenders are lumped into the &ldquo;white&rdquo; category (as was standard in FBI UCR data for decades), the &ldquo;white&rdquo; share of violent crime arrests jumps from ~46% to ~64%&mdash;an 18-percentage-point inflation. This same misclassification applies to sex offender registries, federal sentencing data, and all crime statistics that used the old UCR racial categories. Any chart on this page showing &ldquo;white&rdquo; crime statistics from FBI data prior to 2013 includes Hispanic offenders in the white category.</p>
+
   <p class="chart-desc"><strong>On ideology:</strong> No rigorous, large-scale study has found a statistically significant correlation between political ideology and rates of child sexual abuse perpetration. High-profile cases exist across the political spectrum. The claim that one political party&rsquo;s members are more likely to be child abusers is a common partisan talking point not supported by peer-reviewed research. The strongest predictors of child sexual abuse perpetration are: prior victimization, substance abuse, access to children, and personality disorders&mdash;not political affiliation.</p>
 
   <div class="source-note">
-    <p><strong>Sources:</strong> Kinsey et al. (1948, 1953). Hunt (1974). Holoyda et al., &ldquo;Bestiality Among Sexually Violent Predators,&rdquo; <em>JAAPL</em> 48(3), 2020. Edwards, &ldquo;Arrest and Prosecution of Animal Sex Abuse Offenders, 1975&ndash;2015,&rdquo; <em>Journal of the American Academy of Psychiatry and the Law</em>, 2019. U.S. Sentencing Commission FY2024 data. Ackerman et al. (2011), sex offender registry analysis (n=445,000+). NCANDS/HHS FFY2024 child maltreatment data. NISMART-2 (perpetrator gender). Shakeshaft (2004), educator sexual misconduct. John Jay Report (2004), Catholic clergy abuse. Denney et al. (2022), K-12 educator sexual misconduct.</p>
+    <p><strong>Sources:</strong> Kinsey et al. (1948, 1953). Hunt (1974). Holoyda et al., &ldquo;Bestiality Among Sexually Violent Predators,&rdquo; <em>JAAPL</em> 48(3), 2020. Edwards, &ldquo;Arrest and Prosecution of Animal Sex Abuse Offenders, 1975&ndash;2015,&rdquo; <em>JAAPL</em>, 2019. Beetz (2003), online zoophilia survey. U.S. Sentencing Commission FY2024 data. Ackerman et al. (2011), sex offender registry analysis (n=445,000+). Ticknor &amp; Warner (2018), racial disparity in sex offender classification. NCANDS/HHS FFY2024 child maltreatment data. NISMART-2. Shakeshaft (2004). John Jay Report (2004). Denney et al. (2022). Jay Report (2014), Rotherham CSE inquiry. Telford Inquiry (2022). Christian Concern (2018), grooming gang demographics. Lowe Report, 149 local authority areas. Met Police (Oct 2025), 9,000 CSE cases. Home Office (2020), group-based CSE. FBI UCR methodology notes (Hispanic ethnicity classification). DOJ/BJS (2018), violent crime arrest demographics.</p>
   </div>
 </section>
 
@@ -5345,6 +5371,68 @@ function buildCharts() {
         x: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 11 } }, grid: { display: false } }
       },
       plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y + '% (mid-range est.)' } } }
+    }
+  });
+
+  // Per capita sex offender registration rate
+  new Chart(document.getElementById('chart-sd-percapita'), {
+    type: 'bar',
+    data: {
+      labels: ['White', 'Black', 'Hispanic', 'Native American'],
+      datasets: [{
+        label: 'Per 100,000 population',
+        data: [500, 1000, 250, 800],
+        backgroundColor: [C.cat[0], C.cat[1], C.cat[2], C.cat[3]],
+        borderRadius: 4, barPercentage: 0.7
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true, ticks: { color: C.fgSec }, grid: { color: C.grid }, title: { display: !isMobile, text: 'Per 100,000 population', color: C.fgSec } },
+        x: { ticks: { color: C.fgSec }, grid: { display: false } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y + ' per 100K' } } }
+    }
+  });
+
+  // UK Grooming gang perpetrator demographics
+  new Chart(document.getElementById('chart-sd-grooming'), {
+    type: 'bar',
+    data: {
+      labels: ['Pakistani/\nSouth Asian', 'White British', 'Other/\nUnknown'],
+      datasets: [
+        { label: 'Jay Report (Rotherham)', data: [75, 15, 10], backgroundColor: C.cat[0], borderRadius: 4, barPercentage: 0.65, categoryPercentage: 0.8 },
+        { label: 'Christian Concern 2018 (264 convicted)', data: [87, 8, 5], backgroundColor: C.cat[2], borderRadius: 4, barPercentage: 0.65, categoryPercentage: 0.8 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true, max: 100, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 11 } }, grid: { display: false } }
+      },
+      plugins: { legend: { display: true, labels: { color: C.fg, boxWidth: 12 } }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } } }
+    }
+  });
+
+  // Hispanic-as-white misclassification effect
+  new Chart(document.getElementById('chart-sd-hispanic'), {
+    type: 'bar',
+    data: {
+      labels: ['White\n(non-Hispanic)', 'Hispanic', 'Black', 'Other'],
+      datasets: [
+        { label: 'Actual (separated)', data: [46, 18, 28, 8], backgroundColor: C.cat[4], borderRadius: 4, barPercentage: 0.65, categoryPercentage: 0.8 },
+        { label: 'FBI UCR (Hispanic as white)', data: [64, 0, 28, 8], backgroundColor: C.cat[0], borderRadius: 4, barPercentage: 0.65, categoryPercentage: 0.8 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true, max: 70, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid }, title: { display: !isMobile, text: '% of violent crime arrests', color: C.fgSec } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 11 } }, grid: { display: false } }
+      },
+      plugins: { legend: { display: true, labels: { color: C.fg, boxWidth: 12 } }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } } }
     }
   });
 
