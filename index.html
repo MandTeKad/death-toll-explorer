@@ -482,6 +482,7 @@ body::before {
     </optgroup>
     <optgroup label="Political &amp; Economic">
       <option value="party-performance">Party Performance</option>
+      <option value="trump-precovid">Trump: Pre-COVID Analysis</option>
     </optgroup>
     <optgroup label="The Big Picture">
       <option value="preventable">Scale Comparison</option>
@@ -2119,6 +2120,61 @@ body::before {
 </section>
 
 
+<!-- ===== TRUMP PRE-COVID ANALYSIS ===== -->
+<section class="panel" id="panel-trump-precovid" role="tabpanel">
+  <h2 class="panel-title">Trump First Term: Pre-COVID Analysis</h2>
+  <p class="panel-desc">Trump&rsquo;s first term is uniquely distorted by COVID-19, which hit in March 2020 and caused the sharpest economic contraction since the Great Depression. This panel isolates the pre-pandemic economy (Jan 2017&ndash;Feb 2020) from the COVID shock to give a fairer picture of policy-driven outcomes. <strong>Neither narrative is complete alone</strong>&mdash;the pre-COVID numbers exclude a crisis that happened on his watch, while the full-term numbers blame a president for a global pandemic. Both deserve examination.</p>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">Pre-COVID GDP Avg</p><p class="st-value">2.5%</p></div>
+    <div class="stat-tile"><p class="st-label">Full Term GDP Avg</p><p class="st-value">1.4%</p></div>
+    <div class="stat-tile"><p class="st-label">Pre-COVID Jobs</p><p class="st-value">+6.7M</p></div>
+    <div class="stat-tile"><p class="st-label">Full Term Jobs</p><p class="st-value">&minus;2.7M</p></div>
+  </div>
+
+  <h3 class="section-head">GDP Growth by Year</h3>
+  <p class="chart-desc">Annual real GDP growth during each year of Trump&rsquo;s first term. The first three years averaged 2.5%&mdash;solid but below the 3&ndash;4% growth promised during the 2016 campaign. The 2017 Tax Cuts &amp; Jobs Act (TCJA) contributed to the 2018 bump to 3.0%, but growth was already slowing in 2019 before COVID hit. The &minus;2.2% in 2020 reflects the pandemic recession that wiped out three years of gains.</p>
+  <div class="chart-wrap"><canvas id="chart-tp-gdp-year"></canvas></div>
+
+  <h3 class="section-head">The Unemployment Cliff</h3>
+  <p class="chart-desc">Monthly unemployment rate from inauguration to departure. Trump inherited Obama&rsquo;s recovery and continued driving unemployment down from 4.7% to a 50-year low of 3.5% by late 2019. Then COVID caused the most dramatic spike in recorded history&mdash;to 14.7% in April 2020. By January 2021, it had recovered to 6.4%, still 1.7 points above where he started. The pre-COVID trend was genuinely strong; the question is how much credit belongs to inherited momentum vs. new policy.</p>
+  <div class="chart-wrap"><canvas id="chart-tp-unemp-line"></canvas></div>
+
+  <h3 class="section-head">Job Creation: Monthly Average</h3>
+  <p class="chart-desc">Average jobs added per month, comparing Trump pre-COVID against Obama&rsquo;s last three years and Trump&rsquo;s full term. Pre-COVID, Trump averaged ~181K jobs/month&mdash;respectable but slightly below Obama&rsquo;s final stretch (~227K/month in 2014&ndash;2016). The full-term average of &minus;56K/month is entirely a COVID artifact. Context: the economy Trump inherited was already at near-full employment, making large monthly gains harder.</p>
+  <div class="chart-wrap"><canvas id="chart-tp-jobs-compare"></canvas></div>
+
+  <h3 class="section-head">Pre-COVID vs. Full Term Scorecard</h3>
+  <p class="chart-desc">Key economic metrics side by side&mdash;what Trump&rsquo;s record looks like with and without the COVID year. On every measure, the pre-COVID numbers tell a fundamentally different story than the full-term figures. This is the core argument for evaluating any pandemic-era president (Trump and Biden alike) on pre/post-COVID splits rather than raw term averages.</p>
+  <div class="chart-wrap"><canvas id="chart-tp-scorecard"></canvas></div>
+
+  <h3 class="section-head">Where Pre-COVID Trump Ranks (GDP)</h3>
+  <p class="chart-desc">When you remove 2020 from Trump&rsquo;s average, his 2.5% GDP growth moves from second-to-last among post-war presidents up to the middle of the pack&mdash;ahead of Obama (1.7%), G.H.W. Bush (2.2%), Ford (1.6%), and Biden (including his COVID rebound). Still behind Clinton (3.9%), Johnson (5.3%), Kennedy (4.4%), Reagan (3.5%), Carter (3.3%), Eisenhower (3.0%), and Nixon (3.0%).</p>
+  <div class="chart-wrap"><canvas id="chart-tp-gdp-rank"></canvas></div>
+
+  <h3 class="section-head">What the Numbers Don&rsquo;t Capture</h3>
+  <div class="table-wrap">
+  <table class="data-table">
+    <thead><tr><th>Factor</th><th>Pre-COVID Reality</th><th>What COVID Changed</th></tr></thead>
+    <tbody>
+      <tr><td>GDP Growth</td><td>Averaged 2.5%&mdash;solid continuation of Obama-era recovery, boosted by 2017 TCJA tax cuts</td><td>2020 contraction of &minus;2.2% pulled the full-term average to 1.4%</td></tr>
+      <tr><td>Jobs</td><td>+6.7M through Feb 2020 (~181K/month). Below Obama&rsquo;s peak but respectable at near-full employment</td><td>22M jobs lost in spring 2020; only partial recovery by Jan 2021. Full term: &minus;2.7M net</td></tr>
+      <tr><td>Unemployment</td><td>Drove rate from 4.7% to 3.5%&mdash;lowest since 1969. Broad-based, with record lows for Black and Hispanic workers</td><td>Spiked to 14.7% (April 2020). Recovered to 6.4% by departure&mdash;still 1.7 points above start</td></tr>
+      <tr><td>Stock Market</td><td>S&amp;P 500 up ~45% from inauguration to pre-COVID peak (Feb 19, 2020)</td><td>Crashed 34% in March 2020, then recovered. Full term: S&amp;P up ~68%</td></tr>
+      <tr><td>Wages</td><td>Real wages rose steadily; production workers saw strongest gains in years</td><td>Statistical distortion&mdash;low-wage workers lost jobs first, artificially raising average wages</td></tr>
+      <tr><td>Trade Deficit</td><td>Narrowed slightly despite trade wars with China. Monthly rate: $37B in Feb 2020 (vs. $43B at inauguration)</td><td>Exploded to $67B/month by mid-2020 as imports surged and exports collapsed</td></tr>
+      <tr><td>National Debt</td><td>Already growing at ~5% annually from TCJA tax cuts (projected to add $1.9T over 10 years)</td><td>CARES Act and relief spending added ~$3.1T in 2020 alone. Debt-to-GDP hit 100% for first time</td></tr>
+      <tr><td>Manufacturing</td><td>Initially added jobs, but entered a mild recession in 2019 (trade war impact)</td><td>Lost 1.4M manufacturing jobs in spring 2020; only partially recovered</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p class="chart-desc" style="margin-top:1.5rem"><strong>The Fair Assessment:</strong> Pre-COVID, Trump presided over a solid if unspectacular economy&mdash;continuing trends inherited from the Obama recovery, with a short-term boost from the TCJA. The economy was at or near full employment with low inflation. Growth was slowing by 2019 as the tax-cut stimulus faded and trade wars created uncertainty. Manufacturing had already entered a mild contraction. COVID then overwhelmed everything&mdash;no president of either party could have prevented the initial economic shock, though pandemic response choices affected the depth and duration of the downturn.</p>
+
+  <p class="chart-desc" style="margin-top:1rem"><strong>Sources:</strong> Bureau of Economic Analysis (GDP by year), Bureau of Labor Statistics (unemployment monthly data, nonfarm payrolls, wage data), Census Bureau (median household income), S&amp;P Dow Jones Indices, FactCheck.org &ldquo;Trump&rsquo;s Final Numbers&rdquo; (Oct 2021), Fortune &ldquo;The U.S. Economy Under Trump&rdquo; (Oct 2020), Congressional Budget Office (TCJA revenue impact).</p>
+</section>
+
+
 <!-- ===== TAB 7: CENTURY OF DEATH ===== -->
 <section class="panel" id="panel-century-death" role="tabpanel">
   <h2 class="panel-title">Century of Death (1924&ndash;2024)</h2>
@@ -2431,7 +2487,7 @@ function setMobileChartHeights() {
     if (!canvas) return;
     const id = canvas.id;
     // Horizontal bars need more vertical space on mobile
-    if (['chart-overview-bar','chart-rape-funnel','chart-mm-intl','chart-pd-bans','chart-pd-travel','chart-prev-bar','chart-sd-gender'].includes(id)) {
+    if (['chart-overview-bar','chart-rape-funnel','chart-mm-intl','chart-pd-bans','chart-pd-travel','chart-prev-bar','chart-sd-gender','chart-tp-gdp-rank'].includes(id)) {
       el.style.minHeight = '380px';
     } else if (id === 'chart-rape-false') {
       el.style.minHeight = '480px'; // 11 studies need room
@@ -5813,6 +5869,160 @@ function buildCharts() {
           { text: 'Republican', fillStyle: '#ef4444', strokeStyle: '#ef4444' }
         ], color: C.fg } },
         tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y.toFixed(1) + '% annualized debt growth' } }
+      }
+    }
+  });
+
+  // ===== TRUMP PRE-COVID ANALYSIS CHARTS =====
+
+  // GDP Growth by Year (Trump 1st Term)
+  const tpGdpYears = [2.3, 3.0, 2.3, -2.2];
+  new Chart(document.getElementById('chart-tp-gdp-year'), {
+    type: 'bar',
+    data: {
+      labels: ['2017', '2018', '2019', '2020 (COVID)'],
+      datasets: [{
+        data: tpGdpYears,
+        backgroundColor: tpGdpYears.map(v => v < 0 ? '#f97316' : '#ef4444'),
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { color: C.fgSec }, grid: { display: false } },
+        y: { title: { display: true, text: 'Real GDP Growth %', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } }
+      },
+      plugins: {
+        legend: { display: true, labels: { generateLabels: () => [
+          { text: 'Pre-COVID', fillStyle: '#ef4444', strokeStyle: '#ef4444' },
+          { text: 'COVID Year', fillStyle: '#f97316', strokeStyle: '#f97316' }
+        ], color: C.fg } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y.toFixed(1) + '% GDP growth' } }
+      }
+    }
+  });
+
+  // The Unemployment Cliff — line chart
+  new Chart(document.getElementById('chart-tp-unemp-line'), {
+    type: 'line',
+    data: {
+      labels: ['Jan 17','Apr 17','Jul 17','Oct 17','Jan 18','Apr 18','Jul 18','Oct 18','Jan 19','Apr 19','Jul 19','Oct 19','Jan 20','Feb 20','Mar 20','Apr 20','Jul 20','Oct 20','Jan 21'],
+      datasets: [{
+        data: [4.7,4.4,4.3,4.1,4.1,3.9,3.9,3.7,4.0,3.6,3.7,3.6,3.6,3.5,4.4,14.7,10.2,6.9,6.7],
+        borderColor: '#ef4444',
+        backgroundColor: 'rgba(239,68,68,0.08)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: [5,2,2,2,2,2,2,2,2,2,2,2,2,5,2,5,2,2,5],
+        pointBackgroundColor: ['#ef4444','#ef4444','#ef4444','#ef4444','#ef4444','#ef4444','#ef4444','#ef4444','#ef4444','#ef4444','#ef4444','#ef4444','#ef4444','#ef4444','#ef4444','#f97316','#ef4444','#ef4444','#ef4444'],
+        borderWidth: 2.5
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { color: C.fgSec, maxRotation: 45, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } },
+        y: { title: { display: true, text: 'Unemployment Rate %', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid }, min: 0 }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y + '% unemployment' } }
+      }
+    }
+  });
+
+  // Job Creation: Monthly Average comparison
+  new Chart(document.getElementById('chart-tp-jobs-compare'), {
+    type: 'bar',
+    data: {
+      labels: ['Obama\n(2014–2016)', 'Trump\nPre-COVID', 'Trump\nFull Term'],
+      datasets: [{
+        data: [227, 181, -56],
+        backgroundColor: ['#3b82f6', '#ef4444', '#f97316'],
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 12 } }, grid: { display: false } },
+        y: { title: { display: true, text: 'Avg Jobs Added per Month (K)', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => v + 'K' }, grid: { color: C.grid } }
+      },
+      plugins: {
+        legend: { display: true, labels: { generateLabels: () => [
+          { text: 'Democrat', fillStyle: '#3b82f6', strokeStyle: '#3b82f6' },
+          { text: 'Republican', fillStyle: '#ef4444', strokeStyle: '#ef4444' },
+          { text: 'COVID-Impacted', fillStyle: '#f97316', strokeStyle: '#f97316' }
+        ], color: C.fg } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const v = ctx.parsed.y;
+          return v >= 0 ? '+' + v + 'K jobs/month avg' : v + 'K jobs/month avg';
+        } } }
+      }
+    }
+  });
+
+  // Pre-COVID vs Full Term Scorecard
+  new Chart(document.getElementById('chart-tp-scorecard'), {
+    type: 'bar',
+    data: {
+      labels: ['GDP Growth\n(%)', 'Unemployment\nChange (pp)', 'Jobs/Month\n(K, ÷10)', 'S&P 500\nAnnualized (%)'],
+      datasets: [
+        { label: 'Pre-COVID', data: [2.5, -1.2, 18.1, 14], backgroundColor: '#22c55e', borderRadius: 4 },
+        { label: 'Full Term', data: [1.4, 1.7, -5.6, 16], backgroundColor: '#f97316', borderRadius: 4 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } },
+        y: { ticks: { color: C.fgSec }, grid: { color: C.grid } }
+      },
+      plugins: {
+        legend: { display: true, labels: { color: C.fg } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          const lbl = ctx.dataset.label;
+          const cat = ctx.label.split('\n')[0];
+          return lbl + ': ' + ctx.parsed.y;
+        } } }
+      }
+    }
+  });
+
+  // Where Pre-COVID Trump Ranks (GDP)
+  const tpRankLabels = ['Johnson','Kennedy','Clinton','Reagan','Carter','Eisenhower','Nixon','Trump\n(Pre-COVID)','G.H.W.\nBush','G.W.\nBush','Obama','Biden','Ford','Trump\n(Full Term)'];
+  const tpRankData = [5.3,4.4,3.9,3.5,3.3,3.0,3.0,2.5,2.2,2.2,1.7,3.6,1.6,1.4];
+  const tpRankParties = ['D','D','D','R','D','R','R','R','R','R','D','D','R','R'];
+  new Chart(document.getElementById('chart-tp-gdp-rank'), {
+    type: 'bar',
+    data: {
+      labels: tpRankLabels,
+      datasets: [{
+        data: tpRankData,
+        backgroundColor: tpRankLabels.map((l,i) => {
+          if (l.includes('Pre-COVID')) return '#22c55e';
+          if (l.includes('Full Term')) return '#f97316';
+          return tpRankParties[i] === 'D' ? '#3b82f6' : '#ef4444';
+        }),
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      indexAxis: 'y',
+      scales: {
+        y: { ticks: { color: C.fgSec, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } },
+        x: { title: { display: true, text: 'Avg Annual Real GDP Growth %', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } }
+      },
+      plugins: {
+        legend: { display: true, labels: { generateLabels: () => [
+          { text: 'Democrat', fillStyle: '#3b82f6', strokeStyle: '#3b82f6' },
+          { text: 'Republican', fillStyle: '#ef4444', strokeStyle: '#ef4444' },
+          { text: 'Trump Pre-COVID', fillStyle: '#22c55e', strokeStyle: '#22c55e' },
+          { text: 'Trump Full Term', fillStyle: '#f97316', strokeStyle: '#f97316' }
+        ], color: C.fg } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.x.toFixed(1) + '% avg GDP growth' } }
       }
     }
   });
