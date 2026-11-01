@@ -480,6 +480,9 @@ body::before {
       <option value="fertility">Fertility &amp; Demographics</option>
       <option value="adoption">Adoption Gap</option>
     </optgroup>
+    <optgroup label="Political &amp; Economic">
+      <option value="party-performance">Party Performance</option>
+    </optgroup>
     <optgroup label="The Big Picture">
       <option value="preventable">Scale Comparison</option>
       <option value="century-death">Century of Death</option>
@@ -2047,6 +2050,72 @@ body::before {
   <div class="source-note">
     <p><strong>Sources:</strong> Kinsey et al. (1948, 1953). Hunt (1974). Holoyda et al., &ldquo;Bestiality Among Sexually Violent Predators,&rdquo; <em>JAAPL</em> 48(3), 2020. Edwards, &ldquo;Arrest and Prosecution of Animal Sex Abuse Offenders, 1975&ndash;2015,&rdquo; <em>JAAPL</em>, 2019. Beetz (2003), online zoophilia survey. U.S. Sentencing Commission FY2024 data. Ackerman et al. (2011), sex offender registry analysis (n=445,000+). Ticknor &amp; Warner (2018), racial disparity in sex offender classification. NCANDS/HHS FFY2024 child maltreatment data. NISMART-2. Shakeshaft (2004). John Jay Report (2004). Denney et al. (2022). Jay Report (2014), Rotherham CSE inquiry. Telford Inquiry (2022). Christian Concern (2018), grooming gang demographics. Lowe Report, 149 local authority areas. Met Police (Oct 2025), 9,000 CSE cases. Home Office (2020), group-based CSE. FBI UCR methodology notes (Hispanic ethnicity classification). DOJ/BJS (2018), violent crime arrest demographics.</p>
   </div>
+</section>
+
+
+<!-- ===== TAB: POLITICAL PARTY PERFORMANCE ===== -->
+<section class="panel" id="panel-party-performance" role="tabpanel">
+  <h2 class="panel-title">U.S. Political Party Performance</h2>
+  <p class="panel-desc">Economic indicators under each president from Eisenhower to Biden, drawn from BLS, BEA, and Federal Reserve data. <strong>Important context:</strong> Presidents inherit economies shaped by their predecessors&rsquo; policies, global events, and business cycles. GDP and jobs respond with a 12&ndash;18 month lag to policy changes. A president&rsquo;s first-year numbers largely reflect inherited conditions, while their final-year numbers often shape their successor&rsquo;s start. No president governs in a vacuum&mdash;oil shocks, pandemics, tech booms, and financial crises all shape outcomes regardless of party.</p>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">Avg GDP Growth (D)</p><p class="st-value">3.5%</p></div>
+    <div class="stat-tile"><p class="st-label">Avg GDP Growth (R)</p><p class="st-value">2.5%</p></div>
+    <div class="stat-tile"><p class="st-label">Avg Job Growth/mo (D)</p><p class="st-value">166K</p></div>
+    <div class="stat-tile"><p class="st-label">Avg Job Growth/mo (R)</p><p class="st-value">61K</p></div>
+  </div>
+  <p class="chart-desc" style="text-align:center;font-style:italic;margin-top:0">Party averages (Eisenhower&ndash;Biden). Includes COVID-era distortions for Trump &amp; Biden.</p>
+
+  <h3 class="section-head">GDP Growth by President</h3>
+  <p class="chart-desc">Average annual real GDP growth during each presidential term. Johnson benefited from post-WWII expansion and Great Society spending; Obama inherited the worst recession since the 1930s; Trump&rsquo;s average was dragged down by the COVID recession of 2020; Biden&rsquo;s was boosted by the post-COVID rebound.</p>
+  <div class="chart-wrap"><canvas id="chart-pp-gdp"></canvas></div>
+
+  <h3 class="section-head">Unemployment: Inherited vs. Left Behind</h3>
+  <p class="chart-desc">Unemployment rate at the start vs. end of each presidency. This chart reveals the &ldquo;hand-off effect&rdquo;&mdash;several presidents inherited high unemployment from their predecessor&rsquo;s economic conditions. Carter inherited Ford&rsquo;s 7.5% rate; Reagan inherited Carter&rsquo;s 7.5%; Obama inherited Bush&rsquo;s 7.8% from the financial crisis; Biden inherited Trump&rsquo;s 6.4% from COVID.</p>
+  <div class="chart-wrap"><canvas id="chart-pp-unemp"></canvas></div>
+
+  <h3 class="section-head">Job Creation by President</h3>
+  <p class="chart-desc">Total nonfarm jobs added (millions) during each full presidential term, per BLS data. Trump&rsquo;s negative number reflects COVID-19 job losses in 2020. Biden&rsquo;s large number includes recovery of those same lost jobs. Excluding COVID effects, Trump added ~6.7M jobs through Feb 2020 and Biden&rsquo;s net new (beyond pre-COVID levels) was ~3.4M.</p>
+  <div class="chart-wrap"><canvas id="chart-pp-jobs"></canvas></div>
+
+  <h3 class="section-head">S&amp;P 500 Annualized Returns</h3>
+  <p class="chart-desc">Average annualized stock market return during each presidency. Markets respond to global conditions, monetary policy (set by the independent Federal Reserve), corporate earnings, and investor sentiment&mdash;not just presidential policy. Ford&rsquo;s high return came from recovery after Nixon&rsquo;s crash; G.W. Bush&rsquo;s negative return reflects the dot-com bust (inherited) and the 2008 financial crisis.</p>
+  <div class="chart-wrap"><canvas id="chart-pp-sp500"></canvas></div>
+
+  <h3 class="section-head">Inflation (CPI) by President</h3>
+  <p class="chart-desc">Average annual CPI inflation rate. Nixon/Ford faced the 1973 oil embargo; Carter faced the 1979 Iranian revolution oil shock. Reagan&rsquo;s Fed Chair Paul Volcker crushed inflation with historic interest rate hikes (peaking at 20%). Biden&rsquo;s spike came from COVID supply-chain disruptions, stimulus spending, and the Ukraine war&rsquo;s effect on energy prices.</p>
+  <div class="chart-wrap"><canvas id="chart-pp-inflation"></canvas></div>
+
+  <h3 class="section-head">National Debt Growth</h3>
+  <p class="chart-desc">Annualized growth rate of total federal debt during each presidency. Context matters enormously: Reagan&rsquo;s debt growth funded defense buildup and tax cuts; Obama&rsquo;s reflected stimulus spending to combat the Great Recession; Trump&rsquo;s included COVID relief spending; Biden&rsquo;s continued pandemic-era spending plus infrastructure investment. Congress controls the budget&mdash;presidents propose, but the House and Senate appropriate funds.</p>
+  <div class="chart-wrap"><canvas id="chart-pp-debt"></canvas></div>
+
+  <h3 class="section-head">The Inherited Economy Effect</h3>
+  <p class="chart-desc">Research by economists Alan Blinder, Mark Watson (Princeton), and James Campbell (Buffalo) shows that much of the Democratic-Republican performance gap can be explained by factors largely outside presidential control: oil price shocks, productivity trends, global growth, and inherited conditions. When you adjust for a 1-year policy lag (attributing each president&rsquo;s first year to their predecessor), the GDP gap narrows significantly but does not disappear.</p>
+  <div class="chart-wrap"><canvas id="chart-pp-lag"></canvas></div>
+
+  <h3 class="section-head">Key Context by Era</h3>
+  <div class="table-wrap">
+  <table class="data-table">
+    <thead><tr><th>President</th><th>Party</th><th>Major Events / Inherited Conditions</th></tr></thead>
+    <tbody>
+      <tr><td>Eisenhower</td><td>R</td><td>Post-WWII boom; Korean War ending; built interstate highway system; two mild recessions (1953, 1958)</td></tr>
+      <tr><td>Kennedy/Johnson</td><td>D</td><td>Tax cuts spurred growth; Great Society programs; Vietnam War escalation drove spending &amp; eventual inflation</td></tr>
+      <tr><td>Nixon</td><td>R</td><td>Inherited Vietnam inflation; ended gold standard (1971); 1973 oil embargo caused stagflation; Watergate</td></tr>
+      <tr><td>Ford</td><td>R</td><td>Inherited oil-shock recession &amp; Watergate fallout; &ldquo;Whip Inflation Now&rdquo; campaign largely failed</td></tr>
+      <tr><td>Carter</td><td>D</td><td>Inherited Ford&rsquo;s inflation; 1979 Iran oil shock pushed inflation to 13.5%; appointed Volcker to Fed</td></tr>
+      <tr><td>Reagan</td><td>R</td><td>Volcker&rsquo;s rate hikes crushed inflation but caused 1981&ndash;82 recession; tax cuts + defense spending grew debt; strong recovery 1983&ndash;88</td></tr>
+      <tr><td>G.H.W. Bush</td><td>R</td><td>Inherited S&amp;L crisis; 1990&ndash;91 recession; raised taxes despite &ldquo;read my lips&rdquo; pledge to reduce deficit</td></tr>
+      <tr><td>Clinton</td><td>D</td><td>Inherited mild recession&rsquo;s tail; dot-com boom; welfare reform; balanced budget by 1998; surpluses 1998&ndash;2001</td></tr>
+      <tr><td>G.W. Bush</td><td>R</td><td>Inherited dot-com bust; 9/11 attacks; Afghan &amp; Iraq wars; tax cuts; 2008 financial crisis in final year</td></tr>
+      <tr><td>Obama</td><td>D</td><td>Inherited worst recession since 1930s; TARP/stimulus; slow but steady recovery; ACA; low inflation era</td></tr>
+      <tr><td>Trump (1st)</td><td>R</td><td>Inherited strong economy; tax cuts (2017 TCJA); trade wars; COVID-19 pandemic in final year devastated jobs &amp; GDP</td></tr>
+      <tr><td>Biden</td><td>D</td><td>Inherited COVID recession; massive stimulus/infrastructure spending; post-COVID inflation spike; strong job recovery</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p class="chart-desc" style="margin-top:1.5rem"><strong>Sources:</strong> Bureau of Economic Analysis (GDP), Bureau of Labor Statistics (unemployment, jobs, CPI), Federal Reserve (debt), Dimensional Fund Advisors / S&amp;P Dow Jones Indices (stock returns), MeasuringWorth.com, Wikipedia &ldquo;U.S. economic performance by presidential party.&rdquo; Lag-adjusted GDP estimates from Blinder &amp; Watson (2016) &ldquo;Presidents and the U.S. Economy: An Econometric Exploration,&rdquo; American Economic Review.</p>
 </section>
 
 
@@ -5574,6 +5643,207 @@ function buildCharts() {
     { label: 'COVID-19', value: 1.2, display: '~1.2M', color: tC[4] },
     { label: 'War Deaths', value: 0.507, display: '~507K', color: tC[5] }
   ], 'total');
+
+  // ===== POLITICAL PARTY PERFORMANCE CHARTS =====
+  const ppPresidents = ['Eisenhower','Kennedy','Johnson','Nixon','Ford','Carter','Reagan','G.H.W. Bush','Clinton','G.W. Bush','Obama','Trump','Biden'];
+  const ppParties =    ['R','D','D','R','R','D','R','R','D','R','D','R','D'];
+  const ppColors = ppParties.map(p => p === 'D' ? '#3b82f6' : '#ef4444');
+
+  // GDP Growth by President
+  new Chart(document.getElementById('chart-pp-gdp'), {
+    type: 'bar',
+    data: {
+      labels: ppPresidents,
+      datasets: [{
+        data: [3.0, 4.4, 5.3, 3.0, 1.6, 3.3, 3.5, 2.2, 3.9, 2.2, 1.7, 1.4, 3.6],
+        backgroundColor: ppColors,
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { color: C.fgSec, maxRotation: 45, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } },
+        y: { title: { display: true, text: 'Avg Annual Real GDP Growth %', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } }
+      },
+      plugins: {
+        legend: { display: true, labels: { generateLabels: () => [
+          { text: 'Democrat', fillStyle: '#3b82f6', strokeStyle: '#3b82f6' },
+          { text: 'Republican', fillStyle: '#ef4444', strokeStyle: '#ef4444' }
+        ], color: C.fg } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y.toFixed(1) + '% avg annual GDP growth' } }
+      }
+    }
+  });
+
+  // Unemployment: Inherited vs Left Behind
+  new Chart(document.getElementById('chart-pp-unemp'), {
+    type: 'bar',
+    data: {
+      labels: ppPresidents,
+      datasets: [
+        { label: 'Inherited', data: [2.9,6.6,5.7,3.4,5.5,7.5,7.5,5.4,7.3,4.2,7.8,4.7,6.4], backgroundColor: C.cat[1], borderRadius: 4 },
+        { label: 'Left Behind', data: [6.6,5.7,3.4,5.5,7.5,7.5,5.4,7.3,4.2,7.8,4.7,6.4,3.9], backgroundColor: C.cat[3], borderRadius: 4 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { color: C.fgSec, maxRotation: 45, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } },
+        y: { title: { display: true, text: 'Unemployment Rate %', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } }
+      },
+      plugins: {
+        legend: { display: true, labels: { color: C.fg } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } }
+      }
+    }
+  });
+
+  // Job Creation by President
+  const ppJobsData = [3.5,5.9,9.9,6.2,5.1,10.3,16.1,2.6,22.9,1.4,11.6,-2.7,16.1];
+  new Chart(document.getElementById('chart-pp-jobs'), {
+    type: 'bar',
+    data: {
+      labels: ppPresidents,
+      datasets: [{
+        data: ppJobsData,
+        backgroundColor: ppJobsData.map((v,i) => {
+          if (v < 0) return '#f97316';
+          return ppParties[i] === 'D' ? '#3b82f6' : '#ef4444';
+        }),
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { color: C.fgSec, maxRotation: 45, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } },
+        y: { title: { display: true, text: 'Total Jobs Added (Millions)', color: C.fgSec }, ticks: { color: C.fgSec }, grid: { color: C.grid } }
+      },
+      plugins: {
+        legend: { display: true, labels: { generateLabels: () => [
+          { text: 'Democrat', fillStyle: '#3b82f6', strokeStyle: '#3b82f6' },
+          { text: 'Republican', fillStyle: '#ef4444', strokeStyle: '#ef4444' },
+          { text: 'Net Loss (COVID)', fillStyle: '#f97316', strokeStyle: '#f97316' }
+        ], color: C.fg } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y.toFixed(1) + 'M jobs ' + (ctx.parsed.y >= 0 ? 'added' : 'lost') } }
+      }
+    }
+  });
+
+  // S&P 500 Annualized Returns
+  const ppSP500 = [15,13,10,-1,19,12,15,16,17,-2,15,16,11];
+  new Chart(document.getElementById('chart-pp-sp500'), {
+    type: 'bar',
+    data: {
+      labels: ppPresidents,
+      datasets: [{
+        data: ppSP500,
+        backgroundColor: ppSP500.map((v,i) => {
+          if (v < 0) return '#f97316';
+          return ppParties[i] === 'D' ? '#3b82f6' : '#ef4444';
+        }),
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { color: C.fgSec, maxRotation: 45, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } },
+        y: { title: { display: true, text: 'Avg Annualized Return %', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } }
+      },
+      plugins: {
+        legend: { display: true, labels: { generateLabels: () => [
+          { text: 'Democrat', fillStyle: '#3b82f6', strokeStyle: '#3b82f6' },
+          { text: 'Republican', fillStyle: '#ef4444', strokeStyle: '#ef4444' },
+          { text: 'Negative', fillStyle: '#f97316', strokeStyle: '#f97316' }
+        ], color: C.fg } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y + '% annualized S&P 500 return' } }
+      }
+    }
+  });
+
+  // Inflation (CPI) by President
+  new Chart(document.getElementById('chart-pp-inflation'), {
+    type: 'bar',
+    data: {
+      labels: ppPresidents,
+      datasets: [{
+        data: [1.4, 1.2, 2.9, 6.4, 8.0, 9.7, 4.6, 4.4, 2.6, 2.8, 1.4, 1.9, 4.9],
+        backgroundColor: ppColors,
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { color: C.fgSec, maxRotation: 45, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } },
+        y: { title: { display: true, text: 'Avg Annual CPI Inflation %', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } }
+      },
+      plugins: {
+        legend: { display: true, labels: { generateLabels: () => [
+          { text: 'Democrat', fillStyle: '#3b82f6', strokeStyle: '#3b82f6' },
+          { text: 'Republican', fillStyle: '#ef4444', strokeStyle: '#ef4444' }
+        ], color: C.fg } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y.toFixed(1) + '% avg annual inflation' } }
+      }
+    }
+  });
+
+  // National Debt Growth by President
+  new Chart(document.getElementById('chart-pp-debt'), {
+    type: 'bar',
+    data: {
+      labels: ppPresidents,
+      datasets: [{
+        data: [1.4,2.1,2.9,5.2,10.0,9.4,14.1,11.8,4.3,7.4,8.7,8.3,7.1],
+        backgroundColor: ppColors,
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { color: C.fgSec, maxRotation: 45, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } },
+        y: { title: { display: true, text: 'Annualized Debt Growth %', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } }
+      },
+      plugins: {
+        legend: { display: true, labels: { generateLabels: () => [
+          { text: 'Democrat', fillStyle: '#3b82f6', strokeStyle: '#3b82f6' },
+          { text: 'Republican', fillStyle: '#ef4444', strokeStyle: '#ef4444' }
+        ], color: C.fg } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y.toFixed(1) + '% annualized debt growth' } }
+      }
+    }
+  });
+
+  // The Inherited Economy Effect — GDP with 1-year lag adjustment
+  new Chart(document.getElementById('chart-pp-lag'), {
+    type: 'bar',
+    data: {
+      labels: ['Democrat\nAvg (Raw)', 'Republican\nAvg (Raw)', 'Democrat\nAvg (Lag-Adj)', 'Republican\nAvg (Lag-Adj)'],
+      datasets: [{
+        data: [3.5, 2.5, 3.1, 2.8],
+        backgroundColor: ['#3b82f6', '#ef4444', '#93c5fd', '#fca5a5'],
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 12 } }, grid: { display: false } },
+        y: { title: { display: true, text: 'Avg Annual Real GDP Growth %', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid }, min: 0, max: 4.5 }
+      },
+      plugins: {
+        legend: { display: true, labels: { generateLabels: () => [
+          { text: 'Raw Average', fillStyle: '#3b82f6', strokeStyle: '#3b82f6' },
+          { text: 'Lag-Adjusted (1yr)', fillStyle: '#93c5fd', strokeStyle: '#93c5fd' }
+        ], color: C.fg } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y.toFixed(1) + '% GDP growth' } }
+      }
+    }
+  });
+
 }
 
 buildCharts();
