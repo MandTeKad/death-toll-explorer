@@ -475,6 +475,7 @@ body::before {
       <option value="fertility">Fertility & Demographics</option>
       <option value="adoption">Adoption Gap</option>
       <option value="preventable">Scale Comparison</option>
+      <option value="sexual-deviancy">Sexual Deviancy</option>
     </optgroup>
     <optgroup label="The Big Picture">
       <option value="century-death">Century of Death</option>
@@ -1937,6 +1938,67 @@ body::before {
   </div>
 </section>
 
+<!-- ===== SEXUAL DEVIANCY ===== -->
+<section class="panel" id="panel-sexual-deviancy" role="tabpanel">
+  <h2 class="panel-title">Sexual Deviancy</h2>
+  <p class="panel-desc">Data on the prevalence of bestiality (zoophilia) and the demographics of child sexual abuse perpetrators in the United States. All figures are drawn from peer-reviewed research, federal data, and law enforcement records.</p>
+
+  <h3 class="section-head">Bestiality / Zoophilia Prevalence</h3>
+  <p class="chart-desc">The Kinsey Reports (1948, 1953) produced the first large-scale prevalence estimates. More recent studies of specific populations (prisoners, forensic patients, sexually violent predators) show varying rates. No large-scale U.S. population survey has been conducted since Kinsey.</p>
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">Kinsey (1948) &mdash; U.S. Men</p><p class="st-value">~8%</p></div>
+    <div class="stat-tile"><p class="st-label">Kinsey &mdash; Farm-Raised Boys</p><p class="st-value">40&ndash;50%</p></div>
+    <div class="stat-tile"><p class="st-label">Kinsey (1953) &mdash; Adult Women</p><p class="st-value">3.6%</p></div>
+    <div class="stat-tile"><p class="st-label">Hunt (1974) &mdash; Urban Men</p><p class="st-value">4.9%</p></div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">SVPs with History (VA, 2020)</p><p class="st-value">2.6%</p></div>
+    <div class="stat-tile"><p class="st-label">Prison Populations (Hensley)</p><p class="st-value">6&ndash;20%</p></div>
+    <div class="stat-tile"><p class="st-label">Forensic Patients (Holoyda)</p><p class="st-value">3.6%</p></div>
+    <div class="stat-tile"><p class="st-label">Psychiatric Inpatients (Alvarez)</p><p class="st-value">45%</p></div>
+  </div>
+
+  <p class="chart-subtitle">Animals involved in bestiality cases (Virginia SVP study, n=33)</p>
+  <div class="chart-wrap"><canvas id="chart-sd-animals"></canvas></div>
+
+  <p class="chart-desc"><strong>The dog semen claim:</strong> The claim that &ldquo;1 in 100 women swabbed have dog semen&rdquo; does not appear in any published peer-reviewed study. No gynecological screening study has reported testing for or detecting animal semen as a routine finding. The figure may originate from anecdotal clinical reports or misattributed claims. What IS documented: dogs are by far the most common animal involved in bestiality cases&mdash;~75% in the Virginia SVP study (Holoyda et al., 2020), ~70% in Edwards&rsquo; arrest analysis (1975&ndash;2015), and consistently across other forensic literature.</p>
+
+  <p class="chart-desc"><strong>Bestiality&ndash;child abuse link:</strong> Among sexually violent predators in Virginia, those with bestiality histories were significantly more likely to have also committed child sexual abuse (63.6% vs. 38.5%, p&lt;.005) and to have been victims of childhood sexual abuse themselves. Edwards (2019) found that in 456 bestiality-related arrests (1975&ndash;2015), 144 (31.6%) also involved direct sexual victimization of 213 children.</p>
+
+  <h3 class="section-head">Child Sexual Abuse &mdash; Perpetrator Demographics</h3>
+  <p class="chart-desc">Federal data on who commits child sexual abuse in the United States. Note that &ldquo;child maltreatment&rdquo; (HHS data) includes all forms of abuse and neglect, not only sexual abuse. The USSC data covers federal sexual offense sentencing only. Sex offender registry data from Ackerman et al. (2011, n=445,000+).</p>
+
+  <p class="chart-subtitle">Perpetrator gender &mdash; overwhelmingly male for sexual offenses</p>
+  <div class="chart-wrap"><canvas id="chart-sd-gender"></canvas></div>
+
+  <p class="chart-subtitle">Sex offender registry &mdash; race/ethnicity (Ackerman et al., n=445,000+)</p>
+  <div class="chart-wrap"><canvas id="chart-sd-race"></canvas></div>
+
+  <p class="chart-desc"><strong>Racial disparity context:</strong> White individuals make up ~67% of registered sex offenders versus ~60% of the U.S. population (slight overrepresentation). African Americans make up ~22% of registered sex offenders versus ~13% of the population (significant overrepresentation). Research on online CSAM offenders specifically finds even stronger white overrepresentation. Multiple studies suggest these disparities reflect both actual offense rates and systemic differences in detection, reporting, prosecution, and plea bargaining.</p>
+
+  <p class="chart-subtitle">Federal sexual offense sentencing by race (USSC FY2024)</p>
+  <div class="chart-wrap"><canvas id="chart-sd-federal"></canvas></div>
+
+  <h3 class="section-head">Child Sexual Abuse by Institution</h3>
+  <p class="chart-desc">Estimated rates of sexual misconduct/abuse allegations against personnel in different institutional settings. These are not directly comparable&mdash;methodologies, definitions of &ldquo;abuse,&rdquo; time periods, and reporting rates differ significantly between studies.</p>
+
+  <p class="chart-subtitle">Estimated abuse/misconduct rates by institution</p>
+  <div class="chart-wrap"><canvas id="chart-sd-institution"></canvas></div>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">Children Sexually Abused (2014)</p><p class="st-value">58,105</p></div>
+    <div class="stat-tile"><p class="st-label">Knew Their Abuser</p><p class="st-value">71%</p></div>
+    <div class="stat-tile"><p class="st-label">Parent Was Perpetrator</p><p class="st-value">76.3%</p></div>
+    <div class="stat-tile"><p class="st-label">Perpetrator Age 25&ndash;44</p><p class="st-value">69.4%</p></div>
+  </div>
+
+  <p class="chart-desc"><strong>On ideology:</strong> No rigorous, large-scale study has found a statistically significant correlation between political ideology and rates of child sexual abuse perpetration. High-profile cases exist across the political spectrum. The claim that one political party&rsquo;s members are more likely to be child abusers is a common partisan talking point not supported by peer-reviewed research. The strongest predictors of child sexual abuse perpetration are: prior victimization, substance abuse, access to children, and personality disorders&mdash;not political affiliation.</p>
+
+  <div class="source-note">
+    <p><strong>Sources:</strong> Kinsey et al. (1948, 1953). Hunt (1974). Holoyda et al., &ldquo;Bestiality Among Sexually Violent Predators,&rdquo; <em>JAAPL</em> 48(3), 2020. Edwards, &ldquo;Arrest and Prosecution of Animal Sex Abuse Offenders, 1975&ndash;2015,&rdquo; <em>Journal of the American Academy of Psychiatry and the Law</em>, 2019. U.S. Sentencing Commission FY2024 data. Ackerman et al. (2011), sex offender registry analysis (n=445,000+). NCANDS/HHS FFY2024 child maltreatment data. NISMART-2 (perpetrator gender). Shakeshaft (2004), educator sexual misconduct. John Jay Report (2004), Catholic clergy abuse. Denney et al. (2022), K-12 educator sexual misconduct.</p>
+  </div>
+</section>
+
 <!-- ===== TAB 7: CENTURY OF DEATH ===== -->
 <section class="panel" id="panel-century-death" role="tabpanel">
   <h2 class="panel-title">Century of Death (1924&ndash;2024)</h2>
@@ -2249,7 +2311,7 @@ function setMobileChartHeights() {
     if (!canvas) return;
     const id = canvas.id;
     // Horizontal bars need more vertical space on mobile
-    if (['chart-overview-bar','chart-rape-funnel','chart-mm-intl','chart-pd-bans','chart-pd-travel','chart-prev-bar'].includes(id)) {
+    if (['chart-overview-bar','chart-rape-funnel','chart-mm-intl','chart-pd-bans','chart-pd-travel','chart-prev-bar','chart-sd-gender'].includes(id)) {
       el.style.minHeight = '380px';
     } else if (id === 'chart-rape-false') {
       el.style.minHeight = '480px'; // 11 studies need room
@@ -5184,6 +5246,105 @@ function buildCharts() {
         legend: { display: true, labels: { color: C.fg, boxWidth: 12, padding: 12 } },
         tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() } }
       }
+    }
+  });
+
+  // ===== SEXUAL DEVIANCY CHARTS =====
+  new Chart(document.getElementById('chart-sd-animals'), {
+    type: 'bar',
+    data: {
+      labels: ['Dogs', 'Cats', 'Pigs', 'Deer', 'Other'],
+      datasets: [{
+        data: [75, 15.2, 9.1, 6, 3],
+        backgroundColor: [C.cat[0], C.cat[1], C.cat[2], C.cat[3], C.cat[4]],
+        borderRadius: 4, barPercentage: 0.7
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec }, grid: { display: false } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y + '% of cases' } } }
+    }
+  });
+
+  new Chart(document.getElementById('chart-sd-gender'), {
+    type: 'bar',
+    data: {
+      labels: ['Sexual Assault\n(NISMART-2)', 'Federal Sex\nOffenses (USSC)', 'Rape Arrests\n(FBI 2009)', 'All Child\nMaltreatment (HHS)'],
+      datasets: [
+        { label: 'Male', data: [95, 93.5, 99, 47], backgroundColor: C.cat[0], borderRadius: 4, barPercentage: 0.7 },
+        { label: 'Female', data: [5, 6.5, 1, 51.9], backgroundColor: C.cat[3], borderRadius: 4, barPercentage: 0.7 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+      scales: {
+        x: { stacked: true, max: 100, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        y: { stacked: true, ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 11 } }, grid: { display: false } }
+      },
+      plugins: { legend: { display: true, labels: { color: C.fg, boxWidth: 12 } }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.x + '%' } } }
+    }
+  });
+
+  new Chart(document.getElementById('chart-sd-race'), {
+    type: 'bar',
+    data: {
+      labels: ['White', 'Black', 'Hispanic', 'Other'],
+      datasets: [
+        { label: 'Sex Offender Registry', data: [67, 22, 8, 3], backgroundColor: C.cat[0], borderRadius: 4, barPercentage: 0.65, categoryPercentage: 0.8 },
+        { label: 'U.S. Population', data: [60, 13, 19, 8], backgroundColor: C.cat[4], borderRadius: 4, barPercentage: 0.65, categoryPercentage: 0.8 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec }, grid: { display: false } }
+      },
+      plugins: { legend: { display: true, labels: { color: C.fg, boxWidth: 12 } }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } } }
+    }
+  });
+
+  new Chart(document.getElementById('chart-sd-federal'), {
+    type: 'doughnut',
+    data: {
+      labels: ['White', 'Hispanic', 'Black', 'Native American', 'Other'],
+      datasets: [{
+        data: [55.1, 15.2, 13.9, 13.0, 2.8],
+        backgroundColor: [C.cat[0], C.cat[2], C.cat[1], C.cat[3], C.cat[4]],
+        borderColor: C.base, borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: true, position: 'right', labels: { color: C.fg, boxWidth: 12, font: { size: isMobile ? 9 : 11 } } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.label + ': ' + ctx.parsed + '%' } }
+      }
+    }
+  });
+
+  new Chart(document.getElementById('chart-sd-institution'), {
+    type: 'bar',
+    data: {
+      labels: ['K-12 Educators', 'Protestant\nClergy', 'Catholic\nClergy', 'Sports\nCoaches', 'General Adult\nMale Pop.'],
+      datasets: [{
+        label: 'Mid-range estimate',
+        data: [6, 3.5, 4, 3, 3],
+        backgroundColor: [C.cat[0], C.cat[1], C.cat[2], C.cat[3], C.cat[4]],
+        borderRadius: 4, barPercentage: 0.7
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid }, title: { display: !isMobile, text: 'Estimated abuse/misconduct rate', color: C.fgSec } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 11 } }, grid: { display: false } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y + '% (mid-range est.)' } } }
     }
   });
 
