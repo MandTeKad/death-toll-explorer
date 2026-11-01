@@ -476,6 +476,7 @@ body::before {
       <option value="adoption">Adoption Gap</option>
       <option value="preventable">Scale Comparison</option>
       <option value="sexual-deviancy">Sexual Deviancy</option>
+      <option value="trans">Transgender</option>
     </optgroup>
     <optgroup label="The Big Picture">
       <option value="century-death">Century of Death</option>
@@ -2022,6 +2023,51 @@ body::before {
 
   <div class="source-note">
     <p><strong>Sources:</strong> Kinsey et al. (1948, 1953). Hunt (1974). Holoyda et al., &ldquo;Bestiality Among Sexually Violent Predators,&rdquo; <em>JAAPL</em> 48(3), 2020. Edwards, &ldquo;Arrest and Prosecution of Animal Sex Abuse Offenders, 1975&ndash;2015,&rdquo; <em>JAAPL</em>, 2019. Beetz (2003), online zoophilia survey. U.S. Sentencing Commission FY2024 data. Ackerman et al. (2011), sex offender registry analysis (n=445,000+). Ticknor &amp; Warner (2018), racial disparity in sex offender classification. NCANDS/HHS FFY2024 child maltreatment data. NISMART-2. Shakeshaft (2004). John Jay Report (2004). Denney et al. (2022). Jay Report (2014), Rotherham CSE inquiry. Telford Inquiry (2022). Christian Concern (2018), grooming gang demographics. Lowe Report, 149 local authority areas. Met Police (Oct 2025), 9,000 CSE cases. Home Office (2020), group-based CSE. FBI UCR methodology notes (Hispanic ethnicity classification). DOJ/BJS (2018), violent crime arrest demographics.</p>
+  </div>
+</section>
+
+<!-- ===== TAB: TRANSGENDER ===== -->
+<section class="panel" id="panel-trans" role="tabpanel">
+  <h2 class="panel-title">Transgender</h2>
+  <p class="panel-desc">Data on transgender sex offender rates compared to the general population, and rates of childhood sexual abuse among transgender-identifying individuals. All figures are drawn from government records, peer-reviewed research, and official inquiries.</p>
+
+  <h3 class="section-head">Sex Offender Rates</h3>
+  <p class="chart-desc">Multiple UK Ministry of Justice datasets show that transgender women (biological males identifying as female) are convicted of sexual offences at dramatically higher rates than either the general male or female prison population.</p>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">Trans Women with Sex Offences (2024 MoJ)</p><p class="st-value">62%</p></div>
+    <div class="stat-tile"><p class="st-label">General Male Prisoners with Sex Offences</p><p class="st-value">17%</p></div>
+    <div class="stat-tile"><p class="st-label">General Female Prisoners with Sex Offences</p><p class="st-value">3.3%</p></div>
+    <div class="stat-tile"><p class="st-label">Trans Women vs Male Rate</p><p class="st-value">3.5&times;</p></div>
+  </div>
+
+  <div class="chart-wrap"><canvas id="chart-trans-prison"></canvas></div>
+  <p class="chart-desc">In 2024, the UK Ministry of Justice reported that 151 of 245 trans women inmates who are legally male (62%) had at least one sexual offence&mdash;compared to roughly 17% of the general male prison population and 3.3% of female prisoners. Earlier FOI data (2019) showed 76 of 129 male-born trans prisoners (58.9%) had sexual offence convictions. HMPPS 2023 data confirmed 42&ndash;44% of male trans-identifying prisoners had a principal sexual offence vs 18% of the general male prison population.</p>
+
+  <div class="chart-wrap"><canvas id="chart-trans-pop"></canvas></div>
+  <p class="chart-desc">When measured against the general population rather than just the prison population, the disparity is even more striking. Using 2021 hard counts: 92 trans women serving for sex offences out of an estimated ~48,000 trans women population = 1 in 522. The general male rate is approximately 1 in 2,530, and the general female rate is approximately 1 in 295,000. Trans women are roughly 5&times; more likely than men and ~566&times; more likely than women to be serving for a sexual offence.</p>
+
+  <div class="chart-wrap"><canvas id="chart-trans-sweden"></canvas></div>
+  <p class="chart-desc">The Dhejne et al. (2011) Swedish cohort study followed 324 sex-reassigned persons (1973&ndash;2003) and found that male-to-female transitioners were 6&times; more likely than female controls to be convicted of any crime, and 18&times; more likely for violent offences. The authors concluded that MtF transsexuals &ldquo;retained a male pattern regarding criminality.&rdquo;</p>
+
+  <h3 class="section-head">Childhood Sexual Abuse</h3>
+  <p class="chart-desc">Multiple studies show significantly elevated rates of childhood sexual abuse among transgender-identifying individuals compared to cisgender peers.</p>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">Trans CSA Rate (BRFSS)</p><p class="st-value">20%</p></div>
+    <div class="stat-tile"><p class="st-label">Cis CSA Rate (BRFSS)</p><p class="st-value">12.8%</p></div>
+    <div class="stat-tile"><p class="st-label">Trans Adolescent Sexual Abuse (Thoma 2021)</p><p class="st-value">19%</p></div>
+    <div class="stat-tile"><p class="st-label">Trans vs Cis Odds Ratio</p><p class="st-value">2.04&times;</p></div>
+  </div>
+
+  <div class="chart-wrap"><canvas id="chart-trans-csa"></canvas></div>
+  <p class="chart-desc">CDC BRFSS 2019&ndash;2020 data (n=519 trans, n=127,214 cis) found that 20% of transgender respondents reported childhood sexual abuse, compared to 12.8% of cisgender respondents (1.6&times; higher overall). When broken down by sex assigned at birth: AMAB trans individuals reported CSA at 17.1% vs 7.2% for cis males (2.4&times; higher), while AFAB trans individuals reported CSA at 22.9% vs 17.4% for cis females (1.3&times; higher).</p>
+
+  <div class="chart-wrap"><canvas id="chart-trans-csa-sex"></canvas></div>
+  <p class="chart-desc">Thoma et al. (2021), published in <em>Pediatrics</em> (n=1,055 trans adolescents), found 19% reported sexual abuse by a parent or adult caregiver (OR 2.04 vs cisgender peers). The same study found 73% reported psychological abuse and 39% reported physical abuse. These figures suggest that childhood trauma, particularly sexual abuse, is a significant factor in the backgrounds of many transgender-identifying individuals.</p>
+
+  <div class="source-note">
+    <p><strong>Sources:</strong> UK Ministry of Justice FOI (2019), 76/129 trans prisoners with sexual offences. BBC Reality Check (2018). HMPPS (2023), trans-identifying prisoners principal offence data. GBNews/MoJ (2024), 151/245 trans women with sexual offences. HMPPS Annual Report 2024&ndash;25, 339 total trans prisoners. Dhejne et al., &ldquo;Long-Term Follow-Up of Transsexual Persons,&rdquo; <em>PLoS ONE</em> 6(2), 2011. CDC BRFSS 2019&ndash;2020 (n=127,733). Thoma et al., &ldquo;Disparities in Childhood Abuse Between Transgender and Cisgender Adolescents,&rdquo; <em>Pediatrics</em> 148(2), 2021.</p>
   </div>
 </section>
 
@@ -5433,6 +5479,110 @@ function buildCharts() {
         x: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 11 } }, grid: { display: false } }
       },
       plugins: { legend: { display: true, labels: { color: C.fg, boxWidth: 12 } }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } } }
+    }
+  });
+
+  // ===== TRANSGENDER CHARTS =====
+  new Chart(document.getElementById('chart-trans-prison'), {
+    type: 'bar',
+    data: {
+      labels: ['Trans Women (2024 MoJ)', 'Trans Women (2019 FOI)', 'HMPPS 2023 Trans', 'General Male Prisoners', 'General Female Prisoners'],
+      datasets: [{
+        label: '% with Sexual Offences',
+        data: [62, 58.9, 43, 17, 3.3],
+        backgroundColor: [C.cat[0], C.cat[0], C.cat[0], C.cat[2], C.cat[4]],
+        borderRadius: 4, borderSkipped: 'start'
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true, max: 75, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 8 : 11 } }, grid: { display: false } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y + '% with sexual offences' } } }
+    }
+  });
+
+  new Chart(document.getElementById('chart-trans-pop'), {
+    type: 'bar',
+    data: {
+      labels: ['Trans Women', 'General Male', 'General Female'],
+      datasets: [{
+        label: 'Rate per 100K population serving for sex offence',
+        data: [191.6, 39.5, 0.34],
+        backgroundColor: [C.cat[0], C.cat[2], C.cat[4]],
+        borderRadius: 4, borderSkipped: 'start'
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { type: 'logarithmic', ticks: { color: C.fgSec, callback: function(v) { return logTickCb([0.1, 1, 10, 100, 200])(v); } }, grid: { color: C.grid }, title: { display: !isMobile, text: 'Per 100K (log scale)', color: C.fgSec } },
+        x: { ticks: { color: C.fgSec }, grid: { display: false } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y.toFixed(1) + ' per 100K' } } }
+    }
+  });
+
+  new Chart(document.getElementById('chart-trans-sweden'), {
+    type: 'bar',
+    data: {
+      labels: ['Any Criminal Conviction', 'Violent Offences'],
+      datasets: [
+        { label: 'MtF Trans (vs female controls)', data: [6, 18], backgroundColor: C.cat[0], borderRadius: 4, borderSkipped: 'start' },
+        { label: 'Baseline (female controls)', data: [1, 1], backgroundColor: C.cat[4], borderRadius: 4, borderSkipped: 'start' }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true, ticks: { color: C.fgSec, callback: v => v + '×' }, grid: { color: C.grid }, title: { display: !isMobile, text: 'Relative risk vs female controls', color: C.fgSec } },
+        x: { ticks: { color: C.fgSec }, grid: { display: false } }
+      },
+      plugins: { legend: { display: true, labels: { color: C.fg, boxWidth: 12 } }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '×' } } }
+    }
+  });
+
+  new Chart(document.getElementById('chart-trans-csa'), {
+    type: 'bar',
+    data: {
+      labels: ['Transgender', 'Cisgender'],
+      datasets: [{
+        label: 'Childhood Sexual Abuse Rate',
+        data: [20, 12.8],
+        backgroundColor: [C.cat[0], C.cat[2]],
+        borderRadius: 4, borderSkipped: 'start'
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true, max: 30, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid }, title: { display: !isMobile, text: '% reporting CSA', color: C.fgSec } },
+        x: { ticks: { color: C.fgSec }, grid: { display: false } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y + '%' } } }
+    }
+  });
+
+  new Chart(document.getElementById('chart-trans-csa-sex'), {
+    type: 'bar',
+    data: {
+      labels: ['AMAB Trans', 'Cis Male', 'AFAB Trans', 'Cis Female'],
+      datasets: [{
+        label: 'CSA Rate by Sex Assigned at Birth',
+        data: [17.1, 7.2, 22.9, 17.4],
+        backgroundColor: [C.cat[0], C.cat[2], C.cat[1], C.cat[4]],
+        borderRadius: 4, borderSkipped: 'start'
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true, max: 30, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid }, title: { display: !isMobile, text: '% reporting CSA', color: C.fgSec } },
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 11 } }, grid: { display: false } }
+      },
+      plugins: { legend: { display: false }, tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y + '%' } } }
     }
   });
 
