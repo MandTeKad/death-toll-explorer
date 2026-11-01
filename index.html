@@ -483,6 +483,7 @@ body::before {
     <optgroup label="Political &amp; Economic">
       <option value="party-performance">Party Performance</option>
       <option value="trump-precovid">Trump: Pre-COVID Analysis</option>
+      <option value="trump-2nd-term">Trump: 2nd Term Tracker</option>
     </optgroup>
     <optgroup label="The Big Picture">
       <option value="preventable">Scale Comparison</option>
@@ -2175,6 +2176,60 @@ body::before {
 </section>
 
 
+<!-- ===== TRUMP 2ND TERM TRACKER ===== -->
+<section class="panel" id="panel-trump-2nd-term" role="tabpanel">
+  <h2 class="panel-title">Trump 2nd Term: Economic Tracker</h2>
+  <p class="panel-desc">Tracking Trump&rsquo;s second term (Jan 2025&ndash;present) by the numbers. This is a <strong>live administration</strong>&mdash;data is still accumulating and final judgments require more time. The numbers here represent what has measurably happened so far, with context for what&rsquo;s driving the trends. Data current through September/October 2026.</p>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">Avg GDP Growth</p><p class="st-value">2.1%</p></div>
+    <div class="stat-tile"><p class="st-label">Jobs Added</p><p class="st-value">~1.1M</p></div>
+    <div class="stat-tile"><p class="st-label">Unemployment</p><p class="st-value">4.2%</p></div>
+    <div class="stat-tile"><p class="st-label">FY2026 Deficit</p><p class="st-value">$2.0T</p></div>
+  </div>
+
+  <h3 class="section-head">GDP Growth by Quarter</h3>
+  <p class="chart-desc">Quarterly GDP has been volatile&mdash;a contraction in Q1 2025 (partly driven by import front-running ahead of tariffs), strong rebounds mid-year, then softening again. Average annualized growth across 7 quarters: ~2.1%.</p>
+  <div class="chart-wrap"><canvas id="chart-t2-gdp-qtr"></canvas></div>
+
+  <h3 class="section-head">Monthly Job Creation</h3>
+  <p class="chart-desc">Job growth has been uneven, averaging ~52K/month through September 2026. Multiple months saw net losses. Federal workforce reductions (DOGE) are a factor, with federal employment down ~352,000 (&minus;12%) since inauguration. The prior 12-month average entering the term was ~150K/month.</p>
+  <div class="chart-wrap"><canvas id="chart-t2-jobs-monthly"></canvas></div>
+
+  <h3 class="section-head">Unemployment &amp; Inflation</h3>
+  <p class="chart-desc">Unemployment rose from 4.0% at inauguration to 4.4% in late 2025, settling around 4.2% in 2026. Inflation (CPI) initially fell from 3.0% to 2.4% in early 2026, but has risen sharply to 3.7% by September 2026, driven partly by tariff-related price increases and rising gas prices (+30% since inauguration).</p>
+  <div class="chart-wrap"><canvas id="chart-t2-unemp-cpi"></canvas></div>
+
+  <h3 class="section-head">The DOGE Effect: Federal Workforce</h3>
+  <p class="chart-desc">The Department of Government Efficiency (DOGE) initiative drove historic federal workforce reductions. Federal employment fell ~352,000 (&minus;12%) by March 2026&mdash;the largest peacetime federal workforce reduction in U.S. history. Despite the stated goal of deficit reduction, the FY2026 deficit rose 12% to $2.0 trillion.</p>
+  <div class="chart-wrap"><canvas id="chart-t2-doge"></canvas></div>
+
+  <h3 class="section-head">Scorecard: Key Metrics Since Inauguration</h3>
+  <p class="chart-desc">How the headline numbers have moved since January 20, 2025. Green indicates improvement from a traditional economic standpoint, orange indicates deterioration.</p>
+  <div class="chart-wrap"><canvas id="chart-t2-scorecard"></canvas></div>
+
+  <div style="overflow-x:auto;margin-top:1.5rem">
+    <table class="data-table">
+      <thead><tr><th>Indicator</th><th>At Inauguration (Jan 2025)</th><th>Latest (Sep/Oct 2026)</th><th>Change</th></tr></thead>
+      <tbody>
+        <tr><td>Unemployment Rate</td><td>4.0%</td><td>4.2%</td><td style="color:#f97316">+0.2 pp</td></tr>
+        <tr><td>CPI Inflation (12-mo)</td><td>3.0%</td><td>3.7%</td><td style="color:#f97316">+0.7 pp</td></tr>
+        <tr><td>S&amp;P 500</td><td>~5,880</td><td>~6,840</td><td style="color:#22c55e">+16.4%</td></tr>
+        <tr><td>Gas Price (regular)</td><td>$3.11/gal</td><td>~$4.04/gal</td><td style="color:#f97316">+29.9%</td></tr>
+        <tr><td>30-yr Mortgage Rate</td><td>7.04%</td><td>6.30%</td><td style="color:#22c55e">&minus;0.74 pp</td></tr>
+        <tr><td>Federal Debt (public)</td><td>$28.8T</td><td>$32.4T</td><td style="color:#f97316">+$3.6T</td></tr>
+        <tr><td>Federal Workers</td><td>~3.01M</td><td>~2.66M</td><td style="color:#f97316">&minus;352K (&minus;12%)</td></tr>
+        <tr><td>Labor Force Participation</td><td>62.6%</td><td>~61.9%</td><td style="color:#f97316">&minus;0.7 pp</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="chart-desc" style="margin-top:1.5rem"><strong>Context:</strong> Trump&rsquo;s second term has been defined economically by two major policy shifts: aggressive tariff increases (the highest average tariff rates in over a century) and federal workforce reductions via DOGE. The tariffs initially depressed Q1 2025 GDP as importers front-ran duties, then contributed to rising consumer prices in 2026. Job growth has been notably weaker than the Biden-era average, though manufacturing has seen a modest rebound since late 2025. The stock market has performed solidly (+16% S&amp;P 500 in 2025) but trails the pace of the first Trump term (+21.8% in 2017) and Biden&rsquo;s term (+57.8% total). The deficit has continued to grow despite DOGE cuts, as rising interest costs ($1.1T in FY2026) and revenue shortfalls from lower corporate taxes offset spending reductions.</p>
+
+  <p class="chart-desc" style="margin-top:1rem"><strong>Sources:</strong> Bureau of Economic Analysis (quarterly GDP), Bureau of Labor Statistics (employment, unemployment, CPI), U.S. Treasury (deficit, debt), FactCheck.org &ldquo;Trump&rsquo;s Numbers, Second Term&rdquo; (Jan 2026) and April 2026 Update, American Action Forum (FY2026 deficit analysis), S&amp;P Dow Jones Indices, Kiplinger (stock market analysis).</p>
+</section>
+
+
 <!-- ===== TAB 7: CENTURY OF DEATH ===== -->
 <section class="panel" id="panel-century-death" role="tabpanel">
   <h2 class="panel-title">Century of Death (1924&ndash;2024)</h2>
@@ -2487,7 +2542,7 @@ function setMobileChartHeights() {
     if (!canvas) return;
     const id = canvas.id;
     // Horizontal bars need more vertical space on mobile
-    if (['chart-overview-bar','chart-rape-funnel','chart-mm-intl','chart-pd-bans','chart-pd-travel','chart-prev-bar','chart-sd-gender','chart-tp-gdp-rank'].includes(id)) {
+    if (['chart-overview-bar','chart-rape-funnel','chart-mm-intl','chart-pd-bans','chart-pd-travel','chart-prev-bar','chart-sd-gender','chart-tp-gdp-rank','chart-t2-scorecard'].includes(id)) {
       el.style.minHeight = '380px';
     } else if (id === 'chart-rape-false') {
       el.style.minHeight = '480px'; // 11 studies need room
@@ -6050,6 +6105,142 @@ function buildCharts() {
           { text: 'Lag-Adjusted (1yr)', fillStyle: '#93c5fd', strokeStyle: '#93c5fd' }
         ], color: C.fg } },
         tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y.toFixed(1) + '% GDP growth' } }
+      }
+    }
+  });
+
+  // ===== TRUMP 2ND TERM TRACKER CHARTS =====
+
+  // GDP by Quarter
+  const t2GdpLabels = ['Q1 \'25','Q2 \'25','Q3 \'25','Q4 \'25','Q1 \'26','Q2 \'26','Q3 \'26'];
+  const t2GdpData = [-0.6, 3.8, 4.4, 0.5, 1.2, 2.2, 3.4];
+  const t2GdpColors = t2GdpData.map(v => v < 0 ? '#f97316' : '#3b82f6');
+  new Chart(document.getElementById('chart-t2-gdp-qtr'), {
+    type: 'bar',
+    data: { labels: t2GdpLabels, datasets: [{ data: t2GdpData, backgroundColor: t2GdpColors, borderColor: t2GdpColors, borderWidth: 1, borderRadius: 4 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { color: C.fgSec }, grid: { display: false } },
+        y: { title: { display: true, text: 'Annualized GDP Growth %', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid } }
+      },
+      plugins: {
+        legend: { display: true, labels: { generateLabels: () => [
+          { text: 'Growth', fillStyle: '#3b82f6', strokeStyle: '#3b82f6' },
+          { text: 'Contraction', fillStyle: '#f97316', strokeStyle: '#f97316' }
+        ], color: C.fg } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y.toFixed(1) + '% GDP' } }
+      }
+    }
+  });
+
+  // Monthly Job Creation 2026
+  const t2JobLabels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'];
+  const t2JobData = [160, -156, 214, 148, 63, 31, -10, 133, 29];
+  const t2JobColors = t2JobData.map(v => v < 0 ? '#f97316' : '#3b82f6');
+  new Chart(document.getElementById('chart-t2-jobs-monthly'), {
+    type: 'bar',
+    data: { labels: t2JobLabels, datasets: [{ label: 'Monthly Jobs (thousands)', data: t2JobData, backgroundColor: t2JobColors, borderColor: t2JobColors, borderWidth: 1, borderRadius: 4 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { color: C.fgSec }, grid: { display: false } },
+        y: { title: { display: true, text: 'Nonfarm Payrolls (thousands)', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => (v >= 0 ? '+' : '') + v + 'K' }, grid: { color: C.grid } }
+      },
+      plugins: {
+        legend: { display: true, labels: { generateLabels: () => [
+          { text: 'Job gains', fillStyle: '#3b82f6', strokeStyle: '#3b82f6' },
+          { text: 'Job losses', fillStyle: '#f97316', strokeStyle: '#f97316' }
+        ], color: C.fg } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => (ctx.parsed.y >= 0 ? '+' : '') + ctx.parsed.y + 'K jobs' } }
+      }
+    }
+  });
+
+  // Unemployment & Inflation
+  const t2UeCpiLabels = ['Jan \'25','Apr \'25','Jul \'25','Oct \'25','Jan \'26','Apr \'26','Jul \'26','Sep \'26'];
+  new Chart(document.getElementById('chart-t2-unemp-cpi'), {
+    type: 'line',
+    data: {
+      labels: t2UeCpiLabels,
+      datasets: [
+        { label: 'Unemployment Rate', data: [4.0, 4.2, 4.3, 4.1, 4.0, 4.2, 4.3, 4.2], borderColor: '#3b82f6', backgroundColor: 'rgba(59,130,246,0.1)', fill: true, tension: 0.3, pointRadius: [4,4,4,4,4,4,4,4], pointBackgroundColor: Array(8).fill('#3b82f6') },
+        { label: 'CPI Inflation (12-mo)', data: [3.0, 2.7, 2.6, 2.7, 2.4, 2.8, 3.4, 3.7], borderColor: '#ef4444', backgroundColor: 'rgba(239,68,68,0.1)', fill: true, tension: 0.3, pointRadius: [4,4,4,4,4,4,4,4], pointBackgroundColor: Array(8).fill('#ef4444') }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { color: C.fgSec }, grid: { display: false } },
+        y: { title: { display: true, text: 'Percent (%)', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid }, min: 1.5, max: 5.0 }
+      },
+      plugins: {
+        legend: { display: true, labels: { color: C.fg } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(1) + '%' } }
+      }
+    }
+  });
+
+  // DOGE Effect — Federal Workforce
+  const t2DogeLabels = ['Jan \'25','Mar \'25','Jun \'25','Sep \'25','Dec \'25','Mar \'26','Jun \'26','Sep \'26'];
+  const t2DogeData = [3010, 2890, 2780, 2720, 2733, 2658, 2670, 2660];
+  new Chart(document.getElementById('chart-t2-doge'), {
+    type: 'line',
+    data: {
+      labels: t2DogeLabels,
+      datasets: [{
+        label: 'Federal Civilian Workers (thousands)',
+        data: t2DogeData,
+        borderColor: '#ef4444',
+        backgroundColor: 'rgba(239,68,68,0.15)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: [6,4,4,4,4,6,4,4],
+        pointBackgroundColor: ['#ef4444','#ef4444','#ef4444','#ef4444','#ef4444','#f97316','#ef4444','#ef4444']
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { color: C.fgSec }, grid: { display: false } },
+        y: { title: { display: true, text: 'Federal Workers (thousands)', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => fmt(v * 1000) }, grid: { color: C.grid }, min: 2500, max: 3100 }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => fmt(ctx.parsed.y * 1000) + ' federal workers' } }
+      }
+    }
+  });
+
+  // Scorecard — horizontal bar
+  const t2ScLabels = ['S&P 500','Mortgage Rate','Real Wages','Unemployment','Inflation (CPI)','Gas Prices','Federal Debt','Fed Workers','Labor Force Part.'];
+  const t2ScData = [16.4, 10.5, 1.2, -5.0, -23.3, -29.9, -12.5, -11.7, -1.1];
+  const t2ScColors = t2ScData.map(v => {
+    const idx = t2ScLabels[t2ScData.indexOf(v)];
+    if (['S&P 500','Mortgage Rate','Real Wages'].includes(idx)) return '#22c55e';
+    return '#f97316';
+  });
+  // Fix: recalculate colors by index properly
+  const t2ScColorsFixed = t2ScLabels.map((label, i) => {
+    if (['S&P 500','Mortgage Rate','Real Wages'].includes(label)) return '#22c55e';
+    return '#f97316';
+  });
+  new Chart(document.getElementById('chart-t2-scorecard'), {
+    type: 'bar',
+    data: { labels: t2ScLabels, datasets: [{ data: t2ScData, backgroundColor: t2ScColorsFixed, borderColor: t2ScColorsFixed, borderWidth: 1, borderRadius: 4 }] },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { title: { display: true, text: '% Change Since Inauguration', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => (v > 0 ? '+' : '') + v + '%' }, grid: { color: C.grid } },
+        y: { ticks: { color: C.fgSec }, grid: { display: false } }
+      },
+      plugins: {
+        legend: { display: true, labels: { generateLabels: () => [
+          { text: 'Improved', fillStyle: '#22c55e', strokeStyle: '#22c55e' },
+          { text: 'Deteriorated', fillStyle: '#f97316', strokeStyle: '#f97316' }
+        ], color: C.fg } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => (ctx.parsed.x > 0 ? '+' : '') + ctx.parsed.x + '% change' } }
       }
     }
   });
