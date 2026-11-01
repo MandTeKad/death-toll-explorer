@@ -484,6 +484,7 @@ body::before {
       <option value="party-performance">Party Performance</option>
       <option value="trump-precovid">Trump: Pre-COVID Analysis</option>
       <option value="trump-2nd-term">Trump: 2nd Term Tracker</option>
+      <option value="tax-burden">Tax Burden: Who Pays?</option>
     </optgroup>
     <optgroup label="The Big Picture">
       <option value="preventable">Scale Comparison</option>
@@ -2230,6 +2231,83 @@ body::before {
 </section>
 
 
+<!-- ===== TAX BURDEN: WHO PAYS? ===== -->
+<section class="panel" id="panel-tax-burden" role="tabpanel">
+  <h2 class="panel-title">Tax Burden: Who Pays?</h2>
+  <p class="panel-desc">Breaking down the claim that &ldquo;billionaires don&rsquo;t pay their fair share.&rdquo; Who actually funds the federal government? How do the ultra-wealthy minimize their tax bills? And where does the corporate share keep shrinking? All data from official IRS statistics, Congressional analyses, and investigative reporting.</p>
+
+  <div class="stat-row">
+    <div class="stat-tile"><p class="st-label">Top 1% Share of Income Tax</p><p class="st-value">38.4%</p></div>
+    <div class="stat-tile"><p class="st-label">Bottom 50% Share</p><p class="st-value">3.3%</p></div>
+    <div class="stat-tile"><p class="st-label">Returns w/ $0 Tax</p><p class="st-value">49M+</p></div>
+    <div class="stat-tile"><p class="st-label">Annual Tax Gap</p><p class="st-value">~$688B+</p></div>
+  </div>
+
+  <h3 class="section-head">Who Pays Federal Income Tax</h3>
+  <p class="chart-desc">The top 1% of earners (income above $675K) pay over 38% of all federal income taxes while earning about 21% of total income. The top 10% pay over 70%. Meanwhile, the bottom 50% pay just 3.3% of income taxes. By this measure, the system is highly progressive.</p>
+  <div class="chart-wrap"><canvas id="chart-tax-whopays"></canvas></div>
+
+  <h3 class="section-head">Effective Tax Rates: Where Progressivity Breaks</h3>
+  <p class="chart-desc">The effective federal income tax rate rises as income grows&mdash;until you reach the very top. The top 1% pays 26.3%, but the top 0.001% (1,531 returns averaging $78.6M+) pays only 23.6%. The system stops being progressive at the peak because the ultra-wealthy earn most of their income from capital gains (taxed at 20% + 3.8% NIIT) rather than wages (taxed up to 37%).</p>
+  <div class="chart-wrap"><canvas id="chart-tax-effective"></canvas></div>
+
+  <h3 class="section-head">The &ldquo;True Tax Rate&rdquo; &mdash; Taxes vs. Wealth Growth</h3>
+  <p class="chart-desc">ProPublica obtained IRS data showing what billionaires actually paid relative to their total wealth growth (2014&ndash;2018). Because unrealized gains aren&rsquo;t taxed, and the wealthy borrow against assets instead of selling, their &ldquo;true&rdquo; tax rate is a fraction of what ordinary workers pay. Some paid $0 in multiple years by reporting investment losses.</p>
+  <div class="chart-wrap"><canvas id="chart-tax-truerate"></canvas></div>
+
+  <h3 class="section-head">Federal Revenue Sources</h3>
+  <p class="chart-desc">Individual income taxes make up the majority of federal revenue. Payroll taxes (Social Security &amp; Medicare) are the second-largest source and fall disproportionately on workers since Social Security tax is capped at $168,600 (2024). Corporate income tax has shrunk from about a third of revenue in the 1950s to under 10% today.</p>
+  <div class="chart-wrap"><canvas id="chart-tax-revenue"></canvas></div>
+
+  <h3 class="section-head">The Corporate Tax Vanishing Act</h3>
+  <p class="chart-desc">Corporate income tax revenue as a share of GDP has fallen from 3.7% in the 1950s to roughly 1.5% today. In 2025, 88 major corporations reported $105 billion in profits yet paid $0 in federal income tax&mdash;receiving $4.7 billion in rebates instead. Key loopholes: accelerated depreciation ($11.4B), stock option deductions, and the research &amp; experimentation credit ($1.6B).</p>
+  <div class="chart-wrap"><canvas id="chart-tax-corp"></canvas></div>
+
+  <h3 class="section-head">How Billionaires Avoid Taxes: Buy, Borrow, Die</h3>
+  <p class="chart-desc">The ultra-wealthy use a simple three-step strategy to avoid paying income tax on their growing fortunes:</p>
+
+  <div class="treemap-container" id="treemap-tax-bbd"></div>
+
+  <div class="table-wrap" style="margin-top:1.5rem">
+    <table>
+      <caption>The Buy, Borrow, Die Strategy</caption>
+      <thead><tr><th>Step</th><th>How It Works</th><th>Tax Impact</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1. Buy</strong></td><td>Accumulate assets (stocks, real estate) that appreciate in value</td><td>Unrealized gains are NOT taxed &mdash; no sale, no tax event</td></tr>
+        <tr><td><strong>2. Borrow</strong></td><td>Take loans against those assets for spending money</td><td>Borrowed money is NOT income &mdash; pay ~3&ndash;5% interest instead of 37% income tax</td></tr>
+        <tr><td><strong>3. Die</strong></td><td>Heirs inherit assets with &ldquo;stepped-up basis&rdquo; (cost basis resets to current value)</td><td>All unrealized gains wiped out &mdash; $72.5B/year in forgone revenue (JCT est.)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-wrap" style="margin-top:1.5rem">
+    <table>
+      <caption>Key Tax Data &amp; Comparisons</caption>
+      <thead><tr><th>Metric</th><th>Value</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td>Top 1% share of income tax</td><td>38.4%</td><td>IRS via NTU, Tax Year 2023</td></tr>
+        <tr><td>Top 1% share of AGI</td><td>20.6%</td><td>IRS via NTU</td></tr>
+        <tr><td>Top 1% effective rate</td><td>26.3%</td><td>IRS via Kiplinger, 2021</td></tr>
+        <tr><td>Top 0.001% effective rate</td><td>23.6%</td><td>IRS via Kiplinger, 2021</td></tr>
+        <tr><td>All taxpayers effective rate</td><td>14.1%</td><td>IRS, 2021</td></tr>
+        <tr><td>Capital gains max rate</td><td>23.8%</td><td>20% + 3.8% NIIT</td></tr>
+        <tr><td>Top income tax bracket</td><td>37%</td><td>IRS, 2024</td></tr>
+        <tr><td>Step-up in basis cost</td><td>$72.5B/yr</td><td>Joint Committee on Taxation, 2026 est.</td></tr>
+        <tr><td>Corps paying $0 tax (2025)</td><td>88 companies on $105B profit</td><td>ITEP, 2025</td></tr>
+        <tr><td>Annual tax gap</td><td>$688B+ (est. ~$1T)</td><td>IRS, 2021 &amp; IRS Commissioner est.</td></tr>
+        <tr><td>Returns with $0 liability</td><td>49M+ (30.5% of filers)</td><td>Tax Foundation, 2023</td></tr>
+        <tr><td>Corporate share of revenue (1950s)</td><td>~33%</td><td>OMB Historical Tables</td></tr>
+        <tr><td>Corporate share of revenue (2022)</td><td>~9%</td><td>CBO, 2022</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="chart-desc" style="margin-top:1.5rem"><strong>Context:</strong> The tax debate contains truths on both sides. By dollar amount and share, the wealthy pay the vast majority of federal income taxes&mdash;the system is more progressive than most countries. However, when you include payroll taxes (which fall heavily on workers due to the Social Security cap) and measure against total wealth rather than just reported income, the picture changes dramatically. The ultra-wealthy exploit the gap between &ldquo;income&rdquo; (what&rsquo;s taxed) and &ldquo;wealth growth&rdquo; (what actually makes them richer). The &ldquo;Buy, Borrow, Die&rdquo; strategy is entirely legal and means someone worth $100 billion can go years paying less in taxes than their secretary&mdash;exactly as Warren Buffett famously noted. Meanwhile, corporate tax revenue has cratered even as profits have soared, shifting more of the federal burden onto individual workers.</p>
+
+  <p class="chart-desc" style="margin-top:1rem"><strong>Sources:</strong> IRS Statistics of Income (via Tax Foundation &amp; NTU), Kiplinger &ldquo;Who Pays Income Taxes&rdquo; (Tax Year 2021 effective rates), ProPublica &ldquo;The Secret IRS Files&rdquo; (2021, billionaire tax data 2014&ndash;2018), Institute on Taxation and Economic Policy (ITEP, corporate zero-tax analysis 2025), Joint Committee on Taxation (step-up in basis estimates), Congressional Budget Office (federal revenue data), Office of Management and Budget (historical tables), Peter G. Peterson Foundation (revenue breakdown 2022).</p>
+</section>
+
+
 <!-- ===== TAB 7: CENTURY OF DEATH ===== -->
 <section class="panel" id="panel-century-death" role="tabpanel">
   <h2 class="panel-title">Century of Death (1924&ndash;2024)</h2>
@@ -2542,7 +2620,7 @@ function setMobileChartHeights() {
     if (!canvas) return;
     const id = canvas.id;
     // Horizontal bars need more vertical space on mobile
-    if (['chart-overview-bar','chart-rape-funnel','chart-mm-intl','chart-pd-bans','chart-pd-travel','chart-prev-bar','chart-sd-gender','chart-tp-gdp-rank','chart-t2-scorecard'].includes(id)) {
+    if (['chart-overview-bar','chart-rape-funnel','chart-mm-intl','chart-pd-bans','chart-pd-travel','chart-prev-bar','chart-sd-gender','chart-tp-gdp-rank','chart-t2-scorecard','chart-tax-truerate'].includes(id)) {
       el.style.minHeight = '380px';
     } else if (id === 'chart-rape-false') {
       el.style.minHeight = '480px'; // 11 studies need room
@@ -6244,6 +6322,156 @@ function buildCharts() {
       }
     }
   });
+
+  // ===== TAX BURDEN: WHO PAYS? CHARTS =====
+
+  // Chart 1: Who Pays Federal Income Tax — grouped bar
+  const taxGroups = ['Top 1%','Top 5%','Top 10%','Top 25%','Top 50%','Bottom 50%'];
+  const taxSharePaid = [38.4, 59.3, 70.5, 86.3, 96.7, 3.3];
+  const taxShareIncome = [20.6, 36.4, 48.5, 67.1, 87.7, 12.3];
+  new Chart(document.getElementById('chart-tax-whopays'), {
+    type: 'bar',
+    data: {
+      labels: taxGroups,
+      datasets: [
+        { label: '% of Income Tax Paid', data: taxSharePaid, backgroundColor: C.cat[0], borderColor: C.cat[0], borderWidth: 1, borderRadius: 4 },
+        { label: '% of Total Income Earned', data: taxShareIncome, backgroundColor: C.cat[2], borderColor: C.cat[2], borderWidth: 1, borderRadius: 4 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 12 } }, grid: { display: false } },
+        y: { title: { display: true, text: 'Percentage (%)', color: C.fgSec }, ticks: { color: C.fgSec }, grid: { color: C.grid }, max: 100 }
+      },
+      plugins: {
+        legend: { display: true, labels: { color: C.fg, boxWidth: 12, padding: 10 } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } }
+      }
+    }
+  });
+
+  // Chart 2: Effective Tax Rate by Income Group — bar with rate drop highlight
+  const effLabels = ['Bottom 50%','All Taxpayers','Top 25%','Top 10%','Top 5%','Top 1%','Top 0.001%'];
+  const effRates = [3.7, 14.1, 18.4, 21.5, 23.4, 26.3, 23.6];
+  const effColors = effLabels.map((l, i) => {
+    if (l === 'Top 0.001%') return '#ef4444'; // red — rate DROPS
+    if (l === 'Top 1%') return '#22c55e'; // green — peak
+    return C.cat[0];
+  });
+  new Chart(document.getElementById('chart-tax-effective'), {
+    type: 'bar',
+    data: {
+      labels: effLabels,
+      datasets: [{ label: 'Effective Federal Income Tax Rate', data: effRates, backgroundColor: effColors, borderColor: effColors, borderWidth: 1, borderRadius: 4 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 12 } }, grid: { display: false } },
+        y: { title: { display: true, text: 'Effective Rate (%)', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid }, max: 35 }
+      },
+      plugins: {
+        legend: { display: true, labels: { generateLabels: () => [
+          { text: 'Progressive (rate rising)', fillStyle: C.cat[0], strokeStyle: C.cat[0] },
+          { text: 'Peak rate (Top 1%)', fillStyle: '#22c55e', strokeStyle: '#22c55e' },
+          { text: 'Rate DROPS (Top 0.001%)', fillStyle: '#ef4444', strokeStyle: '#ef4444' }
+        ], color: C.fg, boxWidth: 12, padding: 10 } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => 'Effective rate: ' + ctx.parsed.y + '%' } }
+      }
+    }
+  });
+
+  // Chart 3: ProPublica "True Tax Rate" — horizontal bar
+  const trueLabels = ['Warren Buffett','Jeff Bezos','Elon Musk','Michael Bloomberg','Carl Icahn','George Soros','Avg. Worker (comparison)'];
+  const trueRates = [0.1, 1.0, 3.27, 1.3, 0, 0, 13.3];
+  const trueColors = trueLabels.map(l => l === 'Avg. Worker (comparison)' ? '#22c55e' : '#ef4444');
+  new Chart(document.getElementById('chart-tax-truerate'), {
+    type: 'bar',
+    data: {
+      labels: trueLabels,
+      datasets: [{ label: '"True" Tax Rate (taxes / wealth growth)', data: trueRates, backgroundColor: trueColors, borderColor: trueColors, borderWidth: 1, borderRadius: 4 }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { title: { display: true, text: 'Tax Rate (%)', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid }, max: 16 },
+        y: { ticks: { color: C.fgSec, font: { size: isMobile ? 10 : 12 } }, grid: { display: false } }
+      },
+      plugins: {
+        legend: { display: true, labels: { generateLabels: () => [
+          { text: 'Billionaire "true" rate', fillStyle: '#ef4444', strokeStyle: '#ef4444' },
+          { text: 'Average worker rate', fillStyle: '#22c55e', strokeStyle: '#22c55e' }
+        ], color: C.fg, boxWidth: 12, padding: 10 } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => {
+          if (ctx.parsed.x === 0) return 'Paid $0 (reported losses)';
+          return 'True rate: ' + ctx.parsed.x + '%';
+        } } }
+      }
+    }
+  });
+
+  // Chart 4: Federal Revenue Sources — bar chart
+  const revLabels = ['Individual Income Tax','Payroll Tax','Corporate Income Tax','Excise Tax','Other'];
+  const revData = [54, 30, 9, 1.8, 5.2];
+  const revColors = [C.cat[0], C.cat[1], C.cat[2], C.cat[3], C.cat[4]];
+  new Chart(document.getElementById('chart-tax-revenue'), {
+    type: 'bar',
+    data: {
+      labels: revLabels,
+      datasets: [{ data: revData, backgroundColor: revColors, borderColor: revColors, borderWidth: 1, borderRadius: 4 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { color: C.fgSec, font: { size: isMobile ? 9 : 12 } }, grid: { display: false } },
+        y: { title: { display: true, text: '% of Federal Revenue', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid }, max: 60 }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.parsed.y + '% of federal revenue' } }
+      }
+    }
+  });
+
+  // Chart 5: Corporate Tax Decline — line chart
+  const corpYears = ['1950s','1960s','1970s','1980s','1990s','2000s','2010s','2022'];
+  const corpPctRevenue = [33, 23, 16, 11, 11.5, 10, 9.5, 9];
+  const corpPctGDP = [3.7, 3.4, 2.5, 1.5, 1.8, 1.5, 1.3, 1.5];
+  new Chart(document.getElementById('chart-tax-corp'), {
+    type: 'line',
+    data: {
+      labels: corpYears,
+      datasets: [
+        { label: '% of Federal Revenue', data: corpPctRevenue, borderColor: C.cat[0], backgroundColor: C.cat[0] + '33', fill: true, tension: 0.3, pointRadius: Array(8).fill(4), pointBackgroundColor: Array(8).fill(C.cat[0]) },
+        { label: '% of GDP', data: corpPctGDP, borderColor: C.cat[2], backgroundColor: C.cat[2] + '33', fill: true, tension: 0.3, yAxisID: 'y', pointRadius: Array(8).fill(4), pointBackgroundColor: Array(8).fill(C.cat[2]) }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { color: C.fgSec }, grid: { display: false } },
+        y: { title: { display: true, text: 'Percentage', color: C.fgSec }, ticks: { color: C.fgSec, callback: v => v + '%' }, grid: { color: C.grid }, min: 0, max: 40 }
+      },
+      plugins: {
+        legend: { display: true, labels: { color: C.fg, boxWidth: 12, padding: 10 } },
+        tooltip: { ...ttOpts(C), callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + '%' } }
+      }
+    }
+  });
+
+  // Treemap: Buy, Borrow, Die + Tax Loopholes
+  if (typeof buildTreemap === 'function') {
+    buildTreemap('treemap-tax-bbd', [
+      { label: 'Step-Up in Basis', value: '$72.5B/yr forgone', pct: '35%', desc: 'Heirs inherit at current value — all gains wiped' },
+      { label: 'Capital Gains Rate Gap', value: '23.8% vs 37%', pct: '25%', desc: 'Investment income taxed 13% lower than wages' },
+      { label: 'Borrowing Against Assets', value: 'Not taxed', pct: '20%', desc: 'Loans against stock = spending money with no tax event' },
+      { label: 'Accelerated Depreciation', value: '$11.4B/yr', pct: '10%', desc: 'Corporations write off assets faster than they lose value' },
+      { label: 'Stock Option Deductions', value: 'Billions/yr', pct: '5%', desc: 'Companies deduct options at market price, not grant price' },
+      { label: 'R&E Tax Credit', value: '$1.6B/yr', pct: '5%', desc: 'Research credit often claimed for routine operations' }
+    ], C);
+  }
 
 }
 
